@@ -22,6 +22,15 @@ KNOWN BUG:
 - LUA doesn't handle UTF8 very well: Subtitle download will fail if the path to your video file contains special/accentuated characters.
 Changelog:
 
+
+2012-12-18 (version 0.8)
+  [Benoit Vallee] Fixed subtitle downloading when special characters are present on the video path
+  [Benoit Vallee] Fixed zip file deletion after subtitle has been extracted
+
+2012-10-17 (version 0.7)
+  [thePanz] Added subtitle language in listing
+  [thePanz] Added subtitle language in downloaded file (avoid filename collisions during download)
+
 version 0.6
   Use definitive user agent for opensubtitle API
   Fix a bug when video file path contains accents/special characters on linux (same bug on windows not corrected yet)

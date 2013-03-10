@@ -24,12 +24,12 @@
 -- Extension description
 function descriptor()
 	return { title = "VLsub" ;
-		version = "0.6" ;
+		version = "0.8" ;
 		author = "exebetche" ;
 		url = 'http://www.opensubtitles.org/';
 		shortdesc = "VLsub";
 		description = "<center><b>VLsub</b></center>"
-				.. "Dowload subtitles from OpenSubtitles.org" ;
+				.. "Download subtitles from OpenSubtitles.org" ;
 		capabilities = { "input-listener", "meta-listener" }
 	}
 end
@@ -41,7 +41,7 @@ url = "http://api.opensubtitles.org/xml-rpc"
 progressBarSize = 40
 interface_state = 0
 result_state = {}
-default_language = "fre"
+default_language = "eng"
 
 function set_default_language()
 	if default_language then
@@ -556,7 +556,8 @@ openSub = {
             local tmpFile = assert(io.open(tmpFileName, "wb"))
             tmpFile:write(resp)
             tmpFile:close()
-            subfileURI = "zip://"..make_uri(tmpFileName.."!/"..SubFileName)
+            
+            subfileURI = "zip://"..make_uri(tmpFileName, true).."!/"..SubFileName
             if target then
                 local stream = vlc.stream(subfileURI)
                 local data = ""
@@ -564,15 +565,18 @@ openSub = {
                
                 while data do
                     if openSub.conf.removeTag then
-                        subfile:write(remove_tag(data).."\r\n")
+                        subfile:write(remove_tag(data).."\n")
                     else
-                        subfile:write(data.."\r\n")
+                        subfile:write(data.."\n")
                     end
                     data = stream:readline()
                 end
                 subfile:close()
-                subfileURI = make_uri(target, true)
+
+                stream = nil
             end
+            subfileURI = make_uri(target, true)
+            collectgarbage() -- force gargabe collection in order to close the opened stream
             os.remove(tmpFileName)
         end
        
@@ -731,7 +735,7 @@ function display_subtitles()
 	widget.setVal(list)
 	if openSub.itemStore then 
 		for i, item in ipairs(openSub.itemStore) do
-			widget.setVal(list, item.SubFileName.." ("..item.SubSumCD.." CD)")
+			widget.setVal(list, item.SubFileName.." ["..item.SubLanguageID.."] ("..item.SubSumCD.." CD)")
 		end
 	else
 		widget.setVal(list, "No result")
@@ -745,7 +749,7 @@ function download_subtitles(selection)
 	local item = openSub.itemStore[index]
 	local subfileTarget = ""
 	if openSub.file.dir and openSub.file.name then
-		subfileTarget = openSub.file.dir..openSub.file.name.."."..item.SubFormat
+		subfileTarget = openSub.file.dir..openSub.file.name.."."..item.SubLanguageID.."."..item.SubFormat
 	else
 		subfileTarget = os.tmpname() --FIXME: ask the user where to put it instaed
 	end
