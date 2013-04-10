@@ -19,12 +19,20 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
+
+ Changes by Mondane in 0.8.1
+ - different style progress bar (thanks to mederi)
+ - start searching for subtitles with hash method when opening VLSub
+ - added button 'Download and close' for hash method
+ - renamed 'Ok' to 'Download' for hash method
+ - renamed 'Ok' to 'Search or download' for IMDB method
+
 --]]
 
 -- Extension description
 function descriptor()
-	return { title = "VLsub" ;
-		version = "0.8" ;
+	return { title = "VLsub 0.8.1" ;
+		version = "0.8.1" ;
 		author = "exebetche" ;
 		url = 'http://www.opensubtitles.org/';
 		shortdesc = "VLsub";
@@ -61,6 +69,12 @@ function activate()
 	openSub.getFileInfo()
 	openSub.getMovieInfo()
     --~ openSub.request("LogIn")
+
+    -- Automatically start searching for subtitles if there is an item loaded in VLC.
+    local item = openSub.getInputItem()
+    if item then
+        set_interface()
+    end
 end
 
 function deactivate()
@@ -399,7 +413,7 @@ openSub = {
 		setMessage(openSub.actionLabel..": "..progressBarContent(0))
 		
 		local item = openSub.getInputItem()
-		
+
 		if not item then
 			setError("Please use this method during playing")
 			return false
@@ -607,6 +621,11 @@ function make_uri(str, encode)
     end
 end
 
+function downloadHashAndClose()
+  searchHash()
+  close()
+end
+
 function searchHash()
 	if not hasAssociatedResult() then
 		openSub.sub.languageid = languages[widget.getVal("language")][2]
@@ -624,6 +643,11 @@ function searchHash()
 			download_subtitles(selection)
 		end
 	end
+end
+
+function downloadIMDBAndClose()
+  searchIMDB()
+  close()
 end
 
 function searchIMBD()
@@ -1000,14 +1024,26 @@ function set_interface()
 	end
 end
 
+--[[
+ Display a progress bar of length progressBarSize. The filled part is calculated
+ by progressBarSize * pct / 100 . If a percentage of 100 is given, the word 'Done!'
+ is printed after the progress bar.
+
+ Change in style and adding of 'Done!' proposed by mederi, see http://addons.videolan.org/content/show.php?content=148752
+--]]
 function progressBarContent(pct)
-	local content = "<span style='color:#181'>"
+	local content = "<span style='background-color:green;color:#181'>"
 	local accomplished = math.ceil(progressBarSize*pct/100)
-	
+
 	local left = progressBarSize - accomplished
-	content = content .. string.rep ("|", accomplished)
+	content = content .. string.rep ("-", accomplished)
 	content = content .. "</span>"
-	content = content .. string.rep ("|", left)
+	content = content .. string.rep ("-", left)
+
+	if pct == 100 then
+		content = content .. " Done!"
+	end
+
 	return content
 end
 
@@ -1344,8 +1380,9 @@ interface = {
 			{
 				{ type = "list", width = 4, id = "hashmainlist" }
 			},{
-				{ type = "span", width = 2},
-				{ type = "button", value = "Ok", callback = searchHash },
+				{ type = "span", width = 1},
+				{ type = "button", value = "Download and close", callback = downloadHashAndClose },
+				{ type = "button", value = "Download", callback = searchHash },
 				{ type = "button", value = "Close", callback = close }
 			}
 		}
@@ -1364,7 +1401,7 @@ interface = {
 			},{
 				{ type = "label", value = "Episode (series):"},
 				{ type = "text_input", value = openSub.movie.episodeNumber or "", id = "episode" },
-				{ type = "button", value = "Ok", callback = searchIMBD },
+				{ type = "button", value = "Search or download", callback = searchIMBD },
 				{ type = "button", value = "Close", callback = close }
 			},{
 				{ type = "list", width = 4, id = "imdbmainlist" }
