@@ -399,7 +399,7 @@ openSub = {
 		setMessage(openSub.actionLabel..": "..progressBarContent(0))
 		
 		local item = openSub.getInputItem()
-		
+
 		if not item then
 			setError("Please use this method during playing")
 			return false
@@ -1000,14 +1000,26 @@ function set_interface()
 	end
 end
 
+--[[
+ Display a progress bar of length progressBarSize. The filled part is calculated
+ by progressBarSize * pct / 100 . If a percentage of 100 is given, the word 'Done!'
+ is printed after the progress bar.
+
+ Change in style and adding of 'Done!' proposed by mederi, see http://addons.videolan.org/content/show.php?content=148752
+--]]
 function progressBarContent(pct)
-	local content = "<span style='color:#181'>"
+	local content = "<span style='background-color:green;color:#181'>"
 	local accomplished = math.ceil(progressBarSize*pct/100)
-	
+
 	local left = progressBarSize - accomplished
-	content = content .. string.rep ("|", accomplished)
+	content = content .. string.rep ("-", accomplished)
 	content = content .. "</span>"
-	content = content .. string.rep ("|", left)
+	content = content .. string.rep ("-", left)
+
+	if pct == 100 then
+		content = content .. " Done!"
+	end
+
 	return content
 end
 
