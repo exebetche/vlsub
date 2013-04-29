@@ -33,15 +33,17 @@ function descriptor()
 	}
 end
 
+require "os"
+
 -- Global variables
 dlg = nil     -- Dialog
 --~ conflocation = 'subdownloader.conf'
 url = "http://api.opensubtitles.org/xml-rpc"
-progressBarSize = 40
-interface_state = 0
-result_state = {}
+progressBarSize = 70
+
 --~ default_language = "fre"
 default_language = nil
+refresh_toggle = false
 
 function set_default_language()
 	if default_language then
@@ -75,11 +77,13 @@ function close()
 end
 
 function meta_changed()
-	return false
+	update_fields()
 end
 
 function input_changed()
-	update_fields()
+	--~ Crash !?
+	--~ wait(3)
+	--~ update_fields()
 end
 
 function update_fields()
@@ -168,13 +172,8 @@ openSub = {
 		
 		if status == 200 then 
 			response = parse_xmlrpc(responseStr)
-			
-			
-			vlc.msg.err(responseStr)
-			
-			
+			--~ vlc.msg.dbg(responseStr)
 			if (response and response.status == "200 OK") then
-				vlc.msg.dbg(responseStr)
 				return openSub.methods[methodName].callback(response)
 			elseif response then
 				setError("code "..response.status.."("..status..")")
@@ -319,36 +318,6 @@ openSub = {
 					return false
 				end
 			end
-		},
-		DownloadSubtitles = {
-			methodName = "DownloadSubtitles",
-			params = function()
-				openSub.actionLabel = "Downloading subtitles"
-				setMessage(openSub.actionLabel..": "..progressBarContent(0))
-				
-				return {
-					{ value={ string=openSub.session.token } },
-					{ value={
-						array={
-						  data={
-							value={
-							  struct={
-								member={
-								  { name="sublanguageid", value={ string=openSub.sub.languageid } },
-								  { name="moviehash", value={ string=openSub.file.hash } },
-								  { name="moviebytesize", value={ double=openSub.file.bytesize } } }}}}}}}
-				}
-			end,
-			callback = function(resp)
-				openSub.itemStore = resp.data
-				
-				if openSub.itemStore ~= "0" then
-					return true
-				else
-					openSub.itemStore = nil
-					return false
-				end
-			end
 		}
 	},
 	getInputItem = function()
@@ -379,7 +348,7 @@ openSub = {
 			end
 			file.hasInput = true;
 			file.cleanName = string.gsub(file.name, "[%._]", " ")
-			vlc.msg.err(file.cleanName)
+			vlc.msg.dbg(file.cleanName)
 		end
 	end,
 	getMovieInfo = function()
@@ -479,18 +448,19 @@ openSub = {
 		
 		return true
 	end,
-    loadSubtitles = function(url, fileDir, SubFileName, target)
+    loadSubtitles = function(url, SubFileName, target)
         openSub.actionLabel = "Downloading subtitle"
-       
         setMessage(openSub.actionLabel..": "..progressBarContent(0))
+        local subfileURI = nil
         local resp = get(url)
-        local subfileURI = ""
         if resp then
-            local tmpFileName = fileDir..SubFileName..".zip"
+            local tmpFileName = openSub.file.dir..SubFileName..".zip"
+            subfileURI = "zip://"..make_uri(tmpFileName, true).."!/"..SubFileName
             local tmpFile = assert(io.open(tmpFileName, "wb"))
             tmpFile:write(resp)
+            tmpFile:flush()
             tmpFile:close()
-            subfileURI = "zip://"..make_uri(tmpFileName.."!/"..SubFileName)
+            
             if target then
                 local stream = vlc.stream(subfileURI)
                 local data = ""
@@ -498,20 +468,24 @@ openSub = {
                
                 while data do
                     if openSub.conf.removeTag then
-                        subfile:write(remove_tag(data).."\r\n")
+                        subfile:write(remove_tag(data).."\n")
                     else
-                        subfile:write(data.."\r\n")
+                        subfile:write(data.."\n")
                     end
                     data = stream:readline()
                 end
+                
+                subfile:flush()
                 subfile:close()
-                subfileURI = make_uri(target, true)
+                stream = nil 
+                collectgarbage()
+				subfileURI = make_uri(target, true)
             end
-            os.remove(tmpFileName)
+			os.remove(tmpFileName)
         end
        
-        local item = vlc.item or vlc.input.item()
-        if item then
+        if vlc.item or vlc.input.item() then
+			vlc.msg.dbg("Adding subtitle :" .. subfileURI)
             vlc.input.add_subtitle(subfileURI)
             setMessage("Success: Subtitles loaded.")
         else
@@ -520,13 +494,8 @@ openSub = {
     end
 }
 
-function gunzip(data)
-	local lz = require("zlib")
-	return lz.inflate()(data)
-end
-
 function make_uri(str, encode)
-    local iswindowPath = string.match(str, "^%a:/.+$")
+    local windowdrive = string.match(str, "^(%a:/).+$")
 	if encode then
 		local encodedPath = ""
 		for w in string.gmatch(str, "/([^/]+)") do
@@ -535,8 +504,8 @@ function make_uri(str, encode)
 		end
 		str = encodedPath
 	end
-    if iswindowPath then
-        return "file:///"..str
+    if windowdrive then
+        return "file:///"..windowdrive..str
     else
         return "file://"..str
     end
@@ -551,6 +520,13 @@ end
 
 function searchHash()
 	openSub.sub.languageid = languages[widget.getVal("language")][2]
+	
+	message = widget.get("message")
+	if message.display == "none" then
+		message.display = "block"
+		widget.set_interface(interface)
+	end
+	
 	openSub.getMovieHash()
 	
 	if openSub.file.hash then
@@ -560,26 +536,26 @@ function searchHash()
 end
 
 function searchIMBD()
-	local title = trim(widget.getVal("title"))
-	local season = tonumber(widget.getVal("season"))
-	local episode = tonumber(widget.getVal("episode"))
-	local language = languages[widget.getVal("language")][2]
-	local selection = widget.getVal("mainlist")
-	local sel = (#selection > 0)
-	local movie = openSub.movie
+	openSub.movie.name = trim(widget.getVal("title"))
+	openSub.movie.season = tonumber(widget.getVal("season"))
+	openSub.movie.episode = tonumber(widget.getVal("episode"))
+	openSub.sub.languageid  = languages[widget.getVal("language")][2]
 	
-	openSub.sub.languageid = language
-	movie.name = title
-	movie.season = season
-	movie.episode = episode
+	message = widget.get("message")
+	if message.display == "none" then
+		message.display = "block"
+		widget.set_interface(interface)
+	end
 	
-	openSub.request("SearchSubtitles")
-	display_subtitles()
+	if openSub.file.name ~= "" then
+		openSub.request("SearchSubtitles")
+		display_subtitles()
+	end
 end
 
 function display_subtitles()
 	local list = "mainlist"
-	widget.setVal(list)
+	widget.setVal(list)	--~ Reset list
 	if openSub.itemStore then 
 		for i, item in ipairs(openSub.itemStore) do
 			widget.setVal(list, item.SubFileName.." ["..item.SubLanguageID.."] ("..item.SubSumCD.." CD)")
@@ -595,20 +571,17 @@ function download_subtitles(selection)
 	local index = selection[1][1]
 	local item = openSub.itemStore[index]
 	local subfileTarget = ""
-	if openSub.file.dir and openSub.file.name then
-		subfileTarget = openSub.file.dir..openSub.file.name.."."..item.SubLanguageID.."."..item.SubFormat
-	else
-		subfileTarget = os.tmpname() --FIXME: ask the user where to put it instaed
-		openSub.conf.justgetlink = true
-	end
 	
-	if openSub.conf.justgetlink or not openSub.file.hasInput then
-		setMessage("Link: <a href='"..item.ZipDownloadLink.."'>"..item.ZipDownloadLink.."</a>")
+	if openSub.conf.justgetlink 
+	or not (vlc.item or vlc.input.item())
+	or not openSub.file.dir
+	or not openSub.file.name then
+		setMessage("Link : <a href='"..item.ZipDownloadLink.."'>"..item.ZipDownloadLink.."</a>")
 	else
-		vlc.msg.dbg(dump_xml(item))
+		subfileTarget = openSub.file.dir..openSub.file.name.."."..item.SubLanguageID.."."..item.SubFormat
 		vlc.msg.dbg("subfileTarget: "..subfileTarget)
-		openSub.loadSubtitles(item.ZipDownloadLink, openSub.file.dir, item.SubFileName, subfileTarget)
-	end 
+		openSub.loadSubtitles(item.ZipDownloadLink, item.SubFileName, subfileTarget)
+	end
 end
 
 widget = {
@@ -683,14 +656,21 @@ widget = {
 		end
 	end,
 	set_interface = function(intf_map)
-		--~ dlg:add_html( "<div style='border: 1px solid black; padding: 5px;'></div>", 0, 0, 4, 4 )
 		local root = {left = 1, top = 0, height = 0, hidden = false}
 		widget.set_node(intf_map, root)
+		widget.force_refresh()
+	end,
+	force_refresh = function() --~ Hacky
+		if refresh_toggle then
+			refresh_toggle = false
+			dlg:set_title(openSub.conf.useragent)
+		else
+			refresh_toggle = true
+			dlg:set_title(openSub.conf.useragent.." ")
+		end
 	end,
 	destroy = function(w)
 		dlg:del_widget(w.input)
-		--~ w.input = nil
-		--~ w.value = nil
 		if widget.registered_table[w.id] then
 			widget.registered_table[w.id] = nil
 		end
@@ -819,11 +799,24 @@ widget = {
 }
 
 function create_dialog()
-	dlg = vlc.dialog("VLSub")
+	dlg = vlc.dialog(openSub.conf.useragent)
 	widget.set_interface(interface)
 end
 
-function set_interface()
+
+function toggle_help()
+	helpMessage = widget.get("helpMessage")
+	if helpMessage.display == "block" then
+		helpMessage.display = "none"
+	elseif helpMessage.display == "none" then
+		helpMessage.display = "block"
+	end
+	
+	widget.set_interface(interface)	
+end
+
+
+function set_interface()  --~ old
 	local method_index = widget.getVal("method")
 	local method_id = methods[method_index][2]
 	if tmp_method_id then
@@ -852,13 +845,14 @@ function set_interface()
 end
 
 function progressBarContent(pct)
-	local content = "<span style='color:#181'>"
+	local content = "<span style='background-color:#181;color:#181;'>"
 	local accomplished = math.ceil(progressBarSize*pct/100)
 	
 	local left = progressBarSize - accomplished
-	content = content .. string.rep ("|", accomplished)
+	content = content .. string.rep ("-", accomplished)
+	content = content .. "</span><span style='background-color:#fff;color:#fff;'>"
+	content = content .. string.rep ("-", left)
 	content = content .. "</span>"
-	content = content .. string.rep ("|", left)
 	return content
 end
 
@@ -873,13 +867,44 @@ function setMessage(str)
 	end
 end
 
+--~ Misc utils
+
+function file_exists(name)
+	local f=io.open(name ,"r")
+	if f~=nil then 
+		io.close(f) 
+		vlc.msg.dbg("File found!" .. name)
+		return true 
+	else 
+		vlc.msg.dbg("File not found. "..name)
+		return false 
+	end
+end
+
+function wait(seconds)
+	local _start = os.time()
+	local _end = _start+seconds
+	while (_end ~= os.time()) do
+	end
+end
+
+function trim(str)
+    if not str then return "" end
+    return string.gsub(str, "^%s*(.-)%s*$", "%1")
+end
+
+function remove_tag(str)
+	return string.gsub(str, "{[^}]+}", "")
+end
+
+--~ Network utils
+
 function get(url)
 	local host, path = parse_url(url)
 	local header = {
 		"GET "..path.." HTTP/1.1", 
 		"Host: "..host, 
 		"User-Agent: "..openSub.conf.userAgentHTTP,
-		--~ "TE: identity", -- useless, and that's a shame
 		"",
 		""
 	}
@@ -951,6 +976,8 @@ function parse_url(url)
 	return  url_parsed["host"], url_parsed["path"], url_parsed["option"]
 end
 
+--~ XML utils
+
 function parse_xml(data)
 	local tree = {}
 	local stack = {}
@@ -1010,7 +1037,6 @@ function parse_xmlrpc(data)
 	table.insert(stack, tree)
 
 	for op, tag, p, empty, val in string.gmatch(data, "<(%/?)([%w:]+)(.-)(%/?)>[%s\r\n\t]*([^<]*)") do
-
 		if op=="/" then
 			if tag == "member" or tag == "array" then
 				if level>0  then
@@ -1060,7 +1086,6 @@ function dump_xml(data)
 	local function parse(data, stack)
 		for k,v in pairs(data) do
 			if type(k)=="string" then
-				--~ print(k)
 				dump = dump.."\r\n"..string.rep (" ", level).."<"..k..">"	
 				table.insert(stack, k)
 				level = level + 1
@@ -1098,14 +1123,7 @@ function dump_xml(data)
 	return dump
 end
 
-function trim(str)
-    if not str then return "" end
-    return string.gsub(str, "^%s*(.-)%s*$", "%1")
-end
-
-function remove_tag(str)
-	return string.gsub(str, "{[^}]+}", "")
-end
+--~ Interface data
 
 languages = {
 	{'All', 'all'},
@@ -1201,7 +1219,8 @@ interface = {
 		type = "div",
 		content = {
 			{
-				{ type = "span", width = 2},
+				{ type = "button", value = "Help", callback = toggle_help },
+				{ type = "span", width = 1},
 				{ type = "button", value = "Download", callback = download_selection },
 				{ type = "button", value = "Close", callback = close }
 			}
@@ -1212,7 +1231,41 @@ interface = {
 		type = "div",
 		content = {
 			{
-				{ type = "label", width = 4, value = "Powered by <a href='http://www.opensubtitles.org/'>opensubtitles.org</a>", id = "message" }
+				{ type = "html", width = 4, 
+					display = "none",
+					value = ""..
+					" Download subtittles from <a href='http://www.opensubtitles.org/'>opensubtitles.org</a> and display them while watching a video.<br>"..
+					" <br>"..
+					" <b><u>Usage:</u></b><br>"..
+					" <br>"..
+					" VLSub is meant to be used while your watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).<br>"..
+					" <br>"..
+					" Choose the language for your subtitles and click on the button corresponding to one of the two research method provided by VLSub:<br>"..
+					" <br>"..
+					" <b>Method 1: Search by hash</b><br>"..
+					" It is recommended to try this method first, because it performs a research based on the video file print, so you can find subtitles synchronized with your video.<br>"..
+					" <br>"..
+					" <b>Method 2: Search by name</b><br>"..
+					" If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a serie, you can also provide a season and episode number.<br>"..
+					" <br>"..
+					" <b>Downloading Subtitles</b><br>"..
+					" Select one subtitle in the list and click on 'Download'.<br>"..
+					" It will be put in the same directory that your video, with the same name (different extension)"..
+					" so Vlc will load them automatically the next time you'll start the video.<br>"..
+					" <br>"..
+					" <b>/!\\ Beware :</b> Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet're important.<br>"..
+					" <br>"..
+					" Find more Vlc extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>."
+					, id = "helpMessage" 
+				}
+			},{
+				{
+					type = "label", 
+					width = 4, 
+					display = "none",
+					value = "  ",
+					id = "message" 
+				}
 			}
 		}
 	}

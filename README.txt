@@ -25,9 +25,10 @@ Changelog:
 
 2013-04-25 (version 0.9)
   Simplified interface
-  Bug fix with subrip format (".sub") subtitles
+  Bug fix with microDVD (".sub") subtitles
   Add a success message when subtitles are loaded
   Display a download link to subtitles if direct download fail
+  Integrated usage instructions 
   
 2012-12-18 (version 0.8)
   [Benoit Vallee] Fixed subtitle downloading when special characters are present on the video path
