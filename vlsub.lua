@@ -41,12 +41,13 @@ dlg = nil     -- Dialog
 url = "http://api.opensubtitles.org/xml-rpc"
 progressBarSize = 70
 
---~ default_language = "fre"
-default_language = nil
+--~ default_language: "fre", "eng"..., "auto", nil
+default_language = "auto"
 refresh_toggle = false
 
 function set_default_language()
 	if default_language then
+		if default_language == "auto" then detect_locale() end
 		for k,v in ipairs(languages) do
 			if v[2] == default_language then
 				table.insert(languages, 1, v)
@@ -63,6 +64,9 @@ function activate()
     create_dialog()
 	openSub.request("LogIn")
 	update_fields()
+
+	-- auto start searching
+	searchHash()
 end
 
 function deactivate()
@@ -84,6 +88,11 @@ function input_changed()
 	--~ Crash !?
 	--~ wait(3)
 	--~ update_fields()
+end
+
+function detect_locale()
+	-- os.setlocale("","collate")
+	default_language = "ell"
 end
 
 function update_fields()
