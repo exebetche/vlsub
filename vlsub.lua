@@ -88,10 +88,15 @@ function input_changed()
 end
 
 function detect_locale()
-	posix_locale = os.setlocale("","collate")
+	os_locale = os.setlocale("","collate")
 	for k,v in ipairs(languages) do
-		find_start = string.find(posix_locale, v[3])
-		if find_start == 1 then
+		--linux
+		if string.find(os_locale, v[3]) == 1 then
+			default_language = v[2]
+			return true
+		end
+		--windows
+		if string.find(os_locale, v[1]) == 1 then
 			default_language = v[2]
 			return true
 		end
@@ -1138,58 +1143,58 @@ end
 --~ Interface data
 
 languages = {
-	--{Language, opensubs, posix, windows}
+	--{Language, opensubs, posix}
 	{'All', 'all', ' ', ' '},
-	{'Albanian', 'alb', 'sq'},
-	{'Arabic', 'ara', 'ar'},
+	{'Albanian', 'alb', 'sq_'},
+	{'Arabic', 'ara', 'ar_'},
 	{'Armenian', 'arm', ' '},--bug
-	{'Malay', 'may', 'ms'},
+	{'Malay', 'may', 'ms_'},
 	{'Bosnian', 'bos', ' '},--bug
-	{'Bulgarian', 'bul', 'bg'},
-	{'Catalan', 'cat', 'ca'},
+	{'Bulgarian', 'bul', 'bg_'},
+	{'Catalan', 'cat', 'ca_'},
 	{'Basque', 'eus', ' '},--bug
-	{'Chinese (China)', 'chi', 'zh'},
-	{'Croatian', 'hrv', 'hr'},
-	{'Czech', 'cze', 'cs'},
-	{'Danish', 'dan', 'da'},
-	{'Dutch', 'dut', 'nl'},
+	{'Chinese (China)', 'chi', 'zh_'},
+	{'Croatian', 'hrv', 'hr_'},
+	{'Czech', 'cze', 'cs_'},
+	{'Danish', 'dan', 'da_'},
+	{'Dutch', 'dut', 'nl_'},
 	{'English (US)', 'eng', 'en_US'},
 	{'English (UK)', 'bre', 'en_GB'},
 	{'Esperanto', 'epo', ' '},--bug
-	{'Estonian', 'est', 'et'},
-	{'Finnish', 'fin', 'fi'},
-	{'French', 'fre', 'fr'},
+	{'Estonian', 'est', 'et_'},
+	{'Finnish', 'fin', 'fi_'},
+	{'French', 'fre', 'fr_'},
 	{'Galician', 'glg', ' '},--bug
 	{'Georgian', 'geo', ' '},--bug
-	{'German', 'ger', 'de'},
-	{'Greek', 'ell', 'el'},
-	{'Hebrew', 'heb', 'iw'},
-	{'Hungarian', 'hun', 'hu'},
-	{'Indonesian', 'ind', 'in'},
-	{'Italian', 'ita', 'it'},
-	{'Japanese', 'jpn', 'ja'},
+	{'German', 'ger', 'de_'},
+	{'Greek', 'ell', 'el_'},
+	{'Hebrew', 'heb', 'iw_'},
+	{'Hungarian', 'hun', 'hu_'},
+	{'Indonesian', 'ind', 'in_'},
+	{'Italian', 'ita', 'it_'},
+	{'Japanese', 'jpn', 'ja_'},
 	{'Kazakh', 'kaz', ' '},--bug
-	{'Korean', 'kor', 'ko'},
-	{'Latvian', 'lav', 'lv'},
-	{'Lithuanian', 'lit', 'lt'},
+	{'Korean', 'kor', 'ko_'},
+	{'Latvian', 'lav', 'lv_'},
+	{'Lithuanian', 'lit', 'lt_'},
 	{'Luxembourgish', 'ltz', ' '},--bug
-	{'Macedonian', 'mac', 'mk'},
-	{'Norwegian', 'nor', 'no'},
+	{'Macedonian', 'mac', 'mk_'},
+	{'Norwegian', 'nor', 'no_'},
 	{'Persian', 'per', ' '},--bug
-	{'Polish', 'pol', 'pl'},
+	{'Polish', 'pol', 'pl_'},
 	{'Portuguese (Portugal)', 'por', 'pt_PT'},
 	{'Portuguese (Brazil)', 'pob', 'pt_BR'},
-	{'Romanian', 'rum', 'ro'},
-	{'Russian', 'rus', 'ru'},
-	{'Serbian', 'scc', 'sr'},
-	{'Slovak', 'slo', 'sk'},
-	{'Slovenian', 'slv', 'sl'},
-	{'Spanish (Spain)', 'spa', 'es'},
-	{'Swedish', 'swe', 'sv'},
-	{'Thai', 'tha', 'th'},
-	{'Turkish', 'tur', 'tr'},
-	{'Ukrainian', 'ukr', 'uk'},
-	{'Vietnamese', 'vie', 'vi'}
+	{'Romanian', 'rum', 'ro_'},
+	{'Russian', 'rus', 'ru_'},
+	{'Serbian', 'scc', 'sr_'},
+	{'Slovak', 'slo', 'sk_'},
+	{'Slovenian', 'slv', 'sl_'},
+	{'Spanish (Spain)', 'spa', 'es_'},
+	{'Swedish', 'swe', 'sv_'},
+	{'Thai', 'tha', 'th_'},
+	{'Turkish', 'tur', 'tr_'},
+	{'Ukrainian', 'ukr', 'uk_'},
+	{'Vietnamese', 'vie', 'vi_'}
 }
 
 methods = {
