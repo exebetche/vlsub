@@ -64,9 +64,6 @@ function activate()
     create_dialog()
 	openSub.request("LogIn")
 	update_fields()
-
-	-- auto start searching
-	searchHash()
 end
 
 function deactivate()
