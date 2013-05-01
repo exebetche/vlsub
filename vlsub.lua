@@ -46,8 +46,8 @@ default_language = "auto"
 refresh_toggle = false
 
 function set_default_language()
+	if default_language == "auto" then detect_locale() end
 	if default_language then
-		if default_language == "auto" then detect_locale() end
 		for k,v in ipairs(languages) do
 			if v[2] == default_language then
 				table.insert(languages, 1, v)
@@ -91,8 +91,14 @@ function input_changed()
 end
 
 function detect_locale()
-	-- os.setlocale("","collate")
-	default_language = "ell"
+	posix_locale = os.setlocale("","collate")
+	for k,v in ipairs(languages) do
+		find_start = string.find(posix_locale, v[3])
+		if find_start == 1 then
+			default_language = v[2]
+			return true
+		end
+	end
 end
 
 function update_fields()
@@ -1135,57 +1141,58 @@ end
 --~ Interface data
 
 languages = {
-	{'All', 'all'},
-	{'Albanian', 'alb'},
-	{'Arabic', 'ara'},
-	{'Armenian', 'arm'},
-	{'Malay', 'may'},
-	{'Bosnian', 'bos'},
-	{'Bulgarian', 'bul'},
-	{'Catalan', 'cat'},
-	{'Basque', 'eus'},
-	{'Chinese (China)', 'chi'},
-	{'Croatian', 'hrv'},
-	{'Czech', 'cze'},
-	{'Danish', 'dan'},
-	{'Dutch', 'dut'},
-	{'English (US)', 'eng'},
-	{'English (UK)', 'bre'},
-	{'Esperanto', 'epo'},
-	{'Estonian', 'est'},
-	{'Finnish', 'fin'},
-	{'French', 'fre'},
-	{'Galician', 'glg'},
-	{'Georgian', 'geo'},
-	{'German', 'ger'},
-	{'Greek', 'ell'},
-	{'Hebrew', 'heb'},
-	{'Hungarian', 'hun'},
-	{'Indonesian', 'ind'},
-	{'Italian', 'ita'},
-	{'Japanese', 'jpn'},
-	{'Kazakh', 'kaz'},
-	{'Korean', 'kor'},
-	{'Latvian', 'lav'},
-	{'Lithuanian', 'lit'},
-	{'Luxembourgish', 'ltz'},
-	{'Macedonian', 'mac'},
-	{'Norwegian', 'nor'},
-	{'Persian', 'per'},
-	{'Polish', 'pol'},
-	{'Portuguese (Portugal)', 'por'},
-	{'Portuguese (Brazil)', 'pob'},
-	{'Romanian', 'rum'},
-	{'Russian', 'rus'},
-	{'Serbian', 'scc'},
-	{'Slovak', 'slo'},
-	{'Slovenian', 'slv'},
-	{'Spanish (Spain)', 'spa'},
-	{'Swedish', 'swe'},
-	{'Thai', 'tha'},
-	{'Turkish', 'tur'},
-	{'Ukrainian', 'ukr'},
-	{'Vietnamese', 'vie'}
+	--{Language, opensubs, posix, windows}
+	{'All', 'all', ' ', ' '},
+	{'Albanian', 'alb', 'sq'},
+	{'Arabic', 'ara', 'ar'},
+	{'Armenian', 'arm', ' '},--bug
+	{'Malay', 'may', 'ms'},
+	{'Bosnian', 'bos', ' '},--bug
+	{'Bulgarian', 'bul', 'bg'},
+	{'Catalan', 'cat', 'ca'},
+	{'Basque', 'eus', ' '},--bug
+	{'Chinese (China)', 'chi', 'zh'},
+	{'Croatian', 'hrv', 'hr'},
+	{'Czech', 'cze', 'cs'},
+	{'Danish', 'dan', 'da'},
+	{'Dutch', 'dut', 'nl'},
+	{'English (US)', 'eng', 'en_US'},
+	{'English (UK)', 'bre', 'en_GB'},
+	{'Esperanto', 'epo', ' '},--bug
+	{'Estonian', 'est', 'et'},
+	{'Finnish', 'fin', 'fi'},
+	{'French', 'fre', 'fr'},
+	{'Galician', 'glg', ' '},--bug
+	{'Georgian', 'geo', ' '},--bug
+	{'German', 'ger', 'de'},
+	{'Greek', 'ell', 'el'},
+	{'Hebrew', 'heb', 'iw'},
+	{'Hungarian', 'hun', 'hu'},
+	{'Indonesian', 'ind', 'in'},
+	{'Italian', 'ita', 'it'},
+	{'Japanese', 'jpn', 'ja'},
+	{'Kazakh', 'kaz', ' '},--bug
+	{'Korean', 'kor', 'ko'},
+	{'Latvian', 'lav', 'lv'},
+	{'Lithuanian', 'lit', 'lt'},
+	{'Luxembourgish', 'ltz', ' '},--bug
+	{'Macedonian', 'mac', 'mk'},
+	{'Norwegian', 'nor', 'no'},
+	{'Persian', 'per', ' '},--bug
+	{'Polish', 'pol', 'pl'},
+	{'Portuguese (Portugal)', 'por', 'pt_PT'},
+	{'Portuguese (Brazil)', 'pob', 'pt_BR'},
+	{'Romanian', 'rum', 'ro'},
+	{'Russian', 'rus', 'ru'},
+	{'Serbian', 'scc', 'sr'},
+	{'Slovak', 'slo', 'sk'},
+	{'Slovenian', 'slv', 'sl'},
+	{'Spanish (Spain)', 'spa', 'es'},
+	{'Swedish', 'swe', 'sv'},
+	{'Thai', 'tha', 'th'},
+	{'Turkish', 'tur', 'tr'},
+	{'Ukrainian', 'ukr', 'uk'},
+	{'Vietnamese', 'vie', 'vi'}
 }
 
 methods = {
