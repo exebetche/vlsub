@@ -686,9 +686,9 @@ openSub = {
 	checkSession = function()
 		
 		if openSub.token == "" then
-			openSub.request("NoOperation")
-		else
 			openSub.request("LogIn")
+		else
+			openSub.request("NoOperation")
 		end
 	end
 }
