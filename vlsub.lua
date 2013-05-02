@@ -483,9 +483,8 @@ openSub = {
 				}
 			end,
 			callback = function(resp)
-				vlc.msg.err(resp)
-				openSub.session.token = resp.token
-				openSub.session.loginTime = os.time()
+				--~ openSub.session.token = resp.token
+				--~ openSub.session.loginTime = os.time()
 			end
 		},
 		SearchSubtitlesByHash = {
@@ -685,7 +684,7 @@ openSub = {
 	end,
 	checkSession = function()
 		
-		if openSub.token == "" then
+		if openSub.session.token == "" then
 			openSub.request("LogIn")
 		else
 			openSub.request("NoOperation")
