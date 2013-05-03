@@ -76,13 +76,13 @@ function interface_main()
 	dlg:add_button('Show help', show_help, 1, 7, 1, 1)
 	dlg:add_button('   Show config   ', show_conf, 2, 7, 1, 1)
 	dlg:add_button('Download selection', download_subtitles, 3, 7, 1, 1)
-	dlg:add_button('Close', close, 4, 7, 1, 1) 
+	dlg:add_button('Close', deactivate, 4, 7, 1, 1) 
 	
 	display_subtitles()
 end
 
 function set_interface_main()
-	-- Update movie title and co. if video input is updated
+	-- Update movie title and co. if video input change
 	if not type(input_table['title']) == 'userdata' then return false end
 	
 	openSub.getFileInfo()
@@ -209,19 +209,9 @@ end
 
 function deactivate()
 	if openSub.token ~= "" then
-		openSub.request("LogIn")
+		openSub.request("LogOut")
 	end
     vlc.msg.dbg("[VLsub] Bye bye!")
-end
-
-function close()
-	if dlg then
-		dlg:hide()
-		-- Just hide, let Vlc destroy (or it fails on Mac)
-		--~ dlg:delete() 
-	end
-	
-   deactivate()
    vlc.deactivate()
 end
 
@@ -229,8 +219,9 @@ function close_dlg()
 	vlc.msg.dbg("[VLSub] Closing dialog")
 
 	if dlg ~= nil then 
-	dlg:delete() 
+		dlg:delete() 
 	end
+	
 	dlg = nil
 	input_table = nil
 	input_table = {}
@@ -483,8 +474,7 @@ openSub = {
 				}
 			end,
 			callback = function(resp)
-				--~ openSub.session.token = resp.token
-				--~ openSub.session.loginTime = os.time()
+				return true
 			end
 		},
 		SearchSubtitlesByHash = {
@@ -559,7 +549,6 @@ openSub = {
 			file.path = nil;
 			file.name = nil;
 			file.ext = nil;
-			--~ collectgarbage()
 		else
 			vlc.msg.dbg("[VLSub] Video URI: "..item:uri())
 			local parsed_uri = vlc.net.url_parse(item:uri())
