@@ -178,6 +178,28 @@ function show_help()
 	trigger_menu(3)
 end
 
+function getenv_lang()
+	local lang = os.getenv("LANG")
+	
+	if not lang then -- Windows
+		local sysroot = assert(os.getenv('SystemRoot'))
+		local cmd = sysroot..'\\system32\\reg.exe query "HKEY_CURRENT_USER\\Control Panel\\International" /v "LocaleName"'
+		local f = assert(io.popen(cmd))
+		local s = assert(f:read('*a'))
+		f:close
+		lang = string.match(s, "([%w_-]+)%s+$")
+	end
+	
+	lang = string.sub(lang, 0, 2)
+	
+	for i, v in ipairs(openSub.conf.languages) do
+		vlc.msg.err(v[1])
+		if string.sub(v[1], 0, 2) == lang then
+			openSub.option.language = v[1]
+		end
+	end
+end
+
 function set_default_language()
 	if openSub.option.language then
 		table.sort(openSub.conf.languages, function(a, b) 
