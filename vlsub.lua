@@ -193,7 +193,6 @@ function getenv_lang()
 	lang = string.sub(lang, 0, 2)
 	
 	for i, v in ipairs(openSub.conf.languages) do
-		vlc.msg.err(v[1])
 		if string.sub(v[1], 0, 2) == lang then
 			openSub.option.language = v[1]
 		end
