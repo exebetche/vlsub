@@ -264,7 +264,7 @@ function check_config()
 	if file_exist(openSub.conf.path) then
 		vlc.msg.dbg("[VLSub] Loading config file:  " .. openSub.conf.path)
 		load_config()
-	else
+	elseif not openSub.option.language then
 		getenv_lang()
 	end
 end
@@ -379,7 +379,8 @@ openSub = {
 		downloadBehaviour = 'save',
 		langExt = false,
 		removeTag = false,
-		progressBarSize = 60
+		progressBarSize = 60,
+		language = nil
 	},
 	session = {
 		loginTime = 0,
