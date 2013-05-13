@@ -364,7 +364,6 @@ function save_config()
 	tmpFile:write(resp)
 	tmpFile:flush()
 	tmpFile:close()
-	collectgarbage()
 end
 
 function meta_changed()
