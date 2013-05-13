@@ -21,7 +21,74 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 --]]
 
---~ dlg = nil
+-- You can set here your default language by replacing nil with your language code (see below)
+-- Example: 
+--~ language = "fre", 
+--~ language = "ger", 
+--~ language = "eng",
+--~ ...
+
+local options = {
+	language = nil, 
+	downloadBehaviour = 'save',
+	langExt = false,
+	removeTag = false,
+	progressBarSize = 60
+}
+
+local languages = {
+	{'all', 'All'},
+	{'alb', 'Albanian'},
+	{'ara', 'Arabic'},
+	{'arm', 'Armenian'},
+	{'may', 'Malay'},
+	{'bos', 'Bosnian'},
+	{'bul', 'Bulgarian'},
+	{'cat', 'Catalan'},
+	{'eus', 'Basque'},
+	{'chi', 'Chinese (China)'},
+	{'hrv', 'Croatian'},
+	{'cze', 'Czech'},
+	{'dan', 'Danish'},
+	{'dut', 'Dutch'},
+	{'eng', 'English (US)'},
+	{'bre', 'English (UK)'},
+	{'epo', 'Esperanto'},
+	{'est', 'Estonian'},
+	{'fin', 'Finnish'},
+	{'fre', 'French'},
+	{'glg', 'Galician'},
+	{'geo', 'Georgian'},
+	{'ger', 'German'},
+	{'ell', 'Greek'},
+	{'heb', 'Hebrew'},
+	{'hun', 'Hungarian'},
+	{'ind', 'Indonesian'},
+	{'ita', 'Italian'},
+	{'jpn', 'Japanese'},
+	{'kaz', 'Kazakh'},
+	{'kor', 'Korean'},
+	{'lav', 'Latvian'},
+	{'lit', 'Lithuanian'},
+	{'ltz', 'Luxembourgish'},
+	{'mac', 'Macedonian'},
+	{'nor', 'Norwegian'},
+	{'per', 'Persian'},
+	{'pol', 'Polish'},
+	{'por', 'Portuguese (Portugal)'},
+	{'pob', 'Portuguese (Brazil)'},
+	{'rum', 'Romanian'},
+	{'rus', 'Russian'},
+	{'scc', 'Serbian'},
+	{'slo', 'Slovak'},
+	{'slv', 'Slovenian'},
+	{'spa', 'Spanish (Spain)'},
+	{'swe', 'Swedish'},
+	{'tha', 'Thai'},
+	{'tur', 'Turkish'},
+	{'ukr', 'Ukrainian'},
+	{'vie', 'Vietnamese'}
+}
     
 function descriptor()
 	return { title = "VLsub 0.9" ;
@@ -321,67 +388,9 @@ openSub = {
 			{'load', 'Load only'},
 			{'manual', 'Manual download'}
 		},
-		languages = {
-			{'all', 'All'},
-			{'alb', 'Albanian'},
-			{'ara', 'Arabic'},
-			{'arm', 'Armenian'},
-			{'may', 'Malay'},
-			{'bos', 'Bosnian'},
-			{'bul', 'Bulgarian'},
-			{'cat', 'Catalan'},
-			{'eus', 'Basque'},
-			{'chi', 'Chinese (China)'},
-			{'hrv', 'Croatian'},
-			{'cze', 'Czech'},
-			{'dan', 'Danish'},
-			{'dut', 'Dutch'},
-			{'eng', 'English (US)'},
-			{'bre', 'English (UK)'},
-			{'epo', 'Esperanto'},
-			{'est', 'Estonian'},
-			{'fin', 'Finnish'},
-			{'fre', 'French'},
-			{'glg', 'Galician'},
-			{'geo', 'Georgian'},
-			{'ger', 'German'},
-			{'ell', 'Greek'},
-			{'heb', 'Hebrew'},
-			{'hun', 'Hungarian'},
-			{'ind', 'Indonesian'},
-			{'ita', 'Italian'},
-			{'jpn', 'Japanese'},
-			{'kaz', 'Kazakh'},
-			{'kor', 'Korean'},
-			{'lav', 'Latvian'},
-			{'lit', 'Lithuanian'},
-			{'ltz', 'Luxembourgish'},
-			{'mac', 'Macedonian'},
-			{'nor', 'Norwegian'},
-			{'per', 'Persian'},
-			{'pol', 'Polish'},
-			{'por', 'Portuguese (Portugal)'},
-			{'pob', 'Portuguese (Brazil)'},
-			{'rum', 'Romanian'},
-			{'rus', 'Russian'},
-			{'scc', 'Serbian'},
-			{'slo', 'Slovak'},
-			{'slv', 'Slovenian'},
-			{'spa', 'Spanish (Spain)'},
-			{'swe', 'Swedish'},
-			{'tha', 'Thai'},
-			{'tur', 'Turkish'},
-			{'ukr', 'Ukrainian'},
-			{'vie', 'Vietnamese'}
-		}
+		languages = languages
 	},
-	option = {
-		downloadBehaviour = 'save',
-		langExt = false,
-		removeTag = false,
-		progressBarSize = 60,
-		language = nil
-	},
+	option = options,
 	session = {
 		loginTime = 0,
 		token = ""
