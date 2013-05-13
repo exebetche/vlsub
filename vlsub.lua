@@ -186,7 +186,7 @@ function getenv_lang()
 		local cmd = sysroot..'\\system32\\reg.exe query "HKEY_CURRENT_USER\\Control Panel\\International" /v "LocaleName"'
 		local f = assert(io.popen(cmd))
 		local s = assert(f:read('*a'))
-		f:close
+		f:close()
 		lang = string.match(s, "([%w_-]+)%s+$")
 	end
 	
