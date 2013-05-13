@@ -20,6 +20,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 --]]
+
+--~ dlg = nil
     
 function descriptor()
 	return { title = "VLsub 0.9" ;
@@ -42,7 +44,8 @@ function activate()
     set_default_behaviour()
 	openSub.getFileInfo()
 	openSub.getMovieInfo()
-    trigger_menu(1)
+    show_main()
+	collectgarbage()
 end
 
 function menu()
@@ -160,7 +163,7 @@ function trigger_menu(id)
 		dlg = vlc.dialog(openSub.conf.useragent..": Help")
 		interface_help()
 	end
-	collectgarbage()
+	--~ collectgarbage() -- create a warning?!
 end 
 
 function show_main()
@@ -208,10 +211,11 @@ function set_default_behaviour()
 end
 
 function deactivate()
+    vlc.msg.dbg("[VLsub] Bye bye!")
+	dlg:hide() 
 	if openSub.token ~= "" then
 		openSub.request("LogOut")
 	end
-    vlc.msg.dbg("[VLsub] Bye bye!")
    vlc.deactivate()
 end
 
@@ -239,6 +243,8 @@ function check_config()
 	if file_exist(openSub.conf.path) then
 		vlc.msg.dbg("[VLSub] Loading config file:  " .. openSub.conf.path)
 		load_config()
+	else
+		getenv_lang()
 	end
 end
 
