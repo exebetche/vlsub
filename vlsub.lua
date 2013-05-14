@@ -387,7 +387,59 @@ openSub = {
 			{'load', 'Load only'},
 			{'manual', 'Manual download'}
 		},
-		languages = languages
+		languages = {
+			{'all', 'All', ' '},
+			{'alb', 'Albanian', 'sq_'},
+			{'ara', 'Arabic', 'ar_'},
+			{'arm', 'Armenian', ' '},--bug
+			{'may', 'Malay', 'ms_'},
+			{'bos', 'Bosnian', ' '},--bug
+			{'bul', 'Bulgarian', 'bg_'},
+			{'cat', 'Catalan', 'ca_'},
+			{'eus', 'Basque', ' '},--bug
+			{'chi', 'Chinese (China)', 'zh_'},
+			{'hrv', 'Croatian', 'hr_'},
+			{'cze', 'Czech', 'cs_'},
+			{'dan', 'Danish', 'da_'},
+			{'dut', 'Dutch', 'nl_'},
+			{'eng', 'English (US)', 'en_US'},
+			{'bre', 'English (UK)', 'en_GB'},
+			{'epo', 'Esperanto', ' '},--bug
+			{'est', 'Estonian', 'et_'},
+			{'fin', 'Finnish', 'fi_'},
+			{'fre', 'French', 'fr_'},
+			{'glg', 'Galician', ' '},--bug
+			{'geo', 'Georgian', ' '},--bug
+			{'ger', 'German', 'de_'},
+			{'ell', 'Greek', 'el_'},
+			{'heb', 'Hebrew', 'iw_'},
+			{'hun', 'Hungarian', 'hu_'},
+			{'ind', 'Indonesian', 'in_'},
+			{'ita', 'Italian', 'it_'},
+			{'jpn', 'Japanese', 'ja_'},
+			{'kaz', 'Kazakh', ' '},--bug
+			{'kor', 'Korean', 'ko_'},
+			{'lav', 'Latvian', 'lv_'},
+			{'lit', 'Lithuanian', 'lt_'},
+			{'ltz', 'Luxembourgish', ' '},--bug
+			{'mac', 'Macedonian', 'mk_'},
+			{'nor', 'Norwegian', 'no_'},
+			{'per', 'Persian', ' '},--bug
+			{'pol', 'Polish', 'pl_'},
+			{'por', 'Portuguese (Portugal)', 'pt_PT'},
+			{'pob', 'Portuguese (Brazil)', 'pt_BR'},
+			{'rum', 'Romanian', 'ro_'},
+			{'rus', 'Russian', 'ru_'},
+			{'scc', 'Serbian', 'sr_'},
+			{'slo', 'Slovak', 'sk_'},
+			{'slv', 'Slovenian', 'sl_'},
+			{'spa', 'Spanish (Spain)', 'es_'},
+			{'swe', 'Swedish', 'sv_'},
+			{'tha', 'Thai', 'th_'},
+			{'tur', 'Turkish', 'tr_'},
+			{'ukr', 'Ukrainian', 'uk_'},
+			{'vie', 'Vietnamese', 'vi_'}
+		}
 	},
 	option = options,
 	session = {
