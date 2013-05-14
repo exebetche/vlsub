@@ -33,62 +33,144 @@ local options = {
 	downloadBehaviour = 'save',
 	langExt = false,
 	removeTag = false,
-	progressBarSize = 60
+	progressBarSize = 80
 }
 
 local languages = {
-	{'all', 'All', ' '},
-	{'alb', 'Albanian', 'sq_'},
-	{'ara', 'Arabic', 'ar_'},
-	{'arm', 'Armenian', ' '},--bug
-	{'may', 'Malay', 'ms_'},
-	{'bos', 'Bosnian', ' '},--bug
-	{'bul', 'Bulgarian', 'bg_'},
-	{'cat', 'Catalan', 'ca_'},
-	{'eus', 'Basque', ' '},--bug
-	{'chi', 'Chinese (China)', 'zh_'},
-	{'hrv', 'Croatian', 'hr_'},
-	{'cze', 'Czech', 'cs_'},
-	{'dan', 'Danish', 'da_'},
-	{'dut', 'Dutch', 'nl_'},
-	{'eng', 'English (US)', 'en_US'},
-	{'bre', 'English (UK)', 'en_GB'},
-	{'epo', 'Esperanto', ' '},--bug
-	{'est', 'Estonian', 'et_'},
-	{'fin', 'Finnish', 'fi_'},
-	{'fre', 'French', 'fr_'},
-	{'glg', 'Galician', ' '},--bug
-	{'geo', 'Georgian', ' '},--bug
-	{'ger', 'German', 'de_'},
-	{'ell', 'Greek', 'el_'},
-	{'heb', 'Hebrew', 'iw_'},
-	{'hun', 'Hungarian', 'hu_'},
-	{'ind', 'Indonesian', 'in_'},
-	{'ita', 'Italian', 'it_'},
-	{'jpn', 'Japanese', 'ja_'},
-	{'kaz', 'Kazakh', ' '},--bug
-	{'kor', 'Korean', 'ko_'},
-	{'lav', 'Latvian', 'lv_'},
-	{'lit', 'Lithuanian', 'lt_'},
-	{'ltz', 'Luxembourgish', ' '},--bug
-	{'mac', 'Macedonian', 'mk_'},
-	{'nor', 'Norwegian', 'no_'},
-	{'per', 'Persian', ' '},--bug
-	{'pol', 'Polish', 'pl_'},
-	{'por', 'Portuguese (Portugal)', 'pt_PT'},
-	{'pob', 'Portuguese (Brazil)', 'pt_BR'},
-	{'rum', 'Romanian', 'ro_'},
-	{'rus', 'Russian', 'ru_'},
-	{'scc', 'Serbian', 'sr_'},
-	{'slo', 'Slovak', 'sk_'},
-	{'slv', 'Slovenian', 'sl_'},
-	{'spa', 'Spanish (Spain)', 'es_'},
-	{'swe', 'Swedish', 'sv_'},
-	{'tha', 'Thai', 'th_'},
-	{'tur', 'Turkish', 'tr_'},
-	{'ukr', 'Ukrainian', 'uk_'},
-	{'vie', 'Vietnamese', 'vi_'}
-	}
+	{'all', 'All'},
+	{'alb', 'Albanian'},
+	{'ara', 'Arabic'},
+	{'arm', 'Armenian'},
+	{'baq', 'Basque'},
+	{'ben', 'Bengali'},
+	{'bos', 'Bosnian'},
+	{'bre', 'Breton'},
+	{'bul', 'Bulgarian'},
+	{'bur', 'Burmese'},
+	{'cat', 'Catalan'},
+	{'chi', 'Chinese'},
+	{'hrv', 'Croatian'},
+	{'cze', 'Czech'},
+	{'dan', 'Danish'},
+	{'dut', 'Dutch'},
+	{'eng', 'English'},
+	{'epo', 'Esperanto'},
+	{'est', 'Estonian'},
+	{'fin', 'Finnish'},
+	{'fre', 'French'},
+	{'glg', 'Galician'},
+	{'geo', 'Georgian'},
+	{'ger', 'German'},
+	{'ell', 'Greek'},
+	{'heb', 'Hebrew'},
+	{'hin', 'Hindi'},
+	{'hun', 'Hungarian'},
+	{'ice', 'Icelandic'},
+	{'ind', 'Indonesian'},
+	{'ita', 'Italian'},
+	{'jpn', 'Japanese'},
+	{'kaz', 'Kazakh'},
+	{'khm', 'Khmer'},
+	{'kor', 'Korean'},
+	{'lav', 'Latvian'},
+	{'lit', 'Lithuanian'},
+	{'ltz', 'Luxembourgish'},
+	{'mac', 'Macedonian'},
+	{'may', 'Malay'},
+	{'mal', 'Malayalam'},
+	{'mon', 'Mongolian'},
+	{'nor', 'Norwegian'},
+	{'oci', 'Occitan'},
+	{'per', 'Persian'},
+	{'pol', 'Polish'},
+	{'por', 'Portuguese'},
+	{'pob', 'Portuguese-BR'},
+	{'rum', 'Romanian'},
+	{'rus', 'Russian'},
+	{'scc', 'Serbian'},
+	{'sin', 'Sinhalese'},
+	{'slo', 'Slovak'},
+	{'slv', 'Slovenian'},
+	{'spa', 'Spanish'},
+	{'swa', 'Swahili'},
+	{'swe', 'Swedish'},
+	{'syr', 'Syriac'},
+	{'tgl', 'Tagalog'},
+	{'tel', 'Telugu'},
+	{'tha', 'Thai'},
+	{'tur', 'Turkish'},
+	{'ukr', 'Ukrainian'},
+	{'urd', 'Urdu'},
+	{'vie', 'Vietnamese'}
+}
+
+-- Languages code conversion table: iso-639-1 to iso-639-3
+-- See https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+local lang_os_to_iso = {
+	sq = "alb",
+	ar = "ara",
+	hy = "arm",
+	eu = "baq",
+	bn = "ben",
+	bs = "bos",
+	br = "bre",
+	bg = "bul",
+	my = "bur",
+	ca = "cat",
+	zh = "chi",
+	hr = "hrv",
+	cs = "cze",
+	da = "dan",
+	nl = "dut",
+	en = "eng",
+	eo = "epo",
+	et = "est",
+	fi = "fin",
+	fr = "fre",
+	gl = "glg",
+	ka = "geo",
+	de = "ger",
+	el = "ell",
+	he = "heb",
+	hi = "hin",
+	hu = "hun",
+	is = "ice",
+	id = "ind",
+	it = "ita",
+	ja = "jpn",
+	kk = "kaz",
+	km = "khm",
+	ko = "kor",
+	lv = "lav",
+	lt = "lit",
+	lb = "ltz",
+	mk = "mac",
+	ms = "may",
+	ml = "mal",
+	mn = "mon",
+	no = "nor",
+	oc = "oci",
+	fa = "per",
+	pl = "pol",
+	pt = "por",
+	po = "pob",
+	ro = "rum",
+	ru = "rus",
+	sr = "scc",
+	si = "sin",
+	sk = "slo",
+	sl = "slv",
+	es = "spa",
+	sw = "swa",
+	sv = "swe",
+	tl = "tgl",
+	te = "tel",
+	th = "tha",
+	tr = "tur",
+	uk = "ukr",
+	ur = "urd",
+	vi = "vie"
+}
     
 function descriptor()
 	return { title = "VLsub 0.9" ;
@@ -257,12 +339,9 @@ function getenv_lang()
 		lang = string.match(s, "([%w_-]+)%s+$")
 	end
 	
-	--lang = string.sub(lang, 0, 2)
-	
-	for i, v in ipairs(openSub.conf.languages) do
-		if string.find(lang, v[3]) == 1 then
-			openSub.option.language = v[1]
-		end
+	lang = string.sub(lang, 0, 2)
+	if type(lang_os_to_iso[lang]) then
+		openSub.option.language = lang_os_to_iso[lang]
 	end
 end
 
@@ -300,7 +379,10 @@ end
 
 function deactivate()
     vlc.msg.dbg("[VLsub] Bye bye!")
-	dlg:hide() 
+    if dlg then
+		dlg:hide() 
+	end
+	
 	if openSub.token ~= "" then
 		openSub.request("LogOut")
 	end
@@ -387,7 +469,59 @@ openSub = {
 			{'load', 'Load only'},
 			{'manual', 'Manual download'}
 		},
-		languages = languages
+		languages = {
+			{'all', 'All', ' '},
+			{'alb', 'Albanian', 'sq_'},
+			{'ara', 'Arabic', 'ar_'},
+			{'arm', 'Armenian', ' '},--bug
+			{'may', 'Malay', 'ms_'},
+			{'bos', 'Bosnian', ' '},--bug
+			{'bul', 'Bulgarian', 'bg_'},
+			{'cat', 'Catalan', 'ca_'},
+			{'eus', 'Basque', ' '},--bug
+			{'chi', 'Chinese (China)', 'zh_'},
+			{'hrv', 'Croatian', 'hr_'},
+			{'cze', 'Czech', 'cs_'},
+			{'dan', 'Danish', 'da_'},
+			{'dut', 'Dutch', 'nl_'},
+			{'eng', 'English (US)', 'en_US'},
+			{'bre', 'English (UK)', 'en_GB'},
+			{'epo', 'Esperanto', ' '},--bug
+			{'est', 'Estonian', 'et_'},
+			{'fin', 'Finnish', 'fi_'},
+			{'fre', 'French', 'fr_'},
+			{'glg', 'Galician', ' '},--bug
+			{'geo', 'Georgian', ' '},--bug
+			{'ger', 'German', 'de_'},
+			{'ell', 'Greek', 'el_'},
+			{'heb', 'Hebrew', 'iw_'},
+			{'hun', 'Hungarian', 'hu_'},
+			{'ind', 'Indonesian', 'in_'},
+			{'ita', 'Italian', 'it_'},
+			{'jpn', 'Japanese', 'ja_'},
+			{'kaz', 'Kazakh', ' '},--bug
+			{'kor', 'Korean', 'ko_'},
+			{'lav', 'Latvian', 'lv_'},
+			{'lit', 'Lithuanian', 'lt_'},
+			{'ltz', 'Luxembourgish', ' '},--bug
+			{'mac', 'Macedonian', 'mk_'},
+			{'nor', 'Norwegian', 'no_'},
+			{'per', 'Persian', ' '},--bug
+			{'pol', 'Polish', 'pl_'},
+			{'por', 'Portuguese (Portugal)', 'pt_PT'},
+			{'pob', 'Portuguese (Brazil)', 'pt_BR'},
+			{'rum', 'Romanian', 'ro_'},
+			{'rus', 'Russian', 'ru_'},
+			{'scc', 'Serbian', 'sr_'},
+			{'slo', 'Slovak', 'sk_'},
+			{'slv', 'Slovenian', 'sl_'},
+			{'spa', 'Spanish (Spain)', 'es_'},
+			{'swe', 'Swedish', 'sv_'},
+			{'tha', 'Thai', 'th_'},
+			{'tur', 'Turkish', 'tr_'},
+			{'ukr', 'Ukrainian', 'uk_'},
+			{'vie', 'Vietnamese', 'vi_'}
+		}
 	},
 	option = options,
 	session = {
