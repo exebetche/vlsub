@@ -330,18 +330,18 @@ end
 function getenv_lang()
 	local lang = os.getenv("LANG")
 	
-	if not lang then -- Windows
-		local sysroot = assert(os.getenv('SystemRoot'))
-		local cmd = sysroot..'\\system32\\reg.exe query "HKEY_CURRENT_USER\\Control Panel\\International" /v "LocaleName"'
-		local f = assert(io.popen(cmd))
-		local s = assert(f:read('*a'))
-		f:close()
-		lang = string.match(s, "([%w_-]+)%s+$")
-	end
-	
-	lang = string.sub(lang, 0, 2)
-	if type(lang_os_to_iso[lang]) then
-		openSub.option.language = lang_os_to_iso[lang]
+	if lang then -- unix, mac
+		lang = string.sub(lang, 0, 2)
+		if type(lang_os_to_iso[lang]) then
+			openSub.option.language = lang_os_to_iso[lang]
+		end
+	else -- Windows
+		local lang_w = string.match(os.setlocale("", "collate"), "^[^_]+")
+		for i, v in ipairs(openSub.conf.languages) do
+		  if v[2] == lang_w then
+			openSub.option.language = v[1]
+		  end
+		end 
 	end
 end
 
