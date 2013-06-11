@@ -36,8 +36,94 @@ local options = {
 	progressBarSize = 80
 }
 
+local lang = {
+	int_all = 'All',
+	int_descr = 'Dowload subtitles from OpenSubtitles.org',
+	int_research = 'Research',
+	int_config = 'Config',
+	int_configuration = 'Configuration',
+	int_help = 'Help',
+	int_language = 'Language',
+	int_search_hash = 'Search by hash',
+	int_search_name = 'Search by name',
+	int_title = 'Title',
+	int_season = 'Season (series)',
+	int_episode = 'Episode (series)',
+	int_show_help = 'Show help',
+	int_show_conf = 'Show config',
+	int_dowload_sel = 'Download selection',
+	int_close = 'Close',
+	int_default_lang = 'Default language',
+	int_dowload_behav = 'What to do with subtitles',
+	int_dowload_save = 'Load and save',
+	int_dowload_load = 'Load only',
+	int_dowload_manual =  'Manual download',
+	int_display_code = 'Display language code in file name',
+	int_remove_tag = 'Remove tags',
+	int_help_mess = " Download subtittles from <a href='http://www.opensubtitles.org/'>opensubtitles.org</a> and display them while watching a video.<br>"..
+		" <br>"..
+		" <b><u>Usage:</u></b><br>"..
+		" <br>"..
+		" VLSub is meant to be used while your watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).<br>"..
+		" <br>"..
+		" Choose the language for your subtitles and click on the button corresponding to one of the two research method provided by VLSub:<br>"..
+		" <br>"..
+		" <b>Method 1: Search by hash</b><br>"..
+		" It is recommended to try this method first, because it performs a research based on the video file print, so you can find subtitles synchronized with your video.<br>"..
+		" <br>"..
+		" <b>Method 2: Search by name</b><br>"..
+		" If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a serie, you can also provide a season and episode number.<br>"..
+		" <br>"..
+		" <b>Downloading Subtitles</b><br>"..
+		" Select one subtitle in the list and click on 'Download'.<br>"..
+		" It will be put in the same directory that your video, with the same name (different extension)"..
+		" so Vlc will load them automatically the next time you'll start the video.<br>"..
+		" <br>"..
+		" <b>/!\\ Beware :</b> Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet're important.<br>"..
+		" <br>"..
+		" Find more Vlc extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>.",
+	
+	action_login = 'Logging in',
+	action_logout = 'Logging out',
+	action_noop = 'Checking session',
+	action_search = 'Searching subtitles',
+	action_hash = 'Calculating movie hash',
+	
+	mess_success = 'Success',
+	mess_error = 'Error',
+	mess_no_response = 'Server not responding',
+	mess_unauthorized = 'Request unauthorized',
+	mess_expired = 'Session expired, retrying',
+	mess_overloaded = 'Server overloaded, please retry later',
+	mess_no_input = 'Please use this method during playing',
+	mess_not_local = 'This method works with local file only (for now)',
+	mess_not_found = 'File not found',
+	mess_not_found2 = 'File not found (illegal character?)',
+	mess_no_selection = 'No subtitles selected',
+	mess_save_fail = 'Unable to save subtitles',
+	mess_click_link = 'Click here to open the file',
+	mess_complete = 'Research complete',
+	mess_no_res = 'No result',
+	mess_res = 'result(s)',
+	mess_loaded = 'Subtitles loaded',
+	mess_downloading = 'Downloading subtitle',
+	mess_dowload_link = 'Download link'
+}
+
+function descriptor()
+	return { 
+		title = "VLsub 0.9",
+		version = "0.9",
+		author = "exebetche",
+		url = 'http://www.opensubtitles.org/',
+		shortdesc = "VLsub";
+		description = lang[int_descr],
+		capabilities = {"menu", "input-listener" }
+	}
+end
+
 local languages = {
-	{'all', 'All'},
+	{'all', lang.int_all},
 	{'alb', 'Albanian'},
 	{'ara', 'Arabic'},
 	{'arm', 'Armenian'},
@@ -171,22 +257,18 @@ local lang_os_to_iso = {
 	ur = "urd",
 	vi = "vie"
 }
-    
-function descriptor()
-	return { title = "VLsub 0.9" ;
-		version = "0.9" ;
-		author = "exebetche" ;
-		url = 'http://www.opensubtitles.org/';
-		shortdesc = "VLsub";
-		description = "<center><b>VLsub</b></center>"
-				.. "Dowload subtitles from OpenSubtitles.org" ;
-		capabilities = {"menu", "input-listener" }
-		--~ capabilities = {"menu" }
-	}
-end
 
 function activate()
 	vlc.msg.dbg("[VLsub] Welcome")
+	--~ get_translation()
+	
+	--~ local lang_path = "fr.xml"
+	--~ local tmpFile = assert(io.open(lang_path, "rb"))
+	--~ local resp = tmpFile:read("*a")
+	--~ tmpFile:flush()
+	--~ tmpFile:close()
+	--~ lang = parse_xml(resp)
+	--~ vlc.msg.err(dump_xml(lang))
 	
     check_config()
     set_default_language()
@@ -198,7 +280,11 @@ function activate()
 end
 
 function menu()
-	  return { "Research", "Config", "Help" }
+	return { 	  
+		lang.int_research, 
+		lang.int_config, 
+		lang.int_help
+	}
 end
 
 --~ Interface data
@@ -206,7 +292,7 @@ end
 input_table = {} -- General widget id reference
 
 function interface_main()
-	dlg:add_label('Language:', 1, 1, 1, 1)
+	dlg:add_label(lang.int_language..':', 1, 1, 1, 1)
 	input_table['language'] =  dlg:add_dropdown(2, 1, 2, 1)
 	for k, l in ipairs(openSub.conf.languages) do
 		if type(l) == "table" then
@@ -214,21 +300,21 @@ function interface_main()
 		end
 	end
 	
-	dlg:add_button('Search by hash', searchHash, 4, 1, 1, 1)
+	dlg:add_button(lang.int_search_hash, searchHash, 4, 1, 1, 1)
 	
-	dlg:add_label('Title:', 1, 2, 1, 1)
+	dlg:add_label(lang.int_title..':', 1, 2, 1, 1)
 	input_table['title'] = dlg:add_text_input(openSub.movie.title or "", 2, 2, 2, 1)
-	dlg:add_button('Search by name', searchIMBD, 4, 2, 1, 1)
-	dlg:add_label('Season (series):', 1, 3, 1, 1)
+	dlg:add_button(lang.int_search_name, searchIMBD, 4, 2, 1, 1)
+	dlg:add_label(lang.int_season..':', 1, 3, 1, 1)
 	input_table['seasonNumber'] = dlg:add_text_input(openSub.movie.seasonNumber or "", 2, 3, 2, 1)
-	dlg:add_label('Episode (series):', 1, 4, 1, 1)
+	dlg:add_label(lang.int_episode..':', 1, 4, 1, 1)
 	input_table['episodeNumber'] = dlg:add_text_input(openSub.movie.episodeNumber or "", 2, 4, 2, 1)
 	input_table['mainlist'] = dlg:add_list(1, 5, 4, 1)
 	input_table['message'] = dlg:add_label(' ', 1, 6, 4, 1)
-	dlg:add_button('Show help', show_help, 1, 7, 1, 1)
-	dlg:add_button('   Show config   ', show_conf, 2, 7, 1, 1)
-	dlg:add_button('Download selection', download_subtitles, 3, 7, 1, 1)
-	dlg:add_button('Close', deactivate, 4, 7, 1, 1) 
+	dlg:add_button(lang.int_show_help, show_help, 1, 7, 1, 1)
+	dlg:add_button('   '..lang.int_show_conf..'   ', show_conf, 2, 7, 1, 1)
+	dlg:add_button(lang.int_dowload_sel, download_subtitles, 3, 7, 1, 1)
+	dlg:add_button(lang.int_close, deactivate, 4, 7, 1, 1) 
 	
 	display_subtitles()
 end
@@ -245,24 +331,24 @@ function set_interface_main()
 	input_table['seasonNumber']:set_text(openSub.movie.seasonNumber or "")
 end
 
-function interface_config()
-	dlg:add_label('Default language:', 1, 1, 1, 1)
+function interface_config()	
+	dlg:add_label(lang.int_default_lang..':', 1, 1, 1, 1)
 	input_table['default_language'] = dlg:add_dropdown(2, 1, 3, 1)
 	
 	for k, l in ipairs(openSub.conf.languages) do
 		input_table['default_language']:add_value(l[2], k)
 	end	
 	
-	dlg:add_label('What to do with subtitles:', 1, 2, 1, 1)
+	dlg:add_label(lang.int_dowload_behav..':', 1, 2, 1, 1)
 	input_table['downloadBehaviour'] = dlg:add_dropdown(2, 2, 3, 1)
 	
 	for k, l in ipairs(openSub.conf.downloadBehaviours) do
 		input_table['downloadBehaviour']:add_value(l[2], k)
 	end	
 	
-	input_table['langExt'] = dlg:add_check_box('Display language code in file name', 1, 3, 0, 1)
+	input_table['langExt'] = dlg:add_check_box(lang.int_display_code, 1, 3, 0, 1)
 	input_table['langExt']:set_checked(openSub.option.langExt)
-	input_table['removeTag'] = dlg:add_check_box('Remove tags', 1, 4, 0, 1)
+	input_table['removeTag'] = dlg:add_check_box(lang.int_remove_tag, 1, 4, 0, 1)
 	input_table['removeTag']:set_checked(openSub.option.removeTag)
 	dlg:add_button('Cancel', show_main, 3, 5, 1, 1)
 	dlg:add_button('Save', apply_config, 4, 5, 1, 1)
@@ -270,28 +356,7 @@ function interface_config()
 end
 
 function interface_help()
-	local help_html = " Download subtittles from <a href='http://www.opensubtitles.org/'>opensubtitles.org</a> and display them while watching a video.<br>"..
-		" <br>"..
-		" <b><u>Usage:</u></b><br>"..
-		" <br>"..
-		" VLSub is meant to be used while your watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).<br>"..
-		" <br>"..
-		" Choose the language for your subtitles and click on the button corresponding to one of the two research method provided by VLSub:<br>"..
-		" <br>"..
-		" <b>Method 1: Search by hash</b><br>"..
-		" It is recommended to try this method first, because it performs a research based on the video file print, so you can find subtitles synchronized with your video.<br>"..
-		" <br>"..
-		" <b>Method 2: Search by name</b><br>"..
-		" If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a serie, you can also provide a season and episode number.<br>"..
-		" <br>"..
-		" <b>Downloading Subtitles</b><br>"..
-		" Select one subtitle in the list and click on 'Download'.<br>"..
-		" It will be put in the same directory that your video, with the same name (different extension)"..
-		" so Vlc will load them automatically the next time you'll start the video.<br>"..
-		" <br>"..
-		" <b>/!\\ Beware :</b> Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet're important.<br>"..
-		" <br>"..
-		" Find more Vlc extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>."
+	local help_html = lang.int_help_mess
 		
 	input_table['help'] = dlg:add_html(help_html, 1, 1, 4, 1)
 	dlg:add_label(string.rep ("&nbsp;", 100), 1, 2, 3, 1)
@@ -305,14 +370,13 @@ function trigger_menu(id)
 		interface_main()
 	elseif id == 2 then
 		close_dlg()
-		dlg = vlc.dialog(openSub.conf.useragent..": Configuration")
+		dlg = vlc.dialog(openSub.conf.useragent..': '..lang.int_configuration)
 		interface_config()
 	elseif id == 3 then
 		close_dlg()
-		dlg = vlc.dialog(openSub.conf.useragent..": Help")
+		dlg = vlc.dialog(openSub.conf.useragent..': '..lang.int_help)
 		interface_help()
 	end
-	--~ collectgarbage() -- create a warning?!
 end 
 
 function show_main()
@@ -328,12 +392,12 @@ function show_help()
 end
 
 function getenv_lang()
-	local lang = os.getenv("LANG")
+	local os_lang = os.getenv("LANG")
 	
-	if lang then -- unix, mac
-		lang = string.sub(lang, 0, 2)
-		if type(lang_os_to_iso[lang]) then
-			openSub.option.language = lang_os_to_iso[lang]
+	if os_lang then -- unix, mac
+		os_lang = string.sub(lang, 0, 2)
+		if type(lang_os_to_iso[os_lang]) then
+			openSub.option.language = lang_os_to_iso[os_lang]
 		end
 	else -- Windows
 		local lang_w = string.match(os.setlocale("", "collate"), "^[^_]+")
@@ -343,6 +407,7 @@ function getenv_lang()
 		  end
 		end 
 	end
+	
 end
 
 function set_default_language()
@@ -374,6 +439,16 @@ function set_default_behaviour()
 				return a[1] > b[1] 
 			end
 		end)
+	end
+end
+
+function get_translation()
+	local translations_url ="https://api.github.com/repos/exebetche/vlsub/contents/"
+	local stream = vlc.stream(translations_url)
+	local files = stream:readline()
+	
+	for w in string.gmatch(files, 'https://github.com/exebetche/vlsub/blob/master/([^"]+)%.xml",') do
+		vlc.msg.err(w)
 	end
 end
 
@@ -465,9 +540,9 @@ openSub = {
 		userAgentHTTP = "VLSub",
 		useragent = "VLSub 0.9",
 		downloadBehaviours = { 
-			{'save', 'Load and save' },
-			{'load', 'Load only'},
-			{'manual', 'Manual download'}
+			{'save', lang.int_dowload_save},
+			{'load', lang.int_dowload_load},
+			{'manual', lang.int_dowload_manual}
 		},
 		languages = languages
 	},
@@ -559,7 +634,7 @@ openSub = {
 	methods = {
 		LogIn = {
 			params = function()
-				openSub.actionLabel = "Logging in"
+				openSub.actionLabel = lang.action_login
 				return {
 					{ value={ string=openSub.option.username } },
 					{ value={ string=openSub.option.password } },
@@ -575,7 +650,7 @@ openSub = {
 		},
 		LogOut = {
 			params = function()
-				openSub.actionLabel = "Logging out"
+				openSub.actionLabel = lang.action_logout
 				return {
 					{ value={ string=openSub.session.token } } 
 				}
@@ -586,7 +661,7 @@ openSub = {
 		},
 		NoOperation = {
 			params = function()
-				openSub.actionLabel = "Checking session"
+				openSub.actionLabel = lang.action_noop
 				return {
 					{ value={ string=openSub.session.token } } 
 				}
@@ -598,7 +673,7 @@ openSub = {
 		SearchSubtitlesByHash = {
 			methodName = "SearchSubtitles",
 			params = function()
-				openSub.actionLabel = "Searching subtitles"
+				openSub.actionLabel = lang.action_search
 				setMessage(openSub.actionLabel..": "..progressBarContent(0))
 				
 				return {
@@ -621,7 +696,7 @@ openSub = {
 		SearchSubtitles = {
 			methodName = "SearchSubtitles",
 			params = function()
-				openSub.actionLabel = "Searching subtitles"
+				openSub.actionLabel = lang.action_search
 				setMessage(openSub.actionLabel..": "..progressBarContent(0))
 								
 				local member = {
@@ -718,7 +793,7 @@ openSub = {
 	end,
 	getMovieHash = function()
 	-- Calculate movie hash
-		openSub.actionLabel = "Calculating movie hash"
+		openSub.actionLabel = lang.action_hash
 		setMessage(openSub.actionLabel..": "..progressBarContent(0))
 		
 		local item = openSub.getInputItem()
@@ -853,22 +928,22 @@ function download_subtitles()
 	local index = get_first_sel(input_table["mainlist"])
 	
 	if index == 0 then
-		setMessage("No subtitles selected")
+		setMessage(lang.mess_no_selection)
 		return false
 	end
 	
-	openSub.actionLabel = "Downloading subtitle"
+	openSub.actionLabel = lang.mess_downloading 
 	
 	display_subtitles() -- reset selection
 	
 	local item = openSub.itemStore[index]
 	
 	if openSub.option.downloadBehaviour == 'manual' then
-			setMessage("<span style='color:#181'><b>Download link:</b></span> &nbsp;<a href='"..item.ZipDownloadLink.."'>"..item.MovieReleaseName.."</a>")
+			setMessage("<span style='color:#181'><b>"..lang.mess_dowload_link..":</b></span> &nbsp;<a href='"..item.ZipDownloadLink.."'>"..item.MovieReleaseName.."</a>")
 		return false
 	elseif openSub.option.downloadBehaviour == 'load' then
 		if add_sub("zip://"..item.ZipDownloadLink.."!/"..item.SubFileName) then
-			setMessage(success_tag("Subtitles loaded from stream"))
+			setMessage(success_tag(lang.mess_loaded))
 		end
 		return false
 	end
@@ -935,14 +1010,14 @@ function download_subtitles()
 	
 	-- load subtitles
 	if add_sub(subfileURI) then 
-		message = success_tag("Subtitles loaded")
+		message = success_tag(lang.mess_loaded)
 	end
 	
 	-- display a link, if path is inaccessible
 	if not target_exist then 
 		message =  message..
-		"<br> "..error_tag("Unable to save subtitles &nbsp;"..
-		"<a href='"..subfileURI.."'>Click here to open the file</a>")
+		"<br> "..error_tag(lang.mess_save_fail.." &nbsp;"..
+		"<a href='"..subfileURI.."'>"..lang.mess_click_link.."</a>")
 	end
 	
 	setMessage(message)
@@ -954,7 +1029,7 @@ function dump_zip(url, subfileName)
 	local resp = get(url)
 	
 	if not resp then 
-		setError("No response from  server.")
+		setError(lang.mess_no_response)
 		return false 
 	end
 	
@@ -964,6 +1039,9 @@ function dump_zip(url, subfileName)
 	end
 	
 	local tmpFileName = vlc.config.cachedir()..slash..subfileName..".gz"
+	if not file_touch(tmpFileName) then 
+		os.execute("mkdir " .. vlc.config.cachedir())
+	end
 	local tmpFile = assert(io.open(tmpFileName, "wb"))
 		
 	tmpFile:write(resp)
@@ -1031,11 +1109,11 @@ function setError(mess)
 end
 
 function success_tag(str)
-	return "<span style='color:#181'><b>Success:</b></span> "..str..""
+	return "<span style='color:#181'><b>"..lang.mess_success..":</b></span> "..str..""
 end
 
 function error_tag(str)
-	return "<span style='color:#B23'><b>Error:</b></span> "..str..""
+	return "<span style='color:#B23'><b>"..lang.mess_error..":</b></span> "..str..""
 end
 
 --~ Network utils
@@ -1079,7 +1157,7 @@ function http_req(host, port, request)
 	local bodyLenght = string.len(body)
 	local pct = 0
 	
-	if status ~= 200 then return status end
+	--~ if status ~= 200 then return status end
 	
 	while contentLength and bodyLenght < contentLength do
 		vlc.net.poll(pollfds)
@@ -1125,7 +1203,7 @@ function parse_xml(data)
 	
 	table.insert(stack, tree)
 
-	for op, tag, p, empty, val in string.gmatch(data, "<(%/?)([%w:]+)(.-)(%/?)>[%s\r\n\t]*([^<]*)") do
+	for op, tag, p, empty, val in string.gmatch(data, "[%s\r\n\t]*<(%/?)([%w:_]+)(.-)(%/?)>[%s\r\n\t]*([^<]*)[%s\r\n\t]*") do
 		if op=="/" then
 			if level>0 then
 				level = level - 1
