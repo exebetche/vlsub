@@ -963,7 +963,7 @@ function dump_zip(url, subfileName)
 		slash = "\\"
 	end
 	
-	local tmpFileName = vlc.config.cachedir()..slash..subfileName..".gz"
+	local tmpFileName = os.tmpname()
 	local tmpFile = assert(io.open(tmpFileName, "wb"))
 		
 	tmpFile:write(resp)
