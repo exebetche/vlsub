@@ -395,7 +395,7 @@ function getenv_lang()
 	local os_lang = os.getenv("LANG")
 	
 	if os_lang then -- unix, mac
-		os_lang = string.sub(lang, 0, 2)
+		os_lang = string.sub(os_lang, 0, 2)
 		if type(lang_os_to_iso[os_lang]) then
 			openSub.option.language = lang_os_to_iso[os_lang]
 		end
