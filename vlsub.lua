@@ -279,6 +279,18 @@ function activate()
 	collectgarbage()
 end
 
+function deactivate()
+    vlc.msg.dbg("[VLsub] Bye bye!")
+    if dlg then
+		dlg:hide() 
+	end
+	
+	if openSub.token ~= "" then
+		openSub.request("LogOut")
+	end
+   vlc.deactivate()
+end
+
 function menu()
 	return { 	  
 		lang.int_research, 
@@ -290,6 +302,11 @@ end
 --~ Interface data
 
 input_table = {} -- General widget id reference
+
+function set_interface_language(lang)
+
+
+end
 
 function interface_main()
 	dlg:add_label(lang.int_language..':', 1, 1, 1, 1)
@@ -443,25 +460,13 @@ function set_default_behaviour()
 end
 
 function get_translation()
-	local translations_url ="https://api.github.com/repos/exebetche/vlsub/contents/"
+	local translations_url ="https://api.github.com/repos/exebetche/vlsub/contents/translations"
 	local stream = vlc.stream(translations_url)
 	local files = stream:readline()
 	
 	for w in string.gmatch(files, 'https://github.com/exebetche/vlsub/blob/master/([^"]+)%.xml",') do
 		vlc.msg.err(w)
 	end
-end
-
-function deactivate()
-    vlc.msg.dbg("[VLsub] Bye bye!")
-    if dlg then
-		dlg:hide() 
-	end
-	
-	if openSub.token ~= "" then
-		openSub.request("LogOut")
-	end
-   vlc.deactivate()
 end
 
 function close_dlg()
@@ -530,6 +535,8 @@ end
 function input_changed()
 	set_interface_main()
 end
+
+--~ Core 
 
 openSub = {
 	itemStore = nil,

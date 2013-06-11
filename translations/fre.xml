@@ -1,0 +1,48 @@
+<action_hash>Calcul de l'emprunte</action_hash>
+<action_login>Connection</action_login>
+<action_logout>Déconnection</action_logout>
+<action_noop>Vérification de la session</action_noop>
+<action_search>Recherche de sous-titres</action_search>
+<int_all>Tous</int_all>
+<int_close>Fermer</int_close>
+<int_config>Config</int_config>
+<int_configuration>Configuration</int_configuration>
+<int_default_lang>Language</int_default_lang>
+<int_descr>Télécharger des sous-titres depuis OpenSubtitles.org</int_descr>
+<int_display_code>Indiquer la langue dans le nom de fichier</int_display_code>
+<int_dowload_behav>Téléchargement des sous-titres</int_dowload_behav>
+<int_dowload_save>Charger et sauvegarder</int_dowload_save>
+<int_dowload_load>Charger  seulement</int_dowload_load>
+<int_dowload_manual>Téléchergement manuel</int_dowload_manual>
+<int_dowload_sel>Télécharger la sélection</int_dowload_sel>
+<int_search_hash>Recherche automatique</int_search_hash>
+<int_search_name>Recherche par titre</int_search_name>
+<int_episode>Episode (séries)</int_episode>
+<int_season>Saison (séries)</int_season>
+<int_help_mess> Download subtittles from &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; and display them while watching a video.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Usage:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub is meant to be used while your watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).&lt;br&gt; &lt;br&gt; Choose the language for your subtitles and click on the button corresponding to one of the two research method provided by VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Method 1: Search by hash&lt;/b&gt;&lt;br&gt; It is recommended to try this method first, because it performs a research based on the video file print, so you can find subtitles synchronized with your video.&lt;br&gt; &lt;br&gt; &lt;b&gt;Method 2: Search by name&lt;/b&gt;&lt;br&gt; If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a serie, you can also provide a season and episode number.&lt;br&gt; &lt;br&gt; &lt;b&gt;Downloading Subtitles&lt;/b&gt;&lt;br&gt; Select one subtitle in the list and click on &#39;Download&#39;.&lt;br&gt; It will be put in the same directory that your video, with the same name (different extension) so Vlc will load them automatically the next time you&#39;ll start the video.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Beware :&lt;/b&gt; Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet&#39;re important.&lt;br&gt; &lt;br&gt; Find more Vlc extensions at &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help>Aide</int_help>
+<int_language>Langage</int_language>
+<int_remove_tag>Supprimer les tags</int_remove_tag>
+<int_research>Recherche</int_research>
+<int_show_conf>Configuration</int_show_conf>
+<int_show_help>Aide</int_show_help>
+<int_title>Titre</int_title>
+<mess_click_link>Cliquer ici pour ouvrir le fichier</mess_click_link>
+<mess_complete>Recherche terminée</mess_complete>
+<mess_dowload_link>Lien de téléchargement</mess_dowload_link>
+<mess_downloading>Téléchargement des sous-titres</mess_downloading>
+<mess_error>Erreur</mess_error>
+<mess_expired>Session expirée, nouvel essai</mess_expired>
+<mess_loaded>Sous-titres chargés</mess_loaded>
+<mess_no_input>Veuillez utiliser cette méthode pendant la lecture</mess_no_input>
+<mess_no_res>Aucun résultat</mess_no_res>
+<mess_no_response>Pas de réponse du serveur</mess_no_response>
+<mess_no_selection>Aucun sous-titre sélectionné</mess_no_selection>
+<mess_not_found>Fichier non trouvé</mess_not_found>
+<mess_not_found2>Fichier non trouvé (caractére illégal?)</mess_not_found2>
+<mess_not_local>Cette méthode ne fonctionne qu'avec les fichiers locaux</mess_not_local>
+<mess_overloaded>Serveur surchargé, réessayer plus tard</mess_overloaded>
+<mess_res>résultat(s)</mess_res>
+<mess_save_fail>Impossible de sauvegarder les sous-titres</mess_save_fail>
+<mess_success>Ok</mess_success>
+<mess_unauthorized>Accès refusé</mess_unauthorized>
