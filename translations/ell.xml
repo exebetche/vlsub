@@ -1,0 +1,48 @@
+<action_hash>Υπολογισμός hash</action_hash>
+<action_login>Γίνεται είσοδος</action_login>
+<action_logout>Γίνεται έξοδος</action_logout>
+<action_noop>Έλεγχος συνεδρίας</action_noop>
+<action_search>Γίνεται αναζήτηση υπότιτλων</action_search>
+<int_all>Όλες</int_all>
+<int_close>Κλέισιμο</int_close>
+<int_config>Ρυθμίσεις</int_config>
+<int_configuration>Ρυθμίσεις</int_configuration>
+<int_default_lang>Προεπιλεγμένη γλώσσα</int_default_lang>
+<int_descr>Κατέβασμα υπότιτλων από το OpenSubtitles.org</int_descr>
+<int_display_code>Προβολή κωδικού γλώσσας στο όνομα αρχείου</int_display_code>
+<int_dowload_behav>Τι να γίνεται με τους υπότιλους</int_dowload_behav>
+<int_dowload_save>Φόρτωση και αποθήκευση</int_dowload_save>
+<int_dowload_load>Φόρτωση μόνο</int_dowload_load>
+<int_dowload_manual>Χειροκίνητο κατέβασμα</int_dowload_manual>
+<int_dowload_sel>Επιλογή για κατέβασμα</int_dowload_sel>
+<int_episode>Επεισόδιο (σειρές)</int_episode>
+<int_help_mess> Κατέβασμα υπότιτλων από &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; και προβολή με την αναπαραγωγή του βίντεο.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Χρήση:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; Το VLSub προορίζεται για χρήση ενώ βλέπετε το βίντεο , οπότε ξεκινήστε το πρώτα (αν τίποτα δεν αναπαράγεται θα λάβετε ένα σύνδεσμο για να κατεβάσετε τους υπότιτλους στον browser).&lt;br&gt; &lt;br&gt; Επιλέξτε τη γλώσσα για τους υπότιτλούς σας και κάντε κλικ στο ένα κουμπί από τα δυο αντίστοιχα των μεθόδων που παρέχονται απο το VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Μέθοδος 1: Αναζήτηση με hash&lt;/b&gt;&lt;br&gt; Προτείνεται να δοκιμάζετε αυτή τη μέθοδο πρώτα, επειδή κάνει αναζήτηση βάση του αποτυπώματος του αρχείου βίντεο, και έτσε μπορείτε να βρείτε υπότιτλους συγχρονισμένους με το βίντεο.&lt;br&gt; &lt;br&gt; &lt;b&gt;Μέθοδος 2: Αναζήτηση με όνομα&lt;/b&gt;&lt;br&gt; Αν δεν έχετε τύχη με την πρώτη μέθοδο, απλά ελέγξτε αν ο τίτλος είναι σωστός πριν κάνετε κλικ. Αν αναζητείτε υπότιτλους για ένα επεισόδιο σειράς, Μπορείτε επίσης να συμπληρώσετε τον αριθμό της σεζόν και του επεισοδίου.&lt;br&gt; &lt;br&gt; &lt;b&gt;Κατέβασμα Υπότιτλων&lt;/b&gt;&lt;br&gt; Κάντε μια επιλογή υπότιτλων από τη λίστα και κάντε κλικ στο &#39;Κατέβασμα&#39;.&lt;br&gt; Θα τοποθετηθεί στον ίδιο φάκελο με το βίντεο, με το ίδιο όνομα (διαφορετική επέκταση) έτσι ώστε το Vlc να το φορτώσει αυτόματα την επόμενη φορά που θα ανοίξτε το βίντεο.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Προσοχή :&lt;/b&gt; Ήδη υπάρχοντες υπότιτλοι αντικαθίσταντε χωρίς επιβεβαίωση, άρα τοποθετήστε τους αλλού αν είναι σημαντικοί.&lt;br&gt; &lt;br&gt; Βρείτε πειρσσότερα πρόσθετα για το Vlc στο &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help>Βοήθεια</int_help>
+<int_language>Γλώσσα</int_language>
+<int_remove_tag>Αφαίρεση ετικετών</int_remove_tag>
+<int_research>Αναζήτηση</int_research>
+<int_search_hash>Αναζήτηση με hash</int_search_hash>
+<int_search_name>Αναζήτηση με όνομα</int_search_name>
+<int_season>Σεζόν (σειρές)</int_season>
+<int_show_conf>Εμφάνιση ρυθμίσεων</int_show_conf>
+<int_show_help>Εμφάνιση βοήθειας</int_show_help>
+<int_title>Τίτλος</int_title>
+<mess_click_link>Κλικ εδώ για άνοιγμα αρχείου</mess_click_link>
+<mess_complete>Αναζήτηση ολοκληρώθηκε</mess_complete>
+<mess_dowload_link>Σύνδεσμος κατεβάσματος</mess_dowload_link>
+<mess_downloading>Οι υπότιτλοι κατεβαίνουν</mess_downloading>
+<mess_error>Σφάλμα</mess_error>
+<mess_expired>Η συνεδρία έληξε, επαναλαμβάνεται η προσπάθεια</mess_expired>
+<mess_loaded>Οι υπότιτλοι φορτώθηκαν</mess_loaded>
+<mess_no_input>Παρακαλώ χρησιμοποιείστε αυτή τη μέθοδο ενώ γίνεται αναπαραγωγή</mess_no_input>
+<mess_no_res>Κανένα αποτέλεσμα</mess_no_res>
+<mess_no_response>Ο σέρβερ δεν ανταποκρίνεται</mess_no_response>
+<mess_no_selection>Δεν επιλέχτηκαν υπότιτλοι</mess_no_selection>
+<mess_not_found>Το αρχείο δεν βρέθηκε</mess_not_found>
+<mess_not_found2>Το αρχείο δεν βρέθηκε (ασύμβατος χαρακτήρας?)</mess_not_found2>
+<mess_not_local>Αυτή η μέθοδος λειτουργεί με τοπικό αρχείο μόνο (προς το παρόν)</mess_not_local>
+<mess_overloaded>Ο σέρβερ είναι υπερφορτωμένος, παρακαλώ προσπαθήστε αργότερα</mess_overloaded>
+<mess_res>αποτελέσματα</mess_res>
+<mess_save_fail>Αδυναμία αποθήκευσης υπότιτλων</mess_save_fail>
+<mess_success>Επιτυχία</mess_success>
+<mess_unauthorized>Μη εξουσιοδοτημένη αίτηση</mess_unauthorized>
