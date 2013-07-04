@@ -21,29 +21,40 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 --]]
 
+
+						--[[ Global var ]]-- 
+ 
 -- You can set here your default language by replacing nil with your language code (see below)
 -- Example: 
---~ language = "fre", 
---~ language = "ger", 
---~ language = "eng",
---~ ...
+-- language = "fre", 
+-- language = "ger", 
+-- language = "eng",
+-- ...
 
 local options = {
-	language = nil, 
+	language = nil,
 	downloadBehaviour = 'save',
 	langExt = false,
 	removeTag = false,
-	progressBarSize = 80
+	progressBarSize = 80,
+	intLang = 'eng',
+	translations_avail = { eng = 'English', fre = 'Français'
+	--~ , ell = 'Greek' 
+	}
 }
 
-local lang = {
+-- You can set the config file's directory path here
+-- else the default vlc.config.userdatadir() is used
+
+local conf_file_path = nil
+
+local eng_translation = {
 	int_all = 'All',
 	int_descr = 'Dowload subtitles from OpenSubtitles.org',
 	int_research = 'Research',
 	int_config = 'Config',
 	int_configuration = 'Configuration',
 	int_help = 'Help',
-	int_language = 'Language',
 	int_search_hash = 'Search by hash',
 	int_search_name = 'Search by name',
 	int_title = 'Title',
@@ -53,7 +64,10 @@ local lang = {
 	int_show_conf = 'Show config',
 	int_dowload_sel = 'Download selection',
 	int_close = 'Close',
-	int_default_lang = 'Default language',
+	int_search_transl = 'Search translations',
+	int_searching_transl = 'Searching translations ...',
+	int_int_lang = 'Interface language',
+	int_default_lang = 'Subtitles language',
 	int_dowload_behav = 'What to do with subtitles',
 	int_dowload_save = 'Load and save',
 	int_dowload_load = 'Load only',
@@ -110,20 +124,9 @@ local lang = {
 	mess_dowload_link = 'Download link'
 }
 
-function descriptor()
-	return { 
-		title = "VLsub 0.9",
-		version = "0.9",
-		author = "exebetche",
-		url = 'http://www.opensubtitles.org/',
-		shortdesc = "VLsub";
-		description = lang[int_descr],
-		capabilities = {"menu", "input-listener" }
-	}
-end
+local lang = eng_translation 
 
 local languages = {
-	{'all', lang.int_all},
 	{'alb', 'Albanian'},
 	{'ara', 'Arabic'},
 	{'arm', 'Armenian'},
@@ -258,25 +261,47 @@ local lang_os_to_iso = {
 	vi = "vie"
 }
 
+local input_table = {} -- General widget id reference
+local select_conf = {} -- Drop down widget / option table association 
+
+						--[[ Vlc extension stuff ]]--
+
+function descriptor()
+	return { 
+		title = "VLsub 0.9",
+		version = "0.9",
+		author = "exebetche",
+		url = 'http://www.opensubtitles.org/',
+		shortdesc = "VLsub";
+		description = lang[int_descr],
+		capabilities = {"menu", "input-listener" }
+	}
+end
+
 function activate()
 	vlc.msg.dbg("[VLsub] Welcome")
-	--~ get_translation()
-	
-	--~ local lang_path = "fr.xml"
-	--~ local tmpFile = assert(io.open(lang_path, "rb"))
-	--~ local resp = tmpFile:read("*a")
-	--~ tmpFile:flush()
-	--~ tmpFile:close()
-	--~ lang = parse_xml(resp)
-	--~ vlc.msg.err(dump_xml(lang))
 	
     check_config()
-    set_default_language()
-    set_default_behaviour()
+    
+	-- Set table list of available traduction from assoc. array 
+	-- so it is sortable
+	
+	for k, l in pairs(openSub.option.translations_avail) do		
+		if k == openSub.option.int_research then
+			table.insert(openSub.conf.translations_avail, 1, {k, l})
+		else
+			table.insert(openSub.conf.translations_avail, {k, l})
+		end
+	end
+    
 	openSub.getFileInfo()
 	openSub.getMovieInfo()
     show_main()
 	collectgarbage()
+end
+
+function close()
+	deactivate()
 end
 
 function deactivate()
@@ -299,40 +324,36 @@ function menu()
 	}
 end
 
---~ Interface data
-
-input_table = {} -- General widget id reference
-
-function set_interface_language(lang)
-
-
+function meta_changed()
+	return false
 end
 
+function input_changed()
+	set_interface_main()
+end
+
+					--[[ Interface data ]]--
+
 function interface_main()
-	dlg:add_label(lang.int_language..':', 1, 1, 1, 1)
+	dlg:add_label(lang["int_default_lang"]..':', 1, 1, 1, 1)
 	input_table['language'] =  dlg:add_dropdown(2, 1, 2, 1)
-	for k, l in ipairs(openSub.conf.languages) do
-		if type(l) == "table" then
-			input_table['language']:add_value(l[2], k)
-		end
-	end
+	dlg:add_button(lang["int_search_hash"], searchHash, 4, 1, 1, 1)
 	
-	dlg:add_button(lang.int_search_hash, searchHash, 4, 1, 1, 1)
-	
-	dlg:add_label(lang.int_title..':', 1, 2, 1, 1)
+	dlg:add_label(lang["int_title"]..':', 1, 2, 1, 1)
 	input_table['title'] = dlg:add_text_input(openSub.movie.title or "", 2, 2, 2, 1)
-	dlg:add_button(lang.int_search_name, searchIMBD, 4, 2, 1, 1)
-	dlg:add_label(lang.int_season..':', 1, 3, 1, 1)
+	dlg:add_button(lang["int_search_name"], searchIMBD, 4, 2, 1, 1)
+	dlg:add_label(lang["int_season"]..':', 1, 3, 1, 1)
 	input_table['seasonNumber'] = dlg:add_text_input(openSub.movie.seasonNumber or "", 2, 3, 2, 1)
-	dlg:add_label(lang.int_episode..':', 1, 4, 1, 1)
+	dlg:add_label(lang["int_episode"]..':', 1, 4, 1, 1)
 	input_table['episodeNumber'] = dlg:add_text_input(openSub.movie.episodeNumber or "", 2, 4, 2, 1)
 	input_table['mainlist'] = dlg:add_list(1, 5, 4, 1)
 	input_table['message'] = dlg:add_label(' ', 1, 6, 4, 1)
-	dlg:add_button(lang.int_show_help, show_help, 1, 7, 1, 1)
-	dlg:add_button('   '..lang.int_show_conf..'   ', show_conf, 2, 7, 1, 1)
-	dlg:add_button(lang.int_dowload_sel, download_subtitles, 3, 7, 1, 1)
-	dlg:add_button(lang.int_close, deactivate, 4, 7, 1, 1) 
+	dlg:add_button(lang["int_show_help"], show_help, 1, 7, 1, 1)
+	dlg:add_button('   '..lang["int_show_conf"]..'   ', show_conf, 2, 7, 1, 1)
+	dlg:add_button(lang["int_dowload_sel"], download_subtitles, 3, 7, 1, 1)
+	dlg:add_button(lang["int_close"], deactivate, 4, 7, 1, 1) 
 	
+	assoc_select_conf('language', 'language', openSub.conf.languages, lang["int_all"])
 	display_subtitles()
 end
 
@@ -348,52 +369,50 @@ function set_interface_main()
 	input_table['seasonNumber']:set_text(openSub.movie.seasonNumber or "")
 end
 
-function interface_config()	
-	dlg:add_label(lang.int_default_lang..':', 1, 1, 1, 1)
-	input_table['default_language'] = dlg:add_dropdown(2, 1, 3, 1)
+function interface_config()
+	input_table['intLangLab'] = dlg:add_label(lang["int_int_lang"]..':', 1, 1, 1, 1)
+	input_table['intLangBut'] = dlg:add_button(lang["int_search_transl"], get_available_translations, 2, 1, 1, 1)
+	input_table['intLang'] = dlg:add_dropdown(3, 1, 1, 1)	
+	dlg:add_label(lang["int_default_lang"]..':', 1, 2, 2, 1)
+	input_table['default_language'] = dlg:add_dropdown(3, 2, 1, 1)	
+	dlg:add_label(lang["int_dowload_behav"]..':', 1, 3, 2, 1)
+	input_table['downloadBehaviour'] = dlg:add_dropdown(3, 3, 1, 1)	
 	
-	for k, l in ipairs(openSub.conf.languages) do
-		input_table['default_language']:add_value(l[2], k)
-	end	
-	
-	dlg:add_label(lang.int_dowload_behav..':', 1, 2, 1, 1)
-	input_table['downloadBehaviour'] = dlg:add_dropdown(2, 2, 3, 1)
-	
-	for k, l in ipairs(openSub.conf.downloadBehaviours) do
-		input_table['downloadBehaviour']:add_value(l[2], k)
-	end	
-	
-	input_table['langExt'] = dlg:add_check_box(lang.int_display_code, 1, 3, 0, 1)
+	input_table['langExt'] = dlg:add_check_box(lang["int_display_code"], 1, 4, 0, 1)
 	input_table['langExt']:set_checked(openSub.option.langExt)
-	input_table['removeTag'] = dlg:add_check_box(lang.int_remove_tag, 1, 4, 0, 1)
+	input_table['removeTag'] = dlg:add_check_box(lang["int_remove_tag"], 1, 5, 0, 1)
 	input_table['removeTag']:set_checked(openSub.option.removeTag)
-	dlg:add_button('Cancel', show_main, 3, 5, 1, 1)
-	dlg:add_button('Save', apply_config, 4, 5, 1, 1)
+	dlg:add_button('Cancel', show_main, 2, 6, 1, 1)
+	dlg:add_button('Save', apply_config, 3, 6, 1, 1)
 	
+	assoc_select_conf('intLang', 'intLang', openSub.conf.translations_avail)
+	assoc_select_conf('default_language', 'language', openSub.conf.languages, lang["int_all"])
+	assoc_select_conf('downloadBehaviour', 'downloadBehaviour', openSub.conf.downloadBehaviours)
 end
 
 function interface_help()
-	local help_html = lang.int_help_mess
+	local help_html = lang["int_help_mess"]
 		
 	input_table['help'] = dlg:add_html(help_html, 1, 1, 4, 1)
 	dlg:add_label(string.rep ("&nbsp;", 100), 1, 2, 3, 1)
 	dlg:add_button('Ok', show_main, 4, 2, 1, 1)
 end
 
-function trigger_menu(id)
+function trigger_menu(id)	
 	if id == 1 then
 		close_dlg()
 		dlg = vlc.dialog(openSub.conf.useragent)
 		interface_main()
 	elseif id == 2 then
 		close_dlg()
-		dlg = vlc.dialog(openSub.conf.useragent..': '..lang.int_configuration)
+		dlg = vlc.dialog(openSub.conf.useragent..': '..lang["int_configuration"])
 		interface_config()
 	elseif id == 3 then
 		close_dlg()
-		dlg = vlc.dialog(openSub.conf.useragent..': '..lang.int_help)
+		dlg = vlc.dialog(openSub.conf.useragent..': '..lang["int_help"])
 		interface_help()
 	end
+	collectgarbage() --~ !important	
 end 
 
 function show_main()
@@ -408,67 +427,6 @@ function show_help()
 	trigger_menu(3)
 end
 
-function getenv_lang()
-	local os_lang = os.getenv("LANG")
-	
-	if os_lang then -- unix, mac
-		os_lang = string.sub(os_lang, 0, 2)
-		if type(lang_os_to_iso[os_lang]) then
-			openSub.option.language = lang_os_to_iso[os_lang]
-		end
-	else -- Windows
-		local lang_w = string.match(os.setlocale("", "collate"), "^[^_]+")
-		for i, v in ipairs(openSub.conf.languages) do
-		  if v[2] == lang_w then
-			openSub.option.language = v[1]
-		  end
-		end 
-	end
-	
-end
-
-function set_default_language()
-	if openSub.option.language then
-		table.sort(openSub.conf.languages, function(a, b) 
-			if a[1] == openSub.option.language then
-				return true
-			elseif b[1] == openSub.option.language then
-				return false
-			elseif a[1] == 'all' then
-				return true
-			elseif b[1] == 'all' then
-				return false
-			else
-				return a[2] < b[2] 
-			end
-		end)
-	end
-end
-
-function set_default_behaviour()
-	if openSub.option.downloadBehaviour then
-		table.sort(openSub.conf.downloadBehaviours, function(a, b) 
-			if a[1] == openSub.option.downloadBehaviour then
-				return true
-			elseif b[1] == openSub.option.downloadBehaviour then
-				return false
-			else
-				return a[1] > b[1] 
-			end
-		end)
-	end
-end
-
-function get_translation()
-	local translations_url ="https://api.github.com/repos/exebetche/vlsub/contents/translations"
-	local stream = vlc.stream(translations_url)
-	local files = stream:readline()
-	
-	for w in string.gmatch(files, 'https://github.com/exebetche/vlsub/blob/master/([^"]+)%.xml",') do
-		vlc.msg.err(w)
-	end
-end
-
 function close_dlg()
 	vlc.msg.dbg("[VLSub] Closing dialog")
 
@@ -479,10 +437,69 @@ function close_dlg()
 	dlg = nil
 	input_table = nil
 	input_table = {}
+	--~ collectgarbage()
+	--~ fixme: cause crash :/
 end
 
+						--[[ Drop down / config association]]--
+
+function assoc_select_conf(id, option, conf, default)
+-- Helper for i/o interaction betwenn drop down and option list (lang...)
+	select_conf[id] = {cf = conf, opt  = option, dflt = default}
+	set_default_option(id)
+	display_select(id)
+end
+
+function set_default_option(id)
+-- Put the selected option of a list in first place of the associated table 
+	local opt = select_conf[id].opt
+	local cfg = select_conf[id].cf
+	if openSub.option[opt] then
+		table.sort(cfg, function(a, b) 
+			if a[1] == openSub.option[opt] then
+				return true
+			elseif b[1] == openSub.option[opt] then
+				return false
+			else
+				return a[1] < b[1] 
+			end
+		end)
+	end
+end
+
+function display_select(id)
+-- Display the drop down values with an optionnal default value at the top
+	local conf = select_conf[id].cf
+	local opt = select_conf[id].opt
+	local option = openSub.option[opt]
+	local default = select_conf[id].dflt
+	local default_isset = false
+		
+	if not default then 
+		default_isset = true
+	end
+	
+	for k, l in ipairs(conf) do
+		if default_isset then
+			input_table[id]:add_value(l[2], k)
+		else
+			if option then
+				input_table[id]:add_value(l[2], k)
+				input_table[id]:add_value(default, 0)
+			else
+				input_table[id]:add_value(default, 0)
+				input_table[id]:add_value(l[2], k)
+			end
+			default_isset = true
+		end
+	end
+end
+
+						--[[ Config & interface localization]]--
+
 function check_config()
-	local path = vlc.config.userdatadir()
+-- Load config from the file, if existing
+	local path = conf_file_path or vlc.config.userdatadir()
 	local slash = "/"
 	if is_window_path(path) then
 		slash = "\\"
@@ -499,14 +516,22 @@ function check_config()
 end
 
 function load_config()
+-- Overwrite default conf with loaded conf
 	local tmpFile = assert(io.open(openSub.conf.path, "rb"))
 	local resp = tmpFile:read("*all")
 	tmpFile:flush()
 	tmpFile:close()
 	local option = parse_xml(resp)
+	
 	for key, value in pairs(option) do
-		if type(value) == "table" then-- Empty tag
-			openSub.option[key] = ""
+		if type(value) == "table" then
+			if key == "translation" then
+				for k, v in pairs(value) do
+					lang[k] = v
+				end
+			else
+				openSub.option[key] = value
+			end
 		else
 			if value == "true" then
 				openSub.option[key] = true
@@ -517,26 +542,145 @@ function load_config()
 			end
 		end
 	end
+	collectgarbage()
+end
+
+function getenv_lang()
+-- Retrieve the user OS language 
+	local os_lang = os.getenv("LANG")
+	
+	if os_lang then -- unix, mac
+		os_lang = string.sub(os_lang, 0, 2)
+		if type(lang_os_to_iso[os_lang]) then
+			openSub.option.language = lang_os_to_iso[os_lang]
+		end
+	else -- Windows
+		local lang_w = string.match(os.setlocale("", "collate"), "^[^_]+")
+		for i, v in ipairs(openSub.conf.languages) do
+		  if v[2] == lang_w then
+			openSub.option.language = v[1]
+		  end
+		end 
+	end
+end
+
+function get_available_translations()
+-- List existing translation files from the github repo :
+-- 	https://github.com/exebetche/vlsub/tree/master/translations
+	if input_table['intLangBut']:get_text() == lang["int_search_transl"] then   
+		local trsl_names = {}
+		for i, lg in ipairs(languages) do
+			trsl_names[lg[1]] = lg[2]
+		end
+		
+		input_table['intLangBut']:set_text(lang["int_searching_transl"])
+		dlg:update()
+		
+		local translations = {}
+		local translations_url ="https://api.github.com/repos/exebetche/vlsub/contents/translations"
+		
+		local translations_stream = vlc.stream(translations_url)
+		local ln = translations_stream:readline()
+		local file = ""
+				
+		while ln do
+			file = file..ln.."\n"
+			ln = translations_stream:readline()
+		end
+		
+		for lg in string.gmatch(file, '"https://github.com/exebetche/vlsub/blob/master/translations/([^"]+)%.xml",') do
+			if lg ~= options.intLang[1] and not openSub.option.translations_avail[lg] then
+				openSub.option.translations_avail[lg] = trsl_names[lg] or ""
+				table.insert(openSub.conf.translations_avail, {lg, trsl_names[lg]})
+				input_table['intLang']:add_value(trsl_names[lg], #openSub.conf.translations_avail)
+			end
+		end
+		input_table['intLangBut']:set_text(lang["mess_complete"])
+		translations_stream = nil
+		collectgarbage()
+	end
+end
+
+function download_translation(lg)
+--~ Download a translation files from the github repo and save the content into the conf file
+	local translation_file_url = "https://raw.github.com/exebetche/vlsub/master/translations/"..lg..".xml"
+	local translation_stream = vlc.stream(translation_file_url)
+	local translation_line = ""
+	local translation_text = ""
+	
+	while translation_line do
+		translation_text = translation_text..translation_line.."\n"
+		translation_line = translation_stream:readline()
+	end
+	
+	lang = nil
+	lang = parse_xml(translation_text)
+	
+	for k, v in pairs(eng_translation) do
+		if not lang[k] then
+			lang[k] = v
+		end
+	end
+	
+	openSub.option.translation = nil
+	openSub.option.translation = lang
+	translation_stream = nil
+	collectgarbage()
+end
+
+
+function apply_config()
+-- Apply user config selection to local config
+	local lg_sel = input_table['intLang']:get_value()
+	local sel_val
+	local opt
+	
+	if lg_sel and lg_sel ~= 1 and openSub.conf.translations_avail[lg_sel] then
+		local lg = openSub.conf.translations_avail[lg_sel][1]
+		if lg == 'eng' then
+			lang = nil
+			lang = eng_translation
+			openSub.option.translation = nil
+		else
+			download_translation(lg)
+		end
+	end	
+	
+	for id, v in pairs(select_conf) do
+		if input_table[id] and select_conf[id] then
+			sel_val = input_table[id]:get_value()	
+			opt = select_conf[id].opt
+			
+			if sel_val == 0 then
+				openSub.option[opt] = nil
+			else
+				openSub.option[opt] = select_conf[id].cf[sel_val][1]
+			end
+			
+			set_default_option(id)
+		end
+	end
+	
+	openSub.option.langExt = input_table["langExt"]:get_checked()
+	openSub.option.removeTag = input_table["removeTag"]:get_checked()
+	
+	save_config()
+	trigger_menu(1)
 end
 
 function save_config()
+-- Dump local config into config file 
 	vlc.msg.dbg("[VLSub] Saving config file:  " .. openSub.conf.path)
 	local tmpFile = assert(io.open(openSub.conf.path, "wb"))
 	local resp = dump_xml(openSub.option)
 	tmpFile:write(resp)
 	tmpFile:flush()
 	tmpFile:close()
+	tmpFile = nil
+	collectgarbage()
 end
 
-function meta_changed()
-	return false
-end
-
-function input_changed()
-	set_interface_main()
-end
-
---~ Core 
+						--[[ Core ]]--
 
 openSub = {
 	itemStore = nil,
@@ -546,10 +690,11 @@ openSub = {
 		path = nil,
 		userAgentHTTP = "VLSub",
 		useragent = "VLSub 0.9",
+		translations_avail = {},
 		downloadBehaviours = { 
-			{'save', lang.int_dowload_save},
-			{'load', lang.int_dowload_load},
-			{'manual', lang.int_dowload_manual}
+			{'save', lang["int_dowload_save"]},
+			{'load', lang["int_dowload_load"]},
+			{'manual', lang["int_dowload_manual"]}
 		},
 		languages = languages
 	},
@@ -641,7 +786,7 @@ openSub = {
 	methods = {
 		LogIn = {
 			params = function()
-				openSub.actionLabel = lang.action_login
+				openSub.actionLabel = lang["action_login"]
 				return {
 					{ value={ string=openSub.option.username } },
 					{ value={ string=openSub.option.password } },
@@ -657,7 +802,7 @@ openSub = {
 		},
 		LogOut = {
 			params = function()
-				openSub.actionLabel = lang.action_logout
+				openSub.actionLabel = lang["action_logout"]
 				return {
 					{ value={ string=openSub.session.token } } 
 				}
@@ -668,7 +813,7 @@ openSub = {
 		},
 		NoOperation = {
 			params = function()
-				openSub.actionLabel = lang.action_noop
+				openSub.actionLabel = lang["action_noop"]
 				return {
 					{ value={ string=openSub.session.token } } 
 				}
@@ -680,7 +825,7 @@ openSub = {
 		SearchSubtitlesByHash = {
 			methodName = "SearchSubtitles",
 			params = function()
-				openSub.actionLabel = lang.action_search
+				openSub.actionLabel = lang["action_search"]
 				setMessage(openSub.actionLabel..": "..progressBarContent(0))
 				
 				return {
@@ -703,7 +848,7 @@ openSub = {
 		SearchSubtitles = {
 			methodName = "SearchSubtitles",
 			params = function()
-				openSub.actionLabel = lang.action_search
+				openSub.actionLabel = lang["action_search"]
 				setMessage(openSub.actionLabel..": "..progressBarContent(0))
 								
 				local member = {
@@ -800,7 +945,7 @@ openSub = {
 	end,
 	getMovieHash = function()
 	-- Calculate movie hash
-		openSub.actionLabel = lang.action_hash
+		openSub.actionLabel = lang["action_hash"]
 		setMessage(openSub.actionLabel..": "..progressBarContent(0))
 		
 		local item = openSub.getInputItem()
@@ -882,7 +1027,13 @@ openSub = {
 }
 
 function searchHash()
-	openSub.movie.sublanguageid = openSub.conf.languages[input_table["language"]:get_value()][1]
+	local sel = input_table["language"]:get_value()
+	if sel == 0 then
+		openSub.movie.sublanguageid = 'all'
+	else
+		openSub.movie.sublanguageid = openSub.conf.languages[sel][1]
+	end
+	
 	openSub.getMovieHash()
 	
 	if openSub.file.hash then
@@ -896,7 +1047,13 @@ function searchIMBD()
 	openSub.movie.title = trim(input_table["title"]:get_text())
 	openSub.movie.seasonNumber = tonumber(input_table["seasonNumber"]:get_text())
 	openSub.movie.episodeNumber = tonumber(input_table["episodeNumber"]:get_text())
-	openSub.movie.sublanguageid  = openSub.conf.languages[input_table["language"]:get_value()][1]
+
+	local sel = input_table["language"]:get_value()
+	if sel == 0 then
+		openSub.movie.sublanguageid = 'all'
+	else
+		openSub.movie.sublanguageid = openSub.conf.languages[sel][1]
+	end
 	
 	if openSub.movie.title ~= "" then
 		openSub.checkSession()
@@ -935,22 +1092,22 @@ function download_subtitles()
 	local index = get_first_sel(input_table["mainlist"])
 	
 	if index == 0 then
-		setMessage(lang.mess_no_selection)
+		setMessage(lang["mess_no_selection"])
 		return false
 	end
 	
-	openSub.actionLabel = lang.mess_downloading 
+	openSub.actionLabel = lang["mess_downloading"] 
 	
 	display_subtitles() -- reset selection
 	
 	local item = openSub.itemStore[index]
 	
 	if openSub.option.downloadBehaviour == 'manual' then
-			setMessage("<span style='color:#181'><b>"..lang.mess_dowload_link..":</b></span> &nbsp;<a href='"..item.ZipDownloadLink.."'>"..item.MovieReleaseName.."</a>")
+			setMessage("<span style='color:#181'><b>"..lang["mess_dowload_link"]..":</b></span> &nbsp;<a href='"..item.ZipDownloadLink.."'>"..item.MovieReleaseName.."</a>")
 		return false
 	elseif openSub.option.downloadBehaviour == 'load' then
 		if add_sub("zip://"..item.ZipDownloadLink.."!/"..item.SubFileName) then
-			setMessage(success_tag(lang.mess_loaded))
+			setMessage(success_tag(lang["mess_loaded"]))
 		end
 		return false
 	end
@@ -979,7 +1136,7 @@ function download_subtitles()
 			slash = "\\"
 		end
 		target = vlc.config.homedir()..slash..subfileName
-		target_exist = false
+		target_exist = file_touch(target)
 	end
 	
 	vlc.msg.dbg("[VLsub] Subtitles files: "..target)
@@ -1017,14 +1174,14 @@ function download_subtitles()
 	
 	-- load subtitles
 	if add_sub(subfileURI) then 
-		message = success_tag(lang.mess_loaded)
+		message = success_tag(lang["mess_loaded"])
 	end
 	
 	-- display a link, if path is inaccessible
 	if not target_exist then 
 		message =  message..
-		"<br> "..error_tag(lang.mess_save_fail.." &nbsp;"..
-		"<a href='"..subfileURI.."'>"..lang.mess_click_link.."</a>")
+		"<br> "..error_tag(lang["mess_save_fail"].." &nbsp;"..
+		"<a href='"..subfileURI.."'>"..lang["mess_click_link"].."</a>")
 	end
 	
 	setMessage(message)
@@ -1036,7 +1193,7 @@ function dump_zip(url, subfileName)
 	local resp = get(url)
 	
 	if not resp then 
-		setError(lang.mess_no_response)
+		setError(lang["mess_no_response"])
 		return false 
 	end
 	
@@ -1067,29 +1224,7 @@ function add_sub(subfileURI)
 	return false
 end
 
--- UI stuff
-
-function apply_config()
-	local lang_sel = openSub.conf.languages[input_table["default_language"]:get_value()][1]
-	
-	if openSub.option.language ~= lang_sel then
-		openSub.option.language = lang_sel
-		set_default_language()
-	end
-	
-	local behaviour_sel = openSub.conf.downloadBehaviours[input_table["downloadBehaviour"]:get_value()][1]
-	
-	if openSub.option.downloadBehaviour ~= behaviour_sel then
-		openSub.option.downloadBehaviour = behaviour_sel
-		set_default_behaviour()
-	end
-	
-	openSub.option.langExt = input_table["langExt"]:get_checked()
-	openSub.option.removeTag = input_table["removeTag"]:get_checked()
-	
-	save_config()
-	trigger_menu(1)
-end
+						--[[ Interface helpers]]--
 
 function progressBarContent(pct)
 	local accomplished = math.ceil(openSub.option.progressBarSize*pct/100)
@@ -1109,21 +1244,19 @@ function setMessage(str)
 	end
 end
 
--- General interface utils
-
 function setError(mess)
 	setMessage(error_tag(mess))
 end
 
 function success_tag(str)
-	return "<span style='color:#181'><b>"..lang.mess_success..":</b></span> "..str..""
+	return "<span style='color:#181'><b>"..lang["mess_success"]..":</b></span> "..str..""
 end
 
 function error_tag(str)
-	return "<span style='color:#B23'><b>"..lang.mess_error..":</b></span> "..str..""
+	return "<span style='color:#B23'><b>"..lang["mess_error"]..":</b></span> "..str..""
 end
 
---~ Network utils
+						--[[ Network utils]]--
 
 function get(url)
 	local host, path = parse_url(url)
@@ -1200,14 +1333,14 @@ function parse_url(url)
 	return  url_parsed["host"], url_parsed["path"], url_parsed["option"]
 end
 
---~ XML utils
+						--[[ XML utils]]--
 
 function parse_xml(data)
 	local tree = {}
 	local stack = {}
 	local tmp = {}
 	local level = 0
-	
+	local op, tag, p, empty, val
 	table.insert(stack, tree)
 
 	for op, tag, p, empty, val in string.gmatch(data, "[%s\r\n\t]*<(%/?)([%w:_]+)(.-)(%/?)>[%s\r\n\t]*([^<]*)[%s\r\n\t]*") do
@@ -1249,6 +1382,8 @@ function parse_xml(data)
 			end
 		end
 	end
+	
+	collectgarbage()
 	return tree
 end
 
@@ -1258,6 +1393,7 @@ function parse_xmlrpc(data)
 	local tmp = {}
 	local tmpTag = ""
 	local level = 0
+	local op, tag, p, empty, val
 	table.insert(stack, tree)
 
 	for op, tag, p, empty, val in string.gmatch(data, "<(%/?)([%w:]+)(.-)(%/?)>[%s\r\n\t]*([^<]*)") do
@@ -1270,7 +1406,7 @@ function parse_xmlrpc(data)
 			end
 		elseif tag == "name" then 
 			level = level + 1
-			if val~=""then tmpTag  = vlc.strings.resolve_xml_special_chars(val) end
+			if val~= "" then tmpTag  = vlc.strings.resolve_xml_special_chars(val) end
 			
 			if type(stack[level][tmpTag]) == "nil" then
 				stack[level][tmpTag] = {}
@@ -1299,6 +1435,7 @@ function parse_xmlrpc(data)
 			stack[level][tmpTag] = vlc.strings.resolve_xml_special_chars(val)
 		end
 	end
+	collectgarbage()
 	return tree
 end
 
@@ -1308,7 +1445,22 @@ function dump_xml(data)
 	local dump = ""
 	
 	local function parse(data, stack)
+		local data_index = {}
+		local k
+		local v
+		local i
+		local tb
+		
 		for k,v in pairs(data) do
+			table.insert(data_index, {k, v})
+			table.sort(data_index, function(a, b)
+				return a[1] < b[1] 
+			end)
+		end
+		
+		for i,tb in pairs(data_index) do
+			k = tb[1]
+			v = tb[2]
 			if type(k)=="string" then
 				dump = dump.."\r\n"..string.rep (" ", level).."<"..k..">"	
 				table.insert(stack, k)
@@ -1346,10 +1498,11 @@ function dump_xml(data)
 		end
 	end
 	parse(data, stack)
+	collectgarbage()
 	return dump
 end
 
---~ Misc utils
+						--[[ Misc utils]]--
 
 function make_uri(str, encode)
     local windowdrive = string.match(str, "^(%a:\).+$")

@@ -23,6 +23,9 @@ KNOWN BUG:
 Changelog:
 
 
+2013-07-04 (version 0.9.5)
+Add interface localization option
+
 2013-04-25 (version 0.9)
 Simplified interface
 Bug fix with microDVD (".sub") subtitles
