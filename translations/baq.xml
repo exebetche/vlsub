@@ -3,7 +3,7 @@
 <action_logout>SaioaAmaitu</action_logout>
 <action_noop>Saioaegiaztatzen</action_noop>
 <action_search>Azpidatziakbilatzen</action_search>
-<int_all>All</int_all>
+<int_all>Denak</int_all>
 <int_cancel>E&amp;zeztatu</int_cancel>
 <int_close>It&amp;xi</int_close>
 <int_config>&amp;Itxurapena</int_config>
