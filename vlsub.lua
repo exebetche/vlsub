@@ -41,7 +41,8 @@ local options = {
 	translations_avail = { 
 		eng = 'English', 
 		fre = 'Français',
-		ell = 'Greek' 
+		ell = 'Greek',
+		bak = 'Basque' 
 	}
 }
 
@@ -66,6 +67,9 @@ local eng_translation = {
 	int_show_conf = 'Show config',
 	int_dowload_sel = 'Download selection',
 	int_close = 'Close',
+	int_ok = 'Ok',
+	int_save = 'Save',
+	int_cancel = 'Cancel',
 	int_search_transl = 'Search translations',
 	int_searching_transl = 'Searching translations ...',
 	int_int_lang = 'Interface language',
@@ -384,8 +388,8 @@ function interface_config()
 	input_table['langExt']:set_checked(openSub.option.langExt)
 	input_table['removeTag'] = dlg:add_check_box(lang["int_remove_tag"], 1, 5, 0, 1)
 	input_table['removeTag']:set_checked(openSub.option.removeTag)
-	dlg:add_button('Cancel', show_main, 2, 6, 1, 1)
-	dlg:add_button('Save', apply_config, 3, 6, 1, 1)
+	dlg:add_button(lang["int_cancel"], show_main, 2, 6, 1, 1)
+	dlg:add_button(lang["int_save"], apply_config, 3, 6, 1, 1)
 	
 	assoc_select_conf('intLang', 'intLang', openSub.conf.translations_avail)
 	assoc_select_conf('default_language', 'language', openSub.conf.languages, lang["int_all"])
@@ -397,7 +401,7 @@ function interface_help()
 		
 	input_table['help'] = dlg:add_html(help_html, 1, 1, 4, 1)
 	dlg:add_label(string.rep ("&nbsp;", 100), 1, 2, 3, 1)
-	dlg:add_button('Ok', show_main, 4, 2, 1, 1)
+	dlg:add_button(lang["int_ok"], show_main, 4, 2, 1, 1)
 end
 
 function trigger_menu(id)	
