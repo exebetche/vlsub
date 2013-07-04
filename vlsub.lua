@@ -42,7 +42,7 @@ local options = {
 		eng = 'English', 
 		fre = 'Français',
 		ell = 'Greek',
-		bak = 'Basque' 
+		baq = 'Basque' 
 	}
 }
 
