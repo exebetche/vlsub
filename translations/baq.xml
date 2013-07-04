@@ -1,53 +1,52 @@
-<action_hash>Filmarenhashakalkulatzen</action_hash>
-<action_login>SaioaHasi</action_login>
-<action_logout>SaioaAmaitu</action_logout>
-<action_noop>Saioaegiaztatzen</action_noop>
-<action_search>Azpidatziakbilatzen</action_search>
+<action_hash>Filmaren hasha kalkulatzen</action_hash>
+<action_login>Saioa Hasi</action_login>
+<action_logout>Saioa Amaitu</action_logout>
+<action_noop>Saioa egiaztatzen</action_noop>
+<action_search>Azpidatziak bilatzen</action_search>
 <int_all>Denak</int_all>
 <int_cancel>E&amp;zeztatu</int_cancel>
 <int_close>It&amp;xi</int_close>
 <int_config>&amp;Itxurapena</int_config>
 <int_configuration>Itxurapena</int_configuration>
-<int_default_lang>Berezkohizkuntza:</int_default_lang>
+<int_default_lang>Berezko hizkuntza:</int_default_lang>
 <int_descr>Dowload subtitles from OpenSubtitles.org</int_descr>
-<int_display_code>&amp;Erakutsihizkuntzakodeaagiriizenean</int_display_code>
-<int_dowload_behav>Zereginazpidatziarekin:</int_dowload_behav>
-<int_dowload_load>Gertatubakarrik</int_dowload_load>
-<int_dowload_manual>Eskuzkojeisketa</int_dowload_manual>
-<int_dowload_save>Gertatuetagorde</int_dowload_save>
-<int_dowload_sel>&amp;Jeitsihautapena</int_dowload_sel>
-<int_episode>Atala(telesailak):</int_episode>
+<int_display_code>&amp;Erakutsi hizkuntza kodea agiri izenean</int_display_code>
+<int_dowload_behav>Zer egin azpidatziarekin:</int_dowload_behav>
+<int_dowload_load>Gertatu bakarrik</int_dowload_load>
+<int_dowload_manual>Eskuzko jeisketa</int_dowload_manual>
+<int_dowload_save>Gertatu eta gorde</int_dowload_save>
+<int_dowload_sel>&amp;Jeitsi hautapena</int_dowload_sel>
+<int_episode>Atala (telesailak):</int_episode>
 <int_help>Laguntza</int_help>
 <int_help_mess>Jeitsi azpidatziak &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt;-tik eta erakutsi hauek bideo bat ikusterakoan.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Erabilpena:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub zure bideoarekin batera erabiltzeko egina dago, hortaz abiarazi hura lehenik (ez badago ezer irakurtzen azpidatziak zure nabigatzailetik jeisteko lotura jasoko duzu).&lt;br&gt; &lt;br&gt; Hautatu zure azpidatzientzako hizkuntza eta klikatu VLSub-ek hornituriko bi bilaketa metodoetako bati dagokion botoia:&lt;br&gt; &lt;br&gt; &lt;b&gt;1 Metodoa: Bilatu hashez&lt;/b&gt;&lt;br&gt; Lehen metodo honekin saiatzea gomendagarria da, zeren bideo agiriaren izenean ohinarriturik egiten du bilaketa, hortaz zure bideorekin aldiberetuta dauden azpidatziak bilatu ditzakezu.&lt;br&gt; &lt;br&gt; &lt;b&gt;2 Metodoa: Bilatu izenez&lt;/b&gt;&lt;br&gt; Ez baduzu zorterik lehen metodoarekin, egiaztatu izenburua zuzena den klikatu aurretik. Telesail batentzako azpidatziak bilatzen badituzu, denboraldi eta atal zenbakia ere eman ditzakezu.&lt;br&gt; &lt;br&gt; &lt;b&gt;Azpidatzi Jeisketa&lt;/b&gt;&lt;br&gt; Hautatu azpidatzi bat zerrendatik eta  klikatu &#39;Jeitsi&#39;.&lt;br&gt; Zure bideoaren zuzenbide berean jarriko du, izen berarekin (luzapen ezberdina) hortaz Vlc-k berezgaitasunez gertatuko du bideoa abiarazten duzun hurrengoan.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Kontuz :&lt;/b&gt; Dauden azpidatziak gainidatzi egiten dira baieztapenik galdetu gabe, hortaz jarri itzazu beste nonbait garrantzitsuak badira.&lt;br&gt; &lt;br&gt; Bilatu Vlc hedapen gehiago hemen: &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
-<int_int_lang>Hizkuntza:</int_int_lang>
+<int_language>Hizkuntza:</int_language>
 <int_ok>&amp;Ongi</int_ok>
-<int_remove_tag>&amp;Kenduetiketak</int_remove_tag>
+<int_remove_tag>&amp;Kendu etiketak</int_remove_tag>
 <int_research>&amp;Bilatu</int_research>
 <int_save>&amp;Gorde</int_save>
-<int_search_hash>Bilatu&amp;hashez</int_search_hash>
+<int_search_hash>Bilatu &amp;hashez</int_search_hash>
 <int_searching_transl>Searching translations ...</int_searching_transl>
-<int_search_name>Bilatui&amp;zenez</int_search_name>
+<int_search_name>Bilatu i&amp;zenez</int_search_name>
 <int_search_transl>Search translations</int_search_transl>
-<int_season>Denboraldia(telesailak):</int_season>
-<int_show_conf>E&amp;rakutsiitxurap</int_show_conf>
-<int_show_help>&amp;Erakutsilaguntza</int_show_help>
+<int_season>Denboraldia (telesailak):</int_season>
+<int_show_conf>E&amp;rakutsi itxurap</int_show_conf>
+<int_show_help>&amp;Erakutsi laguntza</int_show_help>
 <int_title>Izenburua:</int_title>
-<mess_click_link>Klikatuhemenagiriairekitzeko</mess_click_link>
-<mess_complete>Bilaketaosatuta</mess_complete>
-<mess_dowload_link>Jeitsilotura</mess_dowload_link>
-<mess_downloading>Azpidatziajeisten</mess_downloading>
+<mess_click_link>Klikatu hemen agiria irekitzeko</mess_click_link>
+<mess_complete>Bilaketa osatuta</mess_complete>
+<mess_dowload_link>Jeitsi lotura</mess_dowload_link>
+<mess_downloading>Azpidatzia jeisten</mess_downloading>
 <mess_error>Akatsa</mess_error>
-<mess_expired>Saioaepezkanpo,bersaiatzen</mess_expired>
-<mess_loaded>Azpidatziakgertaturik</mess_loaded>
-<mess_no_input>Mesedezerabilimetodohauirakurketanzehar</mess_no_input>
-<mess_no_res>Emaitzgabe</mess_no_res>
-<mess_no_response>Ezdagoerantzunikzerbitzaritik.</mess_no_response>
-<mess_no_selection>No subtitles selected</mess_no_selection>
-<mess_not_found>Agiriaezdaaurkitu</mess_not_found>
-<mess_not_found2>Agiriaezdaaurkitu(legezkanpokohizkia?)</mess_not_found2>
-<mess_not_local>Metodohonektokikoagiriekinbakarrikjardutendu(oraingoz)</mess_not_local>
-<mess_overloaded>Zerbitzariagainzamatuta,mesedezsaiatugeroago</mess_overloaded>
+<mess_expired>Saioa epezkanpo, bersaiatzen</mess_expired>
+<mess_loaded>Azpidatziak gertaturik</mess_loaded>
+<mess_no_input>Mesedez erabili metodo hau irakurketan zehar</mess_no_input>
+<mess_no_res>Emaitz gabe</mess_no_res>
+<mess_no_response>Ez dago erantzunik zerbitzaritik.</mess_no_response>
+<mess_not_found>Agiria ez da aurkitu</mess_not_found>
+<mess_not_found2>Agiria ez da aurkitu (legezkanpoko hizkia?)</mess_not_found2>
+<mess_not_local>Metodo honek tokiko agiriekin bakarrik jarduten du (oraingoz)</mess_not_local>
+<mess_overloaded>Zerbitzaria gainzamatuta, mesedez saiatu geroago</mess_overloaded>
 <mess_res>emaitz</mess_res>
-<mess_save_fail>Ezinezkoaazpidatziakgordetzea</mess_save_fail>
+<mess_save_fail>Ezinezkoa azpidatziak gordetzea</mess_save_fail>
 <mess_success>Gertaera</mess_success>
-<mess_unauthorized>Eskabidebaimengabea</mess_unauthorized>
+<mess_unauthorized>Eskabide baimengabea</mess_unauthorized>
