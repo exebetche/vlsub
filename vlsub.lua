@@ -542,6 +542,7 @@ function load_config()
 			end
 		end
 	end
+	SetDownloadBehaviours()
 	collectgarbage()
 end
 
@@ -646,6 +647,8 @@ function apply_config()
 		end
 	end	
 	
+	SetDownloadBehaviours()
+	
 	for id, v in pairs(select_conf) do
 		if input_table[id] and select_conf[id] then
 			sel_val = input_table[id]:get_value()	
@@ -680,6 +683,14 @@ function save_config()
 	collectgarbage()
 end
 
+function SetDownloadBehaviours()
+	openSub.conf.downloadBehaviours = { 
+		{'save', lang["int_dowload_save"]},
+		{'load', lang["int_dowload_load"]},
+		{'manual', lang["int_dowload_manual"]}
+	}
+end
+
 						--[[ Core ]]--
 
 openSub = {
@@ -691,11 +702,7 @@ openSub = {
 		userAgentHTTP = "VLSub",
 		useragent = "VLSub 0.9",
 		translations_avail = {},
-		downloadBehaviours = { 
-			{'save', lang["int_dowload_save"]},
-			{'load', lang["int_dowload_load"]},
-			{'manual', lang["int_dowload_manual"]}
-		},
+		downloadBehaviours = nil,
 		languages = languages
 	},
 	option = options,
