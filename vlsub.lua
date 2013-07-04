@@ -38,8 +38,10 @@ local options = {
 	removeTag = false,
 	progressBarSize = 80,
 	intLang = 'eng',
-	translations_avail = { eng = 'English', fre = 'Français'
-	--~ , ell = 'Greek' 
+	translations_avail = { 
+		eng = 'English', 
+		fre = 'Français',
+		ell = 'Greek' 
 	}
 }
 
