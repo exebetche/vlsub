@@ -4,7 +4,7 @@
 <action_noop>Έλεγχος συνεδρίας</action_noop>
 <action_search>Γίνεται αναζήτηση υπότιτλων</action_search>
 <int_all>Όλες</int_all>
-<int_cancel>Cancel</int_cancel>
+<int_cancel>Ακύρωση</int_cancel>
 <int_close>Κλέισιμο</int_close>
 <int_config>Ρυθμίσεις</int_config>
 <int_configuration>Ρυθμίσεις</int_configuration>
@@ -20,14 +20,14 @@
 <int_help>Βοήθεια</int_help>
 <int_help_mess>Κατέβασμα υπότιτλων από &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; και προβολή με την αναπαραγωγή του βίντεο.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Χρήση:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; Το VLSub προορίζεται για χρήση ενώ βλέπετε το βίντεο , οπότε ξεκινήστε το πρώτα (αν τίποτα δεν αναπαράγεται θα λάβετε ένα σύνδεσμο για να κατεβάσετε τους υπότιτλους στον browser).&lt;br&gt; &lt;br&gt; Επιλέξτε τη γλώσσα για τους υπότιτλούς σας και κάντε κλικ στο ένα κουμπί από τα δυο αντίστοιχα των μεθόδων που παρέχονται απο το VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Μέθοδος 1: Αναζήτηση με hash&lt;/b&gt;&lt;br&gt; Προτείνεται να δοκιμάζετε αυτή τη μέθοδο πρώτα, επειδή κάνει αναζήτηση βάση του αποτυπώματος του αρχείου βίντεο, και έτσε μπορείτε να βρείτε υπότιτλους συγχρονισμένους με το βίντεο.&lt;br&gt; &lt;br&gt; &lt;b&gt;Μέθοδος 2: Αναζήτηση με όνομα&lt;/b&gt;&lt;br&gt; Αν δεν έχετε τύχη με την πρώτη μέθοδο, απλά ελέγξτε αν ο τίτλος είναι σωστός πριν κάνετε κλικ. Αν αναζητείτε υπότιτλους για ένα επεισόδιο σειράς, Μπορείτε επίσης να συμπληρώσετε τον αριθμό της σεζόν και του επεισοδίου.&lt;br&gt; &lt;br&gt; &lt;b&gt;Κατέβασμα Υπότιτλων&lt;/b&gt;&lt;br&gt; Κάντε μια επιλογή υπότιτλων από τη λίστα και κάντε κλικ στο &#39;Κατέβασμα&#39;.&lt;br&gt; Θα τοποθετηθεί στον ίδιο φάκελο με το βίντεο, με το ίδιο όνομα (διαφορετική επέκταση) έτσι ώστε το Vlc να το φορτώσει αυτόματα την επόμενη φορά που θα ανοίξτε το βίντεο.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Προσοχή :&lt;/b&gt; Ήδη υπάρχοντες υπότιτλοι αντικαθίσταντε χωρίς επιβεβαίωση, άρα τοποθετήστε τους αλλού αν είναι σημαντικοί.&lt;br&gt; &lt;br&gt; Βρείτε πειρσσότερα πρόσθετα για το Vlc στο &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
 <int_int_lang>Γλώσσα</int_int_lang>
-<int_ok>Ok</int_ok>
+<int_ok>ΟΚ</int_ok>
 <int_remove_tag>Αφαίρεση ετικετών</int_remove_tag>
 <int_research>Αναζήτηση</int_research>
-<int_save>Save</int_save>
+<int_save>Αποθήκευση</int_save>
 <int_search_hash>Αναζήτηση με hash</int_search_hash>
-<int_searching_transl>Searching translations ...</int_searching_transl>
+<int_searching_transl>Αναζητούντε μεταφράσεις ...</int_searching_transl>
 <int_search_name>Αναζήτηση με όνομα</int_search_name>
-<int_search_transl>Search translations</int_search_transl>
+<int_search_transl>Αναζήτηση μεταφράσεων</int_search_transl>
 <int_season>Σεζόν (σειρές)</int_season>
 <int_show_conf>Εμφάνιση ρυθμίσεων</int_show_conf>
 <int_show_help>Εμφάνιση βοήθειας</int_show_help>
