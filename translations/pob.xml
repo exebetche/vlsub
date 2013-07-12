@@ -1,53 +1,53 @@
 <action_hash>Calculando hash</action_hash>
 <action_login>Fazendo Login</action_login>
 <action_logout>Fazendo Logout</action_logout>
-<action_noop>Checanco sess&atilde;o</action_noop>
+<action_noop>Checanco sessão</action_noop>
 <action_search>Procurando legendas</action_search>
 <int_all>Todos</int_all>
 <int_cancel>Cancelar</int_cancel>
 <int_close>Fechar</int_close>
-<int_config>Configura&ccedil;&otilde;es</int_config>
-<int_configuration>Configura&ccedil;&atilde;o</int_configuration>
+<int_config>Configurações</int_config>
+<int_configuration>Configuração</int_configuration>
 <int_default_lang>Idioma das legendas</int_default_lang>
 <int_descr>Baixe legendas em OpenSubtitles.org</int_descr>
-<int_display_code>Mostrar c&oatilde;digo do idioma no nome do arquivo</int_display_code>
+<int_display_code>Mostrar código do idioma no nome do arquivo</int_display_code>
 <int_dowload_behav>O que fazer com as legendas</int_dowload_behav>
 <int_dowload_load>Apenas carregar</int_dowload_load>
 <int_dowload_manual>Download manual</int_dowload_manual>
 <int_dowload_save>Carregar e salvar</int_dowload_save>
-<int_dowload_sel>Baixar sele&ccedil;&atilde;o</int_dowload_sel>
-<int_episode>Epis&oatilde;dio (seriados)</int_episode>
+<int_dowload_sel>Baixar seleção</int_dowload_sel>
+<int_episode>Episódio (seriados)</int_episode>
 <int_help>Ajuda</int_help>
-<int_help_mess> Baixe legendas de &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; e exiba-os enquanto assiste um v&iatilde;deo.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Uso:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub &eatilde; destinado para usar enquanto voc&ecirc; assiste um v&iatilde;deo, ent&atilde;o abra-o primeiro (se nada for exibido, voc&ecirc; receber&aatilde; um link para baixar a legenda em seu navegador).&lt;br&gt; &lt;br&gt; Selecione o idioma de sua legenda e clique no bot&atilde;o que corresponde a um dos dois m&eatilde;todos de pesquisa disponiblizados pelo VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;M&eatilde;todo 1: Busca por hash&lt;/b&gt;&lt;br&gt; &Eatilde; recomend&aatilde;vel o uso deste m&eatilde;todo primeiro, pois ele realiza uma pesquisa baseada na assinatura do arquivo, sendo assim voc&ecirc; pode encontrar legendas sincronizadas com o v&iatilde;deo.&lt;br&gt; &lt;br&gt; &lt;b&gt;M&eatilde;todo 2: Busca por nome&lt;/b&gt;&lt;br&gt; Se voc&ecirc; n&atilde;o tiver sorte com o primeiro m&eatilde;todo, verifique se o nome est&aatilde; correto antes de clicar. Se voc&ecirc; procura legendas para seriados, voc&ecirc; pode tamb&eatilde;m fornecer o n&uatilde;mero da temporada e do epis&oatilde;dio.&lt;br&gt; &lt;br&gt; &lt;b&gt;Baixando legendas&lt;/b&gt;&lt;br&gt; Selecione uma legenda na lista e clique em &#39;Download&#39;.&lt;br&gt; O arquivo ser&aatilde; colocado no mesmo diret&oatilde;rio que seu v&iatilde;deo contendo o mesmo nome (extens&otilde;es diferentes) e o VLC carregar&aatilde; o arquivo automaticamente na pr&oatilde;xima v&ecirc;z que voc&ecirc; iniciar o v&iatilde;deo.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Aten&ccedil;&atilde;o:&lt;/b&gt; Legendas existentes ser&atilde;o substitu&iatilde;das sem confirma&ccedil;&atilde;o, ent&atilde;o coloque-as em outro lugar se elas forem importantes.&lt;br&gt; &lt;br&gt; Encontre mais extens&otilde;es para o VLC em &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess> Baixe legendas de &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; e exiba-os enquanto assiste um vídeo.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Uso:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub é destinado para usar enquanto você assiste um vídeo, então abra-o primeiro (se nada for exibido, você receberá um link para baixar a legenda em seu navegador).&lt;br&gt; &lt;br&gt; Selecione o idioma de sua legenda e clique no botão que corresponde a um dos dois métodos de pesquisa disponiblizados pelo VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Método 1: Busca por hash&lt;/b&gt;&lt;br&gt; é recomendável o uso deste método primeiro, pois ele realiza uma pesquisa baseada na assinatura do arquivo, sendo assim você pode encontrar legendas sincronizadas com o vídeo.&lt;br&gt; &lt;br&gt; &lt;b&gt;Método 2: Busca por nome&lt;/b&gt;&lt;br&gt; Se você não tiver sorte com o primeiro método, verifique se o nome está correto antes de clicar. Se você procura legendas para seriados, você pode também fornecer o n&uatilde;mero da temporada e do episódio.&lt;br&gt; &lt;br&gt; &lt;b&gt;Baixando legendas&lt;/b&gt;&lt;br&gt; Selecione uma legenda na lista e clique em &#39;Download&#39;.&lt;br&gt; O arquivo será colocado no mesmo diretório que seu vídeo contendo o mesmo nome (extensões diferentes) e o VLC carregará o arquivo automaticamente na próxima vêz que você iniciar o vídeo.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Atenção:&lt;/b&gt; Legendas existentes serão substituídas sem confirmação, então coloque-as em outro lugar se elas forem importantes.&lt;br&gt; &lt;br&gt; Encontre mais extensões para o VLC em &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
 <int_int_lang>Idioma da interface</int_int_lang>
 <int_ok>Ok</int_ok>
 <int_remove_tag>Remover tags</int_remove_tag>
 <int_research>Pesquisa</int_research>
 <int_save>Salvar</int_save>
 <int_search_hash>Procurar por hash</int_search_hash>
-<int_searching_transl>Procurando tradu&ccedil;&otilde;es...</int_searching_transl>
+<int_searching_transl>Procurando traduções...</int_searching_transl>
 <int_search_name>Procurar por nome</int_search_name>
-<int_search_transl>Procure tradu&ccedil;&otilde;es</int_search_transl>
+<int_search_transl>Procure traduções</int_search_transl>
 <int_season>Temporada (seriados)</int_season>
-<int_show_conf>Mostrar configura&ccedil;&otilde;es</int_show_conf>
+<int_show_conf>Mostrar configurações</int_show_conf>
 <int_show_help>Mostrar ajuda</int_show_help>
-<int_title>T&iatilde;tulo</int_title>
+<int_title>Título</int_title>
 <mess_click_link>Clique para abrir o arquivo</mess_click_link>
 <mess_complete>Pesquisa compketa</mess_complete>
 <mess_dowload_link>Link para download</mess_dowload_link>
 <mess_downloading>Baixando legenda</mess_downloading>
 <mess_error>Erro</mess_error>
-<mess_expired>Sess&atilde;o expirada, tentando novamente</mess_expired>
+<mess_expired>Sessão expirada, tentando novamente</mess_expired>
 <mess_loaded>Legenda carregada</mess_loaded>
-<mess_no_input>Por favor, utlize este m&eatilde;todo quando estiver tocando</mess_no_input>
+<mess_no_input>Por favor, utlize este método quando estiver tocando</mess_no_input>
 <mess_no_res>Sem resultados</mess_no_res>
-<mess_no_response>Servidor n&atilde;o responde</mess_no_response>
+<mess_no_response>Servidor não responde</mess_no_response>
 <mess_no_selection>Nenhuma legenda selecionada</mess_no_selection>
-<mess_not_found>Arquivo n&atilde;o encontrado</mess_not_found>
-<mess_not_found2>Arquivo n&atilde;o encontrado (caract&eatilde;re n&atilde;o permitido?)</mess_not_found2>
-<mess_not_local>Este m&eatilde;todo funciona apenas para arquivos locais (por enquanto)</mess_not_local>
+<mess_not_found>Arquivo não encontrado</mess_not_found>
+<mess_not_found2>Arquivo não encontrado (caractére não permitido?)</mess_not_found2>
+<mess_not_local>Este método funciona apenas para arquivos locais (por enquanto)</mess_not_local>
 <mess_overloaded>Servidor sobrecarregado, tente novamente mais tarde</mess_overloaded>
 <mess_res>encontrada(s)</mess_res>
-<mess_save_fail>N&atilde;o foi poss&iatilde;vel salvar a legenda</mess_save_fail>
+<mess_save_fail>Não foi possível salvar a legenda</mess_save_fail>
 <mess_success>Successo</mess_success>
-<mess_unauthorized>Solicita&ccedil;&atilde;o n&atilde;o autorizada</mess_unauthorized>
+<mess_unauthorized>Solicitação não autorizada</mess_unauthorized>
