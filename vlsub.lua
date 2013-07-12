@@ -42,7 +42,8 @@ local options = {
 		eng = 'English', 
 		fre = 'Français',
 		ell = 'Greek',
-		baq = 'Basque' 
+		baq = 'Basque',
+		pob = 'Brazilian Portuguese'
 	}
 }
 
@@ -179,7 +180,7 @@ local languages = {
 	{'per', 'Persian'},
 	{'pol', 'Polish'},
 	{'por', 'Portuguese'},
-	{'pob', 'Portuguese-BR'},
+	{'pob', 'Brazilian Portuguese'},
 	{'rum', 'Romanian'},
 	{'rus', 'Russian'},
 	{'scc', 'Serbian'},
