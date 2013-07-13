@@ -660,7 +660,7 @@ function get_available_translations()
 		local file = ""
 		
 		if not translations_stream then
-			vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation list (outdated certificates list?)"
+			vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation list (outdated certificates list?")
 		end
 		
 		while ln do
@@ -689,7 +689,7 @@ function download_translation(lg)
 	local translation_text = ""
 	
 	if not translation_stream then
-		vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation files (outdated certificates list?)"
+		vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation files (outdated certificates list?")
 	end
 	
 	while translation_line do
