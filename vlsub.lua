@@ -656,13 +656,15 @@ function get_available_translations()
 		local translations_url ="https://api.github.com/repos/exebetche/vlsub/contents/translations"
 		
 		local translations_stream = vlc.stream(translations_url)
-		local ln = translations_stream:readline()
-		local file = ""
 		
 		if not translations_stream then
 			vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation list (outdated certificates list?")
 			input_table['intLangBut']:set_text(mess_error)
 		end
+		
+		local ln = translations_stream:readline()
+		local file = ""
+		
 		
 		while ln do
 			file = file..ln.."\n"
