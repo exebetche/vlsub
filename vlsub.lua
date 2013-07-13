@@ -288,6 +288,7 @@ end
 function activate()
 	vlc.msg.dbg("[VLsub] Welcome")
 	
+    SetDownloadBehaviours()
     check_config()
     
 	-- Set table list of available traduction from assoc. array 
@@ -383,12 +384,18 @@ function interface_config()
 	dlg:add_label(lang["int_default_lang"]..':', 1, 2, 2, 1)
 	input_table['default_language'] = dlg:add_dropdown(3, 2, 1, 1)	
 	dlg:add_label(lang["int_dowload_behav"]..':', 1, 3, 2, 1)
-	input_table['downloadBehaviour'] = dlg:add_dropdown(3, 3, 1, 1)	
+	input_table['downloadBehaviour'] = dlg:add_dropdown(3, 3, 1, 1)
 	
-	input_table['langExt'] = dlg:add_check_box(lang["int_display_code"], 1, 4, 0, 1)
-	input_table['langExt']:set_checked(openSub.option.langExt)
-	input_table['removeTag'] = dlg:add_check_box(lang["int_remove_tag"], 1, 5, 0, 1)
-	input_table['removeTag']:set_checked(openSub.option.removeTag)
+	dlg:add_label(lang["int_display_code"], 1, 4, 0, 1)
+	input_table['langExt'] = dlg:add_dropdown(3, 4, 0, 1)
+	dlg:add_label(lang["int_remove_tag"], 1, 5, 0, 1)
+	input_table['removeTag'] = dlg:add_dropdown(3, 5, 0, 1)
+	
+	input_table['langExt']:add_value(tostring(openSub.option.langExt), 1)
+	input_table['langExt']:add_value(tostring(not openSub.option.langExt), 2)
+	input_table['removeTag']:add_value(tostring(openSub.option.removeTag), 1)
+	input_table['removeTag']:add_value(tostring(not openSub.option.removeTag), 2)
+	
 	dlg:add_button(lang["int_cancel"], show_main, 2, 6, 1, 1)
 	dlg:add_button(lang["int_save"], apply_config, 3, 6, 1, 1)
 	
@@ -444,8 +451,6 @@ function close_dlg()
 	dlg = nil
 	input_table = nil
 	input_table = {}
-	--~ collectgarbage()
-	--~ fixme: cause crash :/
 end
 
 						--[[ Drop down / config association]]--
@@ -515,7 +520,7 @@ function check_config()
 	openSub.conf.path = path..slash.."vlsub_conf.xml"
 	
 	if file_exist(openSub.conf.path) then
-		vlc.msg.dbg("[VLSub] Loading config file:  " .. openSub.conf.path)
+		vlc.msg.dbg("[VLSub] Loading config file: " .. openSub.conf.path)
 		load_config()
 	elseif not openSub.option.language then
 		getenv_lang()
@@ -549,7 +554,6 @@ function load_config()
 			end
 		end
 	end
-	SetDownloadBehaviours()
 	collectgarbage()
 end
 
@@ -572,9 +576,73 @@ function getenv_lang()
 	end
 end
 
+function apply_config()
+-- Apply user config selection to local config
+	local lg_sel = input_table['intLang']:get_value()
+	local sel_val
+	local opt
+	
+	if lg_sel and lg_sel ~= 1 and openSub.conf.translations_avail[lg_sel] then
+		local lg = openSub.conf.translations_avail[lg_sel][1]
+		if lg == 'eng' then
+			lang = nil
+			lang = eng_translation
+			openSub.option.translation = nil
+		else
+			download_translation(lg)
+		end
+	end
+	
+	for id, v in pairs(select_conf) do
+		if input_table[id] and select_conf[id] then
+			sel_val = input_table[id]:get_value()
+			opt = select_conf[id].opt
+			
+			if sel_val == 0 then
+				openSub.option[opt] = nil
+			else
+				openSub.option[opt] = select_conf[id].cf[sel_val][1]
+			end
+			
+			set_default_option(id)
+		end
+	end
+	
+	if input_table["langExt"]:get_value() == 2 then
+		openSub.option.langExt = not openSub.option.langExt
+	end
+	
+	if input_table["removeTag"]:get_value() == 2 then
+		openSub.option.removeTag = not openSub.option.removeTag
+	end
+	
+	save_config()
+	trigger_menu(1)
+end
+
+function save_config()
+-- Dump local config into config file 
+	vlc.msg.dbg("[VLSub] Saving config file:  " .. openSub.conf.path)
+	local tmpFile = assert(io.open(openSub.conf.path, "wb"))
+	local resp = dump_xml(openSub.option)
+	tmpFile:write(resp)
+	tmpFile:flush()
+	tmpFile:close()
+	tmpFile = nil
+	collectgarbage()
+end
+
+function SetDownloadBehaviours()
+	openSub.conf.downloadBehaviours = { 
+		{'save', lang["int_dowload_save"]},
+		{'load', lang["int_dowload_load"]},
+		{'manual', lang["int_dowload_manual"]}
+	}
+end
+
 function get_available_translations()
 -- List existing translation files from the github repo :
--- 	https://github.com/exebetche/vlsub/tree/master/translations
+-- https://github.com/exebetche/vlsub/tree/master/translations
 	if input_table['intLangBut']:get_text() == lang["int_search_transl"] then   
 		local trsl_names = {}
 		for i, lg in ipairs(languages) do
@@ -634,68 +702,6 @@ function download_translation(lg)
 	openSub.option.translation = lang
 	translation_stream = nil
 	collectgarbage()
-end
-
-
-function apply_config()
--- Apply user config selection to local config
-	local lg_sel = input_table['intLang']:get_value()
-	local sel_val
-	local opt
-	
-	if lg_sel and lg_sel ~= 1 and openSub.conf.translations_avail[lg_sel] then
-		local lg = openSub.conf.translations_avail[lg_sel][1]
-		if lg == 'eng' then
-			lang = nil
-			lang = eng_translation
-			openSub.option.translation = nil
-		else
-			download_translation(lg)
-		end
-	end	
-	
-	SetDownloadBehaviours()
-	
-	for id, v in pairs(select_conf) do
-		if input_table[id] and select_conf[id] then
-			sel_val = input_table[id]:get_value()	
-			opt = select_conf[id].opt
-			
-			if sel_val == 0 then
-				openSub.option[opt] = nil
-			else
-				openSub.option[opt] = select_conf[id].cf[sel_val][1]
-			end
-			
-			set_default_option(id)
-		end
-	end
-	
-	openSub.option.langExt = input_table["langExt"]:get_checked()
-	openSub.option.removeTag = input_table["removeTag"]:get_checked()
-	
-	save_config()
-	trigger_menu(1)
-end
-
-function save_config()
--- Dump local config into config file 
-	vlc.msg.dbg("[VLSub] Saving config file:  " .. openSub.conf.path)
-	local tmpFile = assert(io.open(openSub.conf.path, "wb"))
-	local resp = dump_xml(openSub.option)
-	tmpFile:write(resp)
-	tmpFile:flush()
-	tmpFile:close()
-	tmpFile = nil
-	collectgarbage()
-end
-
-function SetDownloadBehaviours()
-	openSub.conf.downloadBehaviours = { 
-		{'save', lang["int_dowload_save"]},
-		{'load', lang["int_dowload_load"]},
-		{'manual', lang["int_dowload_manual"]}
-	}
 end
 
 						--[[ Core ]]--
