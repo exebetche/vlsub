@@ -661,6 +661,7 @@ function get_available_translations()
 		
 		if not translations_stream then
 			vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation list (outdated certificates list?")
+			input_table['intLangBut']:set_text(mess_error)
 		end
 		
 		while ln do
