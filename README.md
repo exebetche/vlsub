@@ -27,7 +27,7 @@ http://addons.videolan.org/content/download.php?content=148752&id=2&tan=28601353
 * Click on "Search by hash" or "Search by name"
 * Select a subtitles file on the list
 * Click on "Download selection"
-* That's it the subtitles should appear on your video
+* That's it, the subtitles should appear on your video
 
 Alternatively if you are using Windows 7 you can use the installer available here:  
 http://addons.videolan.org/content/download.php?content=148752&id=2&tan=28601353
