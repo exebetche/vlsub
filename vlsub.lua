@@ -659,7 +659,7 @@ function get_available_translations()
 		
 		if not translations_stream then
 			vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation list (outdated certificates list?")
-			input_table['intLangBut']:set_text(mess_error)
+			input_table['intLangBut']:set_text(lang["mess_error"])
 		end
 		
 		local ln = translations_stream:readline()
@@ -678,6 +678,7 @@ function get_available_translations()
 				input_table['intLang']:add_value(trsl_names[lg], #openSub.conf.translations_avail)
 			end
 		end
+		
 		input_table['intLangBut']:set_text(lang["mess_complete"])
 		translations_stream = nil
 		collectgarbage()
