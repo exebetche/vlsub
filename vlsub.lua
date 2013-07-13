@@ -582,7 +582,9 @@ function apply_config()
 	local sel_val
 	local opt
 	
-	if lg_sel and lg_sel ~= 1 and openSub.conf.translations_avail[lg_sel] then
+	if lg_sel and lg_sel ~= 1 
+	and openSub.conf.translations_avail[lg_sel] 
+	and input_table['intLangBut']:get_text() ~= lang["mess_error"] then
 		local lg = openSub.conf.translations_avail[lg_sel][1]
 		if lg == 'eng' then
 			lang = nil
@@ -660,6 +662,7 @@ function get_available_translations()
 		if not translations_stream then
 			vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation list (outdated certificates list?")
 			input_table['intLangBut']:set_text(lang["mess_error"])
+			return false
 		end
 		
 		local ln = translations_stream:readline()
@@ -694,6 +697,7 @@ function download_translation(lg)
 	
 	if not translation_stream then
 		vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation files (outdated certificates list?")
+		return false
 	end
 	
 	while translation_line do
