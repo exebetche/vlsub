@@ -658,7 +658,11 @@ function get_available_translations()
 		local translations_stream = vlc.stream(translations_url)
 		local ln = translations_stream:readline()
 		local file = ""
-				
+		
+		if not translations_stream then
+			vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation list (outdated certificates list?)"
+		end
+		
 		while ln do
 			file = file..ln.."\n"
 			ln = translations_stream:readline()
@@ -683,6 +687,10 @@ function download_translation(lg)
 	local translation_stream = vlc.stream(translation_file_url)
 	local translation_line = ""
 	local translation_text = ""
+	
+	if not translation_stream then
+		vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation files (outdated certificates list?)"
+	end
 	
 	while translation_line do
 		translation_text = translation_text..translation_line.."\n"
