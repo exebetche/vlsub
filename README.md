@@ -19,8 +19,10 @@ Save the file "vlsub.lua" in vlc /lua/extensions directory of your OS:
 
 #### KNOWN BUG:
 
-LUA doesn't handle UTF8 very well: Subtitle download will fail if the path to your video file contains special/accentuated characters.
-Changelog:
+LUA doesn't handle UTF8 very well:  
+Subtitle download will fail if the path to your video file contains special/accentuated characters.
+
+#### Changelog:
 
 ##### 2013-07-13 (version 0.9.6)
 Add an installer for Windows 7
