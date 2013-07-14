@@ -34,8 +34,8 @@ http://addons.videolan.org/content/download.php?content=148752&id=2&tan=28601353
 
 #### KNOWN BUG:
 
-LUA doesn't handle UTF8 very well:  
-Subtitle download will fail if the path to your video file contains special/accentuated characters.
+LUA handle UTF8 perfectly well but Windows use some UTF16 "little idian" encoding  
+so any file with any not ASCII characters in is inacessible on Windows only.
 
 #### Changelog:
 
