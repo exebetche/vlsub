@@ -1,0 +1,53 @@
+<action_hash>Calculando hash del video</action_hash>
+<action_login>Entrar</action_login>
+<action_logout>Salir</action_logout>
+<action_noop>Comprobando session</action_noop>
+<action_search>Buscando subtitulos</action_search>
+<int_all>Todos</int_all>
+<int_cancel>Cancelar</int_cancel>
+<int_close>Cerrar</int_close>
+<int_config>Configuracion</int_config>
+<int_configuration>Configuracion</int_configuration>
+<int_default_lang>Lenguaje de subtitulos</int_default_lang>
+<int_descr>Descargando subtitulos de OpenSubtitles.org</int_descr>
+<int_display_code>Mostrar code de lenguaje en nombre del fichero</int_display_code>
+<int_dowload_behav>Que hacer con os subtitulos</int_dowload_behav>
+<int_dowload_load>Solo cargar</int_dowload_load>
+<int_dowload_manual>Descarga manual</int_dowload_manual>
+<int_dowload_save>Cargar y guardar</int_dowload_save>
+<int_dowload_sel>Descargar seleccionados</int_dowload_sel>
+<int_episode>Episode (series)</int_episode>
+<int_help>Ayuda</int_help>
+<int_help_mess> Descargar subtitulos de <a href='http://www.opensubtitles.org/'>opensubtitles.org</a> y mostrarlos durante reproduccion de video.<br> <br> <b><u>Uso:</u></b><br> <br> VLSub se va usar durante la reproduccion de video, asi que inicialo primero (si nadie no esta en reproduccion, obtendra enlace para descargar los subtitulos con navegador).<br> <br> Selecciona el lenguaje de los subtitulos y haga click en el boton correspondiente en uno de los 2 metodos de busqueda proporcionados por VLSub:<br> <br> <b>Metodo 1:Buscar por hash</b><br>Es recomendable probar por el primer metodo, porque la busqueda esta basada en el reconocimiendo por el fichero del video, asi que puede encontrar los videos sincronizados con tu video.<br> <br> <b>Metodo 2: Buscar por el nombre</b><br> Si no tenia suerte con primer metodo, comprueba si el titulo es correcto antes de dar click al boton, puede proporcionar numero de temporada y numero del episodo.<br> <br> <b>Descargando Subtitulos</b><br>Seleccione uno de los subtitulos en la lista y haga click en "Descargar".<br> Se descargara al mismo dirrectiorio donde esta video, con el mismo nombre(differente extencion) asi que Vlc los cargara automaticamente cuando reproducira el video de nuevo.<br> <br> <b>/!\ Cuidado :</b> Los subtitulos existentes seran sobreescribidos sin preguntar la confirmacion, asi que haz una copia si los necesitas.<br> <br> Encuentra mas extenciones para Vlc en la pagina <a href='http://addons.videolan.org'>addons.videolan.org</a>.</int_help_mess>
+<int_int_lang>Lenguaje del interface</int_int_lang>
+<int_ok>Ok</int_ok>
+<int_remove_tag>Quitar tag</int_remove_tag>
+<int_research>Rebuscar</int_research>
+<int_save>Guardar</int_save>
+<int_search_hash>Buscar por hash</int_search_hash>
+<int_searching_transl>Buscando traduccion...</int_searching_transl>
+<int_search_name>Buscando por nombre</int_search_name>
+<int_search_transl>Buscando traduccion</int_search_transl>
+<int_season>Temporada (series)</int_season>
+<int_show_conf>Mostrar fichero de configuracion</int_show_conf>
+<int_show_help>Mostrar ayuda</int_show_help>
+<int_title>Título</int_title>
+<mess_click_link>Haga click aqui para abrir</mess_click_link>
+<mess_complete>Rebusqueda acabada</mess_complete>
+<mess_dowload_link>Descargar enlace</mess_dowload_link>
+<mess_downloading>Descargar subtitulos</mess_downloading>
+<mess_error>Fallo</mess_error>
+<mess_expired>Session expirada, probando de nuevo</mess_expired>
+<mess_loaded>Subtitulos cargados</mess_loaded>
+<mess_no_input>Por favor usa este metodo durante reproduccion</mess_no_input>
+<mess_no_res>Ningún resultado</mess_no_res>
+<mess_no_response>Servidor no responde</mess_no_response>
+<mess_no_selection>Subtitulos no elegidos</mess_no_selection>
+<mess_not_found>Fichero no encontrado</mess_not_found>
+<mess_not_found2>Fichero no encontrado (carácter ilegal?)</mess_not_found2>
+<mess_not_local>Este metodo funciona solo con fichero local (hasta momento)</mess_not_local>
+<mess_overloaded>Servidor sobrecargado, Por favor prueba mas tarde</mess_overloaded>
+<mess_res>resultado(s)</mess_res>
+<mess_save_fail>Imposible guardar los subtitulos</mess_save_fail>
+<mess_success>Correcto</mess_success>
+<mess_unauthorized>Peticion no autorizada</mess_unauthorized>
