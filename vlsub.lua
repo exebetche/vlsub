@@ -43,7 +43,8 @@ local options = {
 		fre = 'Français',
 		ell = 'Greek',
 		baq = 'Basque',
-		pob = 'Brazilian Portuguese'
+		pob = 'Brazilian Portuguese',
+		spa = 'Spanish'
 	}
 }
 
