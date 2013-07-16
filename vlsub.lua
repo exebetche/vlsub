@@ -567,7 +567,7 @@ function check_config()
 		os.remove(old_conf_filePath)
 	else
 		vlc.msg.dbg("[VLSub] No config file")
-		if not if file_touch(openSub.conf.filePath) then
+		if not file_touch(openSub.conf.filePath) then
 			if openSub.conf.os == "win" then
 				os.execute('mkdir "' .. openSub.conf.dirPath..'"')
 			elseif openSub.conf.os == "lin" then
