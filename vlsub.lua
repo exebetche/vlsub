@@ -44,7 +44,8 @@ local options = {
 		ell = 'Greek',
 		baq = 'Basque',
 		pob = 'Brazilian Portuguese',
-		spa = 'Spanish'
+		spa = 'Spanish',
+		ukr = 'Ukrainian'
 	}
 }
 
@@ -82,6 +83,7 @@ local eng_translation = {
 	int_dowload_manual =  'Manual download',
 	int_display_code = 'Display language code in file name',
 	int_remove_tag = 'Remove tags',
+	int_vlsub_work_dir = 'VLSub working directory',
 	int_help_mess = " Download subtittles from <a href='http://www.opensubtitles.org/'>opensubtitles.org</a> and display them while watching a video.<br>"..
 		" <br>"..
 		" <b><u>Usage:</u></b><br>"..
@@ -288,7 +290,7 @@ end
 
 function activate()
 	vlc.msg.dbg("[VLsub] Welcome")
-	
+		
     SetDownloadBehaviours()
     check_config()
     
@@ -319,7 +321,7 @@ function deactivate()
 		dlg:hide() 
 	end
 	
-	if openSub.token ~= "" then
+	if openSub.session.token and openSub.session.token ~= "" then
 		openSub.request("LogOut")
 	end
    vlc.deactivate()
@@ -356,6 +358,7 @@ function interface_main()
 	dlg:add_label(lang["int_episode"]..':', 1, 4, 1, 1)
 	input_table['episodeNumber'] = dlg:add_text_input(openSub.movie.episodeNumber or "", 2, 4, 2, 1)
 	input_table['mainlist'] = dlg:add_list(1, 5, 4, 1)
+	input_table['message'] = nil
 	input_table['message'] = dlg:add_label(' ', 1, 6, 4, 1)
 	dlg:add_button(lang["int_show_help"], show_help, 1, 7, 1, 1)
 	dlg:add_button('   '..lang["int_show_conf"]..'   ', show_conf, 2, 7, 1, 1)
@@ -392,13 +395,20 @@ function interface_config()
 	dlg:add_label(lang["int_remove_tag"], 1, 5, 0, 1)
 	input_table['removeTag'] = dlg:add_dropdown(3, 5, 0, 1)
 	
+	dlg:add_label(lang["int_vlsub_work_dir"].."    :    "..(openSub.conf.dirPath or "  -  "), 1, 6, 1, 1)
+	--~ dlg:add_label(, 2, 6, 2, 1)
+	
+	input_table['message'] = nil
+	input_table['message'] = dlg:add_label(' ', 1, 7, 3, 1)
+	
+	dlg:add_button(lang["int_cancel"], show_main, 2, 8, 1, 1)
+	dlg:add_button(lang["int_save"], apply_config, 3, 8, 1, 1)
+	
 	input_table['langExt']:add_value(tostring(openSub.option.langExt), 1)
 	input_table['langExt']:add_value(tostring(not openSub.option.langExt), 2)
 	input_table['removeTag']:add_value(tostring(openSub.option.removeTag), 1)
 	input_table['removeTag']:add_value(tostring(not openSub.option.removeTag), 2)
 	
-	dlg:add_button(lang["int_cancel"], show_main, 2, 6, 1, 1)
-	dlg:add_button(lang["int_save"], apply_config, 3, 6, 1, 1)
 	
 	assoc_select_conf('intLang', 'intLang', openSub.conf.translations_avail)
 	assoc_select_conf('default_language', 'language', openSub.conf.languages, lang["int_all"])
@@ -406,11 +416,12 @@ function interface_config()
 end
 
 function interface_help()
-	local help_html = lang["int_help_mess"]
-		
-	input_table['help'] = dlg:add_html(help_html, 1, 1, 4, 1)
-	dlg:add_label(string.rep ("&nbsp;", 100), 1, 2, 3, 1)
-	dlg:add_button(lang["int_ok"], show_main, 4, 2, 1, 1)
+dlg:hide() 
+	--~ local help_html = lang["int_help_mess"]
+		--~ 
+	--~ input_table['help'] = dlg:add_html(help_html, 1, 1, 4, 1)
+	--~ dlg:add_label(string.rep ("&nbsp;", 100), 1, 2, 3, 1)
+	--~ dlg:add_button(lang["int_ok"], show_main, 4, 2, 1, 1)
 end
 
 function trigger_menu(id)	
@@ -446,12 +457,14 @@ function close_dlg()
 	vlc.msg.dbg("[VLSub] Closing dialog")
 
 	if dlg ~= nil then 
-		dlg:delete() 
+		--~ dlg:delete() -- Throw an error
+		dlg:hide() 
 	end
 	
 	dlg = nil
 	input_table = nil
 	input_table = {}
+	collectgarbage() --~ !important	
 end
 
 						--[[ Drop down / config association]]--
@@ -512,25 +525,70 @@ end
 
 function check_config()
 -- Load config from the file, if existing
-	local path = conf_file_path or vlc.config.userdatadir()
-	local slash = "/"
-	if is_window_path(path) then
-		slash = "\\"
-	end
-
-	openSub.conf.path = path..slash.."vlsub_conf.xml"
 	
-	if file_exist(openSub.conf.path) then
-		vlc.msg.dbg("[VLSub] Loading config file: " .. openSub.conf.path)
-		load_config()
-	elseif not openSub.option.language then
+	local userdatadir = vlc.config.userdatadir()
+	vlc.msg.err(userdatadir)
+	
+-- Determine OS and according clean path to config (relative to user home dir)
+	openSub.conf.saved = false
+	
+	if is_window_path(userdatadir) then -- Windows?
+		openSub.conf.os = "win"
+		openSub.conf.slash = "\\"
+		
+		local get_cd = io.popen("echo %CD%")
+		local cd = trim(get_cd:read("*all"))
+		
+		openSub.conf.dirPath = (cd or ".").. "\\lua\\extensions\\userdata\\vlsub"
+		
+	else
+		openSub.conf.os = "lin"
+		openSub.conf.slash = "/"
+		openSub.conf.dirPath = userdatadir.."/lua/extensions/userdata/vlsub"
+	end
+	
+	vlc.msg.dbg("[VLSub] Working directory: " .. openSub.conf.dirPath)
+	
+	openSub.conf.filePath = openSub.conf.dirPath..openSub.conf.slash.."vlsub_conf.xml"
+	openSub.conf.localePath = openSub.conf.dirPath..openSub.conf.slash.."locale"
+		
+	-- Path to the conf file up to 0.9.5, move the file to the new directory when ugrading
+	local old_conf_filePath = userdatadir..openSub.conf.slash.."vlsub_conf.xml"
+	
+	if file_exist(openSub.conf.filePath) then
+		vlc.msg.dbg("[VLSub] Loading config file: " .. openSub.conf.filePath)
+		openSub.conf.saved = true
+		load_config(openSub.conf.filePath)
+	elseif file_exist(old_conf_filePath) then
+	-- Check if conf file is in the "old" location, in vlc userdatadir,
+	-- if true move the file into the new directory
+		vlc.msg.dbg("[VLSub] Loading old config file: " .. old_conf_filePath)
+		openSub.conf.saved = true
+		load_config(old_conf_filePath)
+		save_config()
+		os.remove(old_conf_filePath)
+	else
+		vlc.msg.dbg("[VLSub] No config file")
+	end
+	
+	if not openSub.option.language then
 		getenv_lang()
+	end
+	
+	-- Check presence of a translation file in "openSub.conf.localePath" directory	
+	if openSub.option.intLang ~= "eng" 
+	and not openSub.conf.translated then
+		local transl_file_path = openSub.conf.localePath..openSub.conf.slash..openSub.option.intLang..".xml"
+		if file_exist(transl_file_path) then
+			vlc.msg.dbg("[VLSub] Loadin translation from file: " .. transl_file_path)
+			load_transl(transl_file_path)
+		end
 	end
 end
 
-function load_config()
+function load_config(path)
 -- Overwrite default conf with loaded conf
-	local tmpFile = assert(io.open(openSub.conf.path, "rb"))
+	local tmpFile = assert(io.open(path, "rb"))
 	local resp = tmpFile:read("*all")
 	tmpFile:flush()
 	tmpFile:close()
@@ -539,6 +597,7 @@ function load_config()
 	for key, value in pairs(option) do
 		if type(value) == "table" then
 			if key == "translation" then
+				openSub.conf.translated = true
 				for k, v in pairs(value) do
 					lang[k] = v
 				end
@@ -555,6 +614,22 @@ function load_config()
 			end
 		end
 	end
+	collectgarbage()
+end
+
+function load_transl(path)
+-- Overwrite default conf with loaded conf
+	local tmpFile = assert(io.open(path, "rb"))
+	local resp = tmpFile:read("*all")
+	tmpFile:flush()
+	tmpFile:close()
+	
+	local translation = parse_xml(resp)
+	
+	for k, v in pairs(translation) do
+		lang[k] = v
+	end
+	
 	collectgarbage()
 end
 
@@ -583,17 +658,9 @@ function apply_config()
 	local sel_val
 	local opt
 	
-	if lg_sel and lg_sel ~= 1 
-	and openSub.conf.translations_avail[lg_sel] 
-	and input_table['intLangBut']:get_text() ~= lang["mess_error"] then
+	if lg_sel and lg_sel ~= 1 and openSub.conf.translations_avail[lg_sel] then
 		local lg = openSub.conf.translations_avail[lg_sel][1]
-		if lg == 'eng' then
-			lang = nil
-			lang = eng_translation
-			openSub.option.translation = nil
-		else
-			download_translation(lg)
-		end
+		set_translation(lg)
 	end
 	
 	for id, v in pairs(select_conf) do
@@ -625,13 +692,23 @@ end
 
 function save_config()
 -- Dump local config into config file 
-	vlc.msg.dbg("[VLSub] Saving config file:  " .. openSub.conf.path)
-	local tmpFile = assert(io.open(openSub.conf.path, "wb"))
-	local resp = dump_xml(openSub.option)
-	tmpFile:write(resp)
-	tmpFile:flush()
-	tmpFile:close()
-	tmpFile = nil
+	vlc.msg.dbg("[VLSub] Saving config file:  " .. openSub.conf.filePath)
+	
+	if not file_touch(openSub.conf.filePath) then
+		if openSub.conf.os == "win" then
+			os.execute('mkdir "' .. openSub.conf.dirPath..'"')
+		elseif openSub.conf.os == "lin" then
+			os.execute("mkdir -p '" .. openSub.conf.dirPath.."'")
+		end
+	end
+	if file_touch(openSub.conf.filePath) then
+		local tmpFile = assert(io.open(openSub.conf.filePath, "wb"))
+		local resp = dump_xml(openSub.option)
+		tmpFile:write(resp)
+		tmpFile:flush()
+		tmpFile:close()
+		tmpFile = nil
+	end
 	collectgarbage()
 end
 
@@ -644,38 +721,26 @@ function SetDownloadBehaviours()
 end
 
 function get_available_translations()
--- List existing translation files from the github repo :
+-- Get all available translation files from the internet
+-- (drop previous direct download from github repo because of problem with github https CA certficate on OS X an XP)
 -- https://github.com/exebetche/vlsub/tree/master/translations
+	
+	local translations_url = "http://addons.videolan.org/CONTENT/content-files/148752-vlsub_translations.xml"
+	
 	if input_table['intLangBut']:get_text() == lang["int_search_transl"] then   
 		local trsl_names = {}
 		for i, lg in ipairs(languages) do
 			trsl_names[lg[1]] = lg[2]
 		end
 		
-		input_table['intLangBut']:set_text(lang["int_searching_transl"])
-		dlg:update()
+		openSub.actionLabel = lang["int_searching_transl"]
 		
-		local translations = {}
-		local translations_url ="https://api.github.com/repos/exebetche/vlsub/contents/translations"
+		local translations_content, lol = get(translations_url)
 		
-		local translations_stream = vlc.stream(translations_url)
+		all_trsl = parse_xml(translations_content)
+		local lg, trsl
 		
-		if not translations_stream then
-			vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation list (outdated certificates list?")
-			input_table['intLangBut']:set_text(lang["mess_error"])
-			return false
-		end
-		
-		local ln = translations_stream:readline()
-		local file = ""
-		
-		
-		while ln do
-			file = file..ln.."\n"
-			ln = translations_stream:readline()
-		end
-		
-		for lg in string.gmatch(file, '"https://github.com/exebetche/vlsub/blob/master/translations/([^"]+)%.xml",') do
+		for lg, trsl in pairs(all_trsl) do
 			if lg ~= options.intLang[1] and not openSub.option.translations_avail[lg] then
 				openSub.option.translations_avail[lg] = trsl_names[lg] or ""
 				table.insert(openSub.conf.translations_avail, {lg, trsl_names[lg]})
@@ -683,43 +748,47 @@ function get_available_translations()
 			end
 		end
 		
-		input_table['intLangBut']:set_text(lang["mess_complete"])
-		translations_stream = nil
+		setMessage(success_tag(lang["mess_complete"]))
 		collectgarbage()
 	end
 end
 
-function download_translation(lg)
---~ Download a translation files from the github repo and save the content into the conf file
-	local translation_file_url = "https://raw.github.com/exebetche/vlsub/master/translations/"..lg..".xml"
-	local translation_stream = vlc.stream(translation_file_url)
-	local translation_line = ""
-	local translation_text = ""
+function set_translation(lg)
+	openSub.option.translation = nil
+	openSub.option.translation = {}
 	
-	if not translation_stream then
-		vlc.msg.dbg("[VLSub] Error: unable to reach github to download translation files (outdated certificates list?")
+	if lg == 'eng' then
+		for k, v in pairs(eng_translation) do
+			openSub.option.translation[k] = v
+		end
+		lang = nil
+		lang = openSub.option.translation
+		collectgarbage()
 		return false
-	end
-	
-	while translation_line do
-		translation_text = translation_text..translation_line.."\n"
-		translation_line = translation_stream:readline()
+	else
+		if not all_trsl then
+			get_available_translations()
+		end
+
+		if not all_trsl or not all_trsl[lg] then
+			vlc.msg.dbg("[VLSub] Error, translation not found")
+			return false
+		end
+		
+		for k, v in pairs(eng_translation) do
+			if all_trsl[lg][k] then
+				openSub.option.translation[k] =  all_trsl[lg][k]
+			else
+				openSub.option.translation[k] = eng_translation[k]
+			end
+		end
+		all_trsl = nil
 	end
 	
 	lang = nil
-	lang = parse_xml(translation_text)
-	
-	for k, v in pairs(eng_translation) do
-		if not lang[k] then
-			lang[k] = v
-		end
-	end
-	
-	openSub.option.translation = nil
-	openSub.option.translation = lang
-	translation_stream = nil
+	lang = openSub.option.translation
 	collectgarbage()
-end
+end 
 
 						--[[ Core ]]--
 
@@ -1166,13 +1235,9 @@ function download_subtitles()
 	local target = openSub.file.dir..subfileName
     local target_exist = true
 
-	-- if target is not accessible, pick an alternative target (homedir)
-	if not file_touch(target) then 
-		local slash = "/"
-		if openSub.file.windowPath then
-			slash = "\\"
-		end
-		target = vlc.config.homedir()..slash..subfileName
+	-- if target is not accessible, pick an alternative target (vlsub data dir)
+	if not file_touch(target) then
+		target = openSub.conf.dirPath..openSub.conf.slash..subfileName
 		target_exist = file_touch(target)
 	end
 	
@@ -1312,7 +1377,7 @@ function get(url)
 	if status == 200 then 
 		return response
 	else
-		return false
+		return false, status, response
 	end
 end
 
@@ -1583,7 +1648,7 @@ end
 
 function trim(str)
     if not str then return "" end
-    return string.gsub(str, "^%s*(.-)%s*$", "%1")
+    return string.gsub(str, "^[\r\n%s]*(.-)[\r\n%s]*$", "%1")
 end
 
 function remove_tag(str)
