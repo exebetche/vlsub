@@ -416,12 +416,11 @@ function interface_config()
 end
 
 function interface_help()
-dlg:hide() 
-	--~ local help_html = lang["int_help_mess"]
-		--~ 
-	--~ input_table['help'] = dlg:add_html(help_html, 1, 1, 4, 1)
-	--~ dlg:add_label(string.rep ("&nbsp;", 100), 1, 2, 3, 1)
-	--~ dlg:add_button(lang["int_ok"], show_main, 4, 2, 1, 1)
+	local help_html = lang["int_help_mess"]
+		
+	input_table['help'] = dlg:add_html(help_html, 1, 1, 4, 1)
+	dlg:add_label(string.rep ("&nbsp;", 100), 1, 2, 3, 1)
+	dlg:add_button(lang["int_ok"], show_main, 4, 2, 1, 1)
 end
 
 function trigger_menu(id)	
@@ -527,7 +526,6 @@ function check_config()
 -- Load config from the file, if existing
 	
 	local userdatadir = vlc.config.userdatadir()
-	vlc.msg.err(userdatadir)
 	
 -- Determine OS and according clean path to config (relative to user home dir)
 	openSub.conf.saved = false
@@ -569,6 +567,13 @@ function check_config()
 		os.remove(old_conf_filePath)
 	else
 		vlc.msg.dbg("[VLSub] No config file")
+		if not if file_touch(openSub.conf.filePath) then
+			if openSub.conf.os == "win" then
+				os.execute('mkdir "' .. openSub.conf.dirPath..'"')
+			elseif openSub.conf.os == "lin" then
+				os.execute("mkdir -p '" .. openSub.conf.dirPath.."'")
+			end
+		end
 	end
 	
 	if not openSub.option.language then
@@ -1299,14 +1304,9 @@ function dump_zip(url, subfileName)
 		return false 
 	end
 	
-	local slash = "/"
-	if openSub.file.windowPath then
-		slash = "\\"
-	end
-	
-	local tmpFileName = vlc.config.cachedir()..slash..subfileName..".gz"
+	local tmpFileName = openSub.conf.dirPath..openSub.conf.slash..subfileName..".gz"
 	if not file_touch(tmpFileName) then 
-		os.execute("mkdir " .. vlc.config.cachedir())
+		os.execute("mkdir " .. openSub.conf.dirPath)
 	end
 	local tmpFile = assert(io.open(tmpFileName, "wb"))
 		
