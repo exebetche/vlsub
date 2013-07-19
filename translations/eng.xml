@@ -4,6 +4,8 @@
 <action_noop>Checking session</action_noop>
 <action_search>Searching subtitles</action_search>
 <int_all>All</int_all>
+<int_bool_false>No</int_bool_false>
+<int_bool_true>Yes</int_bool_true>
 <int_cancel>Cancel</int_cancel>
 <int_close>Close</int_close>
 <int_config>Config</int_config>
@@ -32,6 +34,7 @@
 <int_show_conf>Show config</int_show_conf>
 <int_show_help>Show help</int_show_help>
 <int_title>Title</int_title>
+<int_vlsub_work_dir>VLSub working directory</int_vlsub_work_dir>
 <mess_click_link>Click here to open the file</mess_click_link>
 <mess_complete>Research complete</mess_complete>
 <mess_dowload_link>Download link</mess_dowload_link>

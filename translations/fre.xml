@@ -4,6 +4,8 @@
 <action_noop>Vérification de la session</action_noop>
 <action_search>Recherche de sous-titres</action_search>
 <int_all>Tous</int_all>
+<int_bool_false>Non</int_bool_false>
+<int_bool_true>Oui</int_bool_true>
 <int_cancel>Annuler</int_cancel>
 <int_close>Fermer</int_close>
 <int_config>Config</int_config>
@@ -32,6 +34,7 @@
 <int_show_conf>Configuration</int_show_conf>
 <int_show_help>Aide</int_show_help>
 <int_title>Titre</int_title>
+<int_vlsub_work_dir>VLSub working directory</int_vlsub_work_dir>
 <mess_click_link>Cliquer ici pour ouvrir le fichier</mess_click_link>
 <mess_complete>Recherche terminée</mess_complete>
 <mess_dowload_link>Lien de téléchargement</mess_dowload_link>

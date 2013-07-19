@@ -36,6 +36,7 @@ local options = {
 	downloadBehaviour = 'save',
 	langExt = false,
 	removeTag = false,
+	showMediaInformation = true,
 	progressBarSize = 80,
 	intLang = 'eng',
 	translations_avail = { 
@@ -46,6 +47,87 @@ local options = {
 		pob = 'Brazilian Portuguese',
 		spa = 'Spanish',
 		ukr = 'Ukrainian'
+	},
+	translation = {
+		int_all = 'All',
+		int_descr = 'Dowload subtitles from OpenSubtitles.org',
+		int_research = 'Research',
+		int_config = 'Config',
+		int_configuration = 'Configuration',
+		int_help = 'Help',
+		int_search_hash = 'Search by hash',
+		int_search_name = 'Search by name',
+		int_title = 'Title',
+		int_season = 'Season (series)',
+		int_episode = 'Episode (series)',
+		int_show_help = 'Show help',
+		int_show_conf = 'Show config',
+		int_dowload_sel = 'Download selection',
+		int_close = 'Close',
+		int_ok = 'Ok',
+		int_save = 'Save',
+		int_cancel = 'Cancel',
+		int_bool_true = 'Yes',
+		int_bool_false = 'No',
+		int_search_transl = 'Search translations',
+		int_searching_transl = 'Searching translations ...',
+		int_int_lang = 'Interface language',
+		int_default_lang = 'Subtitles language',
+		int_dowload_behav = 'What to do with subtitles',
+		int_dowload_save = 'Load and save',
+		int_dowload_load = 'Load only',
+		int_dowload_manual =  'Manual download',
+		int_display_code = 'Display language code in file name',
+		int_remove_tag = 'Remove tags',
+		int_vlsub_work_dir = 'VLSub working directory',
+		int_help_mess = " Download subtittles from <a href='http://www.opensubtitles.org/'>opensubtitles.org</a> and display them while watching a video.<br>"..
+			" <br>"..
+			" <b><u>Usage:</u></b><br>"..
+			" <br>"..
+			" VLSub is meant to be used while your watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).<br>"..
+			" <br>"..
+			" Choose the language for your subtitles and click on the button corresponding to one of the two research method provided by VLSub:<br>"..
+			" <br>"..
+			" <b>Method 1: Search by hash</b><br>"..
+			" It is recommended to try this method first, because it performs a research based on the video file print, so you can find subtitles synchronized with your video.<br>"..
+			" <br>"..
+			" <b>Method 2: Search by name</b><br>"..
+			" If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a serie, you can also provide a season and episode number.<br>"..
+			" <br>"..
+			" <b>Downloading Subtitles</b><br>"..
+			" Select one subtitle in the list and click on 'Download'.<br>"..
+			" It will be put in the same directory that your video, with the same name (different extension)"..
+			" so Vlc will load them automatically the next time you'll start the video.<br>"..
+			" <br>"..
+			" <b>/!\\ Beware :</b> Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet're important.<br>"..
+			" <br>"..
+			" Find more Vlc extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>.",
+		
+		action_login = 'Logging in',
+		action_logout = 'Logging out',
+		action_noop = 'Checking session',
+		action_search = 'Searching subtitles',
+		action_hash = 'Calculating movie hash',
+		
+		mess_success = 'Success',
+		mess_error = 'Error',
+		mess_no_response = 'Server not responding',
+		mess_unauthorized = 'Request unauthorized',
+		mess_expired = 'Session expired, retrying',
+		mess_overloaded = 'Server overloaded, please retry later',
+		mess_no_input = 'Please use this method during playing',
+		mess_not_local = 'This method works with local file only (for now)',
+		mess_not_found = 'File not found',
+		mess_not_found2 = 'File not found (illegal character?)',
+		mess_no_selection = 'No subtitles selected',
+		mess_save_fail = 'Unable to save subtitles',
+		mess_click_link = 'Click here to open the file',
+		mess_complete = 'Research complete',
+		mess_no_res = 'No result',
+		mess_res = 'result(s)',
+		mess_loaded = 'Subtitles loaded',
+		mess_downloading = 'Downloading subtitle',
+		mess_dowload_link = 'Download link'
 	}
 }
 
@@ -53,88 +135,6 @@ local options = {
 -- else the default vlc.config.userdatadir() is used
 
 local conf_file_path = nil
-
-local eng_translation = {
-	int_all = 'All',
-	int_descr = 'Dowload subtitles from OpenSubtitles.org',
-	int_research = 'Research',
-	int_config = 'Config',
-	int_configuration = 'Configuration',
-	int_help = 'Help',
-	int_search_hash = 'Search by hash',
-	int_search_name = 'Search by name',
-	int_title = 'Title',
-	int_season = 'Season (series)',
-	int_episode = 'Episode (series)',
-	int_show_help = 'Show help',
-	int_show_conf = 'Show config',
-	int_dowload_sel = 'Download selection',
-	int_close = 'Close',
-	int_ok = 'Ok',
-	int_save = 'Save',
-	int_cancel = 'Cancel',
-	int_search_transl = 'Search translations',
-	int_searching_transl = 'Searching translations ...',
-	int_int_lang = 'Interface language',
-	int_default_lang = 'Subtitles language',
-	int_dowload_behav = 'What to do with subtitles',
-	int_dowload_save = 'Load and save',
-	int_dowload_load = 'Load only',
-	int_dowload_manual =  'Manual download',
-	int_display_code = 'Display language code in file name',
-	int_remove_tag = 'Remove tags',
-	int_vlsub_work_dir = 'VLSub working directory',
-	int_help_mess = " Download subtittles from <a href='http://www.opensubtitles.org/'>opensubtitles.org</a> and display them while watching a video.<br>"..
-		" <br>"..
-		" <b><u>Usage:</u></b><br>"..
-		" <br>"..
-		" VLSub is meant to be used while your watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).<br>"..
-		" <br>"..
-		" Choose the language for your subtitles and click on the button corresponding to one of the two research method provided by VLSub:<br>"..
-		" <br>"..
-		" <b>Method 1: Search by hash</b><br>"..
-		" It is recommended to try this method first, because it performs a research based on the video file print, so you can find subtitles synchronized with your video.<br>"..
-		" <br>"..
-		" <b>Method 2: Search by name</b><br>"..
-		" If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a serie, you can also provide a season and episode number.<br>"..
-		" <br>"..
-		" <b>Downloading Subtitles</b><br>"..
-		" Select one subtitle in the list and click on 'Download'.<br>"..
-		" It will be put in the same directory that your video, with the same name (different extension)"..
-		" so Vlc will load them automatically the next time you'll start the video.<br>"..
-		" <br>"..
-		" <b>/!\\ Beware :</b> Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet're important.<br>"..
-		" <br>"..
-		" Find more Vlc extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>.",
-	
-	action_login = 'Logging in',
-	action_logout = 'Logging out',
-	action_noop = 'Checking session',
-	action_search = 'Searching subtitles',
-	action_hash = 'Calculating movie hash',
-	
-	mess_success = 'Success',
-	mess_error = 'Error',
-	mess_no_response = 'Server not responding',
-	mess_unauthorized = 'Request unauthorized',
-	mess_expired = 'Session expired, retrying',
-	mess_overloaded = 'Server overloaded, please retry later',
-	mess_no_input = 'Please use this method during playing',
-	mess_not_local = 'This method works with local file only (for now)',
-	mess_not_found = 'File not found',
-	mess_not_found2 = 'File not found (illegal character?)',
-	mess_no_selection = 'No subtitles selected',
-	mess_save_fail = 'Unable to save subtitles',
-	mess_click_link = 'Click here to open the file',
-	mess_complete = 'Research complete',
-	mess_no_res = 'No result',
-	mess_res = 'result(s)',
-	mess_loaded = 'Subtitles loaded',
-	mess_downloading = 'Downloading subtitle',
-	mess_dowload_link = 'Download link'
-}
-
-local lang = eng_translation 
 
 local languages = {
 	{'alb', 'Albanian'},
@@ -283,7 +283,7 @@ function descriptor()
 		author = "exebetche",
 		url = 'http://www.opensubtitles.org/',
 		shortdesc = "VLsub";
-		description = lang[int_descr],
+		description = options.translation.int_descr,
 		capabilities = {"menu", "input-listener" }
 	}
 end
@@ -291,8 +291,8 @@ end
 function activate()
 	vlc.msg.dbg("[VLsub] Welcome")
 		
-    SetDownloadBehaviours()
     check_config()
+    SetDownloadBehaviours()
     
 	-- Set table list of available traduction from assoc. array 
 	-- so it is sortable
@@ -343,7 +343,7 @@ function input_changed()
 	set_interface_main()
 end
 
-					--[[ Interface data ]]--
+						--[[ Interface data ]]--
 
 function interface_main()
 	dlg:add_label(lang["int_default_lang"]..':', 1, 1, 1, 1)
@@ -396,7 +396,6 @@ function interface_config()
 	input_table['removeTag'] = dlg:add_dropdown(3, 5, 0, 1)
 	
 	dlg:add_label(lang["int_vlsub_work_dir"].."    :    "..(openSub.conf.dirPath or "  -  "), 1, 6, 1, 1)
-	--~ dlg:add_label(, 2, 6, 2, 1)
 	
 	input_table['message'] = nil
 	input_table['message'] = dlg:add_label(' ', 1, 7, 3, 1)
@@ -404,11 +403,10 @@ function interface_config()
 	dlg:add_button(lang["int_cancel"], show_main, 2, 8, 1, 1)
 	dlg:add_button(lang["int_save"], apply_config, 3, 8, 1, 1)
 	
-	input_table['langExt']:add_value(tostring(openSub.option.langExt), 1)
-	input_table['langExt']:add_value(tostring(not openSub.option.langExt), 2)
-	input_table['removeTag']:add_value(tostring(openSub.option.removeTag), 1)
-	input_table['removeTag']:add_value(tostring(not openSub.option.removeTag), 2)
-	
+	input_table['langExt']:add_value(lang["int_bool_"..tostring(openSub.option.langExt)], 1)
+	input_table['langExt']:add_value(lang["int_bool_"..tostring(not openSub.option.langExt)], 2)
+	input_table['removeTag']:add_value(lang["int_bool_"..tostring(openSub.option.removeTag)], 1)
+	input_table['removeTag']:add_value(lang["int_bool_"..tostring(not openSub.option.removeTag)], 2)
 	
 	assoc_select_conf('intLang', 'intLang', openSub.conf.translations_avail)
 	assoc_select_conf('default_language', 'language', openSub.conf.languages, lang["int_all"])
@@ -524,6 +522,11 @@ end
 
 function check_config()
 -- Load config from the file, if existing
+
+	eng_translation = {}
+	for k, v in pairs(openSub.option.translation) do
+		eng_translation[k] = v
+	end
 	
 	local userdatadir = vlc.config.userdatadir()
 	
@@ -589,6 +592,8 @@ function check_config()
 			load_transl(transl_file_path)
 		end
 	end
+	
+	lang = options.translation -- just a shortcut 
 end
 
 function load_config(path)
@@ -604,7 +609,7 @@ function load_config(path)
 			if key == "translation" then
 				openSub.conf.translated = true
 				for k, v in pairs(value) do
-					lang[k] = v
+					openSub.option.translation[k] = v
 				end
 			else
 				openSub.option[key] = value
@@ -632,7 +637,7 @@ function load_transl(path)
 	local translation = parse_xml(resp)
 	
 	for k, v in pairs(translation) do
-		lang[k] = v
+		openSub.option.translation[k] = v
 	end
 	
 	collectgarbage()
@@ -1062,7 +1067,7 @@ openSub = {
 		local item = openSub.getInputItem()
 		
 		if not item then
-			setError("Please use this method during playing")
+			setError(lang["mess_no_input"])
 			return false
 		end
 		
@@ -1074,13 +1079,13 @@ openSub = {
 			
 		local path = openSub.file.path
 		if not path then
-			setError("File not found")
+			setError(lang["mess_not_found"])
 			return false
 		end
 		
 		local file = io.open(path, "rb")
 		if not file then
-			setError("File not found (illegal character?)")
+			setError(lang["mess_not_found2"])
 			return false
 		end
 				
@@ -1178,8 +1183,8 @@ function display_subtitles()
 	mainlist:clear()
 	
 	if openSub.itemStore == "0" then 
-		mainlist:add_value("No result", 1)
-		setMessage("<b>Research complete:</b> No result")
+		mainlist:add_value(lang["mess_no_res"], 1)
+		setMessage("<b>"..lang["mess_complete"]..":</b> "..lang["mess_no_res"])
 	elseif openSub.itemStore then 
 		for i, item in ipairs(openSub.itemStore) do
 			mainlist:add_value(
@@ -1187,7 +1192,7 @@ function display_subtitles()
 			" ["..item.SubLanguageID.."]"..
 			" ("..item.SubSumCD.." CD)", i)
 		end
-		setMessage("<b>Research complete:</b> "..#(openSub.itemStore).." result(s)")
+		setMessage("<b>"..lang["mess_complete"]..":</b> "..#(openSub.itemStore).."  "..lang["mess_res"])
 	end
 end
 
