@@ -533,21 +533,23 @@ function check_config()
 -- Determine OS and according clean path to config (relative to user home dir)
 	openSub.conf.saved = false
 	
+	local path_postfix = ""
 	if is_window_path(userdatadir) then -- Windows?
 		openSub.conf.os = "win"
 		openSub.conf.slash = "\\"
-		
-		local get_cd = io.popen("echo %CD%")
-		local cd = trim(get_cd:read("*all"))
-		
-		openSub.conf.dirPath = (cd or ".").. "\\lua\\extensions\\userdata\\vlsub"
-		
+		path_postfix = "\\lua\\extensions\\userdata\\vlsub"
 	else
 		openSub.conf.os = "lin"
 		openSub.conf.slash = "/"
-		openSub.conf.dirPath = userdatadir.."/lua/extensions/userdata/vlsub"
+		path_postfix = "/lua/extensions/userdata/vlsub"
 	end
 	
+	if (conf_file_path ~= nil) then
+		openSub.conf.dirPath = conf_file_path..path_postfix
+	else
+		openSub.conf.dirPath = userdatadir..path_postfix
+	end
+		
 	vlc.msg.dbg("[VLSub] Working directory: " .. openSub.conf.dirPath)
 	
 	openSub.conf.filePath = openSub.conf.dirPath..openSub.conf.slash.."vlsub_conf.xml"
