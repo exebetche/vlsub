@@ -50,7 +50,7 @@ local options = {
 	},
 	translation = {
 		int_all = 'All',
-		int_descr = 'Dowload subtitles from OpenSubtitles.org',
+		int_descr = 'Download subtitles from OpenSubtitles.org',
 		int_research = 'Research',
 		int_config = 'Config',
 		int_configuration = 'Configuration',
