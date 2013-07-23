@@ -41,10 +41,13 @@ local options = {
 	intLang = 'eng',
 	translations_avail = { 
 		eng = 'English', 
+		cze = 'Czech', 
+		dan = 'Danish', 
 		fre = 'Français',
 		ell = 'Greek',
 		baq = 'Basque',
 		pob = 'Brazilian Portuguese',
+		slo = 'Slovenian',
 		spa = 'Spanish',
 		ukr = 'Ukrainian'
 	},
@@ -127,13 +130,16 @@ local options = {
 		mess_res = 'result(s)',
 		mess_loaded = 'Subtitles loaded',
 		mess_downloading = 'Downloading subtitle',
-		mess_dowload_link = 'Download link'
+		mess_dowload_link = 'Download link',
+		mess_err_conf_access ='Can\'t fount a suitable path to save config, please set it manually'
 	}
 }
 
 -- You can set the config file's directory path here
 -- else the default vlc.config.userdatadir() is used
-
+-- /!\ On windows no accentuated/special characters allowed /!\
+-- ex: 
+-- local conf_file_path = "C:\\Documents and Settings\\vlsub"
 local conf_file_path = nil
 
 local languages = {
@@ -390,12 +396,19 @@ function interface_config()
 	dlg:add_label(lang["int_dowload_behav"]..':', 1, 3, 2, 1)
 	input_table['downloadBehaviour'] = dlg:add_dropdown(3, 3, 1, 1)
 	
-	dlg:add_label(lang["int_display_code"], 1, 4, 0, 1)
-	input_table['langExt'] = dlg:add_dropdown(3, 4, 0, 1)
-	dlg:add_label(lang["int_remove_tag"], 1, 5, 0, 1)
-	input_table['removeTag'] = dlg:add_dropdown(3, 5, 0, 1)
+	dlg:add_label(lang["int_display_code"]..':', 1, 4, 0, 1)
+	input_table['langExt'] = dlg:add_dropdown(3, 4, 1, 1)
+	dlg:add_label(lang["int_remove_tag"]..':', 1, 5, 0, 1)
+	input_table['removeTag'] = dlg:add_dropdown(3, 5, 1, 1)
 	
-	dlg:add_label(lang["int_vlsub_work_dir"].."    :    "..(openSub.conf.dirPath or "  -  "), 1, 6, 1, 1)
+	dlg:add_label(lang["int_vlsub_work_dir"]..':', 1, 6, 1, 1)
+	if openSub.conf.dirPath then
+		if openSub.conf.os == "win" then
+			dlg	:add_label("<a href='file:///"..openSub.conf.dirPath.."'>"..openSub.conf.dirPath.."</a>", 2, 6, 2, 1)
+		else
+			dlg	:add_label("<a href='"..openSub.conf.dirPath.."'>"..openSub.conf.dirPath.."</a>", 2, 6, 2, 1)
+		end
+	end
 	
 	input_table['message'] = nil
 	input_table['message'] = dlg:add_label(' ', 1, 7, 3, 1)
@@ -528,35 +541,45 @@ function check_config()
 		eng_translation[k] = v
 	end
 	
-	local userdatadir = vlc.config.userdatadir()
-	
--- Determine OS and according clean path to config (relative to user home dir)
 	openSub.conf.saved = false
+	openSub.conf.hasPath = false
 	
-	local path_postfix = ""
-	if is_window_path(userdatadir) then -- Windows?
-		openSub.conf.os = "win"
-		openSub.conf.slash = "\\"
-		path_postfix = "\\lua\\extensions\\userdata\\vlsub"
+	if conf_file_path and is_dir(conf_file_path) then
+	-- VLSub working dirrectory set by user
+		-- Remove slash at the end if there is one
+		conf_file_path = string.gsub(conf_file_path, "^(.-)[\\/]?$", "%1")
+		openSub.conf.dirPath = conf_file_path
+		openSub.conf.hasPath = true
 	else
-		openSub.conf.os = "lin"
-		openSub.conf.slash = "/"
-		path_postfix = "/lua/extensions/userdata/vlsub"
+		local vlc_dir = nil
+	
+		if is_dir(vlc.config.userdatadir()) then
+			vlc_dir = vlc.config.userdatadir()
+		elseif is_dir(vlc.config.datadir()) then
+			vlc_dir = vlc.config.datadir()
+		end
+		
+		if vlc_dir then
+			if is_window_path(vlc_dir) then
+				openSub.conf.os = "win"
+				openSub.conf.slash = "\\"
+				openSub.conf.dirPath = vlc_dir.."\\lua\\extensions\\userdata\\vlsub"
+			else
+				openSub.conf.os = "lin"
+				openSub.conf.slash = "/"
+				openSub.conf.dirPath = vlc_dir.."/lua/extensions/userdata/vlsub"
+			end
+			openSub.conf.filePath = openSub.conf.dirPath..openSub.conf.slash.."vlsub_conf.xml"
+			openSub.conf.localePath = openSub.conf.dirPath..openSub.conf.slash.."locale"
+			openSub.conf.hasPath = true
+		end
 	end
 	
-	if (conf_file_path ~= nil) then
-		openSub.conf.dirPath = conf_file_path..path_postfix
-	else
-		openSub.conf.dirPath = userdatadir..path_postfix
-	end
-		
-	vlc.msg.dbg("[VLSub] Working directory: " .. openSub.conf.dirPath)
-	
-	openSub.conf.filePath = openSub.conf.dirPath..openSub.conf.slash.."vlsub_conf.xml"
-	openSub.conf.localePath = openSub.conf.dirPath..openSub.conf.slash.."locale"
-		
+
+	vlc.msg.dbg("[VLSub] Working directory: " .. (openSub.conf.dirPath or "not found"))
+			
 	-- Path to the conf file up to 0.9.5, move the file to the new directory when ugrading
-	local old_conf_filePath = userdatadir..openSub.conf.slash.."vlsub_conf.xml"
+	local old_conf_filePath = vlc.config.userdatadir()..openSub.conf.slash.."vlsub_conf.xml"
 	
 	if file_exist(openSub.conf.filePath) then
 		vlc.msg.dbg("[VLSub] Loading config file: " .. openSub.conf.filePath)
@@ -570,7 +593,7 @@ function check_config()
 		load_config(old_conf_filePath)
 		save_config()
 		os.remove(old_conf_filePath)
-	else
+	elseif openSub.conf.hasPath then
 		vlc.msg.dbg("[VLSub] No config file")
 		if not file_touch(openSub.conf.filePath) then
 			if openSub.conf.os == "win" then
@@ -587,7 +610,8 @@ function check_config()
 	
 	-- Check presence of a translation file in "openSub.conf.localePath" directory	
 	if openSub.option.intLang ~= "eng" 
-	and not openSub.conf.translated then
+	and not openSub.conf.translated 
+	and openSub.conf.hasPath then
 		local transl_file_path = openSub.conf.localePath..openSub.conf.slash..openSub.option.intLang..".xml"
 		if file_exist(transl_file_path) then
 			vlc.msg.dbg("[VLSub] Loadin translation from file: " .. transl_file_path)
@@ -698,12 +722,18 @@ function apply_config()
 		openSub.option.removeTag = not openSub.option.removeTag
 	end
 	
-	save_config()
+	local config_saved = save_config()
 	trigger_menu(1)
+	if not config_saved then
+		setError(lang["mess_err_conf_access"])
+	end
 end
 
 function save_config()
 -- Dump local config into config file 
+	if not openSub.conf.hasPath then
+		return false
+	end
 	vlc.msg.dbg("[VLSub] Saving config file:  " .. openSub.conf.filePath)
 	
 	if not file_touch(openSub.conf.filePath) then
@@ -720,8 +750,11 @@ function save_config()
 		tmpFile:flush()
 		tmpFile:close()
 		tmpFile = nil
+	else
+		return false
 	end
 	collectgarbage()
+	return true
 end
 
 function SetDownloadBehaviours()
@@ -1651,6 +1684,22 @@ function file_exist(name) -- test readability
 	else 
 		return false 
 	end
+end
+
+function is_dir(path)
+	local f, _, code = io.open(path, "rb")
+	
+	if f then 
+		_, _, code = f:read("*a")
+		f:close()
+		if code == 21 then
+			return true
+		end
+	elseif code == 13 then
+		return true
+	end
+	
+	return false
 end
 
 function trim(str)

@@ -1,0 +1,56 @@
+<action_hash>Výpočet hash filmu</action_hash>
+<action_login>Přihlášení</action_login>
+<action_logout>Odhlášení</action_logout>
+<action_noop>Kontrola relace</action_noop>
+<action_search>Vyhledávání titulků</action_search>
+<int_all>Všechny</int_all>
+<int_bool_false>Ne</int_bool_false>
+<int_bool_true>Ano</int_bool_true>
+<int_cancel>Zrušit</int_cancel>
+<int_close>Zavřít</int_close>
+<int_config>Nastavení</int_config>
+<int_configuration>Nastavení</int_configuration>
+<int_default_lang>Jazyk titulků</int_default_lang>
+<int_descr>Stahování titulků z OpenSubtitles.org</int_descr>
+<int_display_code>Zobrazit kód jazyka v názvu souboru</int_display_code>
+<int_dowload_behav>Co dělat s titulky</int_dowload_behav>
+<int_dowload_load>Jen nahrát</int_dowload_load>
+<int_dowload_manual>Stáhnout ručně</int_dowload_manual>
+<int_dowload_save>Nahrát a uložit</int_dowload_save>
+<int_dowload_sel>Stáhnout vybrané</int_dowload_sel>
+<int_episode>Epizoda (seriál)</int_episode>
+<int_help>Pomoc</int_help>
+<int_help_mess>Stahování titulků z &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; a jejich zobrazení během sledování videa.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Použití:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub je určen pro použití během sledování videa, takže jej nejprve začněte přehrávat (pokud se nic nepřehrává, dostanete link na stažení titulků ve svém prohlížeči Internetu).&lt;br&gt; &lt;br&gt; Vyberte jazyk pro vaše titulky a klepněte na tlačítko odpovídající jedné ze dvou vyhledávacích metod, které vám VLSub nabízí:&lt;br&gt; &lt;br&gt; &lt;b&gt;Metoda 1: Hledat podle hash&lt;/b&gt;&lt;br&gt; Doporučuje se vyzkoušet nejprve tuto metodu, protože ta dělá vyhledávání založené na otisku videosouboru, takže můžete najít titulky synchronizované s vaším videem.&lt;br&gt; &lt;br&gt; &lt;b&gt;Metoda 2: Hledat podle názvu&lt;/b&gt;&lt;br&gt; Pokud neuspějete s první metodou, před klepnutím na tlačítko jen zkontrolujte název, zda je správný. Pokud hledáte titulky pro seriál, můžete také uvést číslo série a epizody.&lt;br&gt; &lt;br&gt; &lt;b&gt;Stahování titulků&lt;/b&gt;&lt;br&gt; Označte jeden výsledek v seznamu a klikněte na &#39;Stáhnout vybrané&#39;.&lt;br&gt; Bude uložen ve stejném adresáři, jako je vaše video, se stejným názvem (různá přípona), takže příště při dalším spuštění videa jejich VLC načte automaticky.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Pozor :&lt;/b&gt; Stávající titulky jsou přepsány bez doptání si potvrzení, takže si je přesuňte jinam, pokud jsou důležité.&lt;br&gt; &lt;br&gt; Více rozšíření pro VLC najdete na &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Jazyk rozhraní</int_int_lang>
+<int_ok>Ok</int_ok>
+<int_remove_tag>Odstranit formátovací značky</int_remove_tag>
+<int_research>Hledání</int_research>
+<int_save>Uložit</int_save>
+<int_search_hash>Hledat podle hash</int_search_hash>
+<int_searching_transl>Vyhledávání překladů ...</int_searching_transl>
+<int_search_name>Hledat podle názvu</int_search_name>
+<int_search_transl>Hledat překlady</int_search_transl>
+<int_season>Série (seriál)</int_season>
+<int_show_conf>Ukázat nastavení</int_show_conf>
+<int_show_help>Ukázat pomoc</int_show_help>
+<int_title>Název</int_title>
+<int_vlsub_work_dir>Pracovní adresář VLSub</int_vlsub_work_dir>
+<mess_click_link>Kliknutím sem otevřete soubor</mess_click_link>
+<mess_complete>Hledání dokončeno</mess_complete>
+<mess_dowload_link>Link ke stažení</mess_dowload_link>
+<mess_downloading>Stahování titulků</mess_downloading>
+<mess_error>Chyba</mess_error>
+<mess_expired>Relace vypršela, opakování</mess_expired>
+<mess_loaded>Titulky načteny</mess_loaded>
+<mess_no_input>Použijte tuto metodu během přehrávání</mess_no_input>
+<mess_no_res>Žádný výsledek</mess_no_res>
+<mess_no_response>Server neodpovídá</mess_no_response>
+<mess_no_selection>Nezvolené žádné titulky</mess_no_selection>
+<mess_not_found>Soubor nebyl nalezen</mess_not_found>
+<mess_not_found2>Soubor nebyl nalezen (odepřen znak?)</mess_not_found2>
+<mess_not_local>Tato metoda funguje pouze s lokálním souborem (zatím)</mess_not_local>
+<mess_overloaded>Server přetížen, zkuste to znovu později</mess_overloaded>
+<mess_res>výsledky</mess_res>
+<mess_save_fail>Nelze uložit titulky</mess_save_fail>
+<mess_success>Úspěch</mess_success>
+<mess_unauthorized>Požadavek odmítnut</mess_unauthorized>
