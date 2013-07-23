@@ -47,7 +47,7 @@ local options = {
 		ell = 'Greek',
 		baq = 'Basque',
 		pob = 'Brazilian Portuguese',
-		slo = 'Slovenian',
+		slo = 'Slovak',
 		spa = 'Spanish',
 		ukr = 'Ukrainian'
 	},
