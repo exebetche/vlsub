@@ -534,15 +534,22 @@ end
 						--[[ Config & interface localization]]--
 
 function check_config()
--- Load config from the file, if existing
 
 	eng_translation = {}
 	for k, v in pairs(openSub.option.translation) do
 		eng_translation[k] = v
 	end
 	
+	trsl_names = {}
+	for i, lg in ipairs(languages) do
+		trsl_names[lg[1]] = lg[2]
+	end
+	
+-- Load config from the file, if existing
 	openSub.conf.saved = false
 	openSub.conf.hasPath = false
+	local userdatadir = vlc.config.userdatadir()
+	local datadir = vlc.config.datadir()
 	
 	if conf_file_path and is_dir(conf_file_path) then
 	-- VLSub working dirrectory set by user
@@ -553,10 +560,10 @@ function check_config()
 	else
 		local vlc_dir = nil
 	
-		if is_dir(vlc.config.userdatadir()) then
-			vlc_dir = vlc.config.userdatadir()
-		elseif is_dir(vlc.config.datadir()) then
-			vlc_dir = vlc.config.datadir()
+		if is_dir(userdatadir) then
+			vlc_dir = userdatadir
+		elseif is_dir(datadir) then
+			vlc_dir = datadir
 		end
 		
 		if vlc_dir then
@@ -574,39 +581,34 @@ function check_config()
 			openSub.conf.hasPath = true
 		end
 	end
-	
-
 	vlc.msg.dbg("[VLSub] Working directory: " .. (openSub.conf.dirPath or "not found"))
-			
-	-- Path to the conf file up to 0.9.5, move the file to the new directory when ugrading
-	local old_conf_filePath = vlc.config.userdatadir()..openSub.conf.slash.."vlsub_conf.xml"
-	
-	trsl_names = {}
-	for i, lg in ipairs(languages) do
-		trsl_names[lg[1]] = lg[2]
-	end
 		
 	if file_exist(openSub.conf.filePath) then
 		vlc.msg.dbg("[VLSub] Loading config file: " .. openSub.conf.filePath)
 		openSub.conf.saved = true
 		load_config(openSub.conf.filePath)
-	elseif file_exist(old_conf_filePath) then
-	-- Check if conf file is in the "old" location, in vlc userdatadir,
-	-- if true move the file into the new directory
-		vlc.msg.dbg("[VLSub] Loading old config file: " .. old_conf_filePath)
-		openSub.conf.saved = true
-		load_config(old_conf_filePath)
-		save_config()
-		os.remove(old_conf_filePath)
 	elseif openSub.conf.hasPath then
-		vlc.msg.dbg("[VLSub] No config file")
-		if not file_touch(openSub.conf.filePath) then
-			if openSub.conf.os == "win" then
-				os.execute('mkdir "' .. openSub.conf.dirPath..'"')
-			elseif openSub.conf.os == "lin" then
-				os.execute("mkdir -p '" .. openSub.conf.dirPath.."'")
-			end
+		local slash_conf = openSub.conf.slash.."vlsub_conf.xml"
+		local old_conf_filePath
+		-- Check if there is a config file in an "old" location
+		-- if true move the file into the new directory
+		if file_exist(userdatadir..slash_conf) then
+			old_conf_filePath = userdatadir..slash_conf
+		elseif openSub.conf.os == "win"
+		and file_exist(datadir.."\\lua\\extensions\\userdata\\vlsub"..slash_conf) then
+			old_conf_filePath = datadir.."\\lua\\extensions\\userdata\\vlsub"..slash_conf
 		end
+		if old_conf_filePath then
+			vlc.msg.dbg("[VLSub] Loading old config file: "..old_conf_filePath)
+			openSub.conf.saved = true
+			load_config(old_conf_filePath)
+			save_config()
+			os.remove(old_conf_filePath)
+		else
+			vlc.msg.dbg("[VLSub] No config file")
+		end
+	else
+		vlc.msg.dbg("[VLSub] No config file")
 	end
 	
 	if not openSub.option.language then
@@ -641,6 +643,7 @@ end
 function load_config(path)
 -- Overwrite default conf with loaded conf
 	local tmpFile = assert(io.open(path, "rb"))
+	if not tmpFile then return false end
 	local resp = tmpFile:read("*all")
 	tmpFile:flush()
 	tmpFile:close()
@@ -1630,7 +1633,7 @@ function dump_xml(data)
 			if type(v)=="table" then
 				parse(v, stack)
 			elseif type(v)=="string" then
-				dump = dump..vlc.strings.convert_xml_special_chars(v)
+				dump = dump..(vlc.strings.convert_xml_special_chars(v) or v)
 			elseif type(v)=="number" then
 				dump = dump..v
 			else
