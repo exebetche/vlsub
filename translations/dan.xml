@@ -1,0 +1,56 @@
+<action_hash>Udregner film hash</action_hash>
+<action_login>Logger ind</action_login>
+<action_logout>Logger ud</action_logout>
+<action_noop>Tjekker session</action_noop>
+<action_search>Søger efter undertekster</action_search>
+<int_all>Alle</int_all>
+<int_bool_false>Nej</int_bool_false>
+<int_bool_true>Ja</int_bool_true>
+<int_cancel>Annuller</int_cancel>
+<int_close>Luk</int_close>
+<int_config>Konfigurer</int_config>
+<int_configuration>Konfiguration</int_configuration>
+<int_default_lang>Underteksters sprog</int_default_lang>
+<int_descr>Hent undertekster fra OpenSubtitles.org</int_descr>
+<int_display_code>Vis sprogkode i filnavnet</int_display_code>
+<int_dowload_behav>Hvad gør man med undertekster</int_dowload_behav>
+<int_dowload_load>Indlæs kun</int_dowload_load>
+<int_dowload_manual>Manuel overførsel</int_dowload_manual>
+<int_dowload_save>Indlæs og gem</int_dowload_save>
+<int_dowload_sel>Hent markering</int_dowload_sel>
+<int_episode>Episode (serier)</int_episode>
+<int_help>Hjælp</int_help>
+<int_help_mess>Hent undertekster fra &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; og vis dem mens du ser en video.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Brug:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub er tænkt til at blive brugt mens du ser en video, så start det først (hvis intet afspilles vil du få et link til at hente underteksterne i din browser).&lt;br&gt; &lt;br&gt; Vælg sprog for dine undertekster, og klik på knappen der svarer til en af ​​de to undersøgelsesmetoder, som VLSub tilbyder:&lt;br&gt; &lt;br&gt; &lt;b&gt;Metode 1: Søg ud fra hash&lt;/b&gt;&lt;br&gt; Det er anbefalet at du prøver dette først, fordi den søger ud fra filens identitet, så du kan finde undertekster synkroniseret med din video.&lt;br&gt; &lt;br&gt; &lt;b&gt;Metode 2: Search efter navn&lt;/b&gt;&lt;br&gt; Hvis du ikke havde noget held med den første metode, tjek lige at titlen er korrekt inden du trykker. Hvis du søger efter undtekster til en serie kan du angive en sæson og et episode nummer.&lt;br&gt; &lt;br&gt; &lt;b&gt;Hent undertekster&lt;/b&gt;&lt;br&gt; Vælg en undertekst på listen og tryk &#39;Hent&#39;.&lt;br&gt; Så vil den blive lagt i samme mappe som din video med samme navn (bare en anden filendelse) så Vlc automatisk vil indlæse den næste gang at du starter videoen.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Bemærk :&lt;/b&gt; Allerede eksisterende undertekster vil blive overskrevet uden bekræftelse, så placer dem andre steder hvis de er vigtige.&lt;br&gt; &lt;br&gt; Find flere Vlc udvidelser på &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Grænsefladens sprog</int_int_lang>
+<int_ok>Okay</int_ok>
+<int_remove_tag>Fjern tags</int_remove_tag>
+<int_research>Søg</int_research>
+<int_save>Gem</int_save>
+<int_search_hash>Search ud fra hash</int_search_hash>
+<int_searching_transl>Søger efter oversættelser ...</int_searching_transl>
+<int_search_name>Search ud fra navn</int_search_name>
+<int_search_transl>Søg efter oversættelser</int_search_transl>
+<int_season>Sæson (serier)</int_season>
+<int_show_conf>Vis konfiguration</int_show_conf>
+<int_show_help>Vis hjælp</int_show_help>
+<int_title>Titel</int_title>
+<int_vlsub_work_dir>VLSub arbejdsmappe</int_vlsub_work_dir>
+<mess_click_link>Klik her for at åbne filen</mess_click_link>
+<mess_complete>Søgning komplet</mess_complete>
+<mess_dowload_link>Overførsels link</mess_dowload_link>
+<mess_downloading>Hent undertekst</mess_downloading>
+<mess_error>Fejl</mess_error>
+<mess_expired>Session udløbet, prøver igen</mess_expired>
+<mess_loaded>Undertekster indlæst</mess_loaded>
+<mess_no_input>Brug venligst denne metode under afspilning</mess_no_input>
+<mess_no_res>Intet resultat</mess_no_res>
+<mess_no_response>Serveren svarer ikke</mess_no_response>
+<mess_no_selection>Ingen undertekster valgt</mess_no_selection>
+<mess_not_found>Fil ikke funder</mess_not_found>
+<mess_not_found2>Fil ikke fundet (ulovlig tegn?)</mess_not_found2>
+<mess_not_local>Denne metode virker med lokale fil kun (indtil videre)</mess_not_local>
+<mess_overloaded>Server overbelastet, prøv igen senere</mess_overloaded>
+<mess_res>resultat(er)</mess_res>
+<mess_save_fail>Kunne ikke gemme undertekster</mess_save_fail>
+<mess_success>Succes</mess_success>
+<mess_unauthorized>Uautoriseret anmodning</mess_unauthorized>
