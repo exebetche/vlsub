@@ -39,8 +39,8 @@ local options = {
 	showMediaInformation = true,
 	progressBarSize = 80,
 	intLang = 'eng',
-	translations_avail = { 
-		eng = 'English', 
+	translations_avail = {
+		eng = 'English',
 		cze = 'Czech', 
 		dan = 'Danish', 
 		fre = 'Français',
@@ -581,6 +581,11 @@ function check_config()
 	-- Path to the conf file up to 0.9.5, move the file to the new directory when ugrading
 	local old_conf_filePath = vlc.config.userdatadir()..openSub.conf.slash.."vlsub_conf.xml"
 	
+	trsl_names = {}
+	for i, lg in ipairs(languages) do
+		trsl_names[lg[1]] = lg[2]
+	end
+		
 	if file_exist(openSub.conf.filePath) then
 		vlc.msg.dbg("[VLSub] Loading config file: " .. openSub.conf.filePath)
 		openSub.conf.saved = true
@@ -608,6 +613,17 @@ function check_config()
 		getenv_lang()
 	end
 	
+	local file_list = list_dir(openSub.conf.localePath)
+	if file_list then
+		for i, file_name in ipairs(file_list) do
+			local lg =  string.gsub(file_name, "^(%w%w%w).xml$", "%1")
+			vlc.msg.err(lg or "lol")
+			if lg and not openSub.option.translations_avail[lg] then
+				table.insert(openSub.conf.translations_avail, {lg, trsl_names[lg]})
+			end
+		end
+	end
+		
 	-- Check presence of a translation file in "openSub.conf.localePath" directory	
 	if openSub.option.intLang ~= "eng" 
 	and not openSub.conf.translated 
@@ -619,6 +635,7 @@ function check_config()
 		end
 	end
 	
+	lang = nil
 	lang = options.translation -- just a shortcut 
 end
 
@@ -659,14 +676,26 @@ function load_transl(path)
 	local resp = tmpFile:read("*all")
 	tmpFile:flush()
 	tmpFile:close()
+	openSub.option.translation = nil
 	
-	local translation = parse_xml(resp)
-	
-	for k, v in pairs(translation) do
-		openSub.option.translation[k] = v
-	end
+	openSub.option.translation = parse_xml(resp)
+	--~ local translation = parse_xml(resp)
+	--~ 
+	--~ for k, v in pairs(translation) do
+		--~ openSub.option.translation[k] = v
+	--~ end
 	
 	collectgarbage()
+end
+
+function apply_translation()
+-- Overwrite default conf with loaded conf
+	for k, v in pairs(eng_translation) do
+	vlc.msg.err(k.." "..(openSub.option.translation[k] or "lol"))
+		if not openSub.option.translation[k] then
+			openSub.option.translation[k] = eng_translation[k]
+		end
+	end
 end
 
 function getenv_lang()
@@ -773,10 +802,6 @@ function get_available_translations()
 	local translations_url = "http://addons.videolan.org/CONTENT/content-files/148752-vlsub_translations.xml"
 	
 	if input_table['intLangBut']:get_text() == lang["int_search_transl"] then   
-		local trsl_names = {}
-		for i, lg in ipairs(languages) do
-			trsl_names[lg[1]] = lg[2]
-		end
 		
 		openSub.actionLabel = lang["int_searching_transl"]
 		
@@ -806,28 +831,27 @@ function set_translation(lg)
 		for k, v in pairs(eng_translation) do
 			openSub.option.translation[k] = v
 		end
-		lang = nil
-		lang = openSub.option.translation
-		collectgarbage()
-		return false
 	else
-		if not all_trsl then
-			get_available_translations()
-		end
-
-		if not all_trsl or not all_trsl[lg] then
-			vlc.msg.dbg("[VLSub] Error, translation not found")
-			return false
-		end
-		
-		for k, v in pairs(eng_translation) do
-			if all_trsl[lg][k] then
-				openSub.option.translation[k] =  all_trsl[lg][k]
-			else
-				openSub.option.translation[k] = eng_translation[k]
+		-- If translation file exists in /locale directory load it
+		local transl_file_path = openSub.conf.localePath..openSub.conf.slash..lg..".xml"
+		if file_exist(transl_file_path) then
+			vlc.msg.dbg("[VLSub] Loading translation from file: " .. transl_file_path)
+			load_transl(transl_file_path)
+			apply_translation()
+		else
+		-- Load translation file from internet
+			if not all_trsl then
+				get_available_translations()
 			end
+
+			if not all_trsl or not all_trsl[lg] then
+				vlc.msg.dbg("[VLSub] Error, translation not found")
+				return false
+			end
+			openSub.option.translation = all_trsl[lg]
+			apply_translation()
+			all_trsl = nil
 		end
-		all_trsl = nil
 	end
 	
 	lang = nil
@@ -1687,6 +1711,8 @@ function file_exist(name) -- test readability
 end
 
 function is_dir(path)
+	-- Remove slash at the or it won't work on Windows
+	path = string.gsub(path, "^(.-)[\\/]?$", "%1")
 	local f, _, code = io.open(path, "rb")
 	
 	if f then 
@@ -1700,6 +1726,29 @@ function is_dir(path)
 	end
 	
 	return false
+end
+
+function list_dir(path)
+	local dir_list_cmd 
+	local list = {}
+	if not is_dir(path) then return false end
+	
+	if openSub.conf.os == "win" then
+		dir_list_cmd = io.popen('dir /w "'..path..'"')
+	elseif openSub.conf.os == "lin" then
+		dir_list_cmd = io.popen('ls -1 "'..path..'"')
+	end
+	
+	if dir_list_cmd then
+		for filename in dir_list_cmd:lines() do
+			if string.match(filename, "^[^%s]+.+$") then
+				table.insert(list, filename)
+			end
+		end
+		return list
+	else
+		return false
+	end
 end
 
 function trim(str)
