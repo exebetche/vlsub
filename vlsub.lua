@@ -617,7 +617,6 @@ function check_config()
 	if file_list then
 		for i, file_name in ipairs(file_list) do
 			local lg =  string.gsub(file_name, "^(%w%w%w).xml$", "%1")
-			vlc.msg.err(lg or "lol")
 			if lg and not openSub.option.translations_avail[lg] then
 				table.insert(openSub.conf.translations_avail, {lg, trsl_names[lg]})
 			end
@@ -678,20 +677,13 @@ function load_transl(path)
 	tmpFile:close()
 	openSub.option.translation = nil
 	
-	openSub.option.translation = parse_xml(resp)
-	--~ local translation = parse_xml(resp)
-	--~ 
-	--~ for k, v in pairs(translation) do
-		--~ openSub.option.translation[k] = v
-	--~ end
-	
+	openSub.option.translation = parse_xml(resp)	
 	collectgarbage()
 end
 
 function apply_translation()
 -- Overwrite default conf with loaded conf
 	for k, v in pairs(eng_translation) do
-	vlc.msg.err(k.." "..(openSub.option.translation[k] or "lol"))
 		if not openSub.option.translation[k] then
 			openSub.option.translation[k] = eng_translation[k]
 		end
