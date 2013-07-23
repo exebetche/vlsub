@@ -1726,7 +1726,7 @@ function list_dir(path)
 	if not is_dir(path) then return false end
 	
 	if openSub.conf.os == "win" then
-		dir_list_cmd = io.popen('dir /w "'..path..'"')
+		dir_list_cmd = io.popen('dir /b "'..path..'"')
 	elseif openSub.conf.os == "lin" then
 		dir_list_cmd = io.popen('ls -1 "'..path..'"')
 	end
