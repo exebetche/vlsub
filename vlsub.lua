@@ -277,6 +277,7 @@ local lang_os_to_iso = {
 	vi = "vie"
 }
 
+local dlg = nil
 local input_table = {} -- General widget id reference
 local select_conf = {} -- Drop down widget / option table association 
 
@@ -434,16 +435,16 @@ function interface_help()
 	dlg:add_button(lang["int_ok"], show_main, 4, 2, 1, 1)
 end
 
-function trigger_menu(id)	
-	if id == 1 then
+function trigger_menu(dlg_id)
+	if dlg_id == 1 then
 		close_dlg()
 		dlg = vlc.dialog(openSub.conf.useragent)
 		interface_main()
-	elseif id == 2 then
+	elseif dlg_id == 2 then
 		close_dlg()
 		dlg = vlc.dialog(openSub.conf.useragent..': '..lang["int_configuration"])
 		interface_config()
-	elseif id == 3 then
+	elseif dlg_id == 3 then
 		close_dlg()
 		dlg = vlc.dialog(openSub.conf.useragent..': '..lang["int_help"])
 		interface_help()
@@ -479,17 +480,17 @@ end
 
 						--[[ Drop down / config association]]--
 
-function assoc_select_conf(id, option, conf, default)
+function assoc_select_conf(select_id, option, conf, default)
 -- Helper for i/o interaction betwenn drop down and option list (lang...)
-	select_conf[id] = {cf = conf, opt  = option, dflt = default}
-	set_default_option(id)
-	display_select(id)
+	select_conf[select_id] = {cf = conf, opt  = option, dflt = default}
+	set_default_option(select_id)
+	display_select(select_id)
 end
 
-function set_default_option(id)
+function set_default_option(select_id)
 -- Put the selected option of a list in first place of the associated table 
-	local opt = select_conf[id].opt
-	local cfg = select_conf[id].cf
+	local opt = select_conf[select_id].opt
+	local cfg = select_conf[select_id].cf
 	if openSub.option[opt] then
 		table.sort(cfg, function(a, b) 
 			if a[1] == openSub.option[opt] then
@@ -503,12 +504,12 @@ function set_default_option(id)
 	end
 end
 
-function display_select(id)
+function display_select(select_id)
 -- Display the drop down values with an optionnal default value at the top
-	local conf = select_conf[id].cf
-	local opt = select_conf[id].opt
+	local conf = select_conf[select_id].cf
+	local opt = select_conf[select_id].opt
 	local option = openSub.option[opt]
-	local default = select_conf[id].dflt
+	local default = select_conf[select_id].dflt
 	local default_isset = false
 		
 	if not default then 
@@ -517,14 +518,14 @@ function display_select(id)
 	
 	for k, l in ipairs(conf) do
 		if default_isset then
-			input_table[id]:add_value(l[2], k)
+			input_table[select_id]:add_value(l[2], k)
 		else
 			if option then
-				input_table[id]:add_value(l[2], k)
-				input_table[id]:add_value(default, 0)
+				input_table[select_id]:add_value(l[2], k)
+				input_table[select_id]:add_value(default, 0)
 			else
-				input_table[id]:add_value(default, 0)
-				input_table[id]:add_value(l[2], k)
+				input_table[select_id]:add_value(default, 0)
+				input_table[select_id]:add_value(l[2], k)
 			end
 			default_isset = true
 		end
@@ -615,6 +616,9 @@ function check_config()
 		getenv_lang()
 	end
 	
+-- Check presence of a translation file in "%vlsub_directory%/locale"
+	
+	-- Add translation files to available translation list
 	local file_list = list_dir(openSub.conf.localePath)
 	if file_list then
 		for i, file_name in ipairs(file_list) do
@@ -624,11 +628,12 @@ function check_config()
 			end
 		end
 	end
-		
-	-- Check presence of a translation file in "openSub.conf.localePath" directory	
+	
+	-- Load selected translation from file
 	if openSub.option.intLang ~= "eng" 
 	and not openSub.conf.translated 
-	and openSub.conf.hasPath then
+	and openSub.conf.hasPath
+	then
 		local transl_file_path = openSub.conf.localePath..openSub.conf.slash..openSub.option.intLang..".xml"
 		if file_exist(transl_file_path) then
 			vlc.msg.dbg("[VLSub] Loadin translation from file: " .. transl_file_path)
@@ -721,20 +726,21 @@ function apply_config()
 	if lg_sel and lg_sel ~= 1 and openSub.conf.translations_avail[lg_sel] then
 		local lg = openSub.conf.translations_avail[lg_sel][1]
 		set_translation(lg)
+		SetDownloadBehaviours()
 	end
 	
-	for id, v in pairs(select_conf) do
-		if input_table[id] and select_conf[id] then
-			sel_val = input_table[id]:get_value()
-			opt = select_conf[id].opt
+	for select_id, v in pairs(select_conf) do
+		if input_table[select_id] and select_conf[select_id] then
+			sel_val = input_table[select_id]:get_value()
+			opt = select_conf[select_id].opt
 			
 			if sel_val == 0 then
 				openSub.option[opt] = nil
 			else
-				openSub.option[opt] = select_conf[id].cf[sel_val][1]
+				openSub.option[opt] = select_conf[select_id].cf[sel_val][1]
 			end
 			
-			set_default_option(id)
+			set_default_option(select_id)
 		end
 	end
 	
@@ -782,6 +788,7 @@ function save_config()
 end
 
 function SetDownloadBehaviours()
+	openSub.conf.downloadBehaviours = nil 
 	openSub.conf.downloadBehaviours = { 
 		{'save', lang["int_dowload_save"]},
 		{'load', lang["int_dowload_load"]},
