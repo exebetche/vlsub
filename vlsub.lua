@@ -1069,26 +1069,37 @@ openSub = {
 			file.cleanName = nil;
 			file.protocol = nil;
 			file.path = nil;
-			file.name = nil;
 			file.ext = nil;
+			file.uri = nil;
 		else
 			vlc.msg.dbg("[VLSub] Video URI: "..item:uri())
 			local parsed_uri = vlc.net.url_parse(item:uri())
 			file.uri = item:uri()
 			file.protocol = parsed_uri["protocol"]
-			file.path = vlc.strings.decode_uri(parsed_uri["path"])
-			-- Correction needed for windows
-			local windowPath = string.match(file.path, "^/(%a:/.+)$")
-			if windowPath then
-				file.path = windowPath
-				file.windowPath = true
+			file.path = parsed_uri["path"]
+			
+			-- Corrections
+			file.path = string.match(file.path, "^/(%a:/.+)$") or file.path -- for windows
+			-- for file in archive
+			local name_in_archive
+			file.is_archive = false
+			
+			file.dir, file.completeName, name_in_archive = string.match(file.path, '^([^!]+/)([^!/]*)!?/?([^!/]*)$')
+			if name_in_archive ~= "" then
+				file.completeName = name_in_archive
+				file.is_archive = true
 			end
-			file.dir, file.completeName = string.match(file.path, "^([^\n]-/?)([^/]+)$")
-			file.name, file.ext = string.match(file.path, "([^/]-)%.?([^%.]*)$")
-				
+			
+			file.dir = string.gsub(file.dir, '\063', '%%')
+			file.dir = vlc.strings.decode_uri(file.dir)
+			file.completeName = string.gsub(file.completeName, '\063', '%%')
+			file.completeName = vlc.strings.decode_uri(file.completeName)
+			file.name, file.ext = string.match(file.completeName, '([^/]-)%.?([^%.]*)$')
+			
 			if file.ext == "part" then
-				file.name, file.ext = string.match(file.name, "^([^/]+)%.([^%.]+)$")
+				file.name, file.ext = string.match(file.name, '^([^/]+)%.([^%.]+)$')
 			end
+			
 			file.hasInput = true;
 			file.cleanName = string.gsub(file.name, "[%._]", " ")
 		end
@@ -1133,32 +1144,48 @@ openSub = {
 		end
 		
 		openSub.getFileInfo()
-		if openSub.file.protocol ~= "file" then
-			setError("This method works with local file only (for now)")
-			return false
-		end
 			
-		local path = openSub.file.path
-		if not path then
+		if not openSub.file.path then
 			setError(lang["mess_not_found"])
 			return false
 		end
 		
-		local file = io.open(path, "rb")
-		if not file then
-			setError(lang["mess_not_found2"])
-			return false
+		local data_start = ""
+		local data_end = ""
+        local size = 0
+        
+		if openSub.file.is_archive
+		or not file_exist(openSub.file.path) then
+			vlc.msg.dbg("[VLSub] Read has data stream")
+			local dataTmp1 = ""
+			local dataTmp2 = ""
+			local file = vlc.stream(openSub.file.uri)
+			data_start = file:read(65536)
+			size = 65536
+			while data_end do
+				size = size + string.len(data_end)
+				dataTmp1 = dataTmp2
+				dataTmp2 = data_end
+				data_end = file:read(65536)
+			end
+			data_end = string.sub((dataTmp1..dataTmp2), -65536)
+			file = nil
+		else
+			vlc.msg.dbg("[VLSub] Read has data classic")
+			local file = io.open( openSub.file.path, "rb")
+			data_start = file:read(65536)
+			size = file:seek("end", -65536) + 65536
+			data_end = file:read(65536)
+			file = nil
 		end
 				
         local lo = 0
         local hi = 0
-        local a,b,c,d, size
-        
-        for i=1,8192 do
-                a,b,c,d = file:read(4):byte(1,4)
-                lo = lo + a + b*256 + c*65536 + d*16777216
-                a,b,c,d = file:read(4):byte(1,4)
-                hi = hi + a + b*256 + c*65536 + d*16777216
+        local o,a,b,c,d,e,f,g,h
+		for o in string.gmatch(data_start..data_end, "........") do
+			a,b,c,d,e,f,g,h = o:byte(1,8)
+			lo = lo + a + b*256 + c*65536 + d*16777216
+			hi = hi + e + f*256 + g*65536 + h*16777216
                 while lo>=4294967296 do
                         lo = lo-4294967296
                         hi = hi+1
@@ -1167,28 +1194,16 @@ openSub = {
                         hi = hi-4294967296
                 end
         end
-        size = file:seek("end", -65536) + 65536
-        for i=1,8192 do
-                a,b,c,d = file:read(4):byte(1,4)
-                lo = lo + a + b*256 + c*65536 + d*16777216
-                a,b,c,d = file:read(4):byte(1,4)
-                hi = hi + a + b*256 + c*65536 + d*16777216
-                while lo>=4294967296 do
-                        lo = lo-4294967296
-                        hi = hi+1
-                end
-                while hi>=4294967296 do
-                        hi = hi-4294967296
-                end
-        end
+		
         lo = lo + size
-                while lo>=4294967296 do
-                        lo = lo-4294967296
-                        hi = hi+1
-                end
-                while hi>=4294967296 do
-                        hi = hi-4294967296
-                end
+        
+		while lo>=4294967296 do
+				lo = lo-4294967296
+				hi = hi+1
+		end
+		while hi>=4294967296 do
+				hi = hi-4294967296
+		end
 		
 		openSub.file.bytesize = size
 		openSub.file.hash = string.format("%08x%08x", hi,lo)
