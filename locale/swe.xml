@@ -1,0 +1,56 @@
+<action_hash>Beräknar film-hash</action_hash>
+<action_login>Loggar in</action_login>
+<action_logout>Loggar ut</action_logout>
+<action_noop>Kollar session</action_noop>
+<action_search>Kollar undertexter</action_search>
+<int_all>Alla</int_all>
+<int_bool_false>Nej</int_bool_false>
+<int_bool_true>Ja</int_bool_true>
+<int_cancel>Avbryt</int_cancel>
+<int_close>Stäng</int_close>
+<int_config>Konfigurera</int_config>
+<int_configuration>Konfiguration</int_configuration>
+<int_default_lang>Undertextspråk</int_default_lang>
+<int_descr>Ladda ner undertexter från OpenSubtitles.org</int_descr>
+<int_display_code>Visa språkkod i filnamn</int_display_code>
+<int_dowload_behav>Hur hantera undertexter</int_dowload_behav>
+<int_dowload_load>Läs in endast</int_dowload_load>
+<int_dowload_manual>Manuell nedladdning</int_dowload_manual>
+<int_dowload_save>Läs in och spara</int_dowload_save>
+<int_dowload_sel>Ladda ner</int_dowload_sel>
+<int_episode>Episod (serier)</int_episode>
+<int_help>Hjälp</int_help>
+<int_help_mess> Ladda ner undertexter från &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; och visa dem medan du tittar på film.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Usage:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub är tänkt att användas medan du spelar upp filmen, så starta den först (om ingen film spelas upp, får du en länk till nedladdning i din webbläsare).&lt;br&gt; &lt;br&gt; Välj språk för dina undertexter och klicka på knappen för en av de två sökmetoder som stöds av VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Metod 1: Sök via hash&lt;/b&gt;&lt;br&gt; Du rekommenderas att prova den här metoden först, eftersom sökningen då baseras på filmfilens avtryck, så att du kan hitta undertexter som är synkroniserade med din film.&lt;br&gt; &lt;br&gt; &lt;b&gt;Metod 2: Sök via namn&lt;/b&gt;&lt;br&gt; Används om första metoden misslyckas. Kolla bara så att filmtiteln är korrekt innan du klickar. Söker du undertexter till en serie, kan du även specificera säsong och episodnummer.&lt;br&gt; &lt;br&gt; &lt;b&gt;Ladda ner undertexter&lt;/b&gt;&lt;br&gt; Välj en undertext i listan och klicka på &#39;Ladda ner&#39;.&lt;br&gt; Den kommer att läggas i samma mapp som din film, med samma namn (annan filändelse) så att VLC läser in den automatiskt nästa gång du startar filmen.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ OBS!&lt;/b&gt; Befintliga undertexter skrivs över utan föregående varning, så flytta dem ifall det är viktigt att de sparas.&lt;br&gt; &lt;br&gt; Kolla fler VLC-tillägg &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Användarspråk</int_int_lang>
+<int_ok>OK</int_ok>
+<int_remove_tag>Ta bort taggar</int_remove_tag>
+<int_research>Sök igen</int_research>
+<int_save>Spara</int_save>
+<int_search_hash>Sök via hash</int_search_hash>
+<int_searching_transl>Söker översättningar...</int_searching_transl>
+<int_search_name>Sök via namn</int_search_name>
+<int_search_transl>Sök översättningar</int_search_transl>
+<int_season>Säsong (serier)</int_season>
+<int_show_conf>Konfigurera</int_show_conf>
+<int_show_help>Hjälp</int_show_help>
+<int_title>Titel</int_title>
+<int_vlsub_work_dir>VLSub arbetsmapp</int_vlsub_work_dir>
+<mess_click_link>Klicka här för att öppna filen</mess_click_link>
+<mess_complete>Sökning slutförd</mess_complete>
+<mess_dowload_link>Nedladdningslänk</mess_dowload_link>
+<mess_downloading>Laddar ner undertext</mess_downloading>
+<mess_error>Fel</mess_error>
+<mess_expired>Sessionen har upphört att gälla, försöker igen</mess_expired>
+<mess_loaded>Undertexter inlästa</mess_loaded>
+<mess_no_input>Använd den här metoden under uppspelning</mess_no_input>
+<mess_no_res>Inget resultat</mess_no_res>
+<mess_no_response>Servern svarar inte</mess_no_response>
+<mess_no_selection>Inga undertexter valda</mess_no_selection>
+<mess_not_found>Filen kan inte hittas</mess_not_found>
+<mess_not_found2>Filen kan inte hittas (ogiltiga tecken?)</mess_not_found2>
+<mess_not_local>Den här metoden stöder endast lokala filer (tills vidare)</mess_not_local>
+<mess_overloaded>Servern överbelastad, försök senare</mess_overloaded>
+<mess_res>resultat</mess_res>
+<mess_save_fail>Kan inte spara undertexter</mess_save_fail>
+<mess_success>Slutfört</mess_success>
+<mess_unauthorized>Obehörig begäran</mess_unauthorized>
