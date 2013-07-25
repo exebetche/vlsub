@@ -49,6 +49,7 @@ local options = {
 		pob = 'Brazilian Portuguese',
 		slo = 'Slovak',
 		spa = 'Spanish',
+		swe = 'Swedish',
 		ukr = 'Ukrainian'
 	},
 	translation = {
