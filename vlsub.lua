@@ -1102,11 +1102,8 @@ openSub = {
 				
 				local file_stat = vlc.net.stat(file.path)
 				if file_stat 
-				and file_stat.size 
-				and file_stat.size > 0
 				then
-					file.size = file_stat.size
-					file.type = file_stat.type
+					file.stat = file_stat
 				end
 				
 				file.is_archive = false
@@ -1120,7 +1117,7 @@ openSub = {
 			
 			file.hasInput = true;
 			file.cleanName = string.gsub(file.name, "[%._]", " ")
-			--~ vlc.msg.err(dump_xml(file))
+			vlc.msg.dbg("[VLSub] file info "..(dump_xml(file)))
 		end
 		collectgarbage()
 	end,
@@ -1180,33 +1177,24 @@ openSub = {
 			
 			if not file then
 				vlc.msg.dbg("[VLSub] No stream")
-			
+				return false
 			end
 			
 		-- Get data for hash calcul
 			data_start = file:read(65536)
 			
-			-- if openSub.file.size then
-			-- If we have file stats use the size
-				vlc.msg.dbg("[VLSub] File size from stat: "..openSub.file.size)
-				-- size = openSub.file.size
-				-- file:read(size-65536-65536)
-				-- collectgarbage()
-				-- data_end = file:read(65536)
-			-- else
-				vlc.msg.dbg("[VLSub] No file size from stat")
-				local dataTmp1 = ""
-				local dataTmp2 = ""
-				size = 65536
-				while data_end do
-					size = size + string.len(data_end)
-					dataTmp1 = dataTmp2
-					dataTmp2 = data_end
-					data_end = file:read(65536)
-					collectgarbage()
-				end
-				data_end = string.sub((dataTmp1..dataTmp2), -65536)
-			-- end
+			local dataTmp1 = ""
+			local dataTmp2 = ""
+			size = 65536
+			while data_end do
+				size = size + string.len(data_end)
+				dataTmp1 = dataTmp2
+				dataTmp2 = data_end
+				data_end = file:read(65536)
+				collectgarbage()
+			end
+			data_end = string.sub((dataTmp1..dataTmp2), -65536)
+				
 			file = nil
 		else
 			vlc.msg.dbg("[VLSub] Read hash data from file")
