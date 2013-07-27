@@ -298,7 +298,7 @@ end
 
 function activate()
 	vlc.msg.dbg("[VLsub] Welcome")
-		
+	
     check_config()
     SetDownloadBehaviours()
     
@@ -373,7 +373,7 @@ function interface_main()
 	dlg:add_button(lang["int_dowload_sel"], download_subtitles, 3, 7, 1, 1)
 	dlg:add_button(lang["int_close"], deactivate, 4, 7, 1, 1) 
 	
-	assoc_select_conf('language', 'language', openSub.conf.languages, lang["int_all"])
+	assoc_select_conf('language', 'language', openSub.conf.languages, 2, lang["int_all"])
 	display_subtitles()
 end
 
@@ -423,9 +423,9 @@ function interface_config()
 	input_table['removeTag']:add_value(lang["int_bool_"..tostring(openSub.option.removeTag)], 1)
 	input_table['removeTag']:add_value(lang["int_bool_"..tostring(not openSub.option.removeTag)], 2)
 	
-	assoc_select_conf('intLang', 'intLang', openSub.conf.translations_avail)
-	assoc_select_conf('default_language', 'language', openSub.conf.languages, lang["int_all"])
-	assoc_select_conf('downloadBehaviour', 'downloadBehaviour', openSub.conf.downloadBehaviours)
+	assoc_select_conf('intLang', 'intLang', openSub.conf.translations_avail, 2)
+	assoc_select_conf('default_language', 'language', openSub.conf.languages, 2, lang["int_all"])
+	assoc_select_conf('downloadBehaviour', 'downloadBehaviour', openSub.conf.downloadBehaviours, 1)
 end
 
 function interface_help()
@@ -481,14 +481,14 @@ end
 
 						--[[ Drop down / config association]]--
 
-function assoc_select_conf(select_id, option, conf, default)
+function assoc_select_conf(select_id, option, conf, ind, default)
 -- Helper for i/o interaction betwenn drop down and option list (lang...)
 	select_conf[select_id] = {cf = conf, opt  = option, dflt = default}
-	set_default_option(select_id)
+	set_default_option(select_id, ind)
 	display_select(select_id)
 end
 
-function set_default_option(select_id)
+function set_default_option(select_id, ind)
 -- Put the selected option of a list in first place of the associated table 
 	local opt = select_conf[select_id].opt
 	local cfg = select_conf[select_id].cf
@@ -499,7 +499,7 @@ function set_default_option(select_id)
 			elseif b[1] == openSub.option[opt] then
 				return false
 			else
-				return a[1] < b[1] 
+				return a[ind] < b[ind] 
 			end
 		end)
 	end
@@ -580,6 +580,10 @@ function check_config()
 			end
 			openSub.conf.filePath = openSub.conf.dirPath..openSub.conf.slash.."vlsub_conf.xml"
 			openSub.conf.localePath = openSub.conf.dirPath..openSub.conf.slash.."locale"
+			-- TODO
+			--~ openSub.conf.cachePath = openSub.conf.dirPath..openSub.conf.slash.."cache"
+			--~ openSub.conf.subPath = openSub.conf.dirPath..openSub.conf.slash.."subtitles"
+			--~ vlc.config.set("sub-autodetect-path", vlc.config.get("sub-autodetect-path")..", "..openSub.conf.subPath)
 			openSub.conf.hasPath = true
 		end
 	end
@@ -800,7 +804,7 @@ end
 function get_available_translations()
 -- Get all available translation files from the internet
 -- (drop previous direct download from github repo because of problem with github https CA certficate on OS X an XP)
--- https://github.com/exebetche/vlsub/tree/master/translations
+-- https://github.com/exebetche/vlsub/tree/master/locale
 	
 	local translations_url = "http://addons.videolan.org/CONTENT/content-files/148752-vlsub_translations.xml"
 	
@@ -1079,23 +1083,36 @@ openSub = {
 			file.protocol = parsed_uri["protocol"]
 			file.path = parsed_uri["path"]
 			
-			-- Corrections
-			file.path = string.match(file.path, "^/(%a:/.+)$") or file.path -- for windows
-			-- for file in archive
-			local name_in_archive
-			file.is_archive = false
+		-- Corrections
 			
-			file.dir, file.completeName, name_in_archive = string.match(file.path, '^([^!]+/)([^!/]*)!?/?([^!/]*)$')
-			if name_in_archive ~= "" then
-				file.completeName = name_in_archive
+			-- For windows
+			file.path = string.match(file.path, "^/(%a:/.+)$") or file.path
+			
+			-- For file in archive
+			local archive_path, name_in_archive = string.match(file.path, '^([^!]+)!/([^!/]*)$')
+			if archive_path and archive_path ~= "" then
+				file.path = string.gsub(archive_path, '\063', '%%')
+				file.path = vlc.strings.decode_uri(file.path)
+				file.completeName = string.gsub(name_in_archive, '\063', '%%')
+				file.completeName = vlc.strings.decode_uri(file.completeName)
 				file.is_archive = true
+			else -- "classic" input
+				file.path = vlc.strings.decode_uri(file.path)
+				file.dir, file.completeName = string.match(file.path, '^(.+/)([^/]*)$')
+				
+				local file_stat = vlc.net.stat(file.path)
+				if file_stat 
+				and file_stat.size 
+				and file_stat.size > 0
+				then
+					file.size = file_stat.size
+					file.type = file_stat.type
+				end
+				
+				file.is_archive = false
 			end
 			
-			file.dir = string.gsub(file.dir, '\063', '%%')
-			file.dir = vlc.strings.decode_uri(file.dir)
-			file.completeName = string.gsub(file.completeName, '\063', '%%')
-			file.completeName = vlc.strings.decode_uri(file.completeName)
-			file.name, file.ext = string.match(file.completeName, '([^/]-)%.?([^%.]*)$')
+			file.name, file.ext = string.match(file.completeName, '^([^/]-)%.?([^%.]*)$')
 			
 			if file.ext == "part" then
 				file.name, file.ext = string.match(file.name, '^([^/]+)%.([^%.]+)$')
@@ -1103,6 +1120,7 @@ openSub = {
 			
 			file.hasInput = true;
 			file.cleanName = string.gsub(file.name, "[%._]", " ")
+			--~ vlc.msg.err(dump_xml(file))
 		end
 		collectgarbage()
 	end,
@@ -1157,29 +1175,49 @@ openSub = {
         
 		if openSub.file.is_archive
 		or not file_exist(openSub.file.path) then
-			vlc.msg.dbg("[VLSub] Read has data stream")
-			local dataTmp1 = ""
-			local dataTmp2 = ""
+			vlc.msg.dbg("[VLSub] Read hash data from stream")
 			local file = vlc.stream(openSub.file.uri)
-			data_start = file:read(65536)
-			size = 65536
-			while data_end do
-				size = size + string.len(data_end)
-				dataTmp1 = dataTmp2
-				dataTmp2 = data_end
-				data_end = file:read(65536)
+			
+			if not file then
+				vlc.msg.dbg("[VLSub] No stream")
+			
 			end
-			data_end = string.sub((dataTmp1..dataTmp2), -65536)
+			
+		-- Get data for hash calcul
+			data_start = file:read(65536)
+			
+			-- if openSub.file.size then
+			-- If we have file stats use the size
+				vlc.msg.dbg("[VLSub] File size from stat: "..openSub.file.size)
+				-- size = openSub.file.size
+				-- file:read(size-65536-65536)
+				-- collectgarbage()
+				-- data_end = file:read(65536)
+			-- else
+				vlc.msg.dbg("[VLSub] No file size from stat")
+				local dataTmp1 = ""
+				local dataTmp2 = ""
+				size = 65536
+				while data_end do
+					size = size + string.len(data_end)
+					dataTmp1 = dataTmp2
+					dataTmp2 = data_end
+					data_end = file:read(65536)
+					collectgarbage()
+				end
+				data_end = string.sub((dataTmp1..dataTmp2), -65536)
+			-- end
 			file = nil
 		else
-			vlc.msg.dbg("[VLSub] Read has data classic")
+			vlc.msg.dbg("[VLSub] Read hash data from file")
 			local file = io.open( openSub.file.path, "rb")
 			data_start = file:read(65536)
 			size = file:seek("end", -65536) + 65536
 			data_end = file:read(65536)
 			file = nil
 		end
-				
+	
+	-- Hash calcul
         local lo = 0
         local hi = 0
         local o,a,b,c,d,e,f,g,h
@@ -1187,13 +1225,13 @@ openSub = {
 			a,b,c,d,e,f,g,h = o:byte(1,8)
 			lo = lo + a + b*256 + c*65536 + d*16777216
 			hi = hi + e + f*256 + g*65536 + h*16777216
-                while lo>=4294967296 do
-                        lo = lo-4294967296
-                        hi = hi+1
-                end
-                while hi>=4294967296 do
-                        hi = hi-4294967296
-                end
+			while lo>=4294967296 do
+					lo = lo-4294967296
+					hi = hi+1
+			end
+			while hi>=4294967296 do
+					hi = hi-4294967296
+			end
         end
 		
         lo = lo + size
@@ -1208,6 +1246,7 @@ openSub = {
 		
 		openSub.file.bytesize = size
 		openSub.file.hash = string.format("%08x%08x", hi,lo)
+		vlc.msg.dbg("[VLSub] Video hash: "..openSub.file.hash)
 	end,
 	checkSession = function()
 		
@@ -1296,7 +1335,10 @@ function download_subtitles()
 	local item = openSub.itemStore[index]
 	
 	if openSub.option.downloadBehaviour == 'manual' then
-			setMessage("<span style='color:#181'><b>"..lang["mess_dowload_link"]..":</b></span> &nbsp;<a href='"..item.ZipDownloadLink.."'>"..item.MovieReleaseName.."</a>")
+		setMessage("<span style='color:#181'>"..
+		"<b>"..lang["mess_dowload_link"]..":</b>"..
+		"</span> &nbsp;<a href='"..item.ZipDownloadLink.."'>"..item.MovieReleaseName.."</a>")
+		
 		return false
 	elseif openSub.option.downloadBehaviour == 'load' then
 		if add_sub("zip://"..item.ZipDownloadLink.."!/"..item.SubFileName) then
@@ -1324,8 +1366,9 @@ function download_subtitles()
 
 	-- if target is not accessible, pick an alternative target (vlsub data dir)
 	if not file_touch(target) then
+		vlc.msg.dbg("[VLsub] Primary target unwritable : "..target)
 		target = openSub.conf.dirPath..openSub.conf.slash..subfileName
-		target_exist = file_touch(target)
+		target_exist = false
 	end
 	
 	vlc.msg.dbg("[VLsub] Subtitles files: "..target)
@@ -1370,7 +1413,9 @@ function download_subtitles()
 	if not target_exist then 
 		message =  message..
 		"<br> "..error_tag(lang["mess_save_fail"].." &nbsp;"..
-		"<a href='"..subfileURI.."'>"..lang["mess_click_link"].."</a>")
+		-- "<a href='"..subfileURI.."'>"..lang["mess_click_link"].."</a>")
+		"<a href='"..vlc.strings.make_uri(openSub.conf.dirPath).."'>"..
+		lang["mess_click_link"].."</a>")
 	end
 	
 	setMessage(message)
