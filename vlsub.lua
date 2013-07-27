@@ -483,15 +483,16 @@ end
 
 function assoc_select_conf(select_id, option, conf, ind, default)
 -- Helper for i/o interaction betwenn drop down and option list (lang...)
-	select_conf[select_id] = {cf = conf, opt  = option, dflt = default}
-	set_default_option(select_id, ind)
+	select_conf[select_id] = {cf = conf, opt  = option, dflt = default, ind = ind}
+	set_default_option(select_id)
 	display_select(select_id)
 end
 
-function set_default_option(select_id, ind)
+function set_default_option(select_id)
 -- Put the selected option of a list in first place of the associated table 
 	local opt = select_conf[select_id].opt
 	local cfg = select_conf[select_id].cf
+	local ind = select_conf[select_id].ind
 	if openSub.option[opt] then
 		table.sort(cfg, function(a, b) 
 			if a[1] == openSub.option[opt] then
