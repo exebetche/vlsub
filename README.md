@@ -23,21 +23,23 @@ http://addons.videolan.org/content/download.php?content=148752&id=2&tan=28601353
 #### USAGE:
 * Start Vlc
 * Start your video
-* Click on the menu View > VLSub or VLC > Extension > VLSub if you're using Mac OS X
+* Click on the menu View > VLSub or VLC > Extension > VLSub if you're on Mac OS X
 * Click on "Search by hash" or "Search by name"
 * Select a subtitles file on the list
 * Click on "Download selection"
-* That's it, the subtitles should appear on your video
+* That's it, the subtitles should appear on your video. 
+* If you're not happy with your subtitles (wrong sync etc), you can select an other one and click "Download" again, that will erase the previous one and load it autoamtically.
 
-Alternatively if you are using Windows 7 you can use the installer available here:  
-http://addons.videolan.org/content/download.php?content=148752&id=2&tan=28601353
+#### Limitation:
 
-#### KNOWN BUG:
+Due to some bugs on Windows, if the path to your video contain non-english characters, the extension will not be able to save subtitles in this directory autmatically (it will propose you to save it manually) and the "search by hash" method might be slower.
 
-LUA handle UTF8 perfectly well but Windows use some UTF16 "little idian" encoding  
-so any file with any not ASCII characters in is inacessible on Windows only.
+-> If possible, use a diretcory with english (ASCII) characters only to store your videos (on Windows only).
 
 #### Changelog:
+
+##### 2013-07-25 (version 0.9.8)
+Add a method to search subtitles for videos file inside an archive and for video with specials characters in its name or path on Windows.
 
 ##### 2013-07-13 (version 0.9.6)
 Add an installer for Windows 7  
