@@ -348,7 +348,9 @@ function meta_changed()
 end
 
 function input_changed()
+	collectgarbage()
 	set_interface_main()
+	collectgarbage()
 end
 
 						--[[ Interface data ]]--
