@@ -1423,8 +1423,12 @@ function dump_zip(url, subfileName)
 	end
 	
 	local tmpFileName = openSub.conf.dirPath..openSub.conf.slash..subfileName..".gz"
-	if not file_touch(tmpFileName) then 
-		os.execute("mkdir " .. openSub.conf.dirPath)
+	if not file_touch(tmpFileName) then
+		if openSub.conf.os == "win" then
+			os.execute('mkdir "' .. openSub.conf.dirPath..'"')
+		elseif openSub.conf.os == "lin" then
+			os.execute("mkdir -p '" .. openSub.conf.dirPath.."'")
+		end
 	end
 	local tmpFile = assert(io.open(tmpFileName, "wb"))
 		
