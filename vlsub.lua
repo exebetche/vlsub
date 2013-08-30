@@ -569,6 +569,8 @@ function check_config()
 			vlc_dir = userdatadir
 		elseif is_dir(datadir) then
 			vlc_dir = datadir
+		else
+			vlc_dir = userdatadir
 		end
 		
 		if vlc_dir then
@@ -587,7 +589,7 @@ function check_config()
 			--~ openSub.conf.cachePath = openSub.conf.dirPath..openSub.conf.slash.."cache"
 			--~ openSub.conf.subPath = openSub.conf.dirPath..openSub.conf.slash.."subtitles"
 			--~ vlc.config.set("sub-autodetect-path", vlc.config.get("sub-autodetect-path")..", "..openSub.conf.subPath)
-			openSub.conf.hasPath = true
+			openSub.conf.hasPath = true			
 		end
 	end
 	vlc.msg.dbg("[VLSub] Working directory: " .. (openSub.conf.dirPath or "not found"))
