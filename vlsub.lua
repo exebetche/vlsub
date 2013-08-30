@@ -556,15 +556,23 @@ function check_config()
 	local userdatadir = vlc.config.userdatadir()
 	local datadir = vlc.config.datadir()
 	
-	if conf_file_path and is_dir(conf_file_path) then
+	if conf_file_path then
 	-- VLSub working dirrectory set by user
 		-- Remove slash at the end if there is one
 		conf_file_path = string.gsub(conf_file_path, "^(.-)[\\/]?$", "%1")
 		openSub.conf.dirPath = conf_file_path
 		openSub.conf.hasPath = true
+		openSub.conf.filePath = openSub.conf.dirPath..openSub.conf.slash.."vlsub_conf.xml"
+		openSub.conf.localePath = openSub.conf.dirPath..openSub.conf.slash.."locale"
+		
+		if not is_dir(conf_file_path)
+			mkdir_p(openSub.conf.filePath)
+		end
+		
+		openSub.conf.hasPath = true		
 	else
 		local vlc_dir = nil
-	
+		
 		if is_dir(userdatadir) then
 			vlc_dir = userdatadir
 		elseif is_dir(datadir) then
@@ -1167,11 +1175,32 @@ openSub = {
 		
 		local data_start = ""
 		local data_end = ""
-        local size = 0
-        
-		if openSub.file.is_archive
-		or not file_exist(openSub.file.path) then
+        local size
+        local chunk_size = 65536
+                
+		-- Get data for hash calculation
+		if openSub.file.is_archive then
 			vlc.msg.dbg("[VLSub] Read hash data from stream")
+		
+			local file = vlc.stream(openSub.file.uri)
+			local dataTmp1 = ""
+			local dataTmp2 = ""
+			size = chunk_size
+			
+			data_start = file:read(chunk_size)
+			
+			while data_end do
+				size = size + string.len(data_end)
+				dataTmp1 = dataTmp2
+				dataTmp2 = data_end
+				data_end = file:read(chunk_size)
+				collectgarbage()
+			end
+			data_end = string.sub((dataTmp1..dataTmp2), -chunk_size)
+		elseif not file_exist(openSub.file.path) 
+		and openSub.file.stat then
+			vlc.msg.dbg("[VLSub] Read hash data from stream")
+			
 			local file = vlc.stream(openSub.file.uri)
 			
 			if not file then
@@ -1179,61 +1208,63 @@ openSub = {
 				return false
 			end
 			
-		-- Get data for hash calcul
-			data_start = file:read(65536)
+			size = openSub.file.stat.size
+			local decal = size%chunk_size
 			
-			local dataTmp1 = ""
-			local dataTmp2 = ""
-			size = 65536
-			while data_end do
-				size = size + string.len(data_end)
-				dataTmp1 = dataTmp2
-				dataTmp2 = data_end
-				data_end = file:read(65536)
-				collectgarbage()
-			end
-			data_end = string.sub((dataTmp1..dataTmp2), -65536)
+			data_start = file:read(chunk_size)
+			
+			-- "Seek" to the end 
+			file:read(decal)
+			file:read((size-decal)-2*chunk_size)
+			
+			data_end = file:read(chunk_size)
 				
 			file = nil
 		else
 			vlc.msg.dbg("[VLSub] Read hash data from file")
 			local file = io.open( openSub.file.path, "rb")
-			data_start = file:read(65536)
-			size = file:seek("end", -65536) + 65536
-			data_end = file:read(65536)
+			if not file then
+				vlc.msg.dbg("[VLSub] No stream")
+				return false
+			end
+			
+			data_start = file:read(chunk_size)
+			size = file:seek("end", -chunk_size) + chunk_size
+			data_end = file:read(chunk_size)
 			file = nil
 		end
-	
-	-- Hash calcul
-        local lo = 0
+		
+	-- Hash calculation
+        local lo = size
         local hi = 0
         local o,a,b,c,d,e,f,g,h
-		for o in string.gmatch(data_start..data_end, "........") do
-			a,b,c,d,e,f,g,h = o:byte(1,8)
+        local hash_data = data_start..data_end
+        local max_size = 4294967296
+        local overflow
+        
+		for i = 1,  #hash_data, 8 do
+			a,b,c,d,e,f,g,h = hash_data:byte(i,i+7)
 			lo = lo + a + b*256 + c*65536 + d*16777216
 			hi = hi + e + f*256 + g*65536 + h*16777216
-			while lo>=4294967296 do
-					lo = lo-4294967296
-					hi = hi+1
+			
+			if lo > max_size then
+				overflow = math.floor(lo/max_size)
+				lo = lo-(overflow*max_size)
+				hi = hi+overflow
 			end
-			while hi>=4294967296 do
-					hi = hi-4294967296
+			
+			if hi > max_size then
+				overflow = math.floor(hi/max_size)
+				hi = hi-(overflow*max_size)
 			end
         end
-		
-        lo = lo + size
-        
-		while lo>=4294967296 do
-				lo = lo-4294967296
-				hi = hi+1
-		end
-		while hi>=4294967296 do
-				hi = hi-4294967296
-		end
 		
 		openSub.file.bytesize = size
 		openSub.file.hash = string.format("%08x%08x", hi,lo)
 		vlc.msg.dbg("[VLSub] Video hash: "..openSub.file.hash)
+		vlc.msg.dbg("[VLSub] Video bytesize: "..size)
+		collectgarbage()
+		return true
 	end,
 	checkSession = function()
 		
@@ -1343,7 +1374,18 @@ function download_subtitles()
 	
 	subfileName = subfileName.."."..item.SubFormat
 	
-	local tmpFileURI, tmpFileName = dump_zip(item.ZipDownloadLink, item.SubFileName)
+	local tmpFileURI, tmpFileName = dump_zip(item.ZipDownloadLink, openSub.file.dir, item.SubFileName)
+	
+	-- display a link, if path is inaccessible
+	if not tmpFileURI then 
+		message =  message..
+		"<br> "..error_tag(lang["mess_save_fail"].." &nbsp;"..
+		-- "<a href='"..subfileURI.."'>"..lang["mess_click_link"].."</a>")
+		"<a href='"..vlc.strings.make_uri(openSub.conf.dirPath).."'>"..
+		lang["mess_click_link"].."</a>")
+		return false
+	end
+	
 	vlc.msg.dbg("[VLsub] tmpFileName: "..tmpFileName)
 	
 	-- Determine if the path to the video file is accessible for writing
@@ -1396,19 +1438,11 @@ function download_subtitles()
 		message = success_tag(lang["mess_loaded"])
 	end
 	
-	-- display a link, if path is inaccessible
-	if not target_exist then 
-		message =  message..
-		"<br> "..error_tag(lang["mess_save_fail"].." &nbsp;"..
-		-- "<a href='"..subfileURI.."'>"..lang["mess_click_link"].."</a>")
-		"<a href='"..vlc.strings.make_uri(openSub.conf.dirPath).."'>"..
-		lang["mess_click_link"].."</a>")
-	end
 	
 	setMessage(message)
 end
 
-function dump_zip(url, subfileName)
+function dump_zip(url, dir, subfileName)
 	-- Dump zipped data in a temporary file
 	setMessage(openSub.actionLabel..": "..progressBarContent(0))
 	local resp = get(url)
@@ -1418,7 +1452,7 @@ function dump_zip(url, subfileName)
 		return false 
 	end
 	
-	local tmpFileName = openSub.conf.dirPath..openSub.conf.slash..subfileName..".gz"
+	local tmpFileName = dir..openSub.conf.slash..subfileName..".gz"
 	if not file_touch(tmpFileName) then
 		return false
 	end
