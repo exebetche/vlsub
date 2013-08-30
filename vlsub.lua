@@ -565,7 +565,7 @@ function check_config()
 		openSub.conf.filePath = openSub.conf.dirPath..openSub.conf.slash.."vlsub_conf.xml"
 		openSub.conf.localePath = openSub.conf.dirPath..openSub.conf.slash.."locale"
 		
-		if not is_dir(conf_file_path)
+		if not is_dir(conf_file_path) then
 			mkdir_p(openSub.conf.filePath)
 		end
 		
