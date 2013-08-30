@@ -585,6 +585,7 @@ function check_config()
 			end
 			openSub.conf.filePath = openSub.conf.dirPath..openSub.conf.slash.."vlsub_conf.xml"
 			openSub.conf.localePath = openSub.conf.dirPath..openSub.conf.slash.."locale"
+			mkdir_p(openSub.conf.filePath)
 			-- TODO
 			--~ openSub.conf.cachePath = openSub.conf.dirPath..openSub.conf.slash.."cache"
 			--~ openSub.conf.subPath = openSub.conf.dirPath..openSub.conf.slash.."subtitles"
@@ -776,13 +777,6 @@ function save_config()
 	end
 	vlc.msg.dbg("[VLSub] Saving config file:  " .. openSub.conf.filePath)
 	
-	if not file_touch(openSub.conf.filePath) then
-		if openSub.conf.os == "win" then
-			os.execute('mkdir "' .. openSub.conf.dirPath..'"')
-		elseif openSub.conf.os == "lin" then
-			os.execute("mkdir -p '" .. openSub.conf.dirPath.."'")
-		end
-	end
 	if file_touch(openSub.conf.filePath) then
 		local tmpFile = assert(io.open(openSub.conf.filePath, "wb"))
 		local resp = dump_xml(openSub.option)
@@ -1426,11 +1420,7 @@ function dump_zip(url, subfileName)
 	
 	local tmpFileName = openSub.conf.dirPath..openSub.conf.slash..subfileName..".gz"
 	if not file_touch(tmpFileName) then
-		if openSub.conf.os == "win" then
-			os.execute('mkdir "' .. openSub.conf.dirPath..'"')
-		elseif openSub.conf.os == "lin" then
-			os.execute("mkdir -p '" .. openSub.conf.dirPath.."'")
-		end
+		return false
 	end
 	local tmpFile = assert(io.open(tmpFileName, "wb"))
 		
@@ -1811,6 +1801,14 @@ function list_dir(path)
 	end
 end
 
+function mkdir_p(path)
+	if openSub.conf.os == "win" then
+		os.execute('mkdir "' .. path..'"')
+	elseif openSub.conf.os == "lin" then
+		os.execute("mkdir -p '" .. path.."'")
+	end
+end
+		
 function trim(str)
     if not str then return "" end
     return string.gsub(str, "^[\r\n%s]*(.-)[\r\n%s]*$", "%1")
