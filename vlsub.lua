@@ -803,7 +803,7 @@ function apply_config()
 			
 		else
 			dir_path_err = true
-			setError(lang["mess_err_wrong_path"].."<br><b>"..string.gsub(dir_path, "[^%:%w%p§¤]+", "<span style='color:#B23'>%1</span>").."</b>")
+			setError(lang["mess_err_wrong_path"].."<br><b>"..string.gsub(dir_path, "[^%:%w%p%s§¤]+", "<span style='color:#B23'>%1</span>").."</b>")
 		end
 	end
 	
@@ -1919,7 +1919,7 @@ function mkdir_p(path)
 end
 
 function is_win_safe(path)
-	return string.match(path, "^%a?%:?[\\%w%p§¤]+$")
+	return string.match(path, "^%a?%:?[\\%w%p%s§¤]+$")
 end
 		
 function trim(str)
