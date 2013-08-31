@@ -1452,17 +1452,13 @@ function download_subtitles()
 		tmp_dir, 
 		item.SubFileName)
 	
-	-- display a link, if path is inaccessible
-	if not file_target_access then 
-	end
-	
 	vlc.msg.dbg("[VLsub] tmpFileName: "..tmpFileName)
 	
 	-- Determine if the path to the video file is accessible for writing
 	
 	local target = openSub.file.dir..subfileName
 	
-	if not file_exist(target) then
+	if not file_touch(target) then
 		if openSub.conf.dirPath then
 			target =  openSub.conf.dirPath..slash..subfileName
 			message = "<br> "..error_tag(lang["mess_save_fail"].." &nbsp;"..
