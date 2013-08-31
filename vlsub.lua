@@ -567,7 +567,12 @@ function check_config()
 	-- if not stored in vlc config
 	-- try to find a suitable config file path 
 	
-    if not openSub.conf.dirPath then
+    if openSub.conf.dirPath then
+		if not is_dir(openSub.conf.dirPath) and
+		is_win_safe(openSub.conf.dirPath) then
+			mkdir_p(openSub.conf.dirPath)
+		end
+    else
 		local userdatadir = vlc.config.userdatadir()
 		local datadir = vlc.config.datadir()
 		
