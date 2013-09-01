@@ -280,8 +280,8 @@ local select_conf = {} -- Drop down widget / option table association
 
 function descriptor()
 	return { 
-		title = "VLsub 0.9",
-		version = "0.9",
+		title = "VLsub 0.9.9",
+		version = "0.9.9",
 		author = "exebetche",
 		url = 'http://www.opensubtitles.org/',
 		shortdesc = "VLsub";
@@ -551,7 +551,7 @@ function check_config()
 	local dirPath = slash..table.concat(path_generic, slash)
 	local filePath	= slash.."vlsub_conf.xml"
 	local config_saved = false
-	sub_dir = slash.."vlsub"..slash.."subtitles"
+	sub_dir = slash.."vlsub_subtitles"
 	
 	-- Check if config file path is stored in vlc config
 	local other_dirs = {}
