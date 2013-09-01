@@ -756,7 +756,8 @@ function apply_config()
 	local sel_val
 	local opt
 	
-	if lg_sel and lg_sel ~= 1 and openSub.conf.translations_avail[lg_sel] then
+	if lg_sel and lg_sel ~= 1 
+	and openSub.conf.translations_avail[lg_sel] then
 		local lg = openSub.conf.translations_avail[lg_sel][1]
 		set_translation(lg)
 		SetDownloadBehaviours()
@@ -785,11 +786,15 @@ function apply_config()
 		openSub.option.removeTag = not openSub.option.removeTag
 	end
 	
+	-- Set a custom working directory
 	local dir_path = input_table['dir_path']:get_text()
 	local dir_path_err = false
+	if trim(dir_path) == "" then dir_path = nil end
 	
-	if dir_path ~= openSub.conf.dirPath and trim(dir_path) ~= "" then
-		if openSub.conf.os == "lin" or is_win_safe(dir_path) then
+	if dir_path ~= openSub.conf.dirPath then
+		if openSub.conf.os == "lin" 
+		or is_win_safe(dir_path) 
+		or not dir_path then
 			local other_dirs = {}
 		
 			for path in vlc.config.get("sub-autodetect-path"):gmatch("[^,]+") do
@@ -799,44 +804,62 @@ function apply_config()
 				end
 			end
 			openSub.conf.dirPath = dir_path
-			table.insert(other_dirs, string.gsub(dir_path, "^(.-)[\\/]?$", "%1")..sub_dir)
+			if dir_path then
+				table.insert(other_dirs, 
+				string.gsub(dir_path, "^(.-)[\\/]?$", "%1")..sub_dir)
+				
+				if not is_dir(dir_path) then
+					mkdir_p(dir_path)
+				end
+				
+				openSub.conf.filePath = openSub.conf.dirPath..slash.."vlsub_conf.xml"
+				openSub.conf.localePath = openSub.conf.dirPath..slash.."locale"
+			else
+				openSub.conf.filePath = nil
+				openSub.conf.localePath = nil
+			end
 			vlc.config.set("sub-autodetect-path", table.concat(other_dirs, ", "))
-			
-			if not is_dir(openSub.conf.dirPath) then
-				mkdir_p(openSub.conf.dirPath)
-			end			
-			
 		else
 			dir_path_err = true
 			setError(lang["mess_err_wrong_path"].."<br><b>"..string.gsub(dir_path, "[^%:%w%p%s§¤]+", "<span style='color:#B23'>%1</span>").."</b>")
 		end
 	end
 	
-	if not dir_path_err then
+	if openSub.conf.dirPath and
+	not dir_path_err then
 		local config_saved = save_config()
 		trigger_menu(1)
 		if not config_saved then
 			setError(lang["mess_err_conf_access"])
 		end
+	else
+		setError(lang["mess_err_conf_access"])
 	end
 end
 
 function save_config()
 -- Dump local config into config file 
-	vlc.msg.dbg("[VLSub] Saving config file:  " .. openSub.conf.filePath)
-	
-	if file_touch(openSub.conf.filePath) then
-		local tmpFile = assert(io.open(openSub.conf.filePath, "wb"))
-		local resp = dump_xml(openSub.option)
-		tmpFile:write(resp)
-		tmpFile:flush()
-		tmpFile:close()
-		tmpFile = nil
+	if openSub.conf.dirPath
+	and openSub.conf.filePath then
+		vlc.msg.dbg("[VLSub] Saving config file:  " .. openSub.conf.filePath)
+		
+		if file_touch(openSub.conf.filePath) then
+			local tmpFile = assert(io.open(openSub.conf.filePath, "wb"))
+			local resp = dump_xml(openSub.option)
+			tmpFile:write(resp)
+			tmpFile:flush()
+			tmpFile:close()
+			tmpFile = nil
+		else
+			return false
+		end
+		collectgarbage()
+		return true
 	else
+		vlc.msg.dbg("[VLSub] Unable fount a suitable path to save config, please set it manually")
+		setError(lang["mess_err_conf_access"])
 		return false
 	end
-	collectgarbage()
-	return true
 end
 
 function SetDownloadBehaviours()
@@ -884,10 +907,11 @@ function set_translation(lg)
 		for k, v in pairs(eng_translation) do
 			openSub.option.translation[k] = v
 		end
-	elseif openSub.conf.localePath then
+	else
 		-- If translation file exists in /locale directory load it
-		local transl_file_path = openSub.conf.localePath..slash..lg..".xml"
-		if file_exist(transl_file_path) then
+		if openSub.conf.localePath 
+		and file_exist(openSub.conf.localePath..slash..lg..".xml") then
+			local transl_file_path = openSub.conf.localePath..slash..lg..".xml"
 			vlc.msg.dbg("[VLSub] Loading translation from file: " .. transl_file_path)
 			load_transl(transl_file_path)
 			apply_translation()
@@ -1846,11 +1870,10 @@ function make_uri(str, encode)
     end
 end
 
-function is_window_path(path)
-	return string.match(path, "^(%a:\).+$")
-end
-
 function file_touch(name) -- test writetability
+	if not name or trim(name) == "" 
+	then return false end
+	
 	local f=io.open(name ,"w")
 	if f~=nil then 
 		io.close(f) 
@@ -1861,6 +1884,8 @@ function file_touch(name) -- test writetability
 end
 
 function file_exist(name) -- test readability
+	if not name or trim(name) == "" 
+	then return false end
 	local f=io.open(name ,"r")
 	if f~=nil then 
 		io.close(f) 
@@ -1871,6 +1896,8 @@ function file_exist(name) -- test readability
 end
 
 function is_dir(path)
+	if not path or trim(path) == "" 
+	then return false end
 	-- Remove slash at the or it won't work on Windows
 	path = string.gsub(path, "^(.-)[\\/]?$", "%1")
 	local f, _, code = io.open(path, "rb")
@@ -1889,6 +1916,8 @@ function is_dir(path)
 end
 
 function list_dir(path)
+	if not path or trim(path) == "" 
+	then return false end
 	local dir_list_cmd 
 	local list = {}
 	if not is_dir(path) then return false end
@@ -1912,6 +1941,8 @@ function list_dir(path)
 end
 
 function mkdir_p(path)
+	if not path or trim(path) == "" 
+	then return false end
 	if openSub.conf.os == "win" then
 		os.execute('mkdir "' .. path..'"')
 	elseif openSub.conf.os == "lin" then
@@ -1919,7 +1950,14 @@ function mkdir_p(path)
 	end
 end
 
+function is_window_path(path)
+	return string.match(path, "^(%a:\).+$")
+end
+
 function is_win_safe(path)
+	if not path or trim(path) == "" 
+	or not is_window_path(path)
+	then return false end
 	return string.match(path, "^%a?%:?[\\%w%p%s§¤]+$")
 end
 		
