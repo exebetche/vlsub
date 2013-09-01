@@ -569,43 +569,61 @@ function check_config()
 	
     if openSub.conf.dirPath then
 		if not is_dir(openSub.conf.dirPath) and
-		is_win_safe(openSub.conf.dirPath) then
+		(openSub.conf.os == "lin"  or
+		is_win_safe(openSub.conf.dirPath)) then
 			mkdir_p(openSub.conf.dirPath)
 		end
     else
 		local userdatadir = vlc.config.userdatadir()
 		local datadir = vlc.config.datadir()
 		
+		-- check if the config already exist
 		if file_exist(userdatadir..dirPath..filePath) then
 			openSub.conf.dirPath = userdatadir..dirPath
 			config_saved = true
 		elseif file_exist(datadir..dirPath..filePath) then
 			openSub.conf.dirPath = datadir..dirPath
 			config_saved = true
-		else		
-			if is_dir(userdatadir) and
-			not is_dir(userdatadir..dirPath) then
-				mkdir_p(userdatadir..dirPath)
+		else
+			-- use the same folder as the extension if accessible
+			if is_dir(userdatadir..dirPath) 
+			and file_touch(userdatadir..dirPath..filePath) then
+					openSub.conf.dirPath = userdatadir..dirPath
+			elseif is_dir(datadir..dirPath)
+			and file_touch(datadir..dirPath..filePath) then
+				openSub.conf.dirPath = datadir..dirPath
+			end
+			
+			-- try to create working dir in user folder
+			if not openSub.conf.dirPath
+			and is_dir(userdatadir) then
+				if not is_dir(userdatadir..dirPath) then
+					mkdir_p(userdatadir..dirPath)
+				end
 				if is_dir(userdatadir..dirPath) and
 				file_touch(userdatadir..dirPath..filePath) then
 					openSub.conf.dirPath = userdatadir..dirPath
 				end
 			end
-						
+			
+			-- try to create working dir in vlc folder	
 			if not openSub.conf.dirPath and
-			is_dir(datadir) and
-			not is_dir(datadir..dirPath) then
-				mkdir_p(datadir..dirPath)
+			is_dir(datadir) then
+				if not is_dir(datadir..dirPath) then
+					mkdir_p(datadir..dirPath)
+				end
 				if file_touch(datadir..dirPath..filePath) then
 					openSub.conf.dirPath = datadir..dirPath
 				end
 			end
-		end	
+		end
 		
+		-- save the path to the working directory in a vlc cnfig variable
+		-- hacky, but the only way I found to allow user to set this manually		
 		if openSub.conf.dirPath then
 			vlc.config.set("sub-autodetect-path", 
 				vlc.config.get("sub-autodetect-path")
-				..", "..openSub.conf.dirPath..slash.."subtitles")
+				..", "..openSub.conf.dirPath..sub_dir)
 		end
 	end
 	
@@ -623,10 +641,10 @@ function check_config()
 		else
 			vlc.msg.dbg("[VLSub] No config file")
 			getenv_lang()
-			--~ config_saved = save_config()
-			--~ if not config_saved then
-				--~ vlc.msg.dbg("[VLSub] "..openSub.conf.filePath)
-			--~ end
+			config_saved = save_config()
+			if not config_saved then
+				vlc.msg.dbg("[VLSub] Unable to save config")
+			end
 		end
 		
 		-- Check presence of a translation file in "%vlsub_directory%/locale"
