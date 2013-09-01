@@ -619,14 +619,6 @@ function check_config()
 				end
 			end
 		end
-		
-		-- save the path to the working directory in a vlc cnfig variable
-		-- hacky, but the only way I found to allow user to set this manually		
-		if openSub.conf.dirPath then
-			vlc.config.set("sub-autodetect-path", 
-				vlc.config.get("sub-autodetect-path")
-				..", "..openSub.conf.dirPath..sub_dir)
-		end
 	end
 	
 	if openSub.conf.dirPath then
