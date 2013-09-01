@@ -794,7 +794,7 @@ function apply_config()
 		
 			for path in vlc.config.get("sub-autodetect-path"):gmatch("[^,]+") do
 				path = trim(path)
-				if path ~= openSub.conf.dirPath..sub_dir then
+				if path ~= (openSub.conf.dirPath or "")..sub_dir then
 					table.insert(other_dirs, path)
 				end
 			end
