@@ -585,12 +585,14 @@ function check_config()
 			openSub.conf.dirPath = datadir..dirPath
 			config_saved = true
 		else
+			local extension_path = slash..path_generic[1]
+				..slash..path_generic[2]
+			
 			-- use the same folder as the extension if accessible
-			if is_dir(userdatadir..dirPath) 
+			if is_dir(userdatadir..extension_path) 
 			and file_touch(userdatadir..dirPath..filePath) then
 					openSub.conf.dirPath = userdatadir..dirPath
-			elseif is_dir(datadir..dirPath)
-			and file_touch(datadir..dirPath..filePath) then
+			elseif file_touch(datadir..dirPath..filePath) then
 				openSub.conf.dirPath = datadir..dirPath
 			end
 			
