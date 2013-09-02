@@ -1567,7 +1567,7 @@ function dump_zip(url, dir, subfileName)
 	tmpFile:close()
 	tmpFile = nil
 	collectgarbage()
-	return "zip://"..vlc.strings.make_uri(tmpFileName).."!/"..subfileName, tmpFileName
+	return "zip://"..make_uri(tmpFileName, true).."!/"..subfileName, tmpFileName
 end
 
 function add_sub(subfileURI)
