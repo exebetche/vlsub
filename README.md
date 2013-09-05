@@ -9,13 +9,14 @@ Contact: http://addons.videolan.org/messages/?action=newmessage&username=exebetc
 Bug report: http://addons.videolan.org/content/show.php/?content=148752  
 
 #### INSTALLATION:
-Save the file "vlsub.lua" in vlc /lua/extensions directory of your OS:
+- Create a directory "extensions" at this locationif it doesn't exists depending on your system:
 * Windows (all users): %ProgramFiles%\VideoLAN\VLC\lua\extensions\
 * Windows (current user): %APPDATA%\vlc\lua\extensions\
 * Linux (all users): /usr/lib/vlc/lua/extensions/
 * Linux (current user): ~/.local/share/vlc/lua/extensions/
 * Mac OS X (all users): /Applications/VLC.app/Contents/MacOS/share/lua/extensions/
 * Mac OS X (current user): /Users/%your_name%/Library/Application Support/org.videolan.vlc/lua/extensions/
+- Download the archive and extract the file "vlsub.lua" inside.
 
 Alternatively if you are using Windows 7 you can use the installer availbale here:  
 http://addons.videolan.org/content/download.php?content=148752&id=2&tan=28601353
@@ -37,6 +38,13 @@ Due to some bugs on Windows, if the path to your video contain non-english chara
 -> If possible, use a diretcory with english (ASCII) characters only to store your videos (on Windows only).
 
 #### Changelog:
+
+##### 2013-09-05 (version 0.9.10)
+Add possibility to set opensubtitles.org username/password in config menu to avoid download limit to unlogged users
+
+##### 2013-08-31 (version 0.9.9)
+Review configuration process from scratch to avoid blocking problem with Win 8 + windows username with special characters
+Allow user to set VLSub's working directory from config interface 
 
 ##### 2013-07-25 (version 0.9.8)
 Add a method to search subtitles for videos file inside an archive and for video with specials characters in its name or path on Windows.
