@@ -84,6 +84,8 @@ local options = {
 		int_display_code = 'Display language code in file name',
 		int_remove_tag = 'Remove tags',
 		int_vlsub_work_dir = 'VLSub working directory',
+		int_os_username = 'Username',
+		int_os_password = 'Password',
 		int_help_mess = " Download subtittles from <a href='http://www.opensubtitles.org/'>opensubtitles.org</a> and display them while watching a video.<br>"..
 			" <br>"..
 			" <b><u>Usage:</u></b><br>"..
@@ -400,12 +402,17 @@ function interface_config()
 	end
 	
 	input_table['dir_path'] = dlg:add_text_input(openSub.conf.dirPath, 2, 6, 2, 1)
-			
-	input_table['message'] = nil
-	input_table['message'] = dlg:add_label(' ', 1, 7, 3, 1)
 	
-	dlg:add_button(lang["int_cancel"], show_main, 2, 8, 1, 1)
-	dlg:add_button(lang["int_save"], apply_config, 3, 8, 1, 1)
+	dlg:add_label(lang["int_os_username"]..':', 1, 7, 0, 1)
+	input_table['os_username'] = dlg:add_text_input(openSub.option.os_username or "", 2, 7, 2, 1)
+	dlg:add_label(lang["int_os_password"]..':', 1, 8, 0, 1)
+	input_table['os_password'] = dlg:add_text_input(openSub.option.os_password or "", 2, 8, 2, 1)
+				
+	input_table['message'] = nil
+	input_table['message'] = dlg:add_label(' ', 1, 9, 3, 1)
+	
+	dlg:add_button(lang["int_cancel"], show_main, 2, 10, 1, 1)
+	dlg:add_button(lang["int_save"], apply_config, 3, 10, 1, 1)
 	
 	input_table['langExt']:add_value(lang["int_bool_"..tostring(openSub.option.langExt)], 1)
 	input_table['langExt']:add_value(lang["int_bool_"..tostring(not openSub.option.langExt)], 2)
@@ -790,6 +797,10 @@ function apply_config()
 		end
 	end
 	
+	
+	openSub.option.os_username = input_table['os_username']:get_text()
+	openSub.option.os_password = input_table['os_password']:get_text()
+	
 	if input_table["langExt"]:get_value() == 2 then
 		openSub.option.langExt = not openSub.option.langExt
 	end
@@ -1055,8 +1066,8 @@ openSub = {
 			params = function()
 				openSub.actionLabel = lang["action_login"]
 				return {
-					{ value={ string=openSub.option.username } },
-					{ value={ string=openSub.option.password } },
+					{ value={ string=openSub.option.os_username } },
+					{ value={ string=openSub.option.os_password } },
 					{ value={ string=openSub.movie.sublanguageid } },
 					{ value={ string=openSub.conf.useragent } } 
 				}
