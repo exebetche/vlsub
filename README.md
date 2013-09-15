@@ -33,7 +33,7 @@ http://addons.videolan.org/content/download.php?content=148752&id=2&tan=28601353
 
 #### Limitation:
 
-Due to some bugs on Windows, if the path to your video contain non-english characters, the extension will not be able to save subtitles in this directory autmatically (it will propose you to save it manually) and the "search by hash" method might be slower.
+Due to some bugs on Windows, if the path to your video contain non-english characters, the extension will not be able to save subtitles in this directory automatically (it will propose you to save it manually) and the "search by hash" method might be slower.
 
 -> If possible, use a diretcory with english (ASCII) characters only to store your videos (on Windows only).
 
@@ -43,7 +43,7 @@ Due to some bugs on Windows, if the path to your video contain non-english chara
 Add possibility to set opensubtitles.org username/password in config menu to avoid download limit to unlogged users
 
 ##### 2013-08-31 (version 0.9.9)
-Review configuration process from scratch to avoid blocking problem with Win 8 + windows username with special characters
+Rewrite configuration process from scratch to avoid blocking problem with Win 8 + windows username with special characters
 Allow user to set VLSub's working directory from config interface 
 
 ##### 2013-07-25 (version 0.9.8)
