@@ -9,7 +9,7 @@ Contact: http://addons.videolan.org/messages/?action=newmessage&username=exebetc
 Bug report: http://addons.videolan.org/content/show.php/?content=148752  
 
 #### INSTALLATION:
-Create a directory "extensions" at this location if it doesn't exists depending on your system, then extract the file "vlsub.lua" from the archive inside:
+Create a directory "extensions" at this location if it doesn't exists, then extract the file "vlsub.lua" from the archive inside:
 * Windows (all users): %ProgramFiles%\VideoLAN\VLC\lua\extensions\
 * Windows (current user): %APPDATA%\vlc\lua\extensions\
 * Linux (all users): /usr/lib/vlc/lua/extensions/
