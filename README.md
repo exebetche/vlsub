@@ -29,7 +29,7 @@ http://addons.videolan.org/content/download.php?content=148752&id=2&tan=28601353
 * Select a subtitles file on the list
 * Click on "Download selection"
 * That's it, the subtitles should appear on your video. 
-* If you're not happy with your subtitles (wrong sync etc), you can select an other one and click "Download" again, that will erase the previous one and load it autoamtically.
+* If you're not happy with your subtitles (wrong sync etc), you can select an other one and click "Download" again, that will erase the previous one and load it automatically.
 
 #### Limitation:
 
