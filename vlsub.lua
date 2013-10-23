@@ -1475,9 +1475,9 @@ function download_subtitles()
 		subfileName = subfileName.."."..item.SubLanguageID
 	end
 	
+	local fln_beforeExtension = subfileName
 	subfileName = subfileName.."."..item.SubFormat
 	local tmp_dir
-	local file_target_access = true
 	
 	if is_dir(openSub.file.dir) then
 		tmp_dir = openSub.file.dir
@@ -1502,12 +1502,13 @@ function download_subtitles()
 	vlc.msg.dbg("[VLsub] tmpFileName: "..tmpFileName)
 	
 	-- Determine if the path to the video file is accessible for writing
+	local fln_pathToFile = openSub.file.dir
+	local target = fln_pathToFile..subfileName
 	
-	local target = openSub.file.dir..subfileName
-	
-	if not file_touch(target) then
+	if not file_touch(target..".tmp") then
 		if openSub.conf.dirPath then
-			target =  openSub.conf.dirPath..slash..subfileName
+			fln_pathToFile = openSub.conf.dirPath..slash
+			target =  fln_pathToFile..subfileName
 			message = "<br> "..error_tag(lang["mess_save_fail"].." &nbsp;"..
 			"<a href='"..vlc.strings.make_uri(openSub.conf.dirPath).."'>"..
 			lang["mess_click_link"].."</a>")
@@ -1517,9 +1518,20 @@ function download_subtitles()
 			lang["mess_click_link"].."</a>")
 			return false
 		end
+	else
+		os.remove(target..".tmp")
 	end
 	
 	vlc.msg.dbg("[VLsub] Subtitles files: "..target)
+	
+	-- Check if exists and rename
+	local tmpTarget = target
+	local tmpCount = 1
+	while file_exist(tmpTarget) do
+		tmpTarget = fln_pathToFile..fln_beforeExtension.."("..tmpCount..")."..item.SubFormat
+		tmpCount = tmpCount + 1
+	end
+	target = tmpTarget
 	
 	-- Unzipped data into file target 
 		
