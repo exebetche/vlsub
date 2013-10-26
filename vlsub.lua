@@ -36,6 +36,7 @@ local options = {
 	downloadBehaviour = 'save',
 	langExt = false,
 	removeTag = false,
+	overwriteSubs = true,
 	showMediaInformation = true,
 	progressBarSize = 80,
 	intLang = 'eng',
@@ -108,6 +109,7 @@ local options = {
 			" <b>/!\\ Beware :</b> Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet're important.<br>"..
 			" <br>"..
 			" Find more Vlc extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>.",
+		int_overwrite_subs = 'Overwrite subtitles',
 		
 		action_login = 'Logging in',
 		action_logout = 'Logging out',
@@ -390,34 +392,41 @@ function interface_config()
 	input_table['langExt'] = dlg:add_dropdown(3, 4, 1, 1)
 	dlg:add_label(lang["int_remove_tag"]..':', 1, 5, 0, 1)
 	input_table['removeTag'] = dlg:add_dropdown(3, 5, 1, 1)
-		
+
+	-- On many files
+	dlg:add_label(lang["int_overwrite_subs"]..':', 1, 6, 0, 1)
+	input_table['overwriteSubs'] = dlg:add_dropdown(3, 6, 1, 1)
+
 	if openSub.conf.dirPath then
 		if openSub.conf.os == "win" then
-			dlg	:add_label("<a href='file:///"..openSub.conf.dirPath.."'>"..lang["int_vlsub_work_dir"].."</a>", 1, 6, 2, 1)
+			dlg	:add_label("<a href='file:///"..openSub.conf.dirPath.."'>"..lang["int_vlsub_work_dir"].."</a>", 1, 7, 2, 1)
 		else
-			dlg	:add_label("<a href='"..openSub.conf.dirPath.."'>"..lang["int_vlsub_work_dir"].."</a>", 1, 6, 2, 1)
+			dlg	:add_label("<a href='"..openSub.conf.dirPath.."'>"..lang["int_vlsub_work_dir"].."</a>", 1, 7, 2, 1)
 		end
 	else
-		dlg	:add_label(lang["int_vlsub_work_dir"], 1, 6, 2, 1)
+		dlg	:add_label(lang["int_vlsub_work_dir"], 1, 7, 2, 1)
 	end
 	
-	input_table['dir_path'] = dlg:add_text_input(openSub.conf.dirPath, 2, 6, 2, 1)
+	input_table['dir_path'] = dlg:add_text_input(openSub.conf.dirPath, 2, 7, 2, 1)
 	
-	dlg:add_label(lang["int_os_username"]..':', 1, 7, 0, 1)
-	input_table['os_username'] = dlg:add_text_input(openSub.option.os_username or "", 2, 7, 2, 1)
-	dlg:add_label(lang["int_os_password"]..':', 1, 8, 0, 1)
-	input_table['os_password'] = dlg:add_text_input(openSub.option.os_password or "", 2, 8, 2, 1)
+	dlg:add_label(lang["int_os_username"]..':', 1, 8, 0, 1)
+	input_table['os_username'] = dlg:add_text_input(openSub.option.os_username or "", 2, 8, 2, 1)
+	dlg:add_label(lang["int_os_password"]..':', 1, 9, 0, 1)
+	input_table['os_password'] = dlg:add_text_input(openSub.option.os_password or "", 2, 9, 2, 1)
 				
 	input_table['message'] = nil
-	input_table['message'] = dlg:add_label(' ', 1, 9, 3, 1)
+	input_table['message'] = dlg:add_label(' ', 1, 10, 3, 1)
 	
-	dlg:add_button(lang["int_cancel"], show_main, 2, 10, 1, 1)
-	dlg:add_button(lang["int_save"], apply_config, 3, 10, 1, 1)
+	dlg:add_button(lang["int_cancel"], show_main, 2, 11, 1, 1)
+	dlg:add_button(lang["int_save"], apply_config, 3, 11, 1, 1)
 	
 	input_table['langExt']:add_value(lang["int_bool_"..tostring(openSub.option.langExt)], 1)
 	input_table['langExt']:add_value(lang["int_bool_"..tostring(not openSub.option.langExt)], 2)
 	input_table['removeTag']:add_value(lang["int_bool_"..tostring(openSub.option.removeTag)], 1)
 	input_table['removeTag']:add_value(lang["int_bool_"..tostring(not openSub.option.removeTag)], 2)
+
+	input_table['overwriteSubs']:add_value(lang["int_bool_"..tostring(openSub.option.overwriteSubs)], 1)
+	input_table['overwriteSubs']:add_value(lang["int_bool_"..tostring(not openSub.option.overwriteSubs)], 2)
 	
 	assoc_select_conf('intLang', 'intLang', openSub.conf.translations_avail, 2)
 	assoc_select_conf('default_language', 'language', openSub.conf.languages, 2, lang["int_all"])
@@ -807,6 +816,10 @@ function apply_config()
 	
 	if input_table["removeTag"]:get_value() == 2 then
 		openSub.option.removeTag = not openSub.option.removeTag
+	end
+	
+	if input_table["overwriteSubs"]:get_value() == 2 then
+		openSub.option.overwriteSubs = not openSub.option.overwriteSubs
 	end
 	
 	-- Set a custom working directory
@@ -1475,7 +1488,7 @@ function download_subtitles()
 		subfileName = subfileName.."."..item.SubLanguageID
 	end
 	
-	local fln_beforeExtension = subfileName
+	local filenameWithoutExtension = subfileName
 	subfileName = subfileName.."."..item.SubFormat
 	local tmp_dir
 	
@@ -1525,13 +1538,15 @@ function download_subtitles()
 	vlc.msg.dbg("[VLsub] Subtitles files: "..target)
 	
 	-- Check if exists and rename
-	local tmpTarget = target
-	local tmpCount = 1
-	while file_exist(tmpTarget) do
-		tmpTarget = fln_pathToFile..fln_beforeExtension.."("..tmpCount..")."..item.SubFormat
-		tmpCount = tmpCount + 1
+	if not openSub.option.overwriteSubs then
+		local tmpTarget = target
+		local tmpCount = 1
+		while file_exist(tmpTarget) do
+			tmpTarget = fln_pathToFile..filenameWithoutExtension.."("..tmpCount..")."..item.SubFormat
+			tmpCount = tmpCount + 1
+		end
+		target = tmpTarget
 	end
-	target = tmpTarget
 	
 	-- Unzipped data into file target 
 		
