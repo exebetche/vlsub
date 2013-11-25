@@ -1688,7 +1688,7 @@ end
 function parse_header(data)
 	local header = {}
 	
-	for name, s, val in string.gfind(data, "([^%s:]+)(:?)%s([^\n]+)\r?\n") do
+	for name, s, val in string.gmatch(data, "([^%s:]+)(:?)%s([^\n]+)\r?\n") do
 		if s == "" then header['statuscode'] =  tonumber(string.sub (val, 1 , 3))
 		else header[name] = val end
 	end
