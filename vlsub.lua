@@ -1,4 +1,4 @@
---[[
+﻿--[[
  VLSub Extension for VLC media player 1.1 and 2.0
  Copyright 2013 Guillaume Le Maout
 
@@ -405,9 +405,9 @@ function interface_config()
 	input_table['dir_path'] = dlg:add_text_input(openSub.conf.dirPath, 2, 6, 2, 1)
 	
 	dlg:add_label(lang["int_os_username"]..':', 1, 7, 0, 1)
-	input_table['os_username'] = dlg:add_text_input(openSub.option.os_username or "", 2, 7, 2, 1)
+	input_table['os_username'] = dlg:add_text_input(type(openSub.option.os_username) == "string" and openSub.option.os_username or "", 2, 7, 2, 1)
 	dlg:add_label(lang["int_os_password"]..':', 1, 8, 0, 1)
-	input_table['os_password'] = dlg:add_text_input(openSub.option.os_password or "", 2, 8, 2, 1)
+	input_table['os_password'] = dlg:add_text_input(type(openSub.option.os_password) == "string" and openSub.option.os_password or "", 2, 8, 2, 1)
 				
 	input_table['message'] = nil
 	input_table['message'] = dlg:add_label(' ', 1, 9, 3, 1)
