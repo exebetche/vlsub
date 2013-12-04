@@ -1,4 +1,4 @@
-﻿--[[
+--[[
  VLSub Extension for VLC media player 1.1 and 2.0
  Copyright 2013 Guillaume Le Maout
 
@@ -51,7 +51,8 @@ local options = {
 		slo = 'Slovak',
 		spa = 'Spanish',
 		swe = 'Swedish',
-		ukr = 'Ukrainian'
+		ukr = 'Ukrainian',
+		hun = 'Hungarian'
 	},
 	translation = {
 		int_all = 'All',
