@@ -43,6 +43,7 @@ local options = {
 		eng = 'English',
 		cze = 'Czech', 
 		dan = 'Danish', 
+		dut = 'Nederlands',
 		fre = 'Français',
 		ell = 'Greek',
 		baq = 'Basque',
