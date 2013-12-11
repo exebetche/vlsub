@@ -31,10 +31,12 @@
 -- language = "eng",
 -- ...
 
+
 local options = {
 	language = nil,
 	downloadBehaviour = 'save',
 	langExt = false,
+	isoLangExt = true, -- iso (ned, eng) file extensions instead of two letter (nl, en) extensions
 	removeTag = false,
 	showMediaInformation = true,
 	progressBarSize = 80,
@@ -83,6 +85,7 @@ local options = {
 		int_dowload_load = 'Load only',
 		int_dowload_manual =  'Manual download',
 		int_display_code = 'Display language code in file name',
+		int_display_iso_code = 'Use ISO language code in file name',
 		int_remove_tag = 'Remove tags',
 		int_vlsub_work_dir = 'VLSub working directory',
 		int_os_username = 'Username',
@@ -275,6 +278,8 @@ local lang_os_to_iso = {
 	vi = "vie"
 }
 
+local language_to_ext_map = {}
+
 local dlg = nil
 local input_table = {} -- General widget id reference
 local select_conf = {} -- Drop down widget / option table association 
@@ -295,6 +300,10 @@ end
 
 function activate()
 	vlc.msg.dbg("[VLsub] Welcome")
+
+	for k,v in pairs (lang_os_to_iso) do
+		language_to_ext_map[v] = k
+	end
 	
     check_config()
     	
@@ -379,44 +388,82 @@ function set_interface_main()
 end
 
 function interface_config()
-	input_table['intLangLab'] = dlg:add_label(lang["int_int_lang"]..':', 1, 1, 1, 1)
-	input_table['intLangBut'] = dlg:add_button(lang["int_search_transl"], get_available_translations, 2, 1, 1, 1)
-	input_table['intLang'] = dlg:add_dropdown(3, 1, 1, 1)	
-	dlg:add_label(lang["int_default_lang"]..':', 1, 2, 2, 1)
-	input_table['default_language'] = dlg:add_dropdown(3, 2, 1, 1)	
-	dlg:add_label(lang["int_dowload_behav"]..':', 1, 3, 2, 1)
-	input_table['downloadBehaviour'] = dlg:add_dropdown(3, 3, 1, 1)
+	local y = 1; --interface Y position
+
+	-- Interface language
+	input_table['intLangLab'] = dlg:add_label(lang["int_int_lang"]..':', 1, y, 1, 1)
+	input_table['intLangBut'] = dlg:add_button(lang["int_search_transl"], get_available_translations, 2, y, 1, 1)
+	input_table['intLang'] = dlg:add_dropdown(3, y, 1, 1)	
+
+	-- Default sub language
+	y = y + 1
+	dlg:add_label(lang["int_default_lang"]..':', 1, y, 2, 1)
+	input_table['default_language'] = dlg:add_dropdown(3, y, 1, 1)	
+
+	---Download Behaviour 
+	y = y + 1
+	dlg:add_label(lang["int_dowload_behav"]..':', 1, y, 2, 1)
+	input_table['downloadBehaviour'] = dlg:add_dropdown(3, y, 1, 1)
 	
-	dlg:add_label(lang["int_display_code"]..':', 1, 4, 0, 1)
-	input_table['langExt'] = dlg:add_dropdown(3, 4, 1, 1)
-	dlg:add_label(lang["int_remove_tag"]..':', 1, 5, 0, 1)
-	input_table['removeTag'] = dlg:add_dropdown(3, 5, 1, 1)
+	-- Display language code in subs?
+	y = y + 1
+	dlg:add_label(lang["int_display_code"]..':', 1, y, 0, 1)
+	input_table['langExt'] = dlg:add_dropdown(3, y, 1, 1)
+
+	-- Display ISO language code in subs?
+	y = y + 1
+	dlg:add_label(lang["int_display_iso_code"]..':', 1, y, 0, 1)
+	input_table['isoLangExt'] = dlg:add_dropdown(3, y, 1, 1)
+
+	-- Remove tags?
+	y = y + 1
+	dlg:add_label(lang["int_remove_tag"]..':', 1, 6, 0, 1)
+	input_table['removeTag'] = dlg:add_dropdown(3, 6, 1, 1)
 		
+	-- VLSub working dir
+	y = y + 1
 	if openSub.conf.dirPath then
 		if openSub.conf.os == "win" then
-			dlg	:add_label("<a href='file:///"..openSub.conf.dirPath.."'>"..lang["int_vlsub_work_dir"].."</a>", 1, 6, 2, 1)
+			dlg	:add_label("<a href='file:///"..openSub.conf.dirPath.."'>"..lang["int_vlsub_work_dir"].."</a>", 1, y, 2, 1)
 		else
-			dlg	:add_label("<a href='"..openSub.conf.dirPath.."'>"..lang["int_vlsub_work_dir"].."</a>", 1, 6, 2, 1)
+			dlg	:add_label("<a href='"..openSub.conf.dirPath.."'>"..lang["int_vlsub_work_dir"].."</a>", 1, y, 2, 1)
 		end
 	else
-		dlg	:add_label(lang["int_vlsub_work_dir"], 1, 6, 2, 1)
+		dlg	:add_label(lang["int_vlsub_work_dir"], 1, y, 2, 1)
 	end
 	
-	input_table['dir_path'] = dlg:add_text_input(openSub.conf.dirPath, 2, 6, 2, 1)
+	input_table['dir_path'] = dlg:add_text_input(openSub.conf.dirPath, 2, y, 2, 1)
 	
-	dlg:add_label(lang["int_os_username"]..':', 1, 7, 0, 1)
-	input_table['os_username'] = dlg:add_text_input(type(openSub.option.os_username) == "string" and openSub.option.os_username or "", 2, 7, 2, 1)
-	dlg:add_label(lang["int_os_password"]..':', 1, 8, 0, 1)
-	input_table['os_password'] = dlg:add_text_input(type(openSub.option.os_password) == "string" and openSub.option.os_password or "", 2, 8, 2, 1)
+	-- User name
+	y = y + 1
+	dlg:add_label(lang["int_os_username"]..':', 1, y, 0, 1)
+	input_table['os_username'] = dlg:add_text_input(type(openSub.option.os_username) == "string" and openSub.option.os_username or "", 2, y, 2, 1)
+	
+	-- Password
+	y = y + 1
+	dlg:add_label(lang["int_os_password"]..':', 1, y, 0, 1)
+	input_table['os_password'] = dlg:add_text_input(type(openSub.option.os_password) == "string" and openSub.option.os_password or "", 2, y, 2, 1)
 				
+	-- Message
+	y = y + 1
 	input_table['message'] = nil
-	input_table['message'] = dlg:add_label(' ', 1, 9, 3, 1)
+	input_table['message'] = dlg:add_label(' ', 1, y, 3, 1)
 	
-	dlg:add_button(lang["int_cancel"], show_main, 2, 10, 1, 1)
-	dlg:add_button(lang["int_save"], apply_config, 3, 10, 1, 1)
+	-- Cancel / Save button
+	y = y + 1
+	dlg:add_button(lang["int_cancel"], show_main, 2, y, 1, 1)
+	dlg:add_button(lang["int_save"], apply_config, 3, y, 1, 1)
 	
+	-- Set interface values
+	-- ... language extension
 	input_table['langExt']:add_value(lang["int_bool_"..tostring(openSub.option.langExt)], 1)
 	input_table['langExt']:add_value(lang["int_bool_"..tostring(not openSub.option.langExt)], 2)
+
+	-- ... iso language extension
+	input_table['isoLangExt']:add_value(lang["int_bool_"..tostring(openSub.option.isoLangExt)], 1)
+	input_table['isoLangExt']:add_value(lang["int_bool_"..tostring(not openSub.option.isoLangExt)], 2)
+
+	-- ... remove tag
 	input_table['removeTag']:add_value(lang["int_bool_"..tostring(openSub.option.removeTag)], 1)
 	input_table['removeTag']:add_value(lang["int_bool_"..tostring(not openSub.option.removeTag)], 2)
 	
@@ -804,6 +851,10 @@ function apply_config()
 	
 	if input_table["langExt"]:get_value() == 2 then
 		openSub.option.langExt = not openSub.option.langExt
+	end
+
+	if input_table["isoLangExt"]:get_value() == 2 then
+		openSub.option.isoLangExt = not openSub.option.isoLangExt
 	end
 	
 	if input_table["removeTag"]:get_value() == 2 then
@@ -1473,7 +1524,16 @@ function download_subtitles()
 	local subfileName = openSub.file.name
 	
 	if openSub.option.langExt then
-		subfileName = subfileName.."."..item.SubLanguageID
+		if openSub.option.isoLangExt then
+			subfileName = subfileName.."."..item.SubLanguageID
+		else
+			local subLangId = item.SubLanguageID
+			if type(language_to_ext_map[subLangId]) then
+				subLangId = language_to_ext_map[subLangId]
+			end
+		
+			subfileName = subfileName.."."..subLangId
+		end
 	end
 	
 	subfileName = subfileName.."."..item.SubFormat
