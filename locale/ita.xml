@@ -1,0 +1,56 @@
+<action_hash>Calcolo hash del filmato</action_hash>
+<action_login>Connessione</action_login>
+<action_logout>Disconnessione</action_logout>
+<action_noop>Verifica sessione</action_noop>
+<action_search>Ricerca sottotitoli</action_search>
+<int_all>Tutto</int_all>
+<int_bool_false>No</int_bool_false>
+<int_bool_true>Si</int_bool_true>
+<int_cancel>Annulla</int_cancel>
+<int_close>Chiudi</int_close>
+<int_config>Config</int_config>
+<int_configuration>Configurazione</int_configuration>
+<int_default_lang>Lingua sottotitoli</int_default_lang>
+<int_descr>Scarica sottotitoli da OpenSubtitles.org</int_descr>
+<int_display_code>Mostra codice lingua nel nome del file</int_display_code>
+<int_dowload_behav>Cosa fare con i sottotitoli</int_dowload_behav>
+<int_dowload_load>Carica solamente</int_dowload_load>
+<int_dowload_manual>Scaricamento manuale</int_dowload_manual>
+<int_dowload_save>Carica e salva</int_dowload_save>
+<int_dowload_sel>Selezione scaricamento</int_dowload_sel>
+<int_episode>Episodio (serie)</int_episode>
+<int_help>Guida</int_help>
+<int_help_mess> Scarica sottotitoli da &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; and display them while watching a video.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Usage:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub is meant to be used while your watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).&lt;br&gt; &lt;br&gt; Choose the language for your subtitles and click on the button corresponding to one of the two research method provided by VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Method 1: Search by hash&lt;/b&gt;&lt;br&gt; It is recommended to try this method first, because it performs a research based on the video file print, so you can find subtitles synchronized with your video.&lt;br&gt; &lt;br&gt; &lt;b&gt;Method 2: Search by name&lt;/b&gt;&lt;br&gt; If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a serie, you can also provide a season and episode number.&lt;br&gt; &lt;br&gt; &lt;b&gt;Downloading Subtitles&lt;/b&gt;&lt;br&gt; Select one subtitle in the list and click on &#39;Download&#39;.&lt;br&gt; It will be put in the same directory that your video, with the same name (different extension) so Vlc will load them automatically the next time you&#39;ll start the video.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Beware :&lt;/b&gt; Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet&#39;re important.&lt;br&gt; &lt;br&gt; Find more Vlc extensions at &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Lingua interfaccia</int_int_lang>
+<int_ok>Ok</int_ok>
+<int_remove_tag>Rimuovi tag</int_remove_tag>
+<int_research>Cerca</int_research>
+<int_save>Salva</int_save>
+<int_search_hash>Cerca per hash</int_search_hash>
+<int_searching_transl>Ricerca traduzioni...</int_searching_transl>
+<int_search_name>Cerca per nome</int_search_name>
+<int_search_transl>Ricerca traduzioni</int_search_transl>
+<int_season>Stagione (serie)</int_season>
+<int_show_conf>Mostra config</int_show_conf>
+<int_show_help>Mostra guida</int_show_help>
+<int_title>Titolo</int_title>
+<int_vlsub_work_dir>Directory di lavoro di VLSub</int_vlsub_work_dir>
+<mess_click_link>Clicca qui per aprire il file</mess_click_link>
+<mess_complete>Ricerca completa</mess_complete>
+<mess_dowload_link>Link scaricamento</mess_dowload_link>
+<mess_downloading>Scaricamento sottotitolo</mess_downloading>
+<mess_error>Errore</mess_error>
+<mess_expired>Sessione scaduta, riprovo</mess_expired>
+<mess_loaded>Sottotitoli caricati</mess_loaded>
+<mess_no_input>Prego usare questo metodo durante la riproduzione</mess_no_input>
+<mess_no_res>Nessun risultato</mess_no_res>
+<mess_no_response>Il server non risponde</mess_no_response>
+<mess_no_selection>Nessun sottotitolo selezionato</mess_no_selection>
+<mess_not_found>File non trovato</mess_not_found>
+<mess_not_found2>File non trovato (carattere non valido?)</mess_not_found2>
+<mess_not_local>Questo metodo funziona solo con file locali (per adesso)</mess_not_local>
+<mess_overloaded>Server sovraccarico, prego riprova più tardi</mess_overloaded>
+<mess_res>Risultati</mess_res>
+<mess_save_fail>Impossibile salvare sottotitoli</mess_save_fail>
+<mess_success>Successo</mess_success>
+<mess_unauthorized>Richiesta non autorizzata</mess_unauthorized>
