@@ -1879,7 +1879,7 @@ end
 						--[[ Misc utils]]--
 
 function make_uri(str, encode)
-    local windowdrive = string.match(str, "^(%a:\\).+$")
+    local windowdrive = string.match(str, "^(%a:\n-).+$")
 	if encode then
 		local encodedPath = ""
 		for w in string.gmatch(str, "/([^/]+)") do
@@ -1975,7 +1975,7 @@ function mkdir_p(path)
 end
 
 function is_window_path(path)
-	return string.match(path, "^(%a:\\).+$")
+	return string.match(path, "^(%a:\n-).+$")
 end
 
 function is_win_safe(path)
