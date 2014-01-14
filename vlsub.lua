@@ -1546,14 +1546,13 @@ function download_subtitles()
 	subfileURI = vlc.strings.make_uri(target)
 	
 	if not subfileURI then
-		subfileURI = make_uri(target, true)
+		subfileURI = make_uri(target)
 	end
 	
 	-- load subtitles
 	if add_sub(subfileURI) then 
 		message = success_tag(lang["mess_loaded"]) .. message
 	end
-	
 	
 	setMessage(message)
 end
@@ -1568,18 +1567,18 @@ function dump_zip(url, dir, subfileName)
 		return false 
 	end
 	
-	local tmpFileName = dir..slash..subfileName..".gz"
+	local tmpFileName = dir..subfileName..".gz"
 	if not file_touch(tmpFileName) then
 		return false
 	end
 	local tmpFile = assert(io.open(tmpFileName, "wb"))
-		
+	
 	tmpFile:write(resp)
 	tmpFile:flush()
 	tmpFile:close()
 	tmpFile = nil
 	collectgarbage()
-	return "zip://"..make_uri(tmpFileName, true).."!/"..subfileName, tmpFileName
+	return "zip://"..make_uri(tmpFileName).."!/"..subfileName, tmpFileName
 end
 
 function add_sub(subfileURI)
@@ -1878,19 +1877,19 @@ end
 
 						--[[ Misc utils]]--
 
-function make_uri(str, encode)
-    local windowdrive = string.match(str, "^(%a:\n-).+$")
-	if encode then
-		local encodedPath = ""
-		for w in string.gmatch(str, "/([^/]+)") do
-			encodedPath = encodedPath.."/"..vlc.strings.encode_uri_component(w) 
-		end
-		str = encodedPath
+function make_uri(str)
+	str = str:gsub("\\", "/")
+    local windowdrive = string.match(str, "^(%a:).+$")
+	
+	local encodedPath = ""
+	for w in string.gmatch(str, "/([^/]+)") do
+		encodedPath = encodedPath.."/"..vlc.strings.encode_uri_component(w) 
 	end
+		
     if windowdrive then
-        return "file:///"..windowdrive..str
+        return "file:///"..windowdrive..encodedPath
     else
-        return "file://"..str
+        return "file://"..encodedPath
     end
 end
 
@@ -1975,7 +1974,7 @@ function mkdir_p(path)
 end
 
 function is_window_path(path)
-	return string.match(path, "^(%a:\n-).+$")
+	return string.match(path, "^(%a:\\).+$")
 end
 
 function is_win_safe(path)
