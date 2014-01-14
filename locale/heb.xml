@@ -1,0 +1,56 @@
+<action_hash>מחרוזת הגיבוב של הסרט מחושבת</action_hash>
+<action_login>מתבצעת כניסה</action_login>
+<action_logout>מתבצעת יציאה</action_logout>
+<action_noop>ההפעלה נבדקת</action_noop>
+<action_search>מתבצע חיפוש אחר כתוביות</action_search>
+<int_all>הכול</int_all>
+<int_bool_false>לא</int_bool_false>
+<int_bool_true>כן</int_bool_true>
+<int_cancel>ביטול</int_cancel>
+<int_close>סגירה</int_close>
+<int_config>הגדרה</int_config>
+<int_configuration>הגדרות</int_configuration>
+<int_default_lang>שפת התכוביות</int_default_lang>
+<int_descr>הורדת כתוביות מ־OpenSubtitles.org</int_descr>
+<int_display_code>הצגת קוד השפה בשם הקובץ</int_display_code>
+<int_dowload_behav>מה לעשות עם הכתוביות</int_dowload_behav>
+<int_dowload_load>לטעון בלבד</int_dowload_load>
+<int_dowload_manual>להוריד ידנית</int_dowload_manual>
+<int_dowload_save>לטעון ולשמור</int_dowload_save>
+<int_dowload_sel>להוריד את הבחירה</int_dowload_sel>
+<int_episode>פרק (סדרה)</int_episode>
+<int_help>עזרה</int_help>
+<int_help_mess>&lt;div style=&#39;direction: rtl;&#39;&gt; הורדת כתוביות מ־&lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; והצגתן בעת צפייה בווידאו.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Usage:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub מיועדת לשימוש בעת הצפייה בווידאו, לכן יש להפעיל אותה תחילה (אם שום דבר לא מתנגן יופיע קישור להורדת הכתוביות בדפדפן שלך).&lt;br&gt; &lt;br&gt; יש לבחור את שפת הכתוביות המועדפת עליך וללחוץ על הלחצן המתאים לאחת משתי שיטות המחקר שמוצעות על ידי VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;שיטה מס׳ 1: חיפוש לפי מחרוזת גיבוב&lt;/b&gt;&lt;br&gt; מומלץ לנסות את השיטה הזאת קודם, כיוון שהיא מבססת את המחקר על חותמת קובץ הווידאו, כך שניתן למצוא כתוביות שיסתנכרנו עם סרטון הווידאו שלך.&lt;br&gt; &lt;br&gt; &lt;b&gt;שיטה מס׳ 2: חיפוש לפי שם&lt;/b&gt;&lt;br&gt; אם לא שפר מזלך עם השיטה הראשונה, עליך פשוט לבדוק האם הכותרת נכונה לפני המשך התהליך. אם הכתוביות הרצויות לך הן של סדרה, ניתן גם לציין עונה ואת מספר הפרק.&lt;br&gt; &lt;br&gt; &lt;b&gt;הורדת כתוביות&lt;/b&gt;&lt;br&gt; ניתן לבחור בערכת כתוביות אחת מהרשימה וללחוץ על &#39;הורדה&#39;.&lt;br&gt; פעולה זו תוסיף את הכתוביות באותה התיקייה עם קובץ הווידאו, באותו השם (עם סיומת שונה) כדי של־VLC תהיה אפשרות לטעון אותה אוטומטית בפעם הבאה שהווידאו יופעל.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ לתשומת לבך :&lt;/b&gt; כתוביות קיימות נדרסות ללא צורך באישור, לכן כדאי לשים אותן במקום אחר אם הן חשובות.&lt;br&gt; &lt;br&gt; ניתן למצוא עוד תוספות של VLC בכתובת &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>שפת המנשק</int_int_lang>
+<int_ok>אישור</int_ok>
+<int_remove_tag>הסרת תגיות</int_remove_tag>
+<int_research>מחקר</int_research>
+<int_save>שמירה</int_save>
+<int_search_hash>חיפוש לפי מחרוזת גיבוב</int_search_hash>
+<int_searching_transl>בחיפוש אחר כתוביות ...</int_searching_transl>
+<int_search_name>Sחיפוש לפי שם</int_search_name>
+<int_search_transl>חיפוש כתוביות</int_search_transl>
+<int_season>עונה (סדרה)</int_season>
+<int_show_conf>הצגת ההגדרות</int_show_conf>
+<int_show_help>הצגת העזרה</int_show_help>
+<int_title>כותרת</int_title>
+<int_vlsub_work_dir>תיקיית העבודה של VLSub</int_vlsub_work_dir>
+<mess_click_link>יש ללחוץ כאן כדי לפתוח את הקובץ</mess_click_link>
+<mess_complete>המחקר הושלם</mess_complete>
+<mess_dowload_link>קישור להורדה</mess_dowload_link>
+<mess_downloading>הכתוביות בהורדה</mess_downloading>
+<mess_error>שגיאה</mess_error>
+<mess_expired>ההפעלה פגה, מתבצע ניסיון נוסף</mess_expired>
+<mess_loaded>הכתוביות נטענו</mess_loaded>
+<mess_no_input>נא להשתמש בשיטה זו במהלך הנגינה</mess_no_input>
+<mess_no_res>אין תוצאות</mess_no_res>
+<mess_no_response>השרת אינו מגיב</mess_no_response>
+<mess_no_selection>לא נבחרו כתוביות</mess_no_selection>
+<mess_not_found>הקובץ לא נמצא</mess_not_found>
+<mess_not_found2>הקובץ לא נמצא (תווים בלתי חוקיים?)</mess_not_found2>
+<mess_not_local>שיטה זו עובדת עם קבצים מקומיים בלבד (כרגע)</mess_not_local>
+<mess_overloaded>השרת עמוס, נא לנסות שוב מאוחר יותר</mess_overloaded>
+<mess_res>תוצאה/אות</mess_res>
+<mess_save_fail>לא ניתן לשמור את הכתוביות</mess_save_fail>
+<mess_success>הסתיים בהצלחה</mess_success>
+<mess_unauthorized>הבקשה לא אושרה</mess_unauthorized>
