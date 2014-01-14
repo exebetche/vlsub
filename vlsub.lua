@@ -589,12 +589,15 @@ function check_config()
 		
 		-- check if the config already exist
 		if file_exist(userdatadir..dirPath..filePath) then
+			-- in vlc.config.userdatadir()
 			openSub.conf.dirPath = userdatadir..dirPath
 			config_saved = true
 		elseif file_exist(datadir..dirPath..filePath) then
+			-- in vlc.config.datadir()
 			openSub.conf.dirPath = datadir..dirPath
 			config_saved = true
 		else
+			-- if not found determine an accessible path
 			local extension_path = slash..path_generic[1]
 				..slash..path_generic[2]
 			
@@ -653,13 +656,13 @@ function check_config()
 		
 		-- Check presence of a translation file in "%vlsub_directory%/locale"
 		-- Add translation files to available translation list
-		
 		local file_list = list_dir(openSub.conf.localePath)
 		local translations_avail = openSub.conf.translations_avail
+		
 		if file_list then
 			for i, file_name in ipairs(file_list) do
 				local lg =  string.gsub(file_name, "^(%w%w%w).xml$", "%1")
-				if lg and not translations_avail[lg] then
+				if lg and not openSub.option.translations_avail[lg] then
 					table.insert(translations_avail, {lg, trsl_names[lg]})
 				end
 			end
