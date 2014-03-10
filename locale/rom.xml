@@ -1,0 +1,56 @@
+<action_hash>Calculare distribuire film</action_hash>
+<action_login>Autentificare</action_login>
+<action_logout>Deconectare</action_logout>
+<action_noop>Verificare sesiune</action_noop>
+<action_search>Căutare subtitrare</action_search>
+<int_all>Toate</int_all>
+<int_bool_false>Nu</int_bool_false>
+<int_bool_true>Da</int_bool_true>
+<int_cancel>Anulare</int_cancel>
+<int_close>Închide</int_close>
+<int_config>Configurare</int_config>
+<int_configuration>Configurație</int_configuration>
+<int_default_lang>Limbă subtitrare</int_default_lang>
+<int_descr>Descărcați subtitrare de la OpenSubtitles.org</int_descr>
+<int_display_code>Afișează codul limbii în numele fișierului</int_display_code>
+<int_dowload_behav>Ce trebuie să faceți cu subtitrarea</int_dowload_behav>
+<int_dowload_load>Singura încărcare</int_dowload_load>
+<int_dowload_manual>Descărcare manuală</int_dowload_manual>
+<int_dowload_save>Încărcați și salvați</int_dowload_save>
+<int_dowload_sel>Descărcați selecțiea</int_dowload_sel>
+<int_episode>Episod (serie)</int_episode>
+<int_help>Ajutor</int_help>
+<int_help_mess> Descărcați subtitrările de la &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; și le afișați în timp ce vizionați un filmat.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Usage:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub este menit să fie folosit în timp ce dumneavoastră vizionați un film (veți obține o legătura pentru a descărca subtitrarea în navigatorul dvs.).&lt;br&gt; &lt;br&gt; Alegeți limba pentru subtitrare și faceți clic pe butonul corespunzător pentru una dintre cele două metoda de cercetare furnizate de VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Metoda 1: Căutare după distribuire&lt;/b&gt;&lt;br&gt; Este recomandat să încercați această metodă în primul rând, pentru că efectuează o cercetare pe baza de imprimare a fișierelor video, astfel încât să puteți găsi subtitrare sincronizată cu filmul.&lt;br&gt; &lt;br&gt; &lt;b&gt;Metoda 2: Căutare după nume&lt;/b&gt;&lt;br&gt; Dacă nu aveți noroc cu prima metodă, trebuie doar să verificați dacă titlul este corect. Dacă căutați subtitrare pentru un serial, vă poate oferi un număr de sezon și episod.&lt;br&gt; &lt;br&gt; &lt;b&gt;Descărcă subtitrare&lt;/b&gt;&lt;br&gt; Selectați o subtitrare din listă și faceți clic pe &#39;Descarcă&#39;.&lt;br&gt; Acesta va fi pus în același director cu filmul, cu acelasi nume, astfel VLC va încărca în mod automat data viitoare când&#39; veți porni filmul.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Beware :&lt;/b&gt; Subtitrările existente sunt suprascrise fără a cere o confirmare, astfel încât să nu le pună în altă parte.&lt;br&gt; &lt;br&gt; Găsiți mai multe extensii VLC la &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Interfață limbă</int_int_lang>
+<int_ok>Ok</int_ok>
+<int_remove_tag>Îndepărtați etichetele</int_remove_tag>
+<int_research>Căutare</int_research>
+<int_save>Salvează</int_save>
+<int_search_hash>Căutare după distribuire</int_search_hash>
+<int_searching_transl>Căutarea traducerilor ...</int_searching_transl>
+<int_search_name>Căutare după nume</int_search_name>
+<int_search_transl>Căutarea traducerilor</int_search_transl>
+<int_season>Sezon (serie)</int_season>
+<int_show_conf>Afișează configurația</int_show_conf>
+<int_show_help>Afișează ajutorul</int_show_help>
+<int_title>Titlu</int_title>
+<int_vlsub_work_dir>Directorul de lucru VLSub</int_vlsub_work_dir>
+<mess_click_link>Clic aici pentru a deschide fișierul</mess_click_link>
+<mess_complete>Căutare completă</mess_complete>
+<mess_dowload_link>Descărcați legătura</mess_dowload_link>
+<mess_downloading>Descărcați subtitrare</mess_downloading>
+<mess_error>Defect</mess_error>
+<mess_expired>Sesiunea a expirat, încercați din nou</mess_expired>
+<mess_loaded>Încărcare subtitrare</mess_loaded>
+<mess_no_input>Vă rugăm să folosiți această metodă în timpul redării</mess_no_input>
+<mess_no_res>Fără rezultat</mess_no_res>
+<mess_no_response>Server-ul nu răspunde</mess_no_response>
+<mess_no_selection>Nici o sutitrare selectată</mess_no_selection>
+<mess_not_found>Fișierul nu a fost găsit</mess_not_found>
+<mess_not_found2>Fișierul nu a fost găsit (caracter ilicit?)</mess_not_found2>
+<mess_not_local>Această metodă funcționează numai cu fișiere locale</mess_not_local>
+<mess_overloaded>Server overloaded, please retry later</mess_overloaded>
+<mess_res>rezultat(e)</mess_res>
+<mess_save_fail>Nu se pote salva subtitrarea</mess_save_fail>
+<mess_success>Succes</mess_success>
+<mess_unauthorized>Cerere neautorizată</mess_unauthorized>
