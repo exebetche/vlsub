@@ -370,27 +370,6 @@ function interface_main()
 	display_subtitles()
 end
 
-function configIMDB()
-	openSub.movie.title = trim(input_table["title"]:get_text())
-	openSub.movie.seasonNumber = tonumber(input_table["seasonNumber"]:get_text())
-	openSub.movie.episodeNumber = tonumber(input_table["episodeNumber"]:get_text())
-
-	local sel = input_table["language"]:get_value()
-	if sel == 0 then
-		openSub.movie.sublanguageid = 'all'
-	else
-		openSub.movie.sublanguageid = openSub.conf.languages[sel][1]
-	end
-end
-
-function feelingLucky()
-	configIMDB()
-	openSub.checkSession()
-	openSub.request("SearchSubtitles")
-	download_subtitles(1)
-	deactivate()
-end
-
 function set_interface_main()
 	-- Update movie title and co. if video input change
 	if not type(input_table['title']) == 'userdata' then return false end
@@ -1422,13 +1401,36 @@ function searchHash()
 end
 
 function searchIMBD()
-
 	configIMDB()
+	makeImdbRequest()
+end
+
+function configIMDB()
+	openSub.movie.title = trim(input_table["title"]:get_text())
+	openSub.movie.seasonNumber = tonumber(input_table["seasonNumber"]:get_text())
+	openSub.movie.episodeNumber = tonumber(input_table["episodeNumber"]:get_text())
+
+	local sel = input_table["language"]:get_value()
+	if sel == 0 then
+		openSub.movie.sublanguageid = 'all'
+	else
+		openSub.movie.sublanguageid = openSub.conf.languages[sel][1]
+	end
+end
+
+function makeImdbRequest()
 	if openSub.movie.title ~= "" then
 		openSub.checkSession()
 		openSub.request("SearchSubtitles")
 		display_subtitles()
 	end
+end
+
+function feelingLucky()
+	configIMDB()
+	makeImdbRequest()
+	download_subtitles(1)
+	deactivate()
 end
 
 function display_subtitles()
