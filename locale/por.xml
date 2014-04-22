@@ -1,0 +1,56 @@
+<action_hash>A calcular a hash do vídeo</action_hash>
+<action_login>A entrar</action_login>
+<action_logout>A sair</action_logout>
+<action_noop>A verificar a sessão</action_noop>
+<action_search>A procurar legendas</action_search>
+<int_all>Todos</int_all>
+<int_bool_false>Não</int_bool_false>
+<int_bool_true>Sim</int_bool_true>
+<int_cancel>Cancelar</int_cancel>
+<int_close>Fechar</int_close>
+<int_config>Config</int_config>
+<int_configuration>Configuração</int_configuration>
+<int_default_lang>Idioma das legendas</int_default_lang>
+<int_descr>Descarregar legendas de OpenSubtitles.org</int_descr>
+<int_display_code>Mostrar o código da língua no nome do ficheiro</int_display_code>
+<int_dowload_behav>O que fazer com as legendas</int_dowload_behav>
+<int_dowload_load>Apenas carregar</int_dowload_load>
+<int_dowload_manual>Download manual</int_dowload_manual>
+<int_dowload_save>Carregar e guardar</int_dowload_save>
+<int_dowload_sel>Descarregar selecção</int_dowload_sel>
+<int_episode>Episódio (série)</int_episode>
+<int_help>Ajuda</int_help>
+<int_help_mess> Descarregar legendas de &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; e apresentá-las durante a reprodução do vídeo.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Uso:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; O VLSub deve ser usado durante a reprodução de um vídeo, por isso comece um (se nada estiver a ser reproduzido irá obter um link para fazer o download das legendas no seu browser).&lt;br&gt; &lt;br&gt; Escolha a língua das suas legendas e de seguida clique num dos botões correspondente aos dois métodos de pesquisa disponibilizados pelo VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Método 1: Procurar por hash&lt;/b&gt;&lt;br&gt; É recomendado que experimente este método primeiro, porque a procura é baseada no reconhecimento do ficheiro e deverá encontrar legendas sincronizadas com o vídeo.&lt;br&gt; &lt;br&gt; &lt;b&gt;Método 2: Procurar por nome&lt;/b&gt;&lt;br&gt; Se não teve sorte com o primeiro método, verifique que o título está correcto antes de clicar. Se estiver à procura de legendas para uma série pode também indicar o número da temporada e do episódio.&lt;br&gt; &lt;br&gt; &lt;b&gt;A carregar legendas&lt;/b&gt;&lt;br&gt; Selecione uma legenda da lista e clique em &#39;Descarregar&#39;.&lt;br&gt; Será posta no mesmo directório que o vídeo, com o mesmo nome (com a diferença da extensão) e será carregada automaticamente pelo VLC a próxima vez que começar o vídeo.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Cuidado :&lt;/b&gt; Legendas existentes serão substituídas sem perguntar por confirmação, por isso ponha-as noutro lado se forem importantes.&lt;br&gt; &lt;br&gt; Encontre mais extensões para o VLC em &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Idioma da interface</int_int_lang>
+<int_ok>Ok</int_ok>
+<int_remove_tag>Remover tags</int_remove_tag>
+<int_research>Pesquisa</int_research>
+<int_save>Guardar</int_save>
+<int_search_hash>Procurar por hash</int_search_hash>
+<int_searching_transl>A procurar traduções...</int_searching_transl>
+<int_search_name>Procurar por nome</int_search_name>
+<int_search_transl>Procurar traduções</int_search_transl>
+<int_season>Temporada (série)</int_season>
+<int_show_conf>Apresentar configurações</int_show_conf>
+<int_show_help>Apresentar ajuda</int_show_help>
+<int_title>Título</int_title>
+<int_vlsub_work_dir>VLSub directório de trabalho</int_vlsub_work_dir>
+<mess_click_link>Clique aqui para abrir o ficheiro</mess_click_link>
+<mess_complete>Pesquisa terminada</mess_complete>
+<mess_dowload_link>Link para download</mess_dowload_link>
+<mess_downloading>A descarregar legenda</mess_downloading>
+<mess_error>Erro</mess_error>
+<mess_expired>Sessão expirada, a tentar de novo</mess_expired>
+<mess_loaded>Legendas carregadas</mess_loaded>
+<mess_no_input>Por favor use este método durante a reprodução</mess_no_input>
+<mess_no_res>Sem resultado</mess_no_res>
+<mess_no_response>O servidor não responde</mess_no_response>
+<mess_no_selection>Nenhuma legenda está selecionada</mess_no_selection>
+<mess_not_found>Ficheiro não encontrado</mess_not_found>
+<mess_not_found2>Ficheiro não encontrado (caractér ilegal?)</mess_not_found2>
+<mess_not_local>Este método funciona apenas com ficheiros locais (de momento)</mess_not_local>
+<mess_overloaded>Servidor sobrecarregado, por favor tente mais tarde</mess_overloaded>
+<mess_res>resultado(s)</mess_res>
+<mess_save_fail>Não foi possível guardar as legendas</mess_save_fail>
+<mess_success>Sucesso</mess_success>
+<mess_unauthorized>Pedido não autorizado</mess_unauthorized>
