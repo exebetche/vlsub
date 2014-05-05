@@ -1548,7 +1548,7 @@ function download_subtitles()
 		vlc.msg.err("[VLsub] Unable to remove temp: "..tmpFileName)
 	end
 	
-	subfileURI = vlc.strings.make_uri(target)
+	-- subfileURI = vlc.strings.make_uri(target)
 	
 	if not subfileURI then
 		subfileURI = make_uri(target)
@@ -1894,7 +1894,7 @@ function make_uri(str)
     if windowdrive then
         return "file:///"..windowdrive..encodedPath
     else
-        return "file://"..encodedPath
+        return encodedPath
     end
 end
 
