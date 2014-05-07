@@ -1660,7 +1660,7 @@ function http_req(host, port, request)
 	vlc.net.send(fd, request)
 	vlc.net.poll(pollfds)
 	
-	local response = vlc.net.recv(fd, 1024)
+	local response = vlc.net.recv(fd, 2048)
 	local headerStr, body = string.match(response, "(.-\r?\n)\r?\n(.*)")
 	local header = parse_header(headerStr)
 	local contentLength = tonumber(header["Content-Length"])
