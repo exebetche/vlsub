@@ -1279,9 +1279,17 @@ openSub = {
 		local data_end = ""
         local size
         local chunk_size = 65536
+        local is_win = is_window_path(openSub.file.path) 
+        local stat_size  = 0
+        
+        if openSub.file.stat then
+        	stat_size = openSub.file.stat.size or 0
+        end
                 
 		-- Get data for hash calculation
-		if openSub.file.is_archive then
+		if openSub.file.is_archive 
+		or (is_win and stat_size > 2147483647)
+		then
 			vlc.msg.dbg("[VLSub] Read hash data from stream")
 		
 			local file = vlc.stream(openSub.file.uri)
@@ -1300,7 +1308,7 @@ openSub = {
 			end
 			data_end = string.sub((dataTmp1..dataTmp2), -chunk_size)
 		elseif not file_exist(openSub.file.path) 
-		and openSub.file.stat then
+		and stat_size > 0 then
 			vlc.msg.dbg("[VLSub] Read hash data from stream")
 			
 			local file = vlc.stream(openSub.file.uri)
