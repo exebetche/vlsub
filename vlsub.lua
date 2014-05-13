@@ -1288,30 +1288,13 @@ openSub = {
 	        end
                 
 		-- Get data for hash calculation
-		if openSub.file.is_archive then
-			vlc.msg.dbg("[VLSub] Read hash data from stream")
-		
-			local file = vlc.stream(openSub.file.uri)
-			local dataTmp1 = ""
-			local dataTmp2 = ""
-			size = chunk_size
-			
-			data_start = file:read(chunk_size)
-			
-			while data_end do
-				size = size + string.len(data_end)
-				dataTmp1 = dataTmp2
-				dataTmp2 = data_end
-				data_end = file:read(chunk_size)
-				collectgarbage()
-			end
-			
-			data_end = string.sub((dataTmp1..dataTmp2), -chunk_size)
-		elseif stat_size > 0 
+		if not openSub.file.is_archive
+		and stat_size > 0 
 		and (not is_accessible
 			or (is_win and stat_size > 2147483647))
 		then
 			vlc.msg.dbg("[VLSub] Read hash data from stream")
+			vlc.msg.dbg("[VLSub] "..tostring(is_accessible))
 			
 			local file = vlc.stream(openSub.file.uri)
 			
@@ -1337,7 +1320,8 @@ openSub = {
 			data_end = file:read(chunk_size)
 				
 			file = nil
-		elseif is_accessible then
+		elseif not openSub.file.is_archive
+		and is_accessible then
 			vlc.msg.dbg("[VLSub] Read hash data from file")
 			local file = io.open( openSub.file.path, "rb")
 			
@@ -1352,8 +1336,33 @@ openSub = {
 			file:close()
 			file = nil
 		else
-			vlc.msg.err("[VLSub] Unable to get hash data from file")
-			return false
+			vlc.msg.dbg("[VLSub] Read hash data from stream (archive or inaccessible)")
+			setMessage(
+				openSub.actionLabel..": "..progressBarContent(0)..
+				"<br><span style='color:#B23'><b>Slow mode, wait for it!</b></span>"
+			)
+			
+			local file = vlc.stream(openSub.file.uri)
+			local dataTmp1 = ""
+			local dataTmp2 = ""
+			size = 0
+			
+			if not file then
+				vlc.msg.dbg("[VLSub] No stream")
+				return false
+			end
+			
+			data_start = file:read(chunk_size)
+			
+			while data_end do
+				size = size + chunk_size
+				dataTmp1 = dataTmp2
+				dataTmp2 = data_end
+				data_end = file:read(chunk_size)
+			end
+			size = size - chunk_size + string.len(dataTmp2)
+			
+			data_end = string.sub((dataTmp1..dataTmp2), -chunk_size)
 		end
 		
 		setMessage(openSub.actionLabel..": "..progressBarContent(50))
