@@ -1277,19 +1277,18 @@ openSub = {
 		
 		local data_start = ""
 		local data_end = ""
-        local size
-        local chunk_size = 65536
-        local is_win = is_window_path(openSub.file.path) 
-        local stat_size  = 0
+		local size
+		local chunk_size = 65536
+		local is_win = is_window_path(openSub.file.path) 
+		local is_accessible = file_exist(openSub.file.path) 
+		local stat_size  = 0
         
-        if openSub.file.stat then
-        	stat_size = openSub.file.stat.size or 0
-        end
+	        if openSub.file.stat then
+	        	stat_size = openSub.file.stat.size or 0
+	        end
                 
 		-- Get data for hash calculation
-		if openSub.file.is_archive 
-		or (is_win and stat_size > 2147483647)
-		then
+		if openSub.file.is_archive then
 			vlc.msg.dbg("[VLSub] Read hash data from stream")
 		
 			local file = vlc.stream(openSub.file.uri)
@@ -1306,8 +1305,10 @@ openSub = {
 				data_end = file:read(chunk_size)
 				collectgarbage()
 			end
+			
 			data_end = string.sub((dataTmp1..dataTmp2), -chunk_size)
-		elseif not file_exist(openSub.file.path) 
+		elseif not is_accessible
+		or (is_win and stat_size > 2147483647)
 		and stat_size > 0 then
 			vlc.msg.dbg("[VLSub] Read hash data from stream")
 			
@@ -1325,17 +1326,20 @@ openSub = {
 			
 			-- "Seek" to the end 
 			file:read(decal)
+			local l = math.floor(((size-decal)/chunk_size))-2
 			
-			for i = 1, math.floor(((size-decal)/chunk_size))-2 do
+			for i = 1, l do
 				file:read(chunk_size)
+				setMessage(openSub.actionLabel..": "..progressBarContent(math.floor((i/l)*50)))
 			end
 			
 			data_end = file:read(chunk_size)
 				
 			file = nil
-		else
+		elseif is_accessible then
 			vlc.msg.dbg("[VLSub] Read hash data from file")
 			local file = io.open( openSub.file.path, "rb")
+			
 			if not file then
 				vlc.msg.dbg("[VLSub] No stream")
 				return false
@@ -1344,18 +1348,25 @@ openSub = {
 			data_start = file:read(chunk_size)
 			size = file:seek("end", -chunk_size) + chunk_size
 			data_end = file:read(chunk_size)
+			file:close()
 			file = nil
+		else
+			vlc.msg.err("[VLSub] Unable to get hash data from file")
+			return false
 		end
 		
-	-- Hash calculation
-        local lo = size
-        local hi = 0
-        local o,a,b,c,d,e,f,g,h
-        local hash_data = data_start..data_end
-        local max_size = 4294967296
-        local overflow
-        
-		for i = 1,  #hash_data, 8 do
+		setMessage(openSub.actionLabel..": "..progressBarContent(50))
+		
+	-- Hash calcul
+		local lo = size
+		local hi = 0
+		local o,a,b,c,d,e,f,g,h
+		local hash_data = data_start..data_end
+		local max_size = 4294967296
+		local overflow
+		local hash_data_len = #hash_data
+
+		for i = 1,  hash_data_len, 8 do
 			a,b,c,d,e,f,g,h = hash_data:byte(i,i+7)
 			lo = lo + a + b*256 + c*65536 + d*16777216
 			hi = hi + e + f*256 + g*65536 + h*16777216
@@ -1370,7 +1381,11 @@ openSub = {
 				overflow = math.floor(hi/max_size)
 				hi = hi-(overflow*max_size)
 			end
-        end
+			
+			setMessage(openSub.actionLabel..": "..progressBarContent(50+math.floor((i/hash_data_len)*50)))
+		end
+		
+		setMessage(openSub.actionLabel..": "..progressBarContent(100))
 		
 		openSub.file.bytesize = size
 		openSub.file.hash = string.format("%08x%08x", hi,lo)
