@@ -111,6 +111,19 @@ local options = {
 			" <b>/!\\ Beware :</b> Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet're important.<br>"..
 			" <br>"..
 			" Find more Vlc extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>.",
+		int_no_support_mess = [[
+			<strong>VLSub is not working with Vlc 2.1.x on any platform</strong>
+			because the lua "net" module needed to interact with opensubtitles has been 
+			removed in this release for the extensions.
+			<br>
+			<strong>Works with Vlc 2.2 on mac and linux.</strong>
+			<br>
+			<strong>On windows you have to install an older version of Vlc (2.0.8 for example)</strong>
+			to use Vlsub:
+			<br>
+			<a target="_blank" rel="nofollow" href="http://download.videolan.org/pub/videolan/vlc/2.0.8/">http://download.videola...pub/videolan/vlc/2.0.8/</a>
+			<br>
+		]],
 		
 		action_login = 'Logging in',
 		action_logout = 'Logging out',
@@ -135,6 +148,7 @@ local options = {
 		mess_no_res = 'No result',
 		mess_res = 'result(s)',
 		mess_loaded = 'Subtitles loaded',
+		mess_not_load = 'Unable to load subtitles',
 		mess_downloading = 'Downloading subtitle',
 		mess_dowload_link = 'Download link',
 		mess_err_conf_access ='Can\'t fount a suitable path to save config, please set it manually',
@@ -298,8 +312,8 @@ end
 function activate()
 	vlc.msg.dbg("[VLsub] Welcome")
 	
-    check_config()
-    	
+	if not check_config() then return false end
+	    	
     if vlc.input.item() then
 		openSub.getFileInfo()
 		openSub.getMovieInfo()
@@ -433,6 +447,13 @@ function interface_help()
 	input_table['help'] = dlg:add_html(help_html, 1, 1, 4, 1)
 	dlg:add_label(string.rep ("&nbsp;", 100), 1, 2, 3, 1)
 	dlg:add_button(lang["int_ok"], show_main, 4, 2, 1, 1)
+end
+
+function interface_no_support()
+	local no_support_html = lang["int_no_support_mess"]
+		
+	input_table['no_support'] = dlg:add_html(no_support_html, 1, 1, 4, 1)
+	dlg:add_label(string.rep ("&nbsp;", 100), 1, 2, 3, 1)
 end
 
 function trigger_menu(dlg_id)
@@ -685,6 +706,13 @@ function check_config()
 	lang = nil
 	lang = options.translation -- just a shortcut
 	
+	if not(vlc.net or vlc.net.poll) then
+		dlg = vlc.dialog(openSub.conf.useragent..': '..lang["mess_error"])
+		interface_no_support()
+		dlg:show()
+		return false
+	end
+	
 	SetDownloadBehaviours()
 	if not openSub.conf.dirPath then
 		setError(lang["mess_err_conf_access"])
@@ -701,6 +729,8 @@ function check_config()
 		end
 	end
 	collectgarbage()
+	
+	return true
 end
 
 function load_config()
@@ -1283,9 +1313,9 @@ openSub = {
 		local is_accessible = file_exist(openSub.file.path) 
 		local stat_size  = 0
         
-	        if openSub.file.stat then
-	        	stat_size = openSub.file.stat.size or 0
-	        end
+		if openSub.file.stat then
+			stat_size = openSub.file.stat.size or 0
+		end
                 
 		-- Get data for hash calculation
 		if not openSub.file.is_archive
@@ -1503,6 +1533,8 @@ function download_subtitles()
 	elseif openSub.option.downloadBehaviour == 'load' then
 		if add_sub("zip://"..item.ZipDownloadLink.."!/"..item.SubFileName) then
 			setMessage(success_tag(lang["mess_loaded"]))
+		else
+			setMessage(error_tag(lang["mess_not_load"]))
 		end
 		return false
 	end
@@ -1588,8 +1620,10 @@ function download_subtitles()
 	end
 	
 	-- load subtitles
-	if add_sub(subfileURI) then 
+	if add_sub(subfileURI) or add_sub(target) then 
 		message = success_tag(lang["mess_loaded"]) .. message
+	else
+		message = error_tag(lang["mess_not_load"]) .. message
 	end
 	
 	setMessage(message)
