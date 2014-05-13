@@ -1987,7 +1987,7 @@ function mkdir_p(path)
 end
 
 function is_window_path(path)
-	return string.match(path, "^(%a:\\).+$")
+	return string.match(path, "^(%a:.+)$")
 end
 
 function is_win_safe(path)
