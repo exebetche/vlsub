@@ -111,6 +111,7 @@ local options = {
 			" <b>/!\\ Beware :</b> Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet're important.<br>"..
 			" <br>"..
 			" Find more Vlc extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>.",
+		int_feeling_lucky = 'I feel lucky',
 		
 		action_login = 'Logging in',
 		action_logout = 'Logging out',
@@ -352,6 +353,7 @@ function interface_main()
 	dlg:add_label(lang["int_title"]..':', 1, 2, 1, 1)
 	input_table['title'] = dlg:add_text_input(openSub.movie.title or "", 2, 2, 2, 1)
 	dlg:add_button(lang["int_search_name"], searchIMBD, 4, 2, 1, 1)
+	dlg:add_button(lang["int_feeling_lucky"], feelingLucky, 4, 3, 1, 1)
 	dlg:add_label(lang["int_season"]..':', 1, 3, 1, 1)
 	input_table['seasonNumber'] = dlg:add_text_input(openSub.movie.seasonNumber or "", 2, 3, 2, 1)
 	dlg:add_label(lang["int_episode"]..':', 1, 4, 1, 1)
@@ -361,7 +363,7 @@ function interface_main()
 	input_table['message'] = dlg:add_label(' ', 1, 6, 4, 1)
 	dlg:add_button(lang["int_show_help"], show_help, 1, 7, 1, 1)
 	dlg:add_button('   '..lang["int_show_conf"]..'   ', show_conf, 2, 7, 1, 1)
-	dlg:add_button(lang["int_dowload_sel"], download_subtitles, 3, 7, 1, 1)
+	dlg:add_button(lang["int_dowload_sel"], download_index, 3, 7, 1, 1)
 	dlg:add_button(lang["int_close"], deactivate, 4, 7, 1, 1) 
 	
 	assoc_select_conf('language', 'language', openSub.conf.languages, 2, lang["int_all"])
@@ -1399,6 +1401,11 @@ function searchHash()
 end
 
 function searchIMBD()
+	configIMDB()
+	makeImdbRequest()
+end
+
+function configIMDB()
 	openSub.movie.title = trim(input_table["title"]:get_text())
 	openSub.movie.seasonNumber = tonumber(input_table["seasonNumber"]:get_text())
 	openSub.movie.episodeNumber = tonumber(input_table["episodeNumber"]:get_text())
@@ -1409,12 +1416,21 @@ function searchIMBD()
 	else
 		openSub.movie.sublanguageid = openSub.conf.languages[sel][1]
 	end
-	
+end
+
+function makeImdbRequest()
 	if openSub.movie.title ~= "" then
 		openSub.checkSession()
 		openSub.request("SearchSubtitles")
 		display_subtitles()
 	end
+end
+
+function feelingLucky()
+	configIMDB()
+	makeImdbRequest()
+	download_subtitles(1)
+	deactivate()
 end
 
 function display_subtitles()
@@ -1443,9 +1459,13 @@ function get_first_sel(list)
 	return 0
 end
 
-function download_subtitles()
+function download_index(index)
 	local index = get_first_sel(input_table["mainlist"])
-	
+
+	download_subtitles(index)
+end
+
+function download_subtitles(index)	
 	if index == 0 then
 		setMessage(lang["mess_no_selection"])
 		return false
