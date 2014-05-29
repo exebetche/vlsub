@@ -112,7 +112,6 @@ local options = {
 			" <b>/!\\ Beware :</b> Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet're important.<br>"..
 			" <br>"..
 			" Find more Vlc extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>.",
-			" Find more Vlc extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>.",
 		int_no_support_mess = [[
 			<strong>VLSub is not working with Vlc 2.1.x on any platform</strong>
 			because the lua "net" module needed to interact with opensubtitles has been 
