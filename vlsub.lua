@@ -90,28 +90,28 @@ local options = {
 		int_vlsub_work_dir = 'VLSub working directory',
 		int_os_username = 'Username',
 		int_os_password = 'Password',
-		int_help_mess = " Download subtittles from <a href='http://www.opensubtitles.org/'>opensubtitles.org</a> and display them while watching a video.<br>"..
+		int_help_mess = " Download subtitles from <a href='http://www.opensubtitles.org/'>opensubtitles.org</a> and display them while watching a video.<br>"..
 			" <br>"..
 			" <b><u>Usage:</u></b><br>"..
 			" <br>"..
-			" VLSub is meant to be used while your watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).<br>"..
+			" VLSub is meant to be used while you are watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).<br>"..
 			" <br>"..
-			" Choose the language for your subtitles and click on the button corresponding to one of the two research method provided by VLSub:<br>"..
+			" Choose the language for your subtitles and click on the button corresponding to one of the two research methods provided by VLSub:<br>"..
 			" <br>"..
 			" <b>Method 1: Search by hash</b><br>"..
 			" It is recommended to try this method first, because it performs a research based on the video file print, so you can find subtitles synchronized with your video.<br>"..
 			" <br>"..
 			" <b>Method 2: Search by name</b><br>"..
-			" If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a serie, you can also provide a season and episode number.<br>"..
+			" If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a series, you can also provide a season and episode number.<br>"..
 			" <br>"..
 			" <b>Downloading Subtitles</b><br>"..
 			" Select one subtitle in the list and click on 'Download'.<br>"..
 			" It will be put in the same directory that your video, with the same name (different extension)"..
-			" so Vlc will load them automatically the next time you'll start the video.<br>"..
+			" so VLC will load them automatically the next time you'll start the video.<br>"..
 			" <br>"..
-			" <b>/!\\ Beware :</b> Existing subtitles are overwrited without asking confirmation, so put them elsewhere if thet're important.<br>"..
+			" <b>/!\\ Beware :</b> Existing subtitles are overwritten without asking confirmation, so put them elsewhere if they're important.<br>"..
 			" <br>"..
-			" Find more Vlc extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>.",
+			" Find more VLC extensions at <a href='http://addons.videolan.org'>addons.videolan.org</a>.",
 		int_no_support_mess = [[
 			<strong>VLSub is not working with Vlc 2.1.x on any platform</strong>
 			because the lua "net" module needed to interact with opensubtitles has been 
@@ -152,7 +152,7 @@ local options = {
 		mess_not_load = 'Unable to load subtitles',
 		mess_downloading = 'Downloading subtitle',
 		mess_dowload_link = 'Download link',
-		mess_err_conf_access ='Can\'t fount a suitable path to save config, please set it manually',
+		mess_err_conf_access ='Can\'t find a suitable path to save config, please set it manually',
 		mess_err_wrong_path ='the path contains illegal character, please correct it'
 	}
 }
@@ -296,7 +296,7 @@ local dlg = nil
 local input_table = {} -- General widget id reference
 local select_conf = {} -- Drop down widget / option table association 
 
-						--[[ Vlc extension stuff ]]--
+						--[[ VLC extension stuff ]]--
 
 function descriptor()
 	return { 
@@ -314,7 +314,7 @@ function activate()
 	vlc.msg.dbg("[VLsub] Welcome")
 	
     if not check_config() then 
-    	vlc.msg.err("[VLsub] Unsupported Vlc vesrion")
+    	vlc.msg.err("[VLsub] Unsupported VLC version")
     	return false 
     end
     	
@@ -506,7 +506,7 @@ end
 						--[[ Drop down / config association]]--
 
 function assoc_select_conf(select_id, option, conf, ind, default)
--- Helper for i/o interaction betwenn drop down and option list (lang...)
+-- Helper for i/o interaction between drop down and option list (lang...)
 	select_conf[select_id] = {cf = conf, opt  = option, dflt = default, ind = ind}
 	set_default_option(select_id)
 	display_select(select_id)
@@ -531,7 +531,7 @@ function set_default_option(select_id)
 end
 
 function display_select(select_id)
--- Display the drop down values with an optionnal default value at the top
+-- Display the drop down values with an optional default value at the top
 	local conf = select_conf[select_id].cf
 	local opt = select_conf[select_id].opt
 	local option = openSub.option[opt]
@@ -699,16 +699,16 @@ function check_config()
 		then
 			local transl_file_path = openSub.conf.localePath..slash..openSub.option.intLang..".xml"
 			if file_exist(transl_file_path) then
-				vlc.msg.dbg("[VLSub] Loadin translation from file: " .. transl_file_path)
+				vlc.msg.dbg("[VLSub] Loading translation from file: " .. transl_file_path)
 				load_transl(transl_file_path)
 			end
 		end
 	else
-		vlc.msg.dbg("[VLSub] Unable fount a suitable path to save config, please set it manually")
+		vlc.msg.dbg("[VLSub] Unable to find a suitable path to save config, please set it manually")
 	end
 	
 	lang = nil
-	lang = options.translation -- just a shortcut
+	lang = options.translation -- just a short cut
 	
 	if not(vlc.net or vlc.net.poll) then
 		dlg = vlc.dialog(openSub.conf.useragent..': '..lang["mess_error"])
@@ -722,7 +722,7 @@ function check_config()
 		setError(lang["mess_err_conf_access"])
 	end
 		
-	-- Set table list of available traduction from assoc. array 
+	-- Set table list of available translations from assoc. array 
 	-- so it is sortable
 	
 	for k, l in pairs(openSub.option.translations_avail) do		
@@ -1935,7 +1935,7 @@ function make_uri(str)
     end
 end
 
-function file_touch(name) -- test writetability
+function file_touch(name) -- test write ability
 	if not name or trim(name) == "" 
 	then return false end
 	
@@ -1963,7 +1963,7 @@ end
 function is_dir(path)
 	if not path or trim(path) == "" 
 	then return false end
-	-- Remove slash at the or it won't work on Windows
+	-- Remove slash at the end or it won't work on Windows
 	path = string.gsub(path, "^(.-)[\\/]?$", "%1")
 	local f, _, code = io.open(path, "rb")
 	

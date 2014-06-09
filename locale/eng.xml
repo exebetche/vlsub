@@ -11,7 +11,7 @@
 <int_config>Config</int_config>
 <int_configuration>Configuration</int_configuration>
 <int_default_lang>Subtitles language</int_default_lang>
-<int_descr>Dowload subtitles from OpenSubtitles.org</int_descr>
+<int_descr>Download subtitles from OpenSubtitles.org</int_descr>
 <int_display_code>Display language code in file name</int_display_code>
 <int_dowload_behav>What to do with subtitles</int_dowload_behav>
 <int_dowload_load>Load only</int_dowload_load>
