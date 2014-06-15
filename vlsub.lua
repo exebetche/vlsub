@@ -710,7 +710,7 @@ function check_config()
 	lang = nil
 	lang = options.translation -- just a short cut
 	
-	if not(vlc.net or vlc.net.poll) then
+	if not vlc.net or not vlc.net.poll then
 		dlg = vlc.dialog(openSub.conf.useragent..': '..lang["mess_error"])
 		interface_no_support()
 		dlg:show()
