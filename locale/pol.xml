@@ -1,0 +1,56 @@
+<action_hash>Liczę hash filmu</action_hash>
+<action_login>Zalogowuję</action_login>
+<action_logout>Wylogowuję</action_logout>
+<action_noop>Sprawdzam sesję</action_noop>
+<action_search>Szukam napisów</action_search>
+<int_all>All</int_all>
+<int_bool_false>Nie</int_bool_false>
+<int_bool_true>Tak</int_bool_true>
+<int_cancel>Anuluj</int_cancel>
+<int_close>Zamknij</int_close>
+<int_config>Konfiguracja</int_config>
+<int_configuration>Ustawienia</int_configuration>
+<int_default_lang>Język napisów</int_default_lang>
+<int_descr>Ściągnij napisy z OpenSubtitles.org</int_descr>
+<int_display_code>Pokaż kod języka w nazwie pliku</int_display_code>
+<int_dowload_behav>Co zrobić z napisami</int_dowload_behav>
+<int_dowload_load>Tylko załaduj</int_dowload_load>
+<int_dowload_manual>Ściągnij ręcznie</int_dowload_manual>
+<int_dowload_save>Załaduj i zapisz</int_dowload_save>
+<int_dowload_sel>Zaznaczenie ściągania</int_dowload_sel>
+<int_episode>Epizody (serial)</int_episode>
+<int_help>Pomoc</int_help>
+<int_help_mess> Ściągaj napisy z &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; oraz wyświetlaj je podczas oglądania wideo.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Użytkowanie:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub jest przeznaczone do użytku w trakcie oglądania video, więc najpierw uruchom wideo (jeśli nic nie jest odgrywane zobaczysz link do ściągnięcia napisów w swojej przeglądarce).&lt;br&gt; &lt;br&gt; Wybierz język dla swoich napisów i kliknij przycisk odpowiadający jednej z dwóch metod wyszukiwania udostępnionych przez VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Methoda 1: Wyszukaj po hashu&lt;/b&gt;&lt;br&gt; Rekomendujemy spróbować najpierw tej metody, ponieważ wykonuje wyszukiwanie na bazie unikalnego "odcisku palca" dla pliku wideo, dzięki czemu napisy będą zsynchronizowane z twoim wideo.&lt;br&gt; &lt;br&gt; &lt;b&gt;Methoda 2: Wyszukaj po nazwie&lt;/b&gt;&lt;br&gt; Jeśli nie udało się pierwszą metodą, sprawdź czy tytuł jest prawidłowy i wypróbuj drugiej. Jeśli szukasz napisów dla serialu, możesz też dodać nr sezonu i odcinka.&lt;br&gt; &lt;br&gt; &lt;b&gt;Ściąganie napisów&lt;/b&gt;&lt;br&gt; Wybierz napisy z listy i kliknij przycisk &#39;Ściągnij&#39;.&lt;br&gt; Zostaną zapisane w tym samym folderze co wideo, z tą samą nazwą (inne rozszerzenie) więc VLC załaduje je automatycznie przy następnym uruchomieniu tego wideo.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Uwaga :&lt;/b&gt; Istniejące napisy są nadpisywane bez pytania o potwierdzenie, więc umieść je gdzie indziej, jeśli są ważne.&lt;br&gt; &lt;br&gt; Więcej rozszerzeń VLC znajdziesz na &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Język interfejsu</int_int_lang>
+<int_ok>Ok</int_ok>
+<int_remove_tag>Usuń tagi</int_remove_tag>
+<int_research>Ponownie wyszukaj</int_research>
+<int_save>Zapisz</int_save>
+<int_search_hash>Wyszukaj po hashu</int_search_hash>
+<int_searching_transl>Wyszukuję tłumaczenia ...</int_searching_transl>
+<int_search_name>Wyszukaj po nazwie</int_search_name>
+<int_search_transl>Szukaj tłumaczeń</int_search_transl>
+<int_season>Sezon (serial)</int_season>
+<int_show_conf>Pokaż ustawienia</int_show_conf>
+<int_show_help>Pokaż pomoc</int_show_help>
+<int_title>Tytuł</int_title>
+<int_vlsub_work_dir>Folder roboczy VLSub</int_vlsub_work_dir>
+<mess_click_link>Kliknij tu, aby otworzyć plik</mess_click_link>
+<mess_complete>Wyszukiwanie zakończone</mess_complete>
+<mess_dowload_link>Link do ściągnięcia</mess_dowload_link>
+<mess_downloading>Ściągam napisy</mess_downloading>
+<mess_error>Błąd</mess_error>
+<mess_expired>Sesja wygasła, próbuję ponownie</mess_expired>
+<mess_loaded>Napisy załadowane</mess_loaded>
+<mess_no_input>Proszę używaj tej metody podczas odgrywania</mess_no_input>
+<mess_no_res>Brak wyników</mess_no_res>
+<mess_no_response>Serwer nie odpowiada</mess_no_response>
+<mess_no_selection>Nie wybrano napisów</mess_no_selection>
+<mess_not_found>Pliku nie znaleziono</mess_not_found>
+<mess_not_found2>Pliku nie znaleziono (niedozwolony znak?)</mess_not_found2>
+<mess_not_local>Ta metoda działa tylko dla lokalnych plików (póki co)</mess_not_local>
+<mess_overloaded>Serwer przeładowany, proszę spróbuj później</mess_overloaded>
+<mess_res>wynik(i)</mess_res>
+<mess_save_fail>Nie można zapisać napisów</mess_save_fail>
+<mess_success>Powodzenie</mess_success>
+<mess_unauthorized>Żądanie nieautoryzowane</mess_unauthorized>
