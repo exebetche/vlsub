@@ -300,8 +300,8 @@ local select_conf = {} -- Drop down widget / option table association
 
 function descriptor()
 	return { 
-		title = "VLsub 0.9.11",
-		version = "0.9.11",
+		title = "VLsub 0.9.12",
+		version = "0.9.12",
 		author = "exebetche",
 		url = 'http://www.opensubtitles.org/',
 		shortdesc = "VLsub";
@@ -928,7 +928,6 @@ function SetDownloadBehaviours()
 	openSub.conf.downloadBehaviours = nil 
 	openSub.conf.downloadBehaviours = { 
 		{'save', lang["int_dowload_save"]},
-		{'load', lang["int_dowload_load"]},
 		{'manual', lang["int_dowload_manual"]}
 	}
 end
@@ -1491,7 +1490,6 @@ function download_subtitles()
 	local item = openSub.itemStore[index]
 	
 	if openSub.option.downloadBehaviour == 'manual' then
-	
 		local link = "<span style='color:#181'>"
 		link = link.."<b>"..lang["mess_dowload_link"]..":</b>"
 		link = link.."</span> &nbsp;"
@@ -1499,13 +1497,6 @@ function download_subtitles()
 		link = link..item.MovieReleaseName.."</a>"
 		
 		setMessage(link)
-		return false
-	elseif openSub.option.downloadBehaviour == 'load' then
-		if add_sub("zip://"..item.ZipDownloadLink.."!/"..item.SubFileName) then
-			setMessage(success_tag(lang["mess_loaded"]))
-		else
-			message = error_tag(lang["mess_not_load"]) .. message
-		end
 		return false
 	end
 	
@@ -1582,15 +1573,9 @@ function download_subtitles()
 	if not os.remove(tmpFileName) then
 		vlc.msg.err("[VLsub] Unable to remove temp: "..tmpFileName)
 	end
-	
-	subfileURI = vlc.strings.make_uri(target)
-	
-	if not subfileURI then
-		subfileURI = make_uri(target)
-	end
-	
+		
 	-- load subtitles
-	if add_sub(subfileURI) then 
+	if add_sub(target) then 
 		message = success_tag(lang["mess_loaded"]) .. message
 	else
 		message = error_tag(lang["mess_not_load"]) .. message
@@ -1623,10 +1608,11 @@ function dump_zip(url, dir, subfileName)
 	return "zip://"..make_uri(tmpFileName).."!/"..subfileName, tmpFileName
 end
 
-function add_sub(subfileURI)
+function add_sub(subPath)
 	if vlc.item or vlc.input.item() then
-		vlc.msg.dbg("[VLsub] Adding subtitle :" .. subfileURI)
-		return vlc.input.add_subtitle(subfileURI)
+		subPath = decode_uri(subPath)
+		vlc.msg.dbg("[VLsub] Adding subtitle :" .. subPath)
+		return vlc.input.add_subtitle(subPath)
 	end
 	return false
 end
@@ -2013,6 +1999,11 @@ function mkdir_p(path)
 	elseif openSub.conf.os == "lin" then
 		os.execute("mkdir -p '" .. path.."'")
 	end
+end
+
+function decode_uri(str)
+	vlc.msg.err(slash)
+	return str:gsub("/", slash)
 end
 
 function is_window_path(path)
