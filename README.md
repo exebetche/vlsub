@@ -39,6 +39,13 @@ Due to some bugs on Windows, if the path to your video contain non-english chara
 
 #### Changelog:
 
+##### 2014-08-19 (version 0.9.12)
+Fix subtitles loading on Vlc 2.2
+
+##### 2014-05-08 (version 0.9.11)
+Fix a bug due to opensubtitles header modifications
+Add a message at startup to warn it's not gonna work if net module not present 
+
 ##### 2013-09-05 (version 0.9.10)
 Add possibility to set opensubtitles.org username/password in config menu to avoid download limit to unlogged users
 
