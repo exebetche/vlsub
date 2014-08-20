@@ -18,9 +18,6 @@ Create a directory "extensions" at this location if it doesn't exists, then extr
 * Mac OS X (current user): /Users/%your_name%/Library/Application Support/org.videolan.vlc/lua/extensions/
 
 
-Alternatively if you are using Windows 7 you can use the installer availbale here:  
-http://addons.videolan.org/content/download.php?content=148752&id=2&tan=28601353
-
 #### USAGE:
 * Start Vlc
 * Start your video
