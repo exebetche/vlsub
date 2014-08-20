@@ -54,7 +54,8 @@ Due to some bugs on Windows, if the path to your video contain non-english chara
 - Allow user to set VLSub's working directory from config interface 
 
 ##### 2013-07-25 (version 0.9.8)
-- Add a method to search subtitles for videos file inside an archive and for video with specials characters in its   name or path on Windows.
+- Add a method to search subtitles for videos file inside an archive 
+- Add a method for video with specials characters in its name or path on Windows.
 
 ##### 2013-07-13 (version 0.9.6)
 - Add an installer for Windows 7  
