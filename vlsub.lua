@@ -119,8 +119,10 @@ local options = {
 			<br>
 			<strong>Works with Vlc 2.2 on mac and linux.</strong>
 			<br>
-			<strong>On Windows you have to install <a target="_blank" rel="nofollow" href="http://download.videolan.org/pub/videolan/vlc/2.0.8/">an older version</a> or
-			<a target="_blank" rel="nofollow" href="http://nightlies.videolan.org/">unstable/nightly versions</a> of Vlc</strong>
+			<strong>On windows you have to install an older version of Vlc (2.0.8 for example)</strong>
+			to use Vlsub:
+			<br>
+			<a target="_blank" rel="nofollow" href="http://download.videolan.org/pub/videolan/vlc/2.0.8/">http://download.videola...pub/videolan/vlc/2.0.8/</a>
 			<br>
 		]],
 	
