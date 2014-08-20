@@ -69,8 +69,8 @@ Due to some bugs on Windows, if the path to your video contain non-english chara
 - Simplified interface  
 - Bug fix with subrip format (".sub") subtitles  
 - Add a success message when subtitles are loaded  
-- Display a download link to subtitles if direct download fail  
-- 
+- Display a download link to subtitles if direct download fail
+
 ##### 2012-12-18 (version 0.8)
 - [Benoit Vallee] Fixed subtitle downloading when special characters are present on the video path  
 - [Benoit Vallee] Fixed zip file deletion after subtitle has been extracted  
