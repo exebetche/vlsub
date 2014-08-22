@@ -71,6 +71,7 @@ local options = {
 		int_show_help = 'Show help',
 		int_show_conf = 'Show config',
 		int_dowload_sel = 'Download selection',
+		int_search_and_download = 'Search and download',
 		int_close = 'Close',
 		int_ok = 'Ok',
 		int_save = 'Save',
@@ -380,7 +381,8 @@ function interface_main()
 	dlg:add_button(lang["int_show_help"], show_help, 1, 7, 1, 1)
 	dlg:add_button('   '..lang["int_show_conf"]..'   ', show_conf, 2, 7, 1, 1)
 	dlg:add_button(lang["int_dowload_sel"], download_subtitles, 3, 7, 1, 1)
-	dlg:add_button(lang["int_close"], deactivate, 4, 7, 1, 1) 
+	dlg:add_button(lang["int_search_and_download"], search_and_download, 4, 7, 1, 1)
+	dlg:add_button(lang["int_close"], deactivate, 5, 7, 1, 1) 
 	
 	assoc_select_conf('language', 'language', openSub.conf.languages, 2, lang["int_all"])
 	display_subtitles()
@@ -1475,6 +1477,16 @@ function get_first_sel(list)
 	return 0
 end
 
+function search_and_download()
+	searchHash()
+	local item = openSub.itemStore[1]
+	if item then
+		--vlc.msg.dbg("+++++++++ "..item.SubFileName)
+		download_subtitles_by_item(item)
+	end
+	return false
+end
+
 function download_subtitles()
 	local index = get_first_sel(input_table["mainlist"])
 	
@@ -1483,12 +1495,14 @@ function download_subtitles()
 		return false
 	end
 	
-	openSub.actionLabel = lang["mess_downloading"] 
-	
-	display_subtitles() -- reset selection
-	
 	local item = openSub.itemStore[index]
-	
+	download_subtitles_by_item(item)
+end
+
+function download_subtitles_by_item(item)
+	openSub.actionLabel = lang["mess_downloading"] 
+	display_subtitles() -- reset selection
+
 	if openSub.option.downloadBehaviour == 'manual' then
 		local link = "<span style='color:#181'>"
 		link = link.."<b>"..lang["mess_dowload_link"]..":</b>"
