@@ -2024,9 +2024,3 @@ end
 function remove_tag(str)
 	return string.gsub(str, "{[^}]+}", "")
 end
-
-function sleep(sec)
-   local t = vlc.misc.mdate()
-   vlc.misc.mwait(t + sec*1000*1000)
-end
-
