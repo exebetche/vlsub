@@ -327,7 +327,7 @@ function activate()
 end
 
 function close()
-	deactivate()
+	vlc.deactivate()
 end
 
 function deactivate()
@@ -339,7 +339,6 @@ function deactivate()
 	if openSub.session.token and openSub.session.token ~= "" then
 		openSub.request("LogOut")
 	end
-   vlc.deactivate()
 end
 
 function menu()
