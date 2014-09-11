@@ -9,6 +9,10 @@ Contact: http://addons.videolan.org/messages/?action=newmessage&username=exebetc
 Bug report: http://addons.videolan.org/content/show.php/?content=148752  
 
 #### INSTALLATION:
+Vlsub doesn't work on Vlc 2.1, use one of these instead:
+* [vlc 2.0](http://download.videolan.org/pub/videolan/vlc/2.0.8/)
+* [vlc 2.2](http://nightlies.videolan.org/build/) (beta)
+
 Create a directory "extensions" at this location if it doesn't exists, then extract the file "vlsub.lua" from the archive inside:
 * Windows (all users): %ProgramFiles%\VideoLAN\VLC\lua\extensions\
 * Windows (current user): %APPDATA%\vlc\lua\extensions\
@@ -21,7 +25,7 @@ Create a directory "extensions" at this location if it doesn't exists, then extr
 #### USAGE:
 * Start Vlc
 * Start your video
-* Click on the menu View > VLSub or VLC > Extension > VLSub if you're on Mac OS X
+* Click on the menu View > VLSub or VLC > Extension > VLSub on Mac OS X
 * Click on "Search by hash" or "Search by name"
 * Select a subtitles file on the list
 * Click on "Download selection"
