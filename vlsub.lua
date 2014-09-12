@@ -326,8 +326,8 @@ local select_conf = {} -- Drop down widget / option table association
 
 function descriptor()
   return { 
-    title = "VLsub 0.9.12",
-    version = "0.9.12",
+    title = "VLsub 0.9.13",
+    version = "0.9.13",
     author = "exebetche",
     url = 'http://www.opensubtitles.org/',
     shortdesc = "VLsub";
