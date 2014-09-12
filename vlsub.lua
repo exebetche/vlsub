@@ -1893,6 +1893,16 @@ function http_req(host, port, request)
   end
   vlc.net.close(fd)
   
+  if status == 301 
+  and header["Location"] then
+    local host, path = parse_url(trim(header["Location"]))
+    request = request
+    :gsub("^([^%s]+ )([^%s]+)", "%1"..path)
+    :gsub("(Host: )([^\n]*)", "%1"..host)
+    
+    return http_req(host, port, request)
+  end 
+  
   return status, body
 end
 
