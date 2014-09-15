@@ -40,6 +40,9 @@ Due to some bugs on Windows, if the path to your video contain non-english chara
 
 #### Changelog:
 
+##### 2014-09-12 (version 0.9.13)
+- Fix error with new http 301 redirection
+
 ##### 2014-08-19 (version 0.9.12)
 - Fix subtitles loading on Vlc 2.2
 
