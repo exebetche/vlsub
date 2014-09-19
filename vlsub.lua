@@ -1866,31 +1866,36 @@ function http_req(host, port, request)
   vlc.net.send(fd, request)
   vlc.net.poll(pollfds)
   
-  local response = vlc.net.recv(fd, 2048)
-  local headerStr, body = string.match(response, "(.-\r?\n)\r?\n(.*)")
-  local header = parse_header(headerStr)
-  local contentLength = tonumber(header["Content-Length"])
-  local TransferEncoding = header["Transfer-Encoding"]
-  local status = tonumber(header["statuscode"])
-  local bodyLenght = string.len(body)
+  local chunk = vlc.net.recv(fd, 2048)
+  local response = ""
+  local headerStr, header
+  local contentLength, status
   local pct = 0
   
-  --~ if status ~= 200 then return status end
-  
-  while contentLength and bodyLenght < contentLength do
-    vlc.net.poll(pollfds)
-    response = vlc.net.recv(fd, 1024)
-
-    if response then
-      body = body..response
-    else
-      vlc.net.close(fd)
-      return false
+  while chunk do
+    response = response..chunk
+    if not header then
+        headerStr, response = string.match(response, "(.-\r?\n)\r?\n(.*)")
+        if headerStr then
+            header = parse_header(headerStr)
+            contentLength = tonumber(header["Content-Length"])
+            status = tonumber(header["statuscode"])
+        end
     end
-    bodyLenght = string.len(body)
-    pct = bodyLenght / contentLength * 100
-    setMessage(openSub.actionLabel..": "..progressBarContent(pct))
+
+    if contentLength then
+        bodyLenght = string.len(response)
+        pct = bodyLenght / contentLength * 100
+        setMessage(openSub.actionLabel..": "..progressBarContent(pct))
+      if bodyLenght >= contentLength then
+        break
+      end
+    end
+
+    vlc.net.poll(pollfds)
+    chunk = vlc.net.recv(fd, 1024)
   end
+
   vlc.net.close(fd)
   
   if status == 301 
@@ -1901,9 +1906,9 @@ function http_req(host, port, request)
     :gsub("(Host: )([^\n]*)", "%1"..host)
     
     return http_req(host, port, request)
-  end 
-  
-  return status, body
+  end
+
+  return status, response
 end
 
 function parse_header(data)
