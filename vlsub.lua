@@ -1868,15 +1868,16 @@ function http_req(host, port, request)
   
   local chunk = vlc.net.recv(fd, 2048)
   local response = ""
-  local headerStr, header
+  local headerStr, header, body
   local contentLength, status
   local pct = 0
   
   while chunk do
     response = response..chunk
     if not header then
-        headerStr, response = string.match(response, "(.-\r?\n)\r?\n(.*)")
+        headerStr, body = string.match(response, "(.-\r?\n)\r?\n(.*)")
         if headerStr then
+            reponse = body
             header = parse_header(headerStr)
             contentLength = tonumber(header["Content-Length"])
             status = tonumber(header["statuscode"])
