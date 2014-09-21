@@ -40,6 +40,9 @@ Due to some bugs on Windows, if the path to your video contain non-english chara
 
 #### Changelog:
 
+##### 2014-09-21
+- Improve http response handle for large header
+
 ##### 2014-09-12 (version 0.9.13)
 - Fix error with new http 301 redirection
 
