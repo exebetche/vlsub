@@ -95,13 +95,13 @@ local options = {
       Download subtitles from 
       <a href='http://www.opensubtitles.org/'>
       opensubtitles.org
-      </a> and display them while watching a video.<br>"..
+      </a> and display them while watching a video.<br>
       <br>
       <b><u>Usage:</u></b><br>
       <br>
-      VLSub is meant to be used while you are watching the video, 
-      so start it first (if nothing is playing you will get a link
-      to download the subtitles in your browser).<br>
+      Start your video. If you use Vlsub witout playing a video 
+      you will get a link to download the subtitles in your browser 
+      but the subtitles will not be saved and loaded automatically.<br>
       <br>
       Choose the language for your subtitles and click on the 
       button corresponding to one of the two research methods 
@@ -1667,7 +1667,8 @@ function download_subtitles()
   
   local item = openSub.itemStore[index]
   
-  if openSub.option.downloadBehaviour == 'manual' then
+  if openSub.option.downloadBehaviour == 'manual' 
+  or not subfileName then
     local link = "<span style='color:#181'>"
     link = link.."<b>"..lang["mess_dowload_link"]..":</b>"
     link = link.."</span> &nbsp;"
