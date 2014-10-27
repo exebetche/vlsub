@@ -101,7 +101,7 @@ local options = {
       <br>
       Start your video. If you use Vlsub witout playing a video 
       you will get a link to download the subtitles in your browser 
-      but the subtitles will not be saved and loaded automatically.<br>
+      but the subtitles won't be saved and loaded automatically.<br>
       <br>
       Choose the language for your subtitles and click on the 
       button corresponding to one of the two research methods 
