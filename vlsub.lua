@@ -1681,7 +1681,7 @@ function download_subtitles()
   end
   
   local message = ""
-  local subfileName = openSub.file.name
+  local subfileName = openSub.file.name or ""
   
   if openSub.option.langExt then
     subfileName = subfileName.."."..item.SubLanguageID
