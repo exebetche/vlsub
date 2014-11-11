@@ -1667,8 +1667,7 @@ function download_subtitles()
   
   local item = openSub.itemStore[index]
   
-  if openSub.option.downloadBehaviour == 'manual' 
-  or not subfileName then
+  if openSub.option.downloadBehaviour == 'manual' then
     local link = "<span style='color:#181'>"
     link = link.."<b>"..lang["mess_dowload_link"]..":</b>"
     link = link.."</span> &nbsp;"
