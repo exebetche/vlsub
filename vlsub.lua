@@ -91,6 +91,8 @@ local options = {
     int_vlsub_work_dir = 'VLSub working directory',
     int_os_username = 'Username',
     int_os_password = 'Password',
+    int_language_code_2 = 'Yes (2 chars)',
+    int_language_code_3 = 'Yes (3 chars)',
     int_help_mess =[[
       Download subtitles from 
       <a href='http://www.opensubtitles.org/'>
@@ -501,9 +503,9 @@ function interface_config()
     apply_config, 3, 10, 1, 1)
   
   input_table['langExt']:add_value(
-    lang["int_bool_"..tostring(openSub.option.langExt)], 1)
-  input_table['langExt']:add_value(
-    lang["int_bool_"..tostring(not openSub.option.langExt)], 2)
+    lang["int_bool_"..tostring(not openSub.option.langExt)], 1)
+  input_table['langExt']:add_value(lang["int_language_code_2"], 2)
+  input_table['langExt']:add_value(lang["int_language_code_3"], 3)
   input_table['removeTag']:add_value(
     lang["int_bool_"..tostring(openSub.option.removeTag)], 1)
   input_table['removeTag']:add_value(
@@ -956,8 +958,14 @@ function apply_config()
   openSub.option.os_username = input_table['os_username']:get_text()
   openSub.option.os_password = input_table['os_password']:get_text()
   
-  if input_table["langExt"]:get_value() == 2 then
-    openSub.option.langExt = not openSub.option.langExt
+  if input_table["langExt"]:get_value() == 1 then
+    openSub.option.langExt = '0 chars'
+  elseif input_table["langExt"]:get_value() == 2 then
+    openSub.option.langExt = '2 chars'
+  elseif input_table["langExt"]:get_value() == 3 then
+    openSub.option.langExt = '3 chars'
+  else
+    -- throw an exception
   end
   
   if input_table["removeTag"]:get_value() == 2 then
@@ -1681,7 +1689,9 @@ function download_subtitles()
   local message = ""
   local subfileName = openSub.file.name or ""
   
-  if openSub.option.langExt then
+  if openSub.option.langExt == '2 chars' then
+    subfileName = subfileName.."."..get_key_for_value(lang_os_to_iso, item.SubLanguageID)
+  elseif openSub.option.langExt == '3 chars' then
     subfileName = subfileName.."."..item.SubLanguageID
   end
   
@@ -1787,6 +1797,16 @@ function dump_zip(url, dir, subfileName)
   collectgarbage()
   return "zip://"..make_uri(tmpFileName)
     .."!/"..subfileName, tmpFileName
+end
+
+function get_key_for_value(table, value)
+  for k, v in pairs(table) do
+    if v == value then 
+      return k
+    end
+  end
+
+  return nil
 end
 
 function add_sub(subPath)
