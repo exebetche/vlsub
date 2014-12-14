@@ -35,7 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 local options = {
   language = nil,
   downloadBehaviour = 'save',
-  langExt = false,
+  langExt = '0 chars',
   removeTag = false,
   showMediaInformation = true,
   progressBarSize = 80,
@@ -506,6 +506,7 @@ function interface_config()
     lang["int_bool_"..tostring(not openSub.option.langExt)], 1)
   input_table['langExt']:add_value(lang["int_language_code_2"], 2)
   input_table['langExt']:add_value(lang["int_language_code_3"], 3)
+
   input_table['removeTag']:add_value(
     lang["int_bool_"..tostring(openSub.option.removeTag)], 1)
   input_table['removeTag']:add_value(
@@ -965,7 +966,8 @@ function apply_config()
   elseif input_table["langExt"]:get_value() == 3 then
     openSub.option.langExt = '3 chars'
   else
-    -- throw an exception
+    vlc.msg.err("[VLSub] Unknown language extension: " ..
+      input_table["langExt"]:get_value())
   end
   
   if input_table["removeTag"]:get_value() == 2 then
@@ -1690,7 +1692,7 @@ function download_subtitles()
   local subfileName = openSub.file.name or ""
   
   if openSub.option.langExt == '2 chars' then
-    subfileName = subfileName.."."..get_key_for_value(lang_os_to_iso, item.SubLanguageID)
+    subfileName = subfileName.."."..get_key(lang_os_to_iso, item.SubLanguageID)
   elseif openSub.option.langExt == '3 chars' then
     subfileName = subfileName.."."..item.SubLanguageID
   end
@@ -1799,7 +1801,7 @@ function dump_zip(url, dir, subfileName)
     .."!/"..subfileName, tmpFileName
 end
 
-function get_key_for_value(table, value)
+function get_key(table, value)
   for k, v in pairs(table) do
     if v == value then 
       return k
