@@ -502,11 +502,6 @@ function interface_config()
     lang["int_save"],
     apply_config, 3, 10, 1, 1)
   
-  input_table['langExt']:add_value(
-    lang["int_bool_"..tostring(not openSub.option.langExt)], 1)
-  input_table['langExt']:add_value(lang["int_language_code_2"], 2)
-  input_table['langExt']:add_value(lang["int_language_code_3"], 3)
-
   input_table['removeTag']:add_value(
     lang["int_bool_"..tostring(openSub.option.removeTag)], 1)
   input_table['removeTag']:add_value(
@@ -528,6 +523,8 @@ function interface_config()
     'downloadBehaviour',
     openSub.conf.downloadBehaviours,
     1)
+
+  assoc_select_conf('langExt', 'langExt', openSub.conf.langExt, 1)
 end
 
 function interface_help()
@@ -836,6 +833,8 @@ function check_config()
     setError(lang["mess_err_conf_access"])
   end
     
+  set_language_code_file()
+
   -- Set table list of available translations from assoc. array 
   -- so it is sortable
   
@@ -1073,6 +1072,15 @@ function SetDownloadBehaviours()
   openSub.conf.downloadBehaviours = { 
     {'save', lang["int_dowload_save"]},
     {'manual', lang["int_dowload_manual"]}
+  }
+end
+
+function set_language_code_file() -- ap
+  openSub.conf.langExt = nil
+  openSub.conf.langExt = {
+    { '0 chars', lang["int_bool_false"] },
+    { '2 chars', lang["int_language_code_2"] },
+    { '3 chars', lang["int_language_code_3"] }
   }
 end
 
