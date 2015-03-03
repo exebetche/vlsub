@@ -1,6 +1,22 @@
 vlsub
 =====
 
+
+This fork has the ability to download subtitles in three additional languages all at once, similar to what happens in XBMC.
+Unfortunately, I couldn't implement changing those languages in the config menu. Instead, the defaults for these languages can be changed in the config file, usually located at:
+C:\Users\%name of user%\AppData\Roaming\vlc\lua\extensions\userdata\vlsub\vlsub_conf.xml
+
+by changing 
+<language2>your second language code</language2>
+<language3>your third language code</language3>
+
+I'd be very happy if someone could implement the config menu to change these options there, as there is a very weird bug. 
+
+The code I did to implemment that is commented out.
+
+
+
+
 VLC extension to download subtitles from opensubtitles.org
 
 
