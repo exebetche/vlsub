@@ -33,7 +33,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 -- ...
 
 local options = {
-  language = nil,
+  language = por,
+  language2 = pob,
+  language3 = eng,
   downloadBehaviour = 'save',
   langExt = false,
   removeTag = false,
@@ -81,7 +83,9 @@ local options = {
     int_search_transl = 'Search translations',
     int_searching_transl = 'Searching translations ...',
     int_int_lang = 'Interface language',
-    int_default_lang = 'Subtitles language',
+    int_default_lang = 'Primary subtitles language',
+	int_default_lang2 = 'Secondary subtitles language',
+	int_default_lang3 = 'Tertiary subtitles language',
     int_dowload_behav = 'What to do with subtitles',
     int_dowload_save = 'Load and save',
     int_dowload_load = 'Load only',
@@ -388,33 +392,46 @@ end
             --[[ Interface data ]]--
 
 function interface_main()
-  dlg:add_label(lang["int_default_lang"]..':', 1, 1, 1, 1)
+  --  dlg:add_label("<p style=\"color: #000000; background-color: SkyBlue  \">Primary Language</p>", 1, 1, 1, 1)
+      dlg:add_label(lang["int_default_lang"]..':', 1, 1, 1, 1)
   input_table['language'] =  dlg:add_dropdown(2, 1, 2, 1)
-  dlg:add_button(lang["int_search_hash"], 
-    searchHash, 4, 1, 1, 1)
   
-  dlg:add_label(lang["int_title"]..':', 1, 2, 1, 1)
+
+ -- lg:add_label("<p>"..lang["int_default_lang2"]..":</p> ", 1, 2, 1, 1)
+  --"<b>"..lang["mess_complete"]..":</b> "..
+  
+    dlg:add_label(lang["int_default_lang2"]..":", 1, 2, 1, 1)
+  input_table['language2'] =  dlg:add_dropdown(2, 2, 2, 1)
+  
+    dlg:add_label(lang["int_default_lang3"]..":", 1, 3, 1, 1)
+  input_table['language3'] =  dlg:add_dropdown(2, 3, 2, 1)
+  
+  
+  dlg:add_button(lang["int_search_hash"], 
+    searchHash, 4, 3, 1, 1)
+  
+  dlg:add_label(lang["int_title"]..':', 1, 4, 1, 1)
   input_table['title'] = dlg:add_text_input(
-    openSub.movie.title or "", 2, 2, 2, 1)
+    openSub.movie.title or "", 2, 4, 2, 1)
   dlg:add_button(lang["int_search_name"], 
-    searchIMBD, 4, 2, 1, 1)
-  dlg:add_label(lang["int_season"]..':', 1, 3, 1, 1)
+    searchIMBD, 4, 4, 1, 1)
+  dlg:add_label(lang["int_season"]..':', 1, 5, 1, 1)
   input_table['seasonNumber'] = dlg:add_text_input(
-    openSub.movie.seasonNumber or "", 2, 3, 2, 1)
-  dlg:add_label(lang["int_episode"]..':', 1, 4, 1, 1)
+    openSub.movie.seasonNumber or "", 2, 5, 2, 1)
+  dlg:add_label(lang["int_episode"]..':', 1, 6, 1, 1)
   input_table['episodeNumber'] = dlg:add_text_input(
-    openSub.movie.episodeNumber or "", 2, 4, 2, 1)
-  input_table['mainlist'] = dlg:add_list(1, 5, 4, 1)
+    openSub.movie.episodeNumber or "", 2, 6, 2, 1)
+  input_table['mainlist'] = dlg:add_list(1, 7, 4, 1)
   input_table['message'] = nil
-  input_table['message'] = dlg:add_label(' ', 1, 6, 4, 1)
+  input_table['message'] = dlg:add_label(' ', 1, 8, 4, 1)
   dlg:add_button(
-    lang["int_show_help"], show_help, 1, 7, 1, 1)
+    lang["int_show_help"], show_help, 1, 9, 1, 1)
   dlg:add_button(
-    '   '..lang["int_show_conf"]..'   ', show_conf, 2, 7, 1, 1)
+    '   '..lang["int_show_conf"]..'   ', show_conf, 2, 9, 1, 1)
   dlg:add_button(
-    lang["int_dowload_sel"], download_subtitles, 3, 7, 1, 1)
+    lang["int_dowload_sel"], download_subtitles, 3, 9, 1, 1)
   dlg:add_button(
-    lang["int_close"], deactivate, 4, 7, 1, 1) 
+    lang["int_close"], deactivate, 4, 9, 1, 1) 
   
   assoc_select_conf(
     'language',
@@ -422,7 +439,23 @@ function interface_main()
     openSub.conf.languages, 
     2, 
     lang["int_all"])
+	
+	  assoc_select_conf(
+    'language2',
+    'language2',
+    openSub.conf.languages, 
+    2, 
+    lang["int_all"])
+	
+		  assoc_select_conf(
+    'language3',
+    'language3',
+    openSub.conf.languages, 
+    2, 
+    lang["int_all"])
     
+
+
   display_subtitles()
 end
 
@@ -448,57 +481,70 @@ function interface_config()
     lang["int_search_transl"],
     get_available_translations, 2, 1, 1, 1)
   input_table['intLang'] = dlg:add_dropdown(3, 1, 1, 1)	
+  
+  
   dlg:add_label(
     lang["int_default_lang"]..':', 1, 2, 2, 1)
   input_table['default_language'] = dlg:add_dropdown(3, 2, 1, 1)	
+  -------------------------------------------------------------------------------------------------
+--    dlg:add_label(
+--    "Secondary subtitles language"..':', 1, 3, 2, 1)
+--  input_table['default_language2'] = dlg:add_dropdown(3, 3, 1, 1)	
+  
+   --   dlg:add_label(
+ --   "Tertiary subtitles language"..':', 1, 4, 2, 1)
+ -- input_table['default_language3'] = dlg:add_dropdown(3, 4, 1, 1)	
+  
+  
+  
   dlg:add_label(
-    lang["int_dowload_behav"]..':', 1, 3, 2, 1)
-  input_table['downloadBehaviour'] = dlg:add_dropdown(3, 3, 1, 1)
+    lang["int_dowload_behav"]..':', 1, 5, 2, 1)
+  input_table['downloadBehaviour'] = dlg:add_dropdown(3, 5, 1, 1)
   dlg:add_label(
-    lang["int_display_code"]..':', 1, 4, 0, 1)
-  input_table['langExt'] = dlg:add_dropdown(3, 4, 1, 1)
+    lang["int_display_code"]..':', 1, 6, 0, 1)
+  input_table['langExt'] = dlg:add_dropdown(3, 6, 1, 1)
   dlg:add_label(
-    lang["int_remove_tag"]..':', 1, 5, 0, 1)
-  input_table['removeTag'] = dlg:add_dropdown(3, 5, 1, 1)
+    lang["int_remove_tag"]..':', 1, 7, 0, 1)
+  input_table['removeTag'] = dlg:add_dropdown(3, 7, 1, 1)
     
   if openSub.conf.dirPath then
     if openSub.conf.os == "win" then
       dlg:add_label(
         "<a href='file:///"..openSub.conf.dirPath.."'>"..
-        lang["int_vlsub_work_dir"].."</a>", 1, 6, 2, 1)
+        lang["int_vlsub_work_dir"].."</a>", 1, 8, 2, 1)
     else
       dlg:add_label(
         "<a href='"..openSub.conf.dirPath.."'>"..
-        lang["int_vlsub_work_dir"].."</a>", 1, 6, 2, 1)
+        lang["int_vlsub_work_dir"].."</a>", 1, 8, 2, 1)
     end
   else
     dlg	:add_label(
-      lang["int_vlsub_work_dir"], 1, 6, 2, 1)
+      lang["int_vlsub_work_dir"], 1, 8, 2, 1)
   end
   
   input_table['dir_path'] = dlg:add_text_input(
-    openSub.conf.dirPath, 2, 6, 2, 1)
+    openSub.conf.dirPath, 2, 8, 2, 1)
   
   dlg:add_label(
-    lang["int_os_username"]..':', 1, 7, 0, 1)
+    lang["int_os_username"]..':', 1, 9, 0, 1)
   input_table['os_username'] = dlg:add_text_input(
     type(openSub.option.os_username) == "string" 
-    and openSub.option.os_username or "", 2, 7, 2, 1)
+    and openSub.option.os_username or "", 2, 9, 2, 1)
   dlg:add_label(
-    lang["int_os_password"]..':', 1, 8, 0, 1)
+    lang["int_os_password"]..':', 1, 10, 0, 1)
   input_table['os_password'] = dlg:add_text_input(
     type(openSub.option.os_password) == "string" 
-    and openSub.option.os_password or "", 2, 8, 2, 1)
+    and openSub.option.os_password or "", 2, 10, 2, 1)
         
   input_table['message'] = nil
-  input_table['message'] = dlg:add_label(' ', 1, 9, 3, 1)
+  input_table['message'] = dlg:add_label(' ', 1, 11, 3, 1)
   
   dlg:add_button(
     lang["int_cancel"],
-    show_main, 2, 10, 1, 1)
+    show_main, 2, 12, 1, 1)
   dlg:add_button(
     lang["int_save"],
-    apply_config, 3, 10, 1, 1)
+    apply_config, 3, 12, 1, 1)
   
   input_table['langExt']:add_value(
     lang["int_bool_"..tostring(openSub.option.langExt)], 1)
@@ -514,12 +560,35 @@ function interface_config()
     'intLang',
     openSub.conf.translations_avail,
     2)
-  assoc_select_conf(
+	
+	assoc_select_conf(
     'default_language',
     'language',
     openSub.conf.languages,
     2,
     lang["int_all"])
+	
+-- vlc.msg.dbg (openSub.language["language"])
+	
+--	  assoc_select_conf(
+ --   'default_language2',
+  --  'language2',
+ --   openSub.conf.languages,
+  --  2,
+  --  lang["int_all"])
+	
+	--  assoc_select_conf(
+  --  'default_language3',
+  --  'language3',
+  --  openSub.conf.languages,
+ --   2,
+ --   lang["int_all"])
+	
+--		vlc.msg.dbg (openSub.option["language"])
+	
+				vlc.msg.dbg (openSub.option["language"])
+		vlc.msg.dbg (openSub.option["language2"])
+	
   assoc_select_conf(
     'downloadBehaviour',
     'downloadBehaviour',
@@ -605,6 +674,7 @@ function assoc_select_conf(select_id, option, conf, ind, default)
   }
   set_default_option(select_id)
   display_select(select_id)
+
 end
 
 function set_default_option(select_id)
@@ -856,6 +926,9 @@ function load_config()
   tmpFile:close()
   local option = parse_xml(resp)
   
+  	--	vlc.msg.dbg (openSub.option["language"])
+		vlc.msg.dbg ("TA A FAZER LOAD")
+
   for key, value in pairs(option) do
     if type(value) == "table" then
       if key == "translation" then
@@ -1031,6 +1104,7 @@ end
 
 function save_config()
 -- Dump local config into config file 
+
   if openSub.conf.dirPath
   and openSub.conf.filePath then
     vlc.msg.dbg(
@@ -1040,6 +1114,11 @@ function save_config()
     if file_touch(openSub.conf.filePath) then
       local tmpFile = assert(
         io.open(openSub.conf.filePath, "wb"))
+		
+
+	--	vlc.msg.dbg (openSub.option["language"])
+	--	vlc.msg.dbg (openSub.option["language2"])
+	--	vlc.msg.dbg (openSub.option["language3"])
       local resp = dump_xml(openSub.option)
       tmpFile:write(resp)
       tmpFile:flush()
@@ -1589,7 +1668,12 @@ openSub = {
 
 function searchHash()
   local sel = input_table["language"]:get_value()
-  if sel == 0 then
+  local sel2 = input_table["language2"]:get_value()
+  local sel3 = input_table["language3"]:get_value()
+    local mainlist = input_table["mainlist"]
+  mainlist:clear()
+  
+  if sel == 0 or sel2 == 0 or sel3 == 0 then
     openSub.movie.sublanguageid = 'all'
   else
     openSub.movie.sublanguageid = openSub.conf.languages[sel][1]
@@ -1597,14 +1681,42 @@ function searchHash()
   
   openSub.getMovieHash()
   
+    if openSub.file.hash then
+    openSub.checkSession()
+    openSub.request("SearchSubtitlesByHash")
+    display_subtitles()
+  end
+  
+    if sel ~= 0 and sel2 ~= 0 and sel3 ~= 0 then
+    openSub.movie.sublanguageid = openSub.conf.languages[sel2][1]
+	    openSub.getMovieHash()
+	
+	  if openSub.file.hash then
+    openSub.checkSession()
+    openSub.request("SearchSubtitlesByHash")
+    display_subtitles()
+  end
+  end
+  
+
+  
+	    if sel ~= 0 and sel2 ~= 0 and sel3 ~= 0 then
+    openSub.movie.sublanguageid = openSub.conf.languages[sel2][1]
+	 openSub.getMovieHash()
+	
   if openSub.file.hash then
     openSub.checkSession()
     openSub.request("SearchSubtitlesByHash")
     display_subtitles()
   end
+  end
+  
+   
 end
 
 function searchIMBD()
+
+
   openSub.movie.title = trim(input_table["title"]:get_text())
   openSub.movie.seasonNumber = tonumber(
     input_table["seasonNumber"]:get_text())
@@ -1612,7 +1724,13 @@ function searchIMBD()
     input_table["episodeNumber"]:get_text())
 
   local sel = input_table["language"]:get_value()
-  if sel == 0 then
+  local sel2 = input_table["language2"]:get_value()
+  local sel3 = input_table["language3"]:get_value()
+  
+    local mainlist = input_table["mainlist"]
+  mainlist:clear()
+  
+  if sel == 0 or sel2 == 0 or sel3 == 0 then
     openSub.movie.sublanguageid = 'all'
   else
     openSub.movie.sublanguageid = openSub.conf.languages[sel][1]
@@ -1623,21 +1741,42 @@ function searchIMBD()
     openSub.request("SearchSubtitles")
     display_subtitles()
   end
+  
+ -- if sel ~= 0 and sel2 ~= 0 and sel3 ~= 0 then
+	  openSub.movie.sublanguageid = openSub.conf.languages[sel2][1]
+	--  end
+	  
+	  	    if openSub.movie.title ~= "" then
+    openSub.checkSession()
+    openSub.request("SearchSubtitles")
+    display_subtitles()
+  end
+  
+   -- if sel ~= 0 and sel2 ~= 0 and sel3 ~= 0 then
+	  openSub.movie.sublanguageid = openSub.conf.languages[sel3][1]
+	--  end
+	  
+	  	    if openSub.movie.title ~= "" then
+    openSub.checkSession()
+    openSub.request("SearchSubtitles")
+    display_subtitles()
+  end
+  
 end
 
 function display_subtitles()
   local mainlist = input_table["mainlist"]
-  mainlist:clear()
   
   if openSub.itemStore == "0" then 
     mainlist:add_value(lang["mess_no_res"], 1)
-    setMessage("<b>"..lang["mess_complete"]..":</b> "..
+    setMessage("<b  >"..lang["mess_complete"]..":</b> "..
       lang["mess_no_res"])
   elseif openSub.itemStore then 
     for i, item in ipairs(openSub.itemStore) do
       mainlist:add_value(
+	   " ["..item.SubLanguageID.."]".. "-----"..
       item.SubFileName..
-      " ["..item.SubLanguageID.."]"..
+     
       " ("..item.SubSumCD.." CD)", i)
     end
     setMessage("<b>"..lang["mess_complete"]..":</b> "..
