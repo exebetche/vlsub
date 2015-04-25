@@ -11,7 +11,7 @@ Bug report: http://addons.videolan.org/content/show.php/?content=148752
 #### INSTALLATION:
 Vlsub doesn't work on Vlc 2.1, use one of these instead:
 * [vlc 2.0](http://download.videolan.org/pub/videolan/vlc/2.0.8/)
-* [vlc 2.2](http://download.videolan.org/testing/vlc-2.2.0-pre3/) (pre release)
+* [vlc 2.2](https://www.videolan.org/vlc/releases/2.2.0.html)
 
 Create a directory "extensions" at this location if it doesn't exists, then extract the file "vlsub.lua" from the archive inside:
 * Windows (all users): %ProgramFiles%\VideoLAN\VLC\lua\extensions\
