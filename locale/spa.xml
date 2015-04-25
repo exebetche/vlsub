@@ -1,53 +1,71 @@
 <action_hash>Calculando el hash del video</action_hash>
-<action_login>Entrar</action_login>
-<action_logout>Salir</action_logout>
-<action_noop>Comprobando sesion</action_noop>
-<action_search>Buscando subtitulos</action_search>
+<action_login>Iniciar sesión</action_login>
+<action_logout>Cerrar sesión</action_logout>
+<action_noop>Comprobando sesión</action_noop>
+<action_search>Buscando subtítulos</action_search>
 <int_all>Todos</int_all>
+<int_bool_false>No</int_bool_false>
+<int_bool_true>Sí</int_bool_true>
 <int_cancel>Cancelar</int_cancel>
 <int_close>Cerrar</int_close>
-<int_config>Configuracion</int_config>
-<int_configuration>Configuracion</int_configuration>
-<int_default_lang>Lenguaje de subtitulos</int_default_lang>
-<int_descr>Descargando subtitulos de OpenSubtitles.org</int_descr>
-<int_display_code>Mostrar el codigo del lenguaje en nombre del fichero</int_display_code>
-<int_dowload_behav>Que hacer con los subtitulos</int_dowload_behav>
-<int_dowload_load>Solo cargar</int_dowload_load>
+<int_config>Configurar</int_config>
+<int_configuration>Configuración</int_configuration>
+<int_default_lang>Idioma de los subtítulos</int_default_lang>
+<int_descr>Descargar subtítulos de OpenSubtitles.org</int_descr>
+<int_display_code>Incluir el código del idioma en el nombre del archivo</int_display_code>
+<int_dowload_behav>¿Qué hacer con los subtitulos?</int_dowload_behav>
+<int_dowload_load>Sólo cargar</int_dowload_load>
 <int_dowload_manual>Descarga manual</int_dowload_manual>
 <int_dowload_save>Cargar y guardar</int_dowload_save>
 <int_dowload_sel>Descargar seleccionados</int_dowload_sel>
-<int_episode>Capitulo (serie)</int_episode>
+<int_episode>Capítulo (serie)</int_episode>
 <int_help>Ayuda</int_help>
-<int_help_mess> Descargar subtitulos de &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; y mostrarlos durante la reproduccion del video.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Uso:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub se va a usar durante la reproduccion de video, asi que inicialo primero (si nada no esta en reproduccion, obtenga el enlace para descargar los subtitulos con navegador).&lt;br&gt; &lt;br&gt; Selecciona el lenguaje de los subtitulos y haga click en el boton correspondiente en uno de los dos metodos de busqueda proporcionados por VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Metodo 1:Buscar por hash&lt;/b&gt;&lt;br&gt;Es recomendable probar por el primer metodo, porque la busqueda esta basada en el reconocimiendo por el fichero del video, asi que puede encontrar los subtitulos sincronizados con tu video.&lt;br&gt; &lt;br&gt; &lt;b&gt;Metodo 2: Buscar por el nombre&lt;/b&gt;&lt;br&gt; Si no ha tenido suerte con el primer metodo, comprueba si el titulo es correcto antes de dar click al boton, puede proporcionar el numero de la temporada y el numero del capitulo.&lt;br&gt; &lt;br&gt; &lt;b&gt;Descargando Subtitulos&lt;/b&gt;&lt;br&gt;Seleccione uno de los subtitulos en la lista y haga click en "Descargar".&lt;br&gt; Se descargara al mismo directorio donde esta el video, con el mismo nombre(diferente extension) asi que Vlc los cargara automaticamente cuando reproduzca el video de nuevo.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Cuidado :&lt;/b&gt; Los subtitulos existentes seran sobreescribidos sin preguntar la confirmacion, asi que haz una copia si los necesitas.&lt;br&gt; &lt;br&gt; Encuentra mas extensiones para Vlc en la pagina &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
-<int_int_lang>Lenguaje del interfaz</int_int_lang>
+<int_help_mess> Descarga los subtítulos de &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; y los añade automáticamente mientras reproduces un video.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Uso:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub está pensado para utilizarse mientras reproduces un video, así que comienza por reproducir tu video (si ningún video se encuentra en reproducción vas a obtener un enlace para descargar los subtítulos con tu navegador).&lt;br&gt; &lt;br&gt; Selecciona el idioma de los subtítulos y haz clic en el botón correspondiente a uno de los dos métodos de búsqueda proporcionados por VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Método 1: Buscar por hash&lt;/b&gt;&lt;br&gt; Se recomienda probar primero con este método porque la búsqueda se basa en información propia del archivo de video, así que encontrarás subtítulos especialmente sincronizados con tu video.&lt;br&gt; &lt;br&gt; &lt;b&gt; Método 2: Buscar por nombre&lt;/b&gt;&lt;br&gt; Si no tuviste suerte con el primer método puedes buscar por nombre. Asegurate de comprobar que el título sea el correcto antes de hacer clic para buscar. Si estás buscando subtítulos para una serie también puedes indicar la temporada y el número de capítulo.&lt;br&gt; &lt;br&gt; &lt;b&gt;Descargar subtítulos&lt;/b&gt;&lt;br&gt;Selecciona uno de los subtítulos en la lista y haz clic en "Descargar seleccionados". Se descargará en el mismo directorio donde se ubica tu video y con el mismo nombre (pero diferente extensión) para que VLC lo cargue automáticamente cuando reproduzcas el video de nuevo.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Cuidado :&lt;/b&gt; Los subtítulos pre existentes serán sobrescritos sin solicitar confirmación alguna, así que guarda una copia en cualquier otro directorio si deseas conservarlos.&lt;br&gt; &lt;br&gt; Encuentra más extensiones para VLC en el sitio &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Idioma de la interfaz</int_int_lang>
+<int_no_support_mess>&lt;strong&gt;VLSub no está funcionando en VLC 2.1.x en ninguna plataforma&lt;/strong&gt;
+      dado que el módulo lua &quot;net&quot; necesario para interactuar con opensubtitles ha sido removido para las extensiones en esta versión de VLC.
+      &lt;br&gt;
+      &lt;strong&gt;Funciona en VLC Vlc 2.2 para Mac y Linux.&lt;/strong&gt;
+      &lt;br&gt;
+      &lt;strong&gt;En Windows tienes que instalar una versión más antigua de VLC (2.0.8 por ejemplo)&lt;/strong&gt;
+      para poder usar VLSub:
+      &lt;br&gt;
+      &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+      href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+      http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
 <int_ok>Ok</int_ok>
-<int_remove_tag>Quitar tag</int_remove_tag>
-<int_research>Rebuscar</int_research>
+<int_os_password>Contraseña</int_os_password>
+<int_os_username>Nombre de usuario</int_os_username>
+<int_remove_tag>Quitar etiquetas</int_remove_tag>
+<int_research>Buscar</int_research>
 <int_save>Guardar</int_save>
 <int_search_hash>Buscar por hash</int_search_hash>
-<int_searching_transl>Buscando traduccion...</int_searching_transl>
-<int_search_name>Buscando por nombre</int_search_name>
-<int_search_transl>Buscando traduccion</int_search_transl>
+<int_searching_transl>Buscando traducciones...</int_searching_transl>
+<int_search_name>Buscar por nombre</int_search_name>
+<int_search_transl>Buscar traducciones</int_search_transl>
 <int_season>Temporada (serie)</int_season>
-<int_show_conf>Mostrar fichero de configuracion</int_show_conf>
+<int_show_conf>Mostrar configuración</int_show_conf>
 <int_show_help>Mostrar ayuda</int_show_help>
-<int_title>Titulo</int_title>
-<mess_click_link>Haga click aqui para abrir</mess_click_link>
-<mess_complete>Rebusqueda acabada</mess_complete>
-<mess_dowload_link>Descargar enlace</mess_dowload_link>
-<mess_downloading>Descargar subtitulos</mess_downloading>
-<mess_error>Fallo</mess_error>
-<mess_expired>Sesion expirada, probando de nuevo</mess_expired>
-<mess_loaded>Subtitulos cargados</mess_loaded>
-<mess_no_input>Por favor usa este metodo durante la reproduccion</mess_no_input>
-<mess_no_res>Ningun resultado</mess_no_res>
+<int_title>Título</int_title>
+<int_vlsub_work_dir>Directorio de trabajo de VLSub</int_vlsub_work_dir>
+<mess_click_link>Haga clic aquí para abrir el archivo</mess_click_link>
+<mess_complete>Búsqueda finalizada</mess_complete>
+<mess_dowload_link>Enlace de descarga</mess_dowload_link>
+<mess_downloading>Descargando subtítulo</mess_downloading>
+<mess_err_conf_access>No se puede encontrar una ruta adecuada para guardar la configuración, por favor indicala manulmente</mess_err_conf_access>
+<mess_error>Error</mess_error>
+<mess_err_wrong_path>la ruta contiene caracteres ilegales, por favor corrijela antes de continuar</mess_err_wrong_path>
+<mess_expired>Expiró la sesión, probando de nuevo</mess_expired>
+<mess_loaded>Subtítulos cargados</mess_loaded>
+<mess_no_input>Por favor usa este método durante la reproducción</mess_no_input>
+<mess_no_res>Sin resultados</mess_no_res>
 <mess_no_response>El servidor no responde</mess_no_response>
-<mess_no_selection>Subtitulos no elegidos</mess_no_selection>
-<mess_not_found>Fichero no encontrado</mess_not_found>
-<mess_not_found2>Fichero no encontrado (caracter ilegal?)</mess_not_found2>
-<mess_not_local>Este metodo funciona solo con el fichero local (de momento)</mess_not_local>
-<mess_overloaded>Servidor sobrecargado, por favor prueba mas tarde</mess_overloaded>
-<mess_res>Resultado(s)</mess_res>
-<mess_save_fail>Imposible guardar los subtitulos</mess_save_fail>
-<mess_success>Correcto</mess_success>
-<mess_unauthorized>Peticion no autorizada</mess_unauthorized>
+<mess_no_selection>Ningún subtítulo fue seleccionado</mess_no_selection>
+<mess_not_found>Archivo no encontrado</mess_not_found>
+<mess_not_found2>Archivo no encontrado (¿caracter ilegal?)</mess_not_found2>
+<mess_not_local>Este método sólo funciona con un archivo local (por el  momento)</mess_not_local>
+<mess_overloaded>Servidor sobrecargado, por favor prueba más tarde</mess_overloaded>
+<mess_res>resultado(s)</mess_res>
+<mess_save_fail>Falla al guardar los subtítulos</mess_save_fail>
+<mess_success>Éxito</mess_success>
+<mess_unauthorized>Petición no autorizada</mess_unauthorized>
