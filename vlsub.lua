@@ -958,11 +958,11 @@ function apply_config()
   openSub.option.os_username = input_table['os_username']:get_text()
   openSub.option.os_password = input_table['os_password']:get_text()
   
-  if input_table["langExt"]:get_value() == 1 then
+  if input_table["langExt"]:get_text() == lang["int_bool_false"] then
     openSub.option.langExt = '0 chars'
-  elseif input_table["langExt"]:get_value() == 2 then
+  elseif input_table["langExt"]:get_text() == lang["int_language_code_2"] then
     openSub.option.langExt = '2 chars'
-  elseif input_table["langExt"]:get_value() == 3 then
+  elseif input_table["langExt"]:get_text() == lang["int_language_code_3"] then
     openSub.option.langExt = '3 chars'
   else
     vlc.msg.err("[VLSub] Unknown language extension: " ..
