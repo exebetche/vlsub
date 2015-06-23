@@ -1627,8 +1627,9 @@ function feeling_lucky()
   end
   if openSub.itemStore == "0" then -- no result after search by name, inform the user about this
     vlc.osd.message(lang["mess_no_res"], channel1, "top-right")
+  else
+    download_subtitles(true)
   end
-  download_subtitles(true)
 end
 
 
