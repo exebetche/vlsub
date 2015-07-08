@@ -1776,7 +1776,11 @@ function dump_zip(url, dir, subfileName)
   
   local tmpFileName = dir..subfileName..".gz"
   if not file_touch(tmpFileName) then
-    return false
+    vlc.msg.dbg("[VLsub] Cant touch:"..tmpFileName)
+    -- using tmp dir to download
+    tmpFileName = "/tmp/"..subfileName..".gz"
+    vlc.msg.dbg("[VLsub] Fixing to:"..tmpFileName)
+    --return false
   end
   local tmpFile = assert(io.open(tmpFileName, "wb"))
   
