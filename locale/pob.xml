@@ -1,7 +1,7 @@
 <action_hash>Calculando hash</action_hash>
 <action_login>Fazendo Login</action_login>
 <action_logout>Fazendo Logout</action_logout>
-<action_noop>Checanco sessão</action_noop>
+<action_noop>Checando sessão</action_noop>
 <action_search>Procurando legendas</action_search>
 <int_all>Todos</int_all>
 <int_cancel>Cancelar</int_cancel>
@@ -33,7 +33,7 @@
 <int_show_help>Mostrar ajuda</int_show_help>
 <int_title>Título</int_title>
 <mess_click_link>Clique para abrir o arquivo</mess_click_link>
-<mess_complete>Pesquisa compketa</mess_complete>
+<mess_complete>Pesquisa concluída</mess_complete>
 <mess_dowload_link>Link para download</mess_dowload_link>
 <mess_downloading>Baixando legenda</mess_downloading>
 <mess_error>Erro</mess_error>
