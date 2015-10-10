@@ -30,13 +30,14 @@
       &lt;strong&gt;En Windows tienes que instalar una versión más antigua de VLC (2.0.8 por ejemplo)&lt;/strong&gt;
       para poder usar VLSub:
       &lt;br&gt;
-      &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+      &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot;
       href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
       http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
 <int_ok>Ok</int_ok>
 <int_os_password>Contraseña</int_os_password>
 <int_os_username>Nombre de usuario</int_os_username>
 <int_remove_tag>Quitar etiquetas</int_remove_tag>
+<int_feeling_lucky>I'm feeling lucky type behavior</int_feeling_lucky>
 <int_research>Buscar</int_research>
 <int_save>Guardar</int_save>
 <int_search_hash>Buscar por hash</int_search_hash>
