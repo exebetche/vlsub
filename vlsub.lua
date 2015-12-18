@@ -1204,6 +1204,7 @@ openSub = {
     
     if status == 200 then 
       response = parse_xmlrpc(responseStr)
+      
       if response then
         if response.status == "200 OK" then
           return openSub.methods[methodName]
@@ -1222,7 +1223,6 @@ openSub = {
       end
     elseif status == 401 then
       setError("Request unauthorized")
-      
       response = parse_xmlrpc(responseStr)
       if openSub.session.token ~= response.token then
         setMessage("Session expired, retrying")
@@ -1339,6 +1339,34 @@ openSub = {
           table.insert(member, { name="episode", value={ 
             string=openSub.movie.episodeNumber } })
         end 
+        
+        return {
+          { value={ string=openSub.session.token } },
+          { value={
+            array={
+             data={
+              value={
+               struct={
+                member=member
+                  }}}}}}
+        }
+      end,
+      callback = function(resp)
+        openSub.itemStore = resp.data
+      end
+    },
+    SearchSubtitles2 = {
+      methodName = "SearchSubtitles",
+      params = function()
+        openSub.actionLabel = lang["action_search"]
+        setMessage(openSub.actionLabel..": "..
+          progressBarContent(0))
+                
+        local member = {
+             { name="sublanguageid", value={ 
+              string=openSub.movie.sublanguageid } },
+             { name="tag", value={ 
+              string=openSub.file.completeName } } }
         
         return {
           { value={ string=openSub.session.token } },
@@ -1636,9 +1664,9 @@ function display_subtitles()
   elseif openSub.itemStore then 
     for i, item in ipairs(openSub.itemStore) do
       mainlist:add_value(
-      item.SubFileName..
-      " ["..item.SubLanguageID.."]"..
-      " ("..item.SubSumCD.." CD)", i)
+      (item.SubFileName or "???")..
+      " ["..(item.SubLanguageID or "?").."]"..
+      " ("..(item.SubSumCD or "?").." CD)", i)
     end
     setMessage("<b>"..lang["mess_complete"]..":</b> "..
       #(openSub.itemStore).."  "..lang["mess_res"])
@@ -1871,11 +1899,15 @@ function http_req(host, port, request)
   local contentLength, status
   local pct = 0
   
+  --~ vlc.msg.err(headerStr)
+  
   while chunk do
     response = response..chunk
+  --~ vlc.msg.err("response", response)
     if not header then
         headerStr, body = response:match("(.-\r?\n)\r?\n(.*)")
         if headerStr then
+			--~ vlc.msg.err(headerStr)
             response = body
             header = parse_header(headerStr)
             contentLength = tonumber(header["Content-Length"])
@@ -1993,60 +2025,66 @@ function parse_xml(data)
   return tree
 end
 
-function parse_xmlrpc(data)
-  local tree = {}
-  local stack = {}
-  local tmp = {}
-  local tmpTag = ""
-  local level = 0
-  local op, tag, p, empty, val
-  local resolve_xml =  vlc.strings.resolve_xml_special_chars
-  table.insert(stack, tree)
-
-  for op, tag, p, empty, val in string.gmatch(
-    data, 
-    "<(%/?)([%w:]+)(.-)(%/?)>[%s\r\n\t]*([^<]*)"
-  ) do
-    if op=="/" then
-      if tag == "member" or tag == "array" then
-        if level>0  then
-          level = level - 1
-          table.remove(stack)
-        end
-      end
-    elseif tag == "name" then 
-      level = level + 1
-      if val~= "" then tmpTag  = resolve_xml(val) end
-      
-      if type(stack[level][tmpTag]) == "nil" then
-        stack[level][tmpTag] = {}
-        table.insert(stack, stack[level][tmpTag])
-      else
-        tmp = nil
-        tmp = {}
-        table.insert(stack[level-1], tmp)
-        
-        stack[level] = nil
-        stack[level] = tmp
-        table.insert(stack, tmp)
-      end
-      if empty ~= "" then
-        level = level - 1
-        stack[level][tmpTag] = ""
-        table.remove(stack)
-      end
-    elseif tag == "array" then
-      level = level + 1
-      tmp = nil
-      tmp = {}
-      table.insert(stack[level], tmp)
-      table.insert(stack, tmp)
-    elseif val ~= "" then 
-      stack[level][tmpTag] = resolve_xml(val)
-    end
-  end
-  collectgarbage()
-  return tree
+function parse_xmlrpc(xmlText)
+	local stack = {}
+	local tree = {}
+	local tmp, name = nil, nil
+	table.insert(stack, tree)
+	local FromXmlString =  vlc.strings.resolve_xml_special_chars
+	
+	local data_handle = {
+		int = function(v) return tonumber(v) end,
+		i4 = function(v) return tonumber(v) end,
+		double = function(v) return tonumber(v) end,
+		boolean = function(v) return tostring(v) end,
+		base64 = function(v) return tostring(v) end, -- FIXME
+		["string"] = function(v) return FromXmlString(v) end
+	}
+	
+   for c, label, empty, value 
+   in xmlText:gmatch("<(%/?)([%w_:]+)(%/?)>([^<]*)") do
+   
+		if c == "" 
+		then -- start tag
+			if label == "struct"
+			or label == "array" then
+				tmp = nil
+				tmp = {}
+				if name then
+					stack[#stack][name] = tmp
+				else
+					table.insert(stack[#stack], tmp)
+				end
+				table.insert(stack, tmp)
+				name = nil
+			elseif label == "name" then
+				name = value
+			elseif data_handle[label] then
+				if name then
+					stack[#stack][name] = data_handle[label](value)
+				else
+					table.insert(stack[#stack], 
+					data_handle[label](value))
+				end
+				name = nil
+			end
+			if empty == "/"  -- empty tag
+			and #stack>0 
+			and (label == "struct"
+			or label == "array")
+			then
+				table.remove(stack)
+			end
+		else -- end tag
+			if #stack>0 
+			and (label == "struct"
+			or label == "array")then
+				table.remove(stack)
+			end
+		end
+	end
+	
+	return tree[1]
 end
 
 function dump_xml(data)
@@ -2224,7 +2262,6 @@ function mkdir_p(path)
 end
 
 function decode_uri(str)
-  vlc.msg.err(slash)
   return str:gsub("/", slash)
 end
 
