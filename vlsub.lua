@@ -1470,12 +1470,12 @@ openSub = {
     
     local showName, seasonNumber, episodeNumber = string.match(
       openSub.file.cleanName,
-      "(.+)[sS](%d%d)[eE](%d%d).*")
+      "(.+)[sS](%d?%d)[eE](%d%d).*")
 
     if not showName then
       showName, seasonNumber, episodeNumber = string.match(
       openSub.file.cleanName,
-      "(.+)(%d)[xX](%d%d).*")
+      "(.-)(%d?%d)[xX](%d%d).*")
     end
     
     if showName then
