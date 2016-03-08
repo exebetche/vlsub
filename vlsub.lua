@@ -1475,7 +1475,14 @@ openSub = {
     if not showName then
       showName, seasonNumber, episodeNumber = string.match(
       openSub.file.cleanName,
-      "(.+)(%d)[xX](%d%d).*")
+      "(.+)(%d%d)[xX](%d%d).*")
+      -- If seasonNumber is set as a single digit, use a different regex.
+      -- TODO: Make the regex "(.+)(%d+)[xX](%d%d).*" work.
+      if not seasonNumber then
+        showName, seasonNumber, episodeNumber = string.match(
+        openSub.file.cleanName,
+        "(.+)(%d)[xX](%d%d).*")
+      end
     end
     
     if showName then
