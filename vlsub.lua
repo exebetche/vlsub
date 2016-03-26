@@ -60,25 +60,25 @@ local options = {
   translation = {
     int_all = 'All',
     int_descr = 'Download subtitles from OpenSubtitles.org',
-    int_research = 'Research',
-    int_config = 'Config',
+    int_research = '&Research',
+    int_config = 'Con&fig',
     int_configuration = 'Configuration',
-    int_help = 'Help',
-    int_search_hash = 'Search by hash',
-    int_search_name = 'Search by name',
+    int_help = '&Help',
+    int_search_hash = '&Search by hash',
+    int_search_name = 'Search by &name',
     int_title = 'Title',
     int_season = 'Season (series)',
     int_episode = 'Episode (series)',
-    int_show_help = 'Show help',
-    int_show_conf = 'Show config',
-    int_dowload_sel = 'Download selection',
-    int_close = 'Close',
+    int_show_help = 'Show &help',
+    int_show_conf = 'Show con&fig',
+    int_dowload_sel = '&Download selection',
+    int_close = '&Close',
     int_ok = 'Ok',
-    int_save = 'Save',
-    int_cancel = 'Cancel',
+    int_save = 'Sa&ve',
+    int_cancel = '&Cancel',
     int_bool_true = 'Yes',
     int_bool_false = 'No',
-    int_search_transl = 'Search translations',
+    int_search_transl = '&Search translations',
     int_searching_transl = 'Searching translations ...',
     int_int_lang = 'Interface language',
     int_default_lang = 'Subtitles language',
@@ -330,7 +330,7 @@ function descriptor()
     version = "0.9.13",
     author = "exebetche",
     url = 'http://www.opensubtitles.org/',
-    shortdesc = "VLsub";
+    shortdesc = "&VLsub";
     description = options.translation.int_descr,
     capabilities = {"menu", "input-listener" }
   }
@@ -553,6 +553,8 @@ function trigger_menu(dlg_id)
     dlg = vlc.dialog(
       openSub.conf.useragent)
     interface_main()
+    -- Trigger search after window has appeared
+    searchHash()
   elseif dlg_id == 2 then
     close_dlg()
     dlg = vlc.dialog(
@@ -1020,7 +1022,7 @@ function apply_config()
   if openSub.conf.dirPath and
   not dir_path_err then
     local config_saved = save_config()
-    trigger_menu(1)
+    show_main()
     if not config_saved then
       setError(lang["mess_err_conf_access"])
     end
@@ -1684,14 +1686,21 @@ end
 function download_subtitles()
   local index = get_first_sel(input_table["mainlist"])
   
-  if index == 0 then
-    setMessage(lang["mess_no_selection"])
-    return false
+  local item
+  if index > 0 then
+    item = openSub.itemStore[index]
+  else
+    if openSub.itemStore[1].MovieReleaseName ~= "" then
+      item = openSub.itemStore[1]
+    else
+      setMessage(lang["mess_no_selection"])
+      return false
+    end
   end
   
   openSub.actionLabel = lang["mess_downloading"] 
   
-  local item = openSub.itemStore[index]
+  display_subtitles() -- reset selection
   
   if openSub.option.downloadBehaviour == 'manual' 
   or not openSub.file.hasInput then
@@ -1790,6 +1799,11 @@ function download_subtitles()
   end
   
   setMessage(message)
+  
+  -- close vlsub window after downloading
+  if index == 0 then
+    close()
+  end
 end
 
 function dump_zip(url, dir, subfileName)
