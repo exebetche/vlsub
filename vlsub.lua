@@ -179,7 +179,8 @@ local options = {
     mess_err_conf_access ='Can\'t find a suitable path to save'..
       'config, please set it manually',
     mess_err_wrong_path ='the path contains illegal character, '..
-      'please correct it'
+      'please correct it',
+    mess_err_cant_download_interface_translation='could not download interface translation'
   }
 }
 
@@ -931,7 +932,10 @@ function apply_config()
   if lg_sel and lg_sel ~= 1 
   and openSub.conf.translations_avail[lg_sel] then
     local lg = openSub.conf.translations_avail[lg_sel][1]
-    set_translation(lg)
+    if not set_translation(lg) then
+      vlc.msg.err("[VLSub] Couldn't not set translation")
+      return false
+    end
     SetDownloadBehaviours()
   end
   
@@ -1079,7 +1083,11 @@ function get_available_translations()
   then
     openSub.actionLabel = lang["int_searching_transl"]
     
-    local translations_content, lol = get(translations_url)
+    local translations_content = get(translations_url)
+    if not translations_content then
+      collectgarbage()
+      return false
+    end
     local translations_avail = openSub.option.translations_avail
     all_trsl = parse_xml(translations_content)
     local lg, trsl
@@ -1101,6 +1109,7 @@ function get_available_translations()
     setMessage(success_tag(lang["mess_complete"]))
     collectgarbage()
   end
+  return true
 end
 
 function set_translation(lg)
@@ -1123,9 +1132,10 @@ function set_translation(lg)
       load_transl(transl_file_path)
       apply_translation()
     else
-    -- Load translation file from internet
-      if not all_trsl then
-        get_available_translations()
+      -- Load translation file from internet
+      if not all_trsl and not get_available_translations() then
+        setMessage(error_tag(lang["mess_err_cant_download_interface_translation"]))
+        return false
       end
 
       if not all_trsl or not all_trsl[lg] then
@@ -1141,6 +1151,7 @@ function set_translation(lg)
   lang = nil
   lang = openSub.option.translation
   collectgarbage()
+  return true
 end 
 
             --[[ Core ]]--
@@ -1873,14 +1884,14 @@ function get(url)
     ""
   }
   local request = table.concat(header, "\r\n")
-    
-  local response
+
   local status, response = http_req(host, 80, request)
   
   if status == 200 then 
     return response
   else
-    return false, status, response
+    vlc.msg.err("[VLSub] HTTP "..tostring(status).." : "..response)
+    return false
   end
 end
 
