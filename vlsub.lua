@@ -32,6 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 -- language = "eng",
 -- ...
 
+local export = {}
 local options = {
   language = nil,
   downloadBehaviour = 'save',
@@ -149,7 +150,8 @@ local options = {
       href="http://download.videolan.org/pub/videolan/vlc/2.0.8/">
       http://download.videolan.org/pub/videolan/vlc/2.0.8/</a><br>
     ]],
-
+    int_movie_duration = 'Movie duration',
+    int_last_sub = 'Last sub at',
     action_login = 'Logging in',
     action_logout = 'Logging out',
     action_noop = 'Checking session',
@@ -388,34 +390,47 @@ end
 
             --[[ Interface data ]]--
 
+function movie_duration_text(vlc_global, lang_global)
+  lang_global = lang_global or lang
+  vlc_global = vlc_global or vlc
+  local movie = vlc_global.input.item()
+  local duration = "?"
+  if movie and movie:duration() >= 0 then
+    duration = os.date("!%X",movie:duration())
+  end
+  return string.format("%s : %s", lang_global["int_movie_duration"], duration)
+end
+export.movie_duration_text = movie_duration_text
+
 function interface_main()
   dlg:add_label(lang["int_default_lang"]..':', 1, 1, 1, 1)
   input_table['language'] =  dlg:add_dropdown(2, 1, 2, 1)
   dlg:add_button(lang["int_search_hash"],
     searchHash, 4, 1, 1, 1)
 
-  dlg:add_label(lang["int_title"]..':', 1, 2, 1, 1)
+  dlg:add_label(lang["int_title"]..':',   1, 2, 1, 1)
   input_table['title'] = dlg:add_text_input(
-    openSub.movie.title or "", 2, 2, 2, 1)
+    openSub.movie.title or "",            2, 2, 2, 1)
   dlg:add_button(lang["int_search_name"],
-    searchIMBD, 4, 2, 1, 1)
-  dlg:add_label(lang["int_season"]..':', 1, 3, 1, 1)
+    searchIMBD,                           4, 2, 1, 1)
+  dlg:add_label(lang["int_season"]..':',  1, 3, 1, 1)
   input_table['seasonNumber'] = dlg:add_text_input(
-    openSub.movie.seasonNumber or "", 2, 3, 2, 1)
+    openSub.movie.seasonNumber or "",     2, 3, 2, 1)
   dlg:add_label(lang["int_episode"]..':', 1, 4, 1, 1)
   input_table['episodeNumber'] = dlg:add_text_input(
-    openSub.movie.episodeNumber or "", 2, 4, 2, 1)
-  input_table['mainlist'] = dlg:add_list(1, 5, 4, 1)
+    openSub.movie.episodeNumber or "",    2, 4, 2, 1)
+  input_table['movieLength'] = dlg:add_label(movie_duration_text())
+  input_table['mainlist'] = dlg:add_list( 1, 6, 4, 1)
   input_table['message'] = nil
-  input_table['message'] = dlg:add_label(' ', 1, 6, 4, 1)
+  input_table['message'] = dlg:add_label(' ', 1, 7, 4, 1)
   dlg:add_button(
-    lang["int_show_help"], show_help, 1, 7, 1, 1)
+    lang["int_show_help"], show_help, 1, 8, 1, 1)
   dlg:add_button(
-    '   '..lang["int_show_conf"]..'   ', show_conf, 2, 7, 1, 1)
+    '   '..lang["int_show_conf"]..'   ', show_conf, 2, 8, 1, 1)
   dlg:add_button(
-    lang["int_dowload_sel"], download_subtitles, 3, 7, 1, 1)
+    lang["int_dowload_sel"], download_subtitles, 3, 8, 1, 1)
   dlg:add_button(
-    lang["int_close"], close, 4, 7, 1, 1)
+    lang["int_close"], deactivate, 4, 8, 1, 1)
 
   assoc_select_conf(
     'language',
@@ -1664,7 +1679,19 @@ function searchIMBD()
   end
 end
 
+function last_subtitle_time_text(subtitle, lang_global)
+  lang_global = lang_global or lang
+  local last_subtitle_time = "?"
+  if subtitle.SubLastTS
+  and string.find(subtitle.SubLastTS, ":") then
+    last_subtitle_time = subtitle.SubLastTS
+  end
+  return string.format("[%s %s]", lang_global["int_last_sub"], last_subtitle_time)
+end
+export.last_subtitle_time_text = last_subtitle_time_text
+
 function display_subtitles()
+  input_table['movieLength']:set_text(movie_duration_text())
   local mainlist = input_table["mainlist"]
   mainlist:clear()
 
@@ -1675,9 +1702,10 @@ function display_subtitles()
   elseif openSub.itemStore then
     for i, item in ipairs(openSub.itemStore) do
       mainlist:add_value(
-      (item.SubFileName or "???")..
-      " ["..(item.SubLanguageID or "?").."]"..
-      " ("..(item.SubSumCD or "?").." CD)", i)
+        last_subtitle_time_text(item)..
+        "["..(item.SubLanguageID or "?").."]"..
+        "("..(item.SubSumCD or "?").." CD)"..
+        " "..(item.SubFileName or "???"), i)
     end
     setMessage("<b>"..lang["mess_complete"]..":</b> "..
       #(openSub.itemStore).."  "..lang["mess_res"])
@@ -2295,3 +2323,5 @@ end
 function remove_tag(str)
   return string.gsub(str, "{[^}]+}", "")
 end
+
+return export
