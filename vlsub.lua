@@ -32,6 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 -- language = "eng",
 -- ...
 
+local export = {}
 local options = {
   language = nil,
   downloadBehaviour = 'save',
@@ -183,6 +184,7 @@ local options = {
     mess_err_cant_download_interface_translation='could not download interface translation'
   }
 }
+export.options = options
 
 local languages = {
   {'alb', 'Albanian'},
@@ -318,6 +320,7 @@ local lang_os_to_iso = {
   ur = "urd",
   vi = "vie"
 }
+export.lang_os_to_iso = lang_os_to_iso
 
 local dlg = nil
 local input_table = {} -- General widget id reference
@@ -2295,3 +2298,5 @@ end
 function remove_tag(str)
   return string.gsub(str, "{[^}]+}", "")
 end
+
+return export
