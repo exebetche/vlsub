@@ -2,7 +2,7 @@ require "lunit"
 package.path = package.path .. ";../vlsub.lua"
 local vlsub = require("vlsub")
 
-module( "vlc_interface_data", lunit.testcase )
+module( "vlsub_interface_data", lunit.testcase, package.seeall)
 
 function test_movie_length_text_shouldReturnNone_WhenNoMovie()
   -- Given

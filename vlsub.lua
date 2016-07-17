@@ -419,7 +419,7 @@ function interface_main()
   dlg:add_label(lang["int_episode"]..':', 1, 4, 1, 1)
   input_table['episodeNumber'] = dlg:add_text_input(
     openSub.movie.episodeNumber or "",    2, 4, 2, 1)
-  input_table['movieLength'] = dlg:add_label(movie_duration_text())
+  input_table['movieDuration'] = dlg:add_label(movie_duration_text())
   input_table['mainlist'] = dlg:add_list( 1, 6, 4, 1)
   input_table['message'] = nil
   input_table['message'] = dlg:add_label(' ', 1, 7, 4, 1)
@@ -1690,8 +1690,32 @@ function last_subtitle_time_text(subtitle, lang_global)
 end
 export.last_subtitle_time_text = last_subtitle_time_text
 
+function rank_subtitles(unordered_subs, movie_duration)
+  marked_subs = {}
+  for _, item in ipairs(unordered_subs) do
+    local last_subtitle_time = date_string_to_time(item.SubLastTS)
+    local distance = -1
+    if last_subtitle_time ~= 0 then
+      distance = math.abs(movie_duration - last_subtitle_time)
+    end
+    table.insert(marked_subs, {rank=distance, sub=item})
+  end
+  return marked_subs
+end
+
+function order_by_ascending_distance_between_last_sub_time_and_movie_duration(unordered_subs, movie_duration)
+  marked_subs = rank_subtitles(unordered_subs, movie_duration)
+  table.sort(marked_subs, function(a, b) return b.rank == -1 or a.rank < b.rank and a.rank ~= -1 end)
+  ordered_subs = {}
+  for _, marked_sub in ipairs(marked_subs) do
+    table.insert(ordered_subs, marked_sub.sub)
+  end
+  return ordered_subs
+end
+export.order_by_ascending_distance_between_last_sub_time_and_movie_duration = order_by_ascending_distance_between_last_sub_time_and_movie_duration
+
 function display_subtitles()
-  input_table['movieLength']:set_text(movie_duration_text())
+  input_table['movieDuration']:set_text(movie_duration_text())
   local mainlist = input_table["mainlist"]
   mainlist:clear()
 
@@ -1700,7 +1724,8 @@ function display_subtitles()
     setMessage("<b>"..lang["mess_complete"]..":</b> "..
       lang["mess_no_res"])
   elseif openSub.itemStore then
-    for i, item in ipairs(openSub.itemStore) do
+    local ordered_subs = order_by_ascending_distance_between_last_sub_time_and_movie_duration(openSub.itemStore, vlc.input.item():duration())
+    for i, item in ipairs(ordered_subs) do
       mainlist:add_value(
         last_subtitle_time_text(item)..
         "["..(item.SubLanguageID or "?").."]"..
@@ -2323,5 +2348,18 @@ end
 function remove_tag(str)
   return string.gsub(str, "{[^}]+}", "")
 end
+
+function date_string_to_time(date_string)
+  if not date_string
+    or not string.find(date_string, ":") then
+    return 0
+  end
+  local results = {}
+  for str in string.gmatch(date_string, "[^:]+") do
+    table.insert(results, tonumber(str) or 0)
+  end
+  return results[1]*60*60 + results[2]*60 + results[3]
+end
+export.date_string_to_time = date_string_to_time
 
 return export
