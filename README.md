@@ -25,10 +25,9 @@ Create a directory "extensions" at this location if it doesn't exists, then extr
 #### USAGE:
 * Start Vlc
 * Start your video
-* Click on the menu View > VLSub or VLC > Extension > VLSub on Mac OS X
-* Click on "Search by hash" or "Search by name"
+* Click on the menu View > VLSub or VLC > Extension > VLSub on Mac OS X. You can also open the menu by pressing Alt+I, then Alt+V
 * Select a subtitles file on the list
-* Click on "Download selection"
+* Click on "Download selection" or press Alt+D
 * That's it, the subtitles should appear on your video. 
 * If you're not happy with your subtitles (wrong sync etc), you can select an other one and click "Download" again, that will erase the previous one and load it automatically.
 
