@@ -36,7 +36,7 @@ Create a directory "extensions" at this location if it doesn't exists, then extr
 
 Due to some bugs on Windows, if the path to your video contain non-english characters, the extension will not be able to save subtitles in this directory automatically (it will propose you to save it manually) and the "search by hash" method might be slower.
 
--> If possible, use a diretcory with english (ASCII) characters only to store your videos (on Windows only).
+-> If possible, use a directory with english (ASCII) characters only to store your videos (on Windows only).
 
 #### Changelog:
 
