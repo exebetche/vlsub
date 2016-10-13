@@ -1832,6 +1832,7 @@ function add_sub(subPath)
   if vlc.item or vlc.input.item() then
     subPath = decode_uri(subPath)
     vlc.msg.dbg("[VLsub] Adding subtitle :" .. subPath)
+    vlc.var.set(vlc.object.input(), 'sub-file', subPath)
     return vlc.input.add_subtitle(subPath)
   end
   return false
