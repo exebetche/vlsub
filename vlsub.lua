@@ -1452,6 +1452,9 @@ openSub = {
         file.is_archive = false
       end
       
+      if file.completeName == nil then
+        file.completeName = ''
+      end
       file.name, file.ext = string.match(
         file.completeName,
         '^([^/]-)%.?([^%.]*)$')
