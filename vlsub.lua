@@ -1482,13 +1482,22 @@ openSub = {
       return false 
     end
     
+    local infoString = openSub.file.cleanName
+    if infoString == '' or infoString == nil then
+      -- read from meta-title
+      local metas = vlc.input.item():metas()
+      if metas['title'] ~= nil then
+        infoString = metas['title']
+      end
+    end
+
     local showName, seasonNumber, episodeNumber = string.match(
-      openSub.file.cleanName,
+      infoString,
       "(.+)[sS](%d?%d)[eE](%d%d).*")
 
     if not showName then
       showName, seasonNumber, episodeNumber = string.match(
-      openSub.file.cleanName,
+      infoString,
       "(.-)(%d?%d)[xX](%d%d).*")
     end
     
@@ -1497,7 +1506,7 @@ openSub = {
       openSub.movie.seasonNumber = seasonNumber
       openSub.movie.episodeNumber = episodeNumber
     else
-      openSub.movie.title = openSub.file.cleanName
+      openSub.movie.title = infoString
       openSub.movie.seasonNumber = ""
       openSub.movie.episodeNumber = ""
     end
