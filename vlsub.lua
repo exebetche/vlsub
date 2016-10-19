@@ -1442,6 +1442,10 @@ openSub = {
         file.dir, file.completeName = string.match(
           file.path,
           '^(.+/)([^/]*)$')
+        if file.dir == nil then
+          -- happens on http://example.org/?x=y
+          file.dir = openSub.conf.dirPath..slash
+        end
         
         local file_stat = vlc.net.stat(file.path)
         if file_stat 
@@ -1742,7 +1746,23 @@ function download_subtitles()
   end
   
   local message = ""
-  local subfileName = openSub.file.name or ""
+  local subfileName = "subtitle"
+  if openSub.file.name == nil or openSub.file.name == '' then
+    -- happens on http://example.org/?x=y
+    local uriName = nil
+    if item.SubFileName then
+      uriName = string.sub(
+        item.SubFileName, 1, #item.SubFileName - 4)
+    else
+      uriName = openSub.getInputItem():uri()
+    end
+    uriName = vlc.strings.encode_uri_component(uriName)
+    if uriName then
+      subfileName = string.sub(uriName, -64, -1)
+    end
+  else
+    subfileName = openSub.file.name 
+  end
   
   if openSub.option.langExt then
     subfileName = subfileName.."."..item.SubLanguageID
@@ -1837,7 +1857,7 @@ function dump_zip(url, dir, subfileName)
     return false 
   end
   
-  local tmpFileName = dir..subfileName..".gz"
+  local tmpFileName = dir..slash..subfileName..".gz"
   if not file_touch(tmpFileName) then
     return false
   end
