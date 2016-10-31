@@ -1935,7 +1935,7 @@ function http_req(host, port, request)
       end
     end
 
-    vlc.net.poll(pollfds)
+    --vlc.net.poll(pollfds)
     chunk = vlc.net.recv(fd, 1024)
   end
 
