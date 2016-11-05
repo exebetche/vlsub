@@ -40,6 +40,9 @@ Due to some bugs on Windows, if the path to your video contain non-english chara
 
 #### Changelog:
 
+##### 2016-11-05 (version 0.10.0)
+- Support http chunked transfer encoding
+
 ##### 2014-09-21
 - Improve http response handle for large header
 
