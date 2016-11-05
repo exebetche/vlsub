@@ -323,15 +323,19 @@ local dlg = nil
 local input_table = {} -- General widget id reference
 local select_conf = {} -- Drop down widget / option table association 
 
+local app_name = "VLsub";
+local app_version = "0.10.0";
+local app_useragent = app_name.." "..app_version;
+
             --[[ VLC extension stuff ]]--
 
 function descriptor()
   return { 
-    title = "VLsub 0.9.13",
-    version = "0.9.13",
+    title = app_useragent,
+    version = app_version,
     author = "exebetche",
     url = 'http://www.opensubtitles.org/',
-    shortdesc = "VLsub";
+    shortdesc = app_name;
     description = options.translation.int_descr,
     capabilities = {"menu", "input-listener" }
   }
@@ -1162,8 +1166,9 @@ openSub = {
   conf = {
     url = "http://api.opensubtitles.org/xml-rpc",
     path = nil,
-    userAgentHTTP = "VLSub",
-    useragent = "VLSub 0.9",
+    HTTPVersion = "1.1",
+    userAgentHTTP = app_useragent,
+    useragent = app_useragent,
     translations_avail = {},
     downloadBehaviours = nil,
     languages = languages
@@ -1200,7 +1205,7 @@ openSub = {
     local request = "<?xml version='1.0'?>"..dump_xml(reqTable)
     local host, path = parse_url(openSub.conf.url)		
     local header = {
-      "POST "..path.." HTTP/1.1", 
+      "POST "..path.." HTTP/"..openSub.conf.HTTPVersion, 
       "Host: "..host, 
       "User-Agent: "..openSub.conf.userAgentHTTP, 
       "Content-Type: text/xml", 
@@ -1877,7 +1882,7 @@ end
 function get(url)
   local host, path = parse_url(url)
   local header = {
-    "GET "..path.." HTTP/1.1", 
+    "GET "..path.." HTTP/"..openSub.conf.HTTPVersion, 
     "Host: "..host, 
     "User-Agent: "..openSub.conf.userAgentHTTP,
     "",
@@ -1896,62 +1901,101 @@ function get(url)
 end
 
 function http_req(host, port, request)
-  local fd = vlc.net.connect_tcp(host, port)
-  if not fd then return false end
-  local pollfds = {}
-  
-  pollfds[fd] = vlc.net.POLLIN
-  vlc.net.send(fd, request)
-  vlc.net.poll(pollfds)
-  
-  local chunk = vlc.net.recv(fd, 2048)
-  local response = ""
-  local headerStr, header, body
-  local contentLength, status
-  local pct = 0
-  
-  --~ vlc.msg.err(headerStr)
-  
-  while chunk do
-    response = response..chunk
-  --~ vlc.msg.err("response", response)
-    if not header then
-        headerStr, body = response:match("(.-\r?\n)\r?\n(.*)")
-        if headerStr then
-			--~ vlc.msg.err(headerStr)
-            response = body
-            header = parse_header(headerStr)
-            contentLength = tonumber(header["Content-Length"])
-            status = tonumber(header["statuscode"])
-        end
-    end
+	local fd = vlc.net.connect_tcp(host, port)
+	if not fd then 
+		setError("Unable to connect to server")
+		return nil, "" 
+	end
+	local pollfds = {}
+	
+	pollfds[fd] = vlc.net.POLLIN
+	vlc.net.send(fd, request)
+	vlc.net.poll(pollfds)
 
-    if contentLength then
-        bodyLenght = #response
-        pct = bodyLenght / contentLength * 100
-        setMessage(openSub.actionLabel..": "..progressBarContent(pct))
-      if bodyLenght >= contentLength then
-        break
-      end
-    end
+	local response = vlc.net.recv(fd, 2048)
+	local buf = ""
+	local headerStr, header, body
+	local contentLength, status, TransferEncoding, chunked
+	local pct = 0
+	
+	while response and #response>0 do
+		buf = buf..response
+		
+		if not header then
+			headerStr, body = buf:match("(.-\r?\n)\r?\n(.*)")
+			if headerStr then
+				header = parse_header(headerStr);
+				status = tonumber(header["statuscode"]);
+				contentLength = tonumber(header["Content-Length"]);
+				if not contentLength then
+					contentLength = tonumber(header["X-Uncompressed-Content-Length"])
+				end
+				
+				TransferEncoding = trim(header["Transfer-Encoding"]);
+				chunked = (TransferEncoding=="chunked");
+				
+				buf = body;
+				body = "";
+			end
+		end
+		
+		if chunked then
+			chunk_size_hex, chunk_content = buf:match("(%x+)\r?\n(.*)")
+			chunk_size = tonumber(chunk_size_hex,16)
+			chunk_content_len = chunk_content:len()
+			chunk_remaining = chunk_size-chunk_content_len
+			
+			while chunk_content_len > chunk_size do
+				body = body..chunk_content:sub(0, chunk_size)
+				buf = chunk_content:sub(chunk_size+2)
+				
+				chunk_size_hex, chunk_content = buf:match("(%x+)\r?\n(.*)")
+				
+				if not chunk_size_hex 
+				or chunk_size_hex == "0" then
+					chunk_size = 0
+					break
+				end
+				
+				chunk_size = tonumber(chunk_size_hex,16)
+				chunk_content_len = chunk_content:len()
+				chunk_remaining = chunk_size-chunk_content_len
+				
+			end
+			
+			if chunk_size == 0 then
+				break
+			end
+		end
 
-    vlc.net.poll(pollfds)
-    chunk = vlc.net.recv(fd, 1024)
-  end
+		if contentLength then
+			bodyLenght = #body
+			pct = bodyLenght / contentLength * 100
+			setMessage(openSub.actionLabel..": "..progressBarContent(pct))
+			if bodyLenght >= contentLength then
+				break
+			end
+		end
 
-  vlc.net.close(fd)
-  
-  if status == 301 
-  and header["Location"] then
-    local host, path = parse_url(trim(header["Location"]))
-    request = request
-    :gsub("^([^%s]+ )([^%s]+)", "%1"..path)
-    :gsub("(Host: )([^\n]*)", "%1"..host)
-    
-    return http_req(host, port, request)
-  end
+		vlc.net.poll(pollfds)
+		response = vlc.net.recv(fd, 1024)
+	end
+	
+	if not chunked then
+		body = buf
+	end
+	
+	if status == 301 
+	and header["Location"] then
+		local host, path = parse_url(trim(header["Location"]))
+		request = request
+		:gsub("^([^%s]+ )([^%s]+)", "%1"..path)
+		:gsub("(Host: )([^\n]*)", "%1"..host)
 
-  return status, response
+		return http_req(host, port, request)
+	end
+
+	return status, body
 end
 
 function parse_header(data)
