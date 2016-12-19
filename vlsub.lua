@@ -324,7 +324,7 @@ local input_table = {} -- General widget id reference
 local select_conf = {} -- Drop down widget / option table association 
 
 local app_name = "VLsub";
-local app_version = "0.10.0";
+local app_version = "0.10.1";
 local app_useragent = app_name.." "..app_version;
 
             --[[ VLC extension stuff ]]--
@@ -1166,7 +1166,7 @@ openSub = {
   conf = {
     url = "http://api.opensubtitles.org/xml-rpc",
     path = nil,
-    HTTPVersion = "1.1",
+    HTTPVersion = "1.0",
     userAgentHTTP = app_useragent,
     useragent = app_useragent,
     translations_avail = {},
