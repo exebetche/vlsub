@@ -41,6 +41,7 @@ local options = {
     cze = 'Czech', 
     dan = 'Danish', 
     dut = 'Nederlands',
+    fin = 'Finnish',
     fre = 'Français',
     ell = 'Greek',
     baq = 'Basque',
@@ -1965,15 +1966,15 @@ function http_req(host, port, request)
 		end
 
 		if contentLength then
-      if #body == 0 then
-         bodyLenght = #buf
-      else
-			   bodyLenght = #body
-      end
+		    if #body == 0 then
+		    	bodyLength = #buf
+		    else
+				bodyLength = #body
+		    end
       
-			pct = bodyLenght / contentLength * 100
+			pct = bodyLength / contentLength * 100
 			setMessage(openSub.actionLabel..": "..progressBarContent(pct))
-			if bodyLenght >= contentLength then
+			if bodyLength >= contentLength then
 				break
 			end
 		end
