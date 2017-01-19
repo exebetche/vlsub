@@ -1921,7 +1921,6 @@ function http_req(host, port, request)
 			headerStr, body = buf:match("(.-\r?\n)\r?\n(.*)")
 
 			if headerStr then
-        vlc.msg.info("headerStr")
 				header = parse_header(headerStr);
 				status = tonumber(header["statuscode"]);
 				contentLength = tonumber(header["Content-Length"]);
