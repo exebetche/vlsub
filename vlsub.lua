@@ -1,22 +1,18 @@
 --[[
 VLSub Extension for VLC media player 1.1 and 2.0
 Copyright 2013 Guillaume Le Maout
-
 Authors:  Guillaume Le Maout
 Contact: 
 http://addons.videolan.org/messages/?action=newmessage&username=exebetche
 Bug report: http://addons.videolan.org/content/show.php/?content=148752
-
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
-
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
-
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
@@ -324,7 +320,7 @@ local input_table = {} -- General widget id reference
 local select_conf = {} -- Drop down widget / option table association 
 
 local app_name = "VLsub";
-local app_version = "0.10.1";
+local app_version = "0.10.2";
 local app_useragent = app_name.." "..app_version;
 
             --[[ VLC extension stuff ]]--
@@ -1166,7 +1162,7 @@ openSub = {
   conf = {
     url = "http://api.opensubtitles.org/xml-rpc",
     path = nil,
-    HTTPVersion = "1.0",
+    HTTPVersion = "1.1",
     userAgentHTTP = app_useragent,
     useragent = app_useragent,
     translations_avail = {},
@@ -1923,7 +1919,9 @@ function http_req(host, port, request)
 		
 		if not header then
 			headerStr, body = buf:match("(.-\r?\n)\r?\n(.*)")
+
 			if headerStr then
+        vlc.msg.info("headerStr")
 				header = parse_header(headerStr);
 				status = tonumber(header["statuscode"]);
 				contentLength = tonumber(header["Content-Length"]);
@@ -1944,7 +1942,7 @@ function http_req(host, port, request)
 			chunk_size = tonumber(chunk_size_hex,16)
 			chunk_content_len = chunk_content:len()
 			chunk_remaining = chunk_size-chunk_content_len
-			
+
 			while chunk_content_len > chunk_size do
 				body = body..chunk_content:sub(0, chunk_size)
 				buf = chunk_content:sub(chunk_size+2)
@@ -1960,7 +1958,6 @@ function http_req(host, port, request)
 				chunk_size = tonumber(chunk_size_hex,16)
 				chunk_content_len = chunk_content:len()
 				chunk_remaining = chunk_size-chunk_content_len
-				
 			end
 			
 			if chunk_size == 0 then
@@ -1969,7 +1966,12 @@ function http_req(host, port, request)
 		end
 
 		if contentLength then
-			bodyLenght = #body
+      if #body == 0 then
+         bodyLenght = #buf
+      else
+			   bodyLenght = #body
+      end
+      
 			pct = bodyLenght / contentLength * 100
 			setMessage(openSub.actionLabel..": "..progressBarContent(pct))
 			if bodyLenght >= contentLength then
