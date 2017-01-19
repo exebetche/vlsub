@@ -41,7 +41,6 @@ local options = {
     cze = 'Czech', 
     dan = 'Danish', 
     dut = 'Nederlands',
-    fin = 'Finnish',
     fre = 'Français',
     ell = 'Greek',
     baq = 'Basque',
