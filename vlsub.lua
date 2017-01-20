@@ -1966,11 +1966,11 @@ function http_req(host, port, request)
 		end
 
 		if contentLength then
-		  if #body == 0 then
-		   	bodyLength = #buf
-		  else
+      if #body == 0 then
+        bodyLength = #buf
+      else
         bodyLength = #body
-		  end
+      end
       
 			pct = bodyLength / contentLength * 100
 			setMessage(openSub.actionLabel..": "..progressBarContent(pct))
