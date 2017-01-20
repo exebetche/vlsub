@@ -41,6 +41,7 @@ local options = {
     cze = 'Czech', 
     dan = 'Danish', 
     dut = 'Nederlands',
+    fin = 'Finnish',
     fre = 'Français',
     ell = 'Greek',
     baq = 'Basque',
@@ -1075,7 +1076,7 @@ function get_available_translations()
 -- (drop previous direct download from github repo 
 -- causing error  with github https CA certficate on OS X an XP)
 -- https://github.com/exebetche/vlsub/tree/master/locale
-  
+
   local translations_url = "http://addons.videolan.org/CONTENT/"..
     "content-files/148752-vlsub_translations.xml"
   
@@ -1965,11 +1966,11 @@ function http_req(host, port, request)
 		end
 
 		if contentLength then
-		    if #body == 0 then
-		    	bodyLength = #buf
-		    else
-				bodyLength = #body
-		    end
+		  if #body == 0 then
+		   	bodyLength = #buf
+		  else
+        bodyLength = #body
+		  end
       
 			pct = bodyLength / contentLength * 100
 			setMessage(openSub.actionLabel..": "..progressBarContent(pct))

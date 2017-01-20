@@ -1,0 +1,56 @@
+<action_hash>Lasketaan videon tarkistetta</action_hash>
+<action_login>Kirjaudutaan sisään</action_login>
+<action_logout>Kirjaudutaan ulos</action_logout>
+<action_noop>Tarkistetaan istuntoa</action_noop>
+<action_search>Etsitään tekstityksiä</action_search>
+<int_all>Kaikki</int_all>
+<int_bool_false>Ei</int_bool_false>
+<int_bool_true>Kyllä</int_bool_true>
+<int_cancel>Peruuta</int_cancel>
+<int_close>Sulje</int_close>
+<int_config>Asetukset</int_config>
+<int_configuration>Asetukset</int_configuration>
+<int_default_lang>Tekstityksen kieli</int_default_lang>
+<int_descr>Lataa tekstitykset OpenSubtitles.org:sta</int_descr>
+<int_display_code>Näytä kielitunnus tiedostonimessä</int_display_code>
+<int_dowload_behav>Mitä teksityksille tehdään</int_dowload_behav>
+<int_dowload_load>Vain avaus</int_dowload_load>
+<int_dowload_manual>Manuaalinen lataus</int_dowload_manual>
+<int_dowload_save>Avaa ja tallenna</int_dowload_save>
+<int_dowload_sel>Lataa valinta</int_dowload_sel>
+<int_episode>Jakso (sarja)</int_episode>
+<int_help>Apua</int_help>
+<int_help_mess>Lataa tekstitykset osoitteesta &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; ja näyttää ne videota katsottaessa.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Käyttö:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub on tarkoitettu käytettäväksi samalla kun katsot videota, joten aloita sen toisto ensin (jos mitään ei toisteta, saat tekstityksiin latauslinkin).&lt;br&gt; &lt;br&gt; Valitse teksityksille haluamasi kieli paina jompaa kumpaa etsintätavan nappia, joita VLSub tarjoaa:&lt;br&gt; &lt;br&gt; &lt;b&gt;Tapa 1: Etsi tarkisteen perusteella&lt;/b&gt;&lt;br&gt; On suositeltavaa käyttää tätä etsintätapaa ensin, sillä se etsii videon sen tiedostotarkisteen perusteella, jolloin tekstitykset ovat varmasti synkronisoitu.&lt;br&gt; &lt;br&gt; &lt;b&gt;Tapa 2: Etsi nimen perusteella&lt;/b&gt;&lt;br&gt; Jos tarkisteeseen pohjautuva etsintätapa ei tuottanut tulosta, voit kokeilla tätä. Tarkista, että videon nimi täsmää. Jos etsit jotain tiettyä tekstitystä sarjasta, voit antaa sarjan tuotantokauden ja jakson numeron.&lt;br&gt; &lt;br&gt; &lt;b&gt;Teksitysten lataus&lt;/b&gt;&lt;br&gt; Valitse yksi tekstitys listasta ja paina &#39;Lataa&#39;.&lt;br&gt; Tekstitys ladataan samaan hakemistoon kuin video (ja samalla nimellä, mutta eri tiedostopäätteellä), joten VLC lataa ne automaattisesti seuraavan kerran, kun lataat videon.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Varoitus :&lt;/b&gt; Jo-olemassa olevat tekstitykset korvataan, joten jos haluat säilyttä ne, siirrä ne toisaalle.&lt;br&gt; &lt;br&gt; Etsi lisää VLC:n laajennuksia osoitteesta: &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Käyttöliittymän kieli</int_int_lang>
+<int_ok>Ok</int_ok>
+<int_remove_tag>Poista tagit</int_remove_tag>
+<int_research>Etsintätapa</int_research>
+<int_save>Tallenna</int_save>
+<int_search_hash>Etsi tarkisteen perusteella</int_search_hash>
+<int_searching_transl>Etsitään käännöksiä ...</int_searching_transl>
+<int_search_name>Etsi nimen perusteella</int_search_name>
+<int_search_transl>Etsi käännöksiä</int_search_transl>
+<int_season>Kausi (sarja)</int_season>
+<int_show_conf>Näytä asetukset</int_show_conf>
+<int_show_help>Näytä ohjeet</int_show_help>
+<int_title>Otsikko</int_title>
+<int_vlsub_work_dir>VLSub:n työskentelyhakemisto</int_vlsub_work_dir>
+<mess_click_link>Klikkaa tästä avataksesi tiedoston</mess_click_link>
+<mess_complete>Tutkinta valmis</mess_complete>
+<mess_dowload_link>Latauslinkki</mess_dowload_link>
+<mess_downloading>Ladataan tekstitystä</mess_downloading>
+<mess_error>Virhe</mess_error>
+<mess_expired>Istunto vanhentunut, yritetään uudelleen</mess_expired>
+<mess_loaded>Tekstitykset ladattu</mess_loaded>
+<mess_no_input>Ole hyvä ja käytä tätä metodia katselun yhteydessä</mess_no_input>
+<mess_no_res>Ei tuloksia</mess_no_res>
+<mess_no_response>Palvelin ei vastaa</mess_no_response>
+<mess_no_selection>Ei tekstityksiä valittuna</mess_no_selection>
+<mess_not_found>Tiedostoa ei löydy</mess_not_found>
+<mess_not_found2>Tiedostoa ei löydy (laiton merkki?)</mess_not_found2>
+<mess_not_local>Tämä metodi toimii vain paikallisella tiedostolla (tällä hetkellä)</mess_not_local>
+<mess_overloaded>Palvelin ylikuormittunut, yritä myöhemmin uudelleen</mess_overloaded>
+<mess_res>Tulokset</mess_res>
+<mess_save_fail>Teksityksen tallennus ei onnistu</mess_save_fail>
+<mess_success>Onnistui</mess_success>
+<mess_unauthorized>Luvaton pyyntö</mess_unauthorized>
