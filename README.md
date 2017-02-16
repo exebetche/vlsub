@@ -40,6 +40,10 @@ Due to some bugs on Windows, if the path to your video contain non-english chara
 
 #### Changelog:
 
+##### 2017-01-20 (version 0.10.2)
+- Fixed a bug with subtitle downloading with HTTP 1.1
+- Added Finnish language
+
 ##### 2016-11-05 (version 0.10.0)
 - Support http chunked transfer encoding
 
