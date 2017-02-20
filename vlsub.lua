@@ -52,7 +52,8 @@ local options = {
     spa = 'Spanish',
     swe = 'Swedish',
     ukr = 'Ukrainian',
-    hun = 'Hungarian'
+    hun = 'Hungarian',
+    scc = 'Serbian'
   },
   translation = {
     int_all = 'All',
