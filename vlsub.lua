@@ -1445,6 +1445,10 @@ openSub = {
         file.dir, file.completeName = string.match(
           file.path,
           '^(.+/)([^/]*)$')
+        if file.dir == nil then
+          -- happens on http://example.org/?x=y
+          file.dir = openSub.conf.dirPath..slash
+        end
         
         local file_stat = vlc.net.stat(file.path)
         if file_stat 
@@ -1455,6 +1459,9 @@ openSub = {
         file.is_archive = false
       end
       
+      if file.completeName == nil then
+        file.completeName = ''
+      end
       file.name, file.ext = string.match(
         file.completeName,
         '^([^/]-)%.?([^%.]*)$')
@@ -1482,13 +1489,34 @@ openSub = {
       return false 
     end
     
+    local infoString = openSub.file.cleanName
+    if infoString == nil then
+      infoString = ''
+    end
+    
+    if infoString == '' then
+      -- read from meta-title
+      local meta = vlc.var.get(vlc.object.input(), 'meta-title')
+      if meta ~= nil then
+        infoString = meta
+      end
+    end
+    
+    if infoString == '' then
+      -- read from metadata
+      local metas = vlc.input.item():metas()
+      if metas['title'] ~= nil then
+        infoString = metas['title']
+      end
+    end
+    
     local showName, seasonNumber, episodeNumber = string.match(
-      openSub.file.cleanName,
+      infoString,
       "(.+)[sS](%d?%d)[eE](%d%d).*")
 
     if not showName then
       showName, seasonNumber, episodeNumber = string.match(
-      openSub.file.cleanName,
+      infoString,
       "(.-)(%d?%d)[xX](%d%d).*")
     end
     
@@ -1497,7 +1525,7 @@ openSub = {
       openSub.movie.seasonNumber = seasonNumber
       openSub.movie.episodeNumber = episodeNumber
     else
-      openSub.movie.title = openSub.file.cleanName
+      openSub.movie.title = infoString
       openSub.movie.seasonNumber = ""
       openSub.movie.episodeNumber = ""
     end
@@ -1721,7 +1749,23 @@ function download_subtitles()
   end
   
   local message = ""
-  local subfileName = openSub.file.name or ""
+  local subfileName = "subtitle"
+  if openSub.file.name == nil or openSub.file.name == '' then
+    -- happens on http://example.org/?x=y
+    local uriName = nil
+    if item.SubFileName then
+      uriName = string.sub(
+        item.SubFileName, 1, #item.SubFileName - 4)
+    else
+      uriName = openSub.getInputItem():uri()
+    end
+    uriName = vlc.strings.encode_uri_component(uriName)
+    if uriName then
+      subfileName = string.sub(uriName, -64, -1)
+    end
+  else
+    subfileName = openSub.file.name 
+  end
   
   if openSub.option.langExt then
     subfileName = subfileName.."."..item.SubLanguageID
@@ -1816,7 +1860,7 @@ function dump_zip(url, dir, subfileName)
     return false 
   end
   
-  local tmpFileName = dir..subfileName..".gz"
+  local tmpFileName = dir..slash..subfileName..".gz"
   if not file_touch(tmpFileName) then
     vlc.msg.dbg("[VLsub] Cant touch:"..tmpFileName)
     if openSub.conf.os == "win" then
@@ -1843,6 +1887,7 @@ function add_sub(subPath)
   if vlc.item or vlc.input.item() then
     subPath = decode_uri(subPath)
     vlc.msg.dbg("[VLsub] Adding subtitle :" .. subPath)
+    vlc.var.set(vlc.object.input(), 'sub-file', subPath)
     return vlc.input.add_subtitle(subPath)
   end
   return false
