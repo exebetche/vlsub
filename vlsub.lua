@@ -58,7 +58,7 @@ local options = {
   translation = {
     int_all = 'All',
     int_descr = 'Download subtitles from OpenSubtitles.org',
-    int_research = 'Research',
+    int_research = 'Search',
     int_config = 'Config',
     int_configuration = 'Configuration',
     int_help = 'Help',
@@ -102,12 +102,12 @@ local options = {
       but the subtitles won't be saved and loaded automatically.<br>
       <br>
       Choose the language for your subtitles and click on the 
-      button corresponding to one of the two research methods 
+      button corresponding to one of the two search methods 
       provided by VLSub:<br>
       <br>
       <b>Method 1: Search by hash</b><br>
       It is recommended to try this method first, because it 
-      performs a research based on the video file print, so you 
+      performs a search based on the video file print, so you 
       can find subtitles synchronized with your video.<br>
       <br>
       <b>Method 2: Search by name</b><br>
@@ -167,7 +167,7 @@ local options = {
     mess_no_selection = 'No subtitles selected',
     mess_save_fail = 'Unable to save subtitles',
     mess_click_link = 'Click here to open the file',
-    mess_complete = 'Research complete',
+    mess_complete = 'Search complete',
     mess_no_res = 'No result',
     mess_res = 'result(s)',
     mess_loaded = 'Subtitles loaded',
