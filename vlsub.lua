@@ -64,6 +64,7 @@ local options = {
     int_help = 'Help',
     int_search_hash = 'Search by hash',
     int_search_name = 'Search by name',
+    int_feeling_lucky = 'I\'m feeling lucky',
     int_title = 'Title',
     int_season = 'Season (series)',
     int_episode = 'Episode (series)',
@@ -389,7 +390,7 @@ function input_changed()
 end
 
             --[[ Interface data ]]--
-
+	
 function interface_main()
   dlg:add_label(lang["int_default_lang"]..':', 1, 1, 1, 1)
   input_table['language'] =  dlg:add_dropdown(2, 1, 2, 1)
@@ -401,6 +402,9 @@ function interface_main()
     openSub.movie.title or "", 2, 2, 2, 1)
   dlg:add_button(lang["int_search_name"], 
     searchIMBD, 4, 2, 1, 1)
+  dlg:add_button(lang["int_feeling_lucky"], 
+    feelingLucky, 4, 3, 1, 1)
+	
   dlg:add_label(lang["int_season"]..':', 1, 3, 1, 1)
   input_table['seasonNumber'] = dlg:add_text_input(
     openSub.movie.seasonNumber or "", 2, 3, 2, 1)
@@ -415,7 +419,7 @@ function interface_main()
   dlg:add_button(
     '   '..lang["int_show_conf"]..'   ', show_conf, 2, 7, 1, 1)
   dlg:add_button(
-    lang["int_dowload_sel"], download_subtitles, 3, 7, 1, 1)
+    lang["int_dowload_sel"], download_subtitle, 3, 7, 1, 1)
   dlg:add_button(
     lang["int_close"], close, 4, 7, 1, 1) 
   
@@ -1695,6 +1699,11 @@ function searchIMBD()
   end
 end
 
+function feelingLucky()
+	searchHash()
+	download_subtitle(1)
+end
+
 function display_subtitles()
   local mainlist = input_table["mainlist"]
   mainlist:clear()
@@ -1723,8 +1732,10 @@ function get_first_sel(list)
   return 0
 end
 
-function download_subtitles()
-  local index = get_first_sel(input_table["mainlist"])
+function download_subtitle(index)
+  if not index then
+    index = get_first_sel(input_table["mainlist"])
+  end
   
   if index == 0 then
     setMessage(lang["mess_no_selection"])
