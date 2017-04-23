@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 local options = {
   language = nil,
   downloadBehaviour = 'save',
-  langExt = false,
+  langExt = '0 chars',
   removeTag = false,
   showMediaInformation = true,
   progressBarSize = 80,
@@ -89,6 +89,8 @@ local options = {
     int_vlsub_work_dir = 'VLSub working directory',
     int_os_username = 'Username',
     int_os_password = 'Password',
+    int_language_code_2 = 'Yes (2 chars)',
+    int_language_code_3 = 'Yes (3 chars)',
     int_help_mess =[[
       Download subtitles from 
       <a href='http://www.opensubtitles.org/'>
@@ -503,10 +505,6 @@ function interface_config()
     lang["int_save"],
     apply_config, 3, 10, 1, 1)
   
-  input_table['langExt']:add_value(
-    lang["int_bool_"..tostring(openSub.option.langExt)], 1)
-  input_table['langExt']:add_value(
-    lang["int_bool_"..tostring(not openSub.option.langExt)], 2)
   input_table['removeTag']:add_value(
     lang["int_bool_"..tostring(openSub.option.removeTag)], 1)
   input_table['removeTag']:add_value(
@@ -528,6 +526,8 @@ function interface_config()
     'downloadBehaviour',
     openSub.conf.downloadBehaviours,
     1)
+
+  assoc_select_conf('langExt', 'langExt', openSub.conf.langExt, 1)
 end
 
 function interface_help()
@@ -836,6 +836,8 @@ function check_config()
     setError(lang["mess_err_conf_access"])
   end
     
+  set_language_code_file()
+
   -- Set table list of available translations from assoc. array 
   -- so it is sortable
   
@@ -962,8 +964,15 @@ function apply_config()
   openSub.option.os_username = input_table['os_username']:get_text()
   openSub.option.os_password = input_table['os_password']:get_text()
   
-  if input_table["langExt"]:get_value() == 2 then
-    openSub.option.langExt = not openSub.option.langExt
+  if input_table["langExt"]:get_text() == lang["int_bool_false"] then
+    openSub.option.langExt = '0 chars'
+  elseif input_table["langExt"]:get_text() == lang["int_language_code_2"] then
+    openSub.option.langExt = '2 chars'
+  elseif input_table["langExt"]:get_text() == lang["int_language_code_3"] then
+    openSub.option.langExt = '3 chars'
+  else
+    vlc.msg.err("[VLSub] Unknown language extension: " ..
+      input_table["langExt"]:get_value())
   end
   
   if input_table["removeTag"]:get_value() == 2 then
@@ -1069,6 +1078,15 @@ function SetDownloadBehaviours()
   openSub.conf.downloadBehaviours = { 
     {'save', lang["int_dowload_save"]},
     {'manual', lang["int_dowload_manual"]}
+  }
+end
+
+function set_language_code_file() -- ap
+  openSub.conf.langExt = nil
+  openSub.conf.langExt = {
+    { '0 chars', lang["int_bool_false"] },
+    { '2 chars', lang["int_language_code_2"] },
+    { '3 chars', lang["int_language_code_3"] }
   }
 end
 
@@ -1767,7 +1785,9 @@ function download_subtitles()
     subfileName = openSub.file.name 
   end
   
-  if openSub.option.langExt then
+  if openSub.option.langExt == '2 chars' then
+    subfileName = subfileName.."."..get_key(lang_os_to_iso, item.SubLanguageID)
+  elseif openSub.option.langExt == '3 chars' then
     subfileName = subfileName.."."..item.SubLanguageID
   end
   
@@ -1881,6 +1901,16 @@ function dump_zip(url, dir, subfileName)
   collectgarbage()
   return "zip://"..make_uri(tmpFileName)
     .."!/"..subfileName, tmpFileName
+end
+
+function get_key(table, value)
+  for k, v in pairs(table) do
+    if v == value then 
+      return k
+    end
+  end
+
+  return nil
 end
 
 function add_sub(subPath)
