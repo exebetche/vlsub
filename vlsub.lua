@@ -3,8 +3,8 @@ VLSub Extension for VLC media player 1.1 and 2.0
 Copyright 2013 Guillaume Le Maout
 Authors:  Guillaume Le Maout
 Contact: 
-http://addons.videolan.org/messages/?action=newmessage&username=exebetche
-Bug report: http://addons.videolan.org/content/show.php/?content=148752
+https://addons.videolan.org/messages/?action=newmessage&username=exebetche
+Bug report: https://addons.videolan.org/content/show.php/?content=148752
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -91,7 +91,7 @@ local options = {
     int_os_password = 'Password',
     int_help_mess =[[
       Download subtitles from 
-      <a href='http://www.opensubtitles.org/'>
+      <a href='https://www.opensubtitles.org/'>
       opensubtitles.org
       </a> and display them while watching a video.<br>
       <br>
@@ -128,7 +128,7 @@ local options = {
       they're important.<br>
       <br>
       Find more VLC extensions at 
-      <a href='http://addons.videolan.org'>addons.videolan.org</a>.
+      <a href='https://addons.videolan.org'>addons.videolan.org</a>.
       ]],
     int_no_support_mess = [[
       <strong>VLSub is not working with Vlc 2.1.x on 
@@ -144,8 +144,8 @@ local options = {
       to use Vlsub:
       <br>
       <a target="_blank" rel="nofollow" 
-      href="http://download.videolan.org/pub/videolan/vlc/2.0.8/">
-      http://download.videolan.org/pub/videolan/vlc/2.0.8/</a><br>
+      href="https://download.videolan.org/pub/videolan/vlc/2.0.8/">
+      https://download.videolan.org/pub/videolan/vlc/2.0.8/</a><br>
     ]],
   
     action_login = 'Logging in',
@@ -332,7 +332,7 @@ function descriptor()
     title = app_useragent,
     version = app_version,
     author = "exebetche",
-    url = 'http://www.opensubtitles.org/',
+    url = 'https://www.opensubtitles.org/',
     shortdesc = app_name;
     description = options.translation.int_descr,
     capabilities = {"menu", "input-listener" }
@@ -1078,7 +1078,7 @@ function get_available_translations()
 -- causing error  with github https CA certficate on OS X an XP)
 -- https://github.com/exebetche/vlsub/tree/master/locale
 
-  local translations_url = "http://addons.videolan.org/CONTENT/"..
+  local translations_url = "https://addons.videolan.org/CONTENT/"..
     "content-files/148752-vlsub_translations.xml"
   
   if input_table['intLangBut']:get_text() == lang["int_search_transl"] 
@@ -1162,7 +1162,7 @@ openSub = {
   itemStore = nil,
   actionLabel = "",
   conf = {
-    url = "http://api.opensubtitles.org/xml-rpc",
+    url = "https://api.opensubtitles.org/xml-rpc",
     path = nil,
     HTTPVersion = "1.1",
     userAgentHTTP = app_useragent,
@@ -1446,7 +1446,7 @@ openSub = {
           file.path,
           '^(.+/)([^/]*)$')
         if file.dir == nil then
-          -- happens on http://example.org/?x=y
+          -- happens on https://example.org/?x=y
           file.dir = openSub.conf.dirPath..slash
         end
         
@@ -1751,7 +1751,7 @@ function download_subtitles()
   local message = ""
   local subfileName = "subtitle"
   if openSub.file.name == nil or openSub.file.name == '' then
-    -- happens on http://example.org/?x=y
+    -- happens on https://example.org/?x=y
     local uriName = nil
     if item.SubFileName then
       uriName = string.sub(
