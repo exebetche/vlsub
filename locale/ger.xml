@@ -1,0 +1,56 @@
+<action_hash>Berechne video-Hash</action_hash>
+<action_login>Einloggen</action_login>
+<action_logout>Ausloggen</action_logout>
+<action_noop>Prüfe Sitzung</action_noop>
+<action_search>Suche nach Untertiteln</action_search>
+<int_all>Alle</int_all>
+<int_bool_false>Nein</int_bool_false>
+<int_bool_true>Ja</int_bool_true>
+<int_cancel>Abbrechen</int_cancel>
+<int_close>Schließen</int_close>
+<int_config>Konfigurieren</int_config>
+<int_configuration>Eintellungen</int_configuration>
+<int_default_lang>Untertitelsprache</int_default_lang>
+<int_descr>Untertitel von OpenSubtitles.org herunterladen</int_descr>
+<int_display_code>Sprach-Code im Dateinamen anzeigen</int_display_code>
+<int_dowload_behav>Was soll mit den Untertiteln gemacht werden</int_dowload_behav>
+<int_dowload_load>Nur laden</int_dowload_load>
+<int_dowload_manual>Manuell herunterladen</int_dowload_manual>
+<int_dowload_save>Laden und speichern</int_dowload_save>
+<int_dowload_sel>Auswahl herunterladen</int_dowload_sel>
+<int_episode>Episode (Serien)</int_episode>
+<int_help>Hilfe</int_help>
+<int_help_mess>Untertitel von &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; herunterladen und anzeigen, während das Video abgespielt wird.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Verwendung:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub sollte verwendet werden, während ein Video abgespielt wird. Spielen Sie daher zunächt ein Video ab (wenn nichts abgespielt wird, erhalten Sie einen Link, um die Untertitel im Browser herunterzuladen).&lt;br&gt; &lt;br&gt; Wählen Sie die Untertitel-Sprache aus und klicken Sie auf den Button einer der beiden von VLSub angebotenen Such-Methoden:&lt;br&gt; &lt;br&gt; &lt;b&gt;Methode 1: Suche anhand eines Hash-Wertes&lt;/b&gt;&lt;br&gt; Es wird empfohlen, diese Methode zuerst zu versuchen, da sie eine Suche anhand des Hash-Wertes der Video-Datei durchführt. Somit finden Sie Untertitel, die synchron zu Ihrer Video-Datei sind.&lt;br&gt; &lt;br&gt; &lt;b&gt;Methode 2: Suche anhand des Namens&lt;/b&gt;&lt;br&gt; Verwenden Sie diese Methode, wenn Sie mit der ersten keinen Erfolg hatten. Prüfen Sie zunächst den Namen und klicken Sie dann auf "Suche nach Namen". Wenn Sie Untertitel für Serien suchen, können Sie auch die Nummer der Staffel und Episode angeben.&lt;br&gt; &lt;br&gt; &lt;b&gt;Untertitel herunterladen&lt;/b&gt;&lt;br&gt; Wählen Sie einen Untertitel aus der Liste und klicken Sie auf &#39;herunterladen&#39;.&lt;br&gt; Die Datei wird im selben Verzeichnis wie das Video abgelegt. Sie wird den gleichen Dateinamen wie die Video-Datei erhalten, jedoch mit einer anderen Dateiendung. Hierdurch wird VLC diesen Untertitel automatisch laden, wenn Sie das Video das nächste mal abspielen.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Achtung :&lt;/b&gt; Bereits vorhandene Untertitel werden ohne Rückfrage überschrieben. Legen Sie diese woanders ab, falls sie wichtig sind.&lt;br&gt; &lt;br&gt; Mehr VLC-Erweiterungen finden Sie unter &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Anzeigesprache</int_int_lang>
+<int_ok>OK</int_ok>
+<int_remove_tag>Tags entfernen</int_remove_tag>
+<int_research>Suchen</int_research>
+<int_save>Speichern</int_save>
+<int_search_hash>Suche nach Hash</int_search_hash>
+<int_searching_transl>Suche nach Übersetzungen ...</int_searching_transl>
+<int_search_name>Suche nach Namen</int_search_name>
+<int_search_transl>Übersetzungen suchen</int_search_transl>
+<int_season>Staffel (Serien)</int_season>
+<int_show_conf>Konfiguration anzeigen</int_show_conf>
+<int_show_help>Hilfe anzeigen</int_show_help>
+<int_title>Titel</int_title>
+<int_vlsub_work_dir>VLSub Arbeitsverzeichnis</int_vlsub_work_dir>
+<mess_click_link>Klicken Sie hier um die Datei zu öffnen</mess_click_link>
+<mess_complete>Suche abgeschlossen</mess_complete>
+<mess_dowload_link>Download Link</mess_dowload_link>
+<mess_downloading>Untertitel wird heruntergeladen</mess_downloading>
+<mess_error>Fehler</mess_error>
+<mess_expired>Sitzung abgelaufen, versuche es nochmals</mess_expired>
+<mess_loaded>Untertitel geladen</mess_loaded>
+<mess_no_input>Bitte verwenden Sie diese Methode während des Abspielens</mess_no_input>
+<mess_no_res>Kein Ergebnis</mess_no_res>
+<mess_no_response>Server antwortet nicht</mess_no_response>
+<mess_no_selection>Keine Untertitel ausgewählt</mess_no_selection>
+<mess_not_found>Datei nicht gefunden</mess_not_found>
+<mess_not_found2>Datei nicht gefunden (nicht erlaubtes Zeichen?)</mess_not_found2>
+<mess_not_local>Diese Methode funktioniert (bisher) nur mit einer lokalen Datei</mess_not_local>
+<mess_overloaded>Server überlastet, versuchen Sie es später nochmals</mess_overloaded>
+<mess_res>Ergebnis(se)</mess_res>
+<mess_save_fail>Untertitel kann nicht gespeichert werden</mess_save_fail>
+<mess_success>Erfolg</mess_success>
+<mess_unauthorized>Anfrage nicht autorisiert</mess_unauthorized>

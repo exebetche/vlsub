@@ -21,6 +21,8 @@ Create a directory "extensions" at this location if it doesn't exists, then extr
 * Mac OS X (all users): /Applications/VLC.app/Contents/MacOS/share/lua/extensions/
 * Mac OS X (current user): /Users/%your_name%/Library/Application Support/org.videolan.vlc/lua/extensions/
 
+To install the translations, copy the directory named "locale" into the VLSub working directory :
+* To know this directory, once VLsub is installed as explained above, launCh VLC and open VLsub, and click "show config", and you will see it there.
 
 #### USAGE:
 * Start Vlc
@@ -36,9 +38,16 @@ Create a directory "extensions" at this location if it doesn't exists, then extr
 
 Due to some bugs on Windows, if the path to your video contain non-english characters, the extension will not be able to save subtitles in this directory automatically (it will propose you to save it manually) and the "search by hash" method might be slower.
 
--> If possible, use a diretcory with english (ASCII) characters only to store your videos (on Windows only).
+-> If possible, use a directory with english (ASCII) characters only to store your videos (on Windows only).
 
 #### Changelog:
+
+##### 2017-01-20 (version 0.10.2)
+- Fixed a bug with subtitle downloading with HTTP 1.1
+- Added Finnish language
+
+##### 2016-11-05 (version 0.10.0)
+- Support http chunked transfer encoding
 
 ##### 2014-09-21
 - Improve http response handle for large header
