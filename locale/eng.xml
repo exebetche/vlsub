@@ -1,8 +1,8 @@
-<action_hash>Calculating video hash</action_hash>
+<action_hash>Calculating movie hash</action_hash>
 <action_login>Logging in</action_login>
 <action_logout>Logging out</action_logout>
 <action_noop>Checking session</action_noop>
-<action_search>Searching for subtitles</action_search>
+<action_search>Searching subtitles</action_search>
 <int_all>All</int_all>
 <int_bool_false>No</int_bool_false>
 <int_bool_true>Yes</int_bool_true>
@@ -20,16 +20,73 @@
 <int_dowload_sel>Download selection</int_dowload_sel>
 <int_episode>Episode (series)</int_episode>
 <int_help>Help</int_help>
-<int_help_mess>Download subtitles from &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; and display them while watching a video.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Usage:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub is meant to be used while you are watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).&lt;br&gt; &lt;br&gt; Choose the language for your subtitles and click on the button corresponding to one of the two research methods provided by VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Method 1: Search by hash&lt;/b&gt;&lt;br&gt; It is recommended to try this method first, because it performs a research based on the video file print, so you can find subtitles synchronized with your video.&lt;br&gt; &lt;br&gt; &lt;b&gt;Method 2: Search by name&lt;/b&gt;&lt;br&gt; If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a series, you can also provide a season and episode number.&lt;br&gt; &lt;br&gt; &lt;b&gt;Downloading Subtitles&lt;/b&gt;&lt;br&gt; Select one subtitle in the list and click on &#39;Download&#39;.&lt;br&gt; It will be put in the same directory as that of your video, with the same name (different extension) so VLC will load them automatically the next time you&#39;ll start the video.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Beware :&lt;/b&gt; Existing subtitles are overwritten without asking confirmation, so put them elsewhere if they&#39;re important.&lt;br&gt; &lt;br&gt; Find more VLC extensions at &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess>      Download subtitles from 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  and display them while watching a video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Usage:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Start your video. If you use VLSub witout playing a video 
+  you will get a link to download the subtitles in your browser 
+  but the subtitles won&#39;t be saved and loaded automatically.&lt;br&gt;
+  &lt;br&gt;
+  Choose the language for your subtitles and click on the 
+  button corresponding to one of the two research methods
+  provided by VLSub:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Method 1: Search by hash&lt;/b&gt;&lt;br&gt;
+  It is recommended to try this method first, because it 
+  performs a research based on the video file print, so you 
+  can find subtitles synchronized with your video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Method 2: Search by name&lt;/b&gt;&lt;br&gt;
+  If you have no luck with the first method, just check the 
+  title is correct before clicking. If you search subtitles 
+  for a series, you can also provide a season and episode
+  number.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Downloading Subtitles&lt;/b&gt;&lt;br&gt;
+  Select one subtitle in the list and click on &#39;Download&#39;.&lt;br&gt;
+  It will be put in the same directory that your video, with 
+  the same name (different extension)
+  so VLC will load them automatically the next time you&#39;ll
+  start the video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Beware:&lt;/b&gt; Existing subtitles are overwritten 
+  without asking confirmation, so put them elsewhere if 
+  they&#39;re important.&lt;br&gt;
+  &lt;br&gt;
+  Find more VLC extensions at
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>Interface language</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;VLSub is not working with VLC 2.1.x on 
+  any platform&lt;/strong&gt;
+  because the lua &quot;net&quot; module needed to interact 
+  with opensubtitles has been 
+  removed in this release for the extensions.
+  &lt;br&gt;
+  &lt;strong&gt;Works with VLC 2.2 on mac and linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;On windows you have to install an older version 
+  of VLC (2.0.8 for example)&lt;/strong&gt;
+  to use VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
 <int_ok>Ok</int_ok>
+<int_os_password>Password</int_os_password>
+<int_os_username>Username</int_os_username>
 <int_remove_tag>Remove tags</int_remove_tag>
 <int_research>Research</int_research>
 <int_save>Save</int_save>
 <int_search_hash>Search by hash</int_search_hash>
-<int_searching_transl>Searching translations ...</int_searching_transl>
 <int_search_name>Search by name</int_search_name>
 <int_search_transl>Search translations</int_search_transl>
+<int_searching_transl>Searching translations...</int_searching_transl>
 <int_season>Season (series)</int_season>
 <int_show_conf>Show config</int_show_conf>
 <int_show_help>Show help</int_show_help>
@@ -39,6 +96,9 @@
 <mess_complete>Research complete</mess_complete>
 <mess_dowload_link>Download link</mess_dowload_link>
 <mess_downloading>Downloading subtitle</mess_downloading>
+<mess_err_cant_download_interface_translation>Could not download interface translation</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Can&#39;t find a suitable path to save config, please set it manually</mess_err_conf_access>
+<mess_err_wrong_path>The path contains illegal character, please correct it</mess_err_wrong_path>
 <mess_error>Error</mess_error>
 <mess_expired>Session expired, retrying</mess_expired>
 <mess_loaded>Subtitles loaded</mess_loaded>
@@ -48,6 +108,7 @@
 <mess_no_selection>No subtitles selected</mess_no_selection>
 <mess_not_found>File not found</mess_not_found>
 <mess_not_found2>File not found (illegal character?)</mess_not_found2>
+<mess_not_load>Unable to load subtitles</mess_not_load>
 <mess_not_local>This method works with local file only (for now)</mess_not_local>
 <mess_overloaded>Server overloaded, please retry later</mess_overloaded>
 <mess_res>result(s)</mess_res>

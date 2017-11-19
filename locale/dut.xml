@@ -1,4 +1,4 @@
-<action_hash>Bestandshash berekenen...</action_hash>
+<action_hash>Video-hash berekenen</action_hash>
 <action_login>Bezig met inloggen</action_login>
 <action_logout>Bezig met uitloggen</action_logout>
 <action_noop>Sessie controleren</action_noop>
@@ -10,48 +10,107 @@
 <int_close>Sluiten</int_close>
 <int_config>Instellingen</int_config>
 <int_configuration>Configuratie</int_configuration>
-<int_default_lang>Ondertitel taal</int_default_lang>
+<int_default_lang>Ondertitel-taal</int_default_lang>
 <int_descr>Download ondertitels van OpenSubtitles.org</int_descr>
 <int_display_code>Taalcode opnemen als extensie in bestandsnaam</int_display_code>
-<int_display_iso_code>Gebruik tweelettige extensie</int_display_code>
 <int_dowload_behav>Wat te doen met ondertitels</int_dowload_behav>
 <int_dowload_load>Enkel laden</int_dowload_load>
 <int_dowload_manual>Handmatig downloaden</int_dowload_manual>
-<int_dowload_save>Downloaden en laden</int_dowload_save>
+<int_dowload_save>Laden en opslaan</int_dowload_save>
 <int_dowload_sel>Selectie downloaden</int_dowload_sel>
-<int_episode>Episode (series)</int_episode>
+<int_episode>Aflevering (serie)</int_episode>
 <int_help>Help</int_help>
-<int_help_mess> Ondertitel downloade van &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; en weergeven terwijl de video wordt afgespeeld. &lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Gebruik:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub is bedoeld om gebruikt te worden terwijl de video afspeeld, dus start eerst een video.&lt;br&gt; &lt;br&gt; Kies de taal voor de ondertitels en klik op de knop corresponderen met de downloadopties van VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Methode 1: Zoeken op bestandshash&lt;/b&gt;&lt;br&gt; Het is aan te raden deze methode eerst te gebruiken, omdat het een zoekopdracht uitvoerd op basis van de unieke vingerafdruk van het filmbestand.&lt;br&gt; &lt;br&gt; &lt;b&gt;Methode 2: Zoeken op naam&lt;/b&gt;&lt;br&gt; Als het niet lukt om ondertitels te zoeken via de eerte methode, zoek dan op de naam van de video. Zorg er wel voor dat de titel correct is.Bij het zoeken van ondertitels voor een serie kan je ook een seizoen en episode opgeven.&lt;br&gt; &lt;br&gt; &lt;b&gt;Ondertitels downloaden&lt;/b&gt;&lt;br&gt; Selecteer een ondertitel in de lijst en klik op &#39;Downloaden&#39;.&lt;br&gt; De ondertitel wordt opgeslagen in dezelfde map als het videobestand, zodat VLC het automatisch laadt als de volgende keer de video gestart wordt.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Let op :&lt;/b&gt; Bestaande ondertitelbestanden zullen overgeschreven worden.&lt;br&gt; &lt;br&gt; Vind meer VLC extensies op &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess>      Ondertitels downloaden van 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  en ze weergeven tijdens het bekijken van een video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Gebruik:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Start uw video. Als u VLSub gebruikt zonder het afspelen 
+  van een video, zult u een link krijgen om de ondertitels 
+  in uw browser te downloaden, maar de ondertitels zullen 
+  niet automatisch opgeslagen en geladen worden.&lt;br&gt;
+  &lt;br&gt;
+  Kies de taal voor uw ondertitels en klik op de knop die 
+  overeenkomt met een van de twee opzoekmethodes die door 
+  VLSub voorzien worden:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Methode 1: zoeken via hash&lt;/b&gt;&lt;br&gt;
+  Het wordt aanbevolen om deze methode eerst te proberen, 
+  omdat het een opzoeking uitvoert op basis van de vingerafdruk 
+  van het videobestand zodat u ondertitels kunt vinden die 
+  gesynchroniseerd zijn met uw video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Methode 2: zoeken op naam&lt;/b&gt;&lt;br&gt;
+  Als u geen geluk hebt met de eerste methode, controleer 
+  dan of de titel juist is voordat u klikt. Als u ondertitels 
+  zoekt voor een serie, kunt u ook een seizoen en aflevering 
+  ingeven.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Ondertitels downloaden&lt;/b&gt;&lt;br&gt;
+  Selecteer een ondertitel in de lijst en klik op &#39;downloaden&#39;.&lt;br&gt;
+  Hij zal in dezelfde map als uw video geplaatst worden, met 
+  dezelfde naam (verschillende extensie), dus VLC zal hem 
+  automatisch laden wanneer u de video de volgende keer opnieuw 
+  start.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Opgelet:&lt;/b&gt; Bestaande ondertitels worden 
+  overschreven zonder bevestiging, dus plaats ze ergens anders 
+  als ze belangrijk zijn.&lt;br&gt;
+  &lt;br&gt;
+  Meer VLC-extensies zijn te vinden op 
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>Interface taal</int_int_lang>
-<int_ok>OK</int_ok>
+<int_no_support_mess>      &lt;strong&gt;VLSub werkt op geen enkel platform met 
+  VLC 2.1.x&lt;/strong&gt; omdat de lua-&quot;net&quot;-module die nodig is om te 
+  werken met opensubtitles, verwijderd werd in deze release voor de extensies.
+  &lt;br&gt;
+  &lt;strong&gt;Werkt op VLC 2.2 op Mac en Linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;Op Windows moet u een oudere versie van VLC installeren 
+  (2.0.8 bijvoorbeeld)&lt;/strong&gt; om VLSub te gebruiken:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
+<int_ok>Ok</int_ok>
+<int_os_password>Wachtwoord</int_os_password>
+<int_os_username>Gebruikersnaam</int_os_username>
 <int_remove_tag>Tags verwijderen</int_remove_tag>
-<int_research>Ondertitel zoeken</int_research>
+<int_research>Opzoeken</int_research>
 <int_save>Opslaan</int_save>
 <int_search_hash>Zoeken met bestandshash</int_search_hash>
-<int_searching_transl>Vertalingen zoeken ...</int_searching_transl>
 <int_search_name>Zoeken via bestandsnaam</int_search_name>
 <int_search_transl>Vertalingen zoeken</int_search_transl>
+<int_searching_transl>Vertalingen zoeken...</int_searching_transl>
 <int_season>Seizoen (series)</int_season>
 <int_show_conf>Configuratie weergeven</int_show_conf>
-<int_show_help>Help</int_show_help>
+<int_show_help>Help weergeven</int_show_help>
 <int_title>Titel</int_title>
-<int_vlsub_work_dir>VLSub werkmap</int_vlsub_work_dir>
+<int_vlsub_work_dir>VLSub-werkmap</int_vlsub_work_dir>
 <mess_click_link>Klik hier om het bestand te openen</mess_click_link>
-<mess_complete>Zoeken voltooid</mess_complete>
+<mess_complete>Opzoeken voltooid</mess_complete>
 <mess_dowload_link>Download link</mess_dowload_link>
 <mess_downloading>Ondertitel downloaden</mess_downloading>
+<mess_err_cant_download_interface_translation>Kon interface-vertaling niet downloaden</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Kan geen geschikt pad vinden om configuratie op te slaan. Gelieve het manueel in te stellen.</mess_err_conf_access>
+<mess_err_wrong_path>Het pad bevat een ongeldig teken. Gelieve het te corrigeren.</mess_err_wrong_path>
 <mess_error>Fout</mess_error>
-<mess_expired>Sessie verlopen, opnieuw aan het proberen...</mess_expired>
+<mess_expired>Sessie verlopen, opnieuw aan het proberen</mess_expired>
 <mess_loaded>Ondertitels geladen</mess_loaded>
-<mess_no_input>Kan enkel worden gebruikt tijdens afspelen bestand</mess_no_input>
+<mess_no_input>Gebruik deze methode tijdens het afspelen</mess_no_input>
 <mess_no_res>Geen resultaat</mess_no_res>
 <mess_no_response>Server reageert niet</mess_no_response>
 <mess_no_selection>Geen ondertitel geselecteerd</mess_no_selection>
 <mess_not_found>Bestand niet gevonden</mess_not_found>
-<mess_not_found2>Bestand niet gevonden (ongeldig karakter?)</mess_not_found2>
-<mess_not_local>Deze method werkt enkel met lokale bestanden (op het moment)</mess_not_local>
+<mess_not_found2>Bestand niet gevonden (ongeldig teken?)</mess_not_found2>
+<mess_not_load>Kan geen ondertitels laden</mess_not_load>
+<mess_not_local>Deze methode werkt (voorlopig) enkel met lokale bestanden.</mess_not_local>
 <mess_overloaded>Server heeft het te druk, probeer later nog eens</mess_overloaded>
 <mess_res>resultaten</mess_res>
 <mess_save_fail>Kan de ondertitel niet opslaan</mess_save_fail>
-<mess_success>Gelukt!</mess_success>
-<mess_unauthorized>Ongeauthorizeerde aanvraag</mess_unauthorized>
+<mess_success>Gelukt</mess_success>
+<mess_unauthorized>Ongeautoriseerde aanvraag</mess_unauthorized>

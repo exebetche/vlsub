@@ -1,4 +1,4 @@
-<action_hash>Berechne video-Hash</action_hash>
+<action_hash>Berechne den Hashwert des Videos</action_hash>
 <action_login>Einloggen</action_login>
 <action_logout>Ausloggen</action_logout>
 <action_noop>Prüfe Sitzung</action_noop>
@@ -9,7 +9,7 @@
 <int_cancel>Abbrechen</int_cancel>
 <int_close>Schließen</int_close>
 <int_config>Konfigurieren</int_config>
-<int_configuration>Eintellungen</int_configuration>
+<int_configuration>Einstellungen</int_configuration>
 <int_default_lang>Untertitelsprache</int_default_lang>
 <int_descr>Untertitel von OpenSubtitles.org herunterladen</int_descr>
 <int_display_code>Sprach-Code im Dateinamen anzeigen</int_display_code>
@@ -20,37 +20,99 @@
 <int_dowload_sel>Auswahl herunterladen</int_dowload_sel>
 <int_episode>Episode (Serien)</int_episode>
 <int_help>Hilfe</int_help>
-<int_help_mess>Untertitel von &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; herunterladen und anzeigen, während das Video abgespielt wird.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Verwendung:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub sollte verwendet werden, während ein Video abgespielt wird. Spielen Sie daher zunächt ein Video ab (wenn nichts abgespielt wird, erhalten Sie einen Link, um die Untertitel im Browser herunterzuladen).&lt;br&gt; &lt;br&gt; Wählen Sie die Untertitel-Sprache aus und klicken Sie auf den Button einer der beiden von VLSub angebotenen Such-Methoden:&lt;br&gt; &lt;br&gt; &lt;b&gt;Methode 1: Suche anhand eines Hash-Wertes&lt;/b&gt;&lt;br&gt; Es wird empfohlen, diese Methode zuerst zu versuchen, da sie eine Suche anhand des Hash-Wertes der Video-Datei durchführt. Somit finden Sie Untertitel, die synchron zu Ihrer Video-Datei sind.&lt;br&gt; &lt;br&gt; &lt;b&gt;Methode 2: Suche anhand des Namens&lt;/b&gt;&lt;br&gt; Verwenden Sie diese Methode, wenn Sie mit der ersten keinen Erfolg hatten. Prüfen Sie zunächst den Namen und klicken Sie dann auf "Suche nach Namen". Wenn Sie Untertitel für Serien suchen, können Sie auch die Nummer der Staffel und Episode angeben.&lt;br&gt; &lt;br&gt; &lt;b&gt;Untertitel herunterladen&lt;/b&gt;&lt;br&gt; Wählen Sie einen Untertitel aus der Liste und klicken Sie auf &#39;herunterladen&#39;.&lt;br&gt; Die Datei wird im selben Verzeichnis wie das Video abgelegt. Sie wird den gleichen Dateinamen wie die Video-Datei erhalten, jedoch mit einer anderen Dateiendung. Hierdurch wird VLC diesen Untertitel automatisch laden, wenn Sie das Video das nächste mal abspielen.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Achtung :&lt;/b&gt; Bereits vorhandene Untertitel werden ohne Rückfrage überschrieben. Legen Sie diese woanders ab, falls sie wichtig sind.&lt;br&gt; &lt;br&gt; Mehr VLC-Erweiterungen finden Sie unter &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess>      Untertitel von 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt; herunterladen und anzeigen, 
+  während das Video abgespielt wird.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Verwendung:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  VLSub sollte verwendet werden, während ein Video abgespielt 
+  wird. Spielen Sie daher zunächst ein Video ab (wenn nichts 
+  abgespielt wird, erhalten Sie einen Link, um die Untertitel 
+  im Browser herunterzuladen, denn die Untertitel werden nicht 
+  automatisch gespeichert und geladen).&lt;br&gt;
+  &lt;br&gt;
+  Wählen Sie die Untertitel-Sprache aus und klicken Sie auf 
+  den Button einer der beiden von VLSub angebotenen Such-Methoden:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Methode 1: Suche nach Hashwerten&lt;/b&gt;&lt;br&gt;
+  Es wird empfohlen, diese Methode zuerst zu versuchen, da sie 
+  eine Suche anhand des Hashwertes der Video-Datei durchführt. 
+  Somit finden Sie Untertitel, die synchron zu Ihrer Video-Datei sind.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Methode 2: Suche nach Namen&lt;/b&gt;&lt;br&gt;
+  Verwenden Sie diese Methode, wenn Sie mit der ersten keinen Erfolg hatten. 
+  Prüfen Sie zunächst den Namen des Videos und klicken Sie dann auf &quot;Suche 
+  nach Namen&quot;. Wenn Sie Untertitel für Serien suchen, können Sie auch 
+  die Nummer der Staffel und Episode angeben.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Untertitel herunterladen&lt;/b&gt;&lt;br&gt;
+  Wählen Sie die gewünschten Untertitel aus der Liste aus und klicken Sie 
+  auf &#39;Herunterladen&#39;.&lt;br&gt; Die Datei wird im selben Verzeichnis 
+  wie das Video gespeichert. Sie wird den gleichen Dateinamen wie die Video-Datei 
+  erhalten, jedoch mit einer anderen Dateiendung. Hierdurch wird VLC diese 
+  Untertitel automatisch laden, wenn Sie das Video das nächste mal wiedergeben.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Achtung:&lt;/b&gt; Bereits vorhandene Untertitel werden 
+  ohne Rückfrage überschrieben. Legen Sie diese woanders ab, falls sie wichtig 
+  sind.&lt;br&gt;
+  &lt;br&gt;
+  Mehr VLC-Erweiterungen finden Sie unter 
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>Anzeigesprache</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;VLSub funktioniert auf keiner Plattform 
+  mit VLC 2.1.x&lt;/strong&gt;, 
+  da das lua &quot;net&quot;-Modul, das für die Interaktion 
+  mit opensubtitles benötigt wird, 
+  in dieser Version für die Erweiterungen entfernt wurde.
+  &lt;br&gt;
+  &lt;strong&gt;Kompatibel mit VLC 2.2 unter Mac und Linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;Unter Windows, müssen Sie eine ältere Version 
+  von VLC installieren (z.B. 2.0.8)&lt;/strong&gt;, 
+  um VLSub zu verwenden:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
 <int_ok>OK</int_ok>
+<int_os_password>Passwort</int_os_password>
+<int_os_username>Benutzername</int_os_username>
 <int_remove_tag>Tags entfernen</int_remove_tag>
 <int_research>Suchen</int_research>
 <int_save>Speichern</int_save>
-<int_search_hash>Suche nach Hash</int_search_hash>
-<int_searching_transl>Suche nach Übersetzungen ...</int_searching_transl>
+<int_search_hash>Suche nach Hashwerten</int_search_hash>
 <int_search_name>Suche nach Namen</int_search_name>
 <int_search_transl>Übersetzungen suchen</int_search_transl>
+<int_searching_transl>Suche nach Übersetzungen...</int_searching_transl>
 <int_season>Staffel (Serien)</int_season>
 <int_show_conf>Konfiguration anzeigen</int_show_conf>
 <int_show_help>Hilfe anzeigen</int_show_help>
 <int_title>Titel</int_title>
 <int_vlsub_work_dir>VLSub Arbeitsverzeichnis</int_vlsub_work_dir>
-<mess_click_link>Klicken Sie hier um die Datei zu öffnen</mess_click_link>
+<mess_click_link>Klicken Sie hier, um die Datei zu öffnen</mess_click_link>
 <mess_complete>Suche abgeschlossen</mess_complete>
-<mess_dowload_link>Download Link</mess_dowload_link>
-<mess_downloading>Untertitel wird heruntergeladen</mess_downloading>
+<mess_dowload_link>Download-Link</mess_dowload_link>
+<mess_downloading>Untertitel werden heruntergeladen</mess_downloading>
+<mess_err_cant_download_interface_translation>Die Übersetzung der Schnittstelle konnte nicht geladen werden</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Es wurde kein geeigneter Pfad zum Speichern der Konfiguration gefunden, bitte tragen Sie ihn manuell ein</mess_err_conf_access>
+<mess_err_wrong_path>Der Pfad enthält ungültige Zeichen, korrigieren Sie es bitte</mess_err_wrong_path>
 <mess_error>Fehler</mess_error>
-<mess_expired>Sitzung abgelaufen, versuche es nochmals</mess_expired>
+<mess_expired>Sitzung abgelaufen, versuche es erneut</mess_expired>
 <mess_loaded>Untertitel geladen</mess_loaded>
-<mess_no_input>Bitte verwenden Sie diese Methode während des Abspielens</mess_no_input>
+<mess_no_input>Bitte verwenden Sie diese Methode während der Wiedergabe</mess_no_input>
 <mess_no_res>Kein Ergebnis</mess_no_res>
 <mess_no_response>Server antwortet nicht</mess_no_response>
 <mess_no_selection>Keine Untertitel ausgewählt</mess_no_selection>
 <mess_not_found>Datei nicht gefunden</mess_not_found>
-<mess_not_found2>Datei nicht gefunden (nicht erlaubtes Zeichen?)</mess_not_found2>
+<mess_not_found2>Datei nicht gefunden (ungültiges Zeichen?)</mess_not_found2>
+<mess_not_load>Untertitel können nicht geladen werden</mess_not_load>
 <mess_not_local>Diese Methode funktioniert (bisher) nur mit einer lokalen Datei</mess_not_local>
-<mess_overloaded>Server überlastet, versuchen Sie es später nochmals</mess_overloaded>
+<mess_overloaded>Server überlastet, versuchen Sie es später erneut</mess_overloaded>
 <mess_res>Ergebnis(se)</mess_res>
-<mess_save_fail>Untertitel kann nicht gespeichert werden</mess_save_fail>
+<mess_save_fail>Untertitel können nicht gespeichert werden</mess_save_fail>
 <mess_success>Erfolg</mess_success>
 <mess_unauthorized>Anfrage nicht autorisiert</mess_unauthorized>
