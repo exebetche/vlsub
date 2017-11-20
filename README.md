@@ -1,4 +1,4 @@
-vlsub
+VLSub
 =====
 
 VLC extension to download subtitles from opensubtitles.org
@@ -9,7 +9,7 @@ Contact: http://addons.videolan.org/messages/?action=newmessage&username=exebetc
 Bug report: http://addons.videolan.org/content/show.php/?content=148752  
 
 #### INSTALLATION:
-Vlsub doesn't work on VLC 2.1, use one of these instead:
+VLSub doesn't work on VLC 2.1, use one of these instead:
 * [vlc 2.0](http://download.videolan.org/pub/videolan/vlc/2.0.8/)
 * [vlc 2.2](https://www.videolan.org/vlc/releases/2.2.0.html)
 
@@ -22,7 +22,7 @@ Create a directory "extensions" at this location if it doesn't exists, then extr
 * Mac OS X (current user): /Users/%your_name%/Library/Application Support/org.videolan.vlc/lua/extensions/
 
 To install the translations, copy the directory named "locale" into the VLSub working directory :
-* To know this directory, once VLsub is installed as explained above, launch VLC and open VLsub, and click "show config", and you will see it there.
+* To know this directory, once VLSub is installed as explained above, launch VLC and open VLSub, and click "show config", and you will see it there.
 
 #### USAGE:
 * Start VLC
