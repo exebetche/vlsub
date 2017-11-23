@@ -1062,8 +1062,7 @@ function get_available_translations()
 -- causing error  with github https CA certficate on OS X an XP)
 -- https://github.com/exebetche/vlsub/tree/master/locale
 
-  local translations_url = "http://addons.videolan.org/CONTENT/"..
-    "content-files/148752-vlsub_translations.xml"
+  local translations_url = "http://pastebin.com/raw/nWs1yYfx"
   
   if input_table['intLangBut']:get_text() == lang["int_search_transl"] 
   then
