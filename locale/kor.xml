@@ -1,0 +1,105 @@
+<action_hash>영화 해쉬 계산 중</action_hash>
+<action_login>로그인 중</action_login>
+<action_logout>로그아웃 중</action_logout>
+<action_noop>세션 확인 중</action_noop>
+<action_search>자막 검색 중</action_search>
+<int_all>전체</int_all>
+<int_bool_false>아니오</int_bool_false>
+<int_bool_true>예</int_bool_true>
+<int_cancel>취소</int_cancel>
+<int_close>닫기</int_close>
+<int_config>설정하기</int_config>
+<int_configuration>설정</int_configuration>
+<int_default_lang>자막 언어</int_default_lang>
+<int_descr>OpenSubtitles.org에서 자막 받기</int_descr>
+<int_display_code>파일명에 언어 코드 표시하기</int_display_code>
+<int_dowload_behav>자막 동작</int_dowload_behav>
+<int_dowload_load>불러오기</int_dowload_load>
+<int_dowload_manual>직접 받기</int_dowload_manual>
+<int_dowload_save>불러온 후 저장하기</int_dowload_save>
+<int_dowload_sel>선택 받기</int_dowload_sel>
+<int_episode>에피소드 (시리즈)</int_episode>
+<int_help>도움말</int_help>
+<int_help_mess>      비디오 시청 중에 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  에서 자막을 받아서 바로 보여줍니다.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;사용법:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  비디오를 시작하세요. 동영상을 재생하지 않고 VLSub을 사용하는 경우, 브라우저에서 자막을 
+  받을 수 있는 링크가 표시되지만 자막을 자동으로 저장하고 불러오지는 않습니다.&lt;br&gt;
+  &lt;br&gt;
+  받을 자막의 언어를 선택하고 VLSub에서 제공하는 두 가지 검색 방법 중 하나에 해당하는 
+  버튼을 누르세요.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;방법 1: 해쉬로 검색&lt;/b&gt;&lt;br&gt;
+  이 방법을 먼저 시도해 보길 권장합니다.  왜냐하면 비디오 파일 지문을 기반으로 검색을 수행하여, 
+  비디오와 동기화된 자막을 찾을 수 있기 때문입니다.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;방법 2: 이름으로 검색&lt;/b&gt;&lt;br&gt;
+  첫 번째 방법으로 찾지 못했다면,  이름으로 찾기 전에 제목이 정확한지 확인하세오. 
+  시리즈용 자막을 검색하는 경우, 시즌 및 에피소드 번호를 사용할 수 있습니다.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;자막 받기&lt;/b&gt;&lt;br&gt;
+  목록에서 하나의 자막을 선택하고 &#39;다운로드&#39;를 누르세요.&lt;br&gt;
+  자막은 비디오와 같은 이름(다른 확장자)으로 비디오와 같은 폴더에 저장되어서, 
+  이후에 해당 비디오 재생시 VLC는 저장한 자막을 자동으로 불러옵니다.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ 주의:&lt;/b&gt; 기존의 자막에 확인 없이 덮어쓰기 때문에, 그 자막이 
+  중요하면 다른 곳으로 옮겨 놓으세요.&lt;br&gt;
+  &lt;br&gt;
+  추가 VLC 확장 프로그램은
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+  에서 찾아보세요.
+</int_help_mess>
+<int_int_lang>인터페이스 언어</int_int_lang>
+<int_no_support_mess>      opensubtitles와 상호작용하기 위해 필요한 확장 프로그램용 lua &quot;net&quot; 
+  모듈이 이 배포판에서 제거되었기 때문에, &lt;strong&gt;VLSub은 어떤 플랫폼에서든 VLC 2.1.x에서 동작하지 않고 있습니다&lt;/strong&gt;.
+  &lt;br&gt;
+  &lt;strong&gt;맥과 리눅스상에서는 VLC 2.2와 동작합니다.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;윈도우즈에서 VLSub을 사용하려면, 이전 버전의 VLC(2.0.8 같은)를 설치해야 합니다&lt;/strong&gt;.
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
+<int_ok>확인</int_ok>
+<int_os_password>비밀번호</int_os_password>
+<int_os_username>사용자명</int_os_username>
+<int_remove_tag>태그 제거하기</int_remove_tag>
+<int_research>검색</int_research>
+<int_save>저장</int_save>
+<int_search_hash>해쉬로 찾기</int_search_hash>
+<int_search_name>이름으로 찾기</int_search_name>
+<int_search_transl>번역 검색</int_search_transl>
+<int_searching_transl>번역 검색 중...</int_searching_transl>
+<int_season>시즌 (시리즈)</int_season>
+<int_show_conf>설정 보기</int_show_conf>
+<int_show_help>도움말 보기</int_show_help>
+<int_title>제목</int_title>
+<int_vlsub_work_dir>VLSub 작업 폴더</int_vlsub_work_dir>
+<mess_click_link>파일을 열려면 여기를 누르세요</mess_click_link>
+<mess_complete>검색 완료</mess_complete>
+<mess_dowload_link>다운로드 링크</mess_dowload_link>
+<mess_downloading>자막 다운로드 중</mess_downloading>
+<mess_err_cant_download_interface_translation>인터페이스 번역을 받을 수 없습니다</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>환경을 저장할 적당한 경로를 찾을 수 없습니다. 직접 설정해 주세요</mess_err_conf_access>
+<mess_err_wrong_path>경로에 사용할 수 없는 문자가 있습니다. 수정해 주세요</mess_err_wrong_path>
+<mess_error>오류</mess_error>
+<mess_expired>세션 만료, 재시도 중</mess_expired>
+<mess_loaded>자막을 불러왔습니다</mess_loaded>
+<mess_no_input>재생중에 이 방법을 사용하세요</mess_no_input>
+<mess_no_res>결과 없음</mess_no_res>
+<mess_no_response>서버가 응답하지 않습니다</mess_no_response>
+<mess_no_selection>선택한 자막이 없습니다</mess_no_selection>
+<mess_not_found>파일을 찾지 못했습니다</mess_not_found>
+<mess_not_found2>파일을 찾지 못했습니다 (사용 불가 문자?)</mess_not_found2>
+<mess_not_load>자막을 불러올 수 없습니다</mess_not_load>
+<mess_not_local>이 방법은 로컬 파일에서만 동작합니다 (현재)</mess_not_local>
+<mess_overloaded>서버 과부화, 나중에 다시 해보세요</mess_overloaded>
+<mess_res>결과</mess_res>
+<mess_save_fail>자막을 저장할 수 없습니다</mess_save_fail>
+<mess_success>성공</mess_success>
+<mess_unauthorized>무단 요청</mess_unauthorized>
