@@ -49,7 +49,7 @@
   &lt;b&gt;Завантаження субтитрів&lt;/b&gt;&lt;br&gt;
   Виберіть одні субтитри зі списку та клацніть &#39;Завантажити&#39;.&lt;br&gt;
   Вони будуть розміщені у тому ж каталозі, що й ваше відео, з 
-  тим самим ім'ям (інше розширення),
+  тим самим ім&#39;ям (інше розширення),
   тому VLC буде автоматично завантажувати їх наступного разу, коли ви
   запустите це відео.&lt;br&gt;
   &lt;br&gt;
@@ -79,7 +79,7 @@
 </int_no_support_mess>
 <int_ok>Гаразд</int_ok>
 <int_os_password>Пароль</int_os_password>
-<int_os_username>Ім'я користувача</int_os_username>
+<int_os_username>Ім&#39;я користувача</int_os_username>
 <int_remove_tag>Видалити теги</int_remove_tag>
 <int_research>Новий пошук</int_research>
 <int_save>Зберегти</int_save>
@@ -100,7 +100,7 @@
 <mess_err_conf_access>Не вдається знайти відповідний шлях для збереження конфігурації. Будь ласка, задайте його вручну</mess_err_conf_access>
 <mess_err_wrong_path>Цей шлях містить неправильний символ. Виправте це</mess_err_wrong_path>
 <mess_error>Помилка</mess_error>
-<mess_expired>Сеанс закінчився, повторне під'єднання</mess_expired>
+<mess_expired>Сеанс закінчився, повторне під&#39;єднання</mess_expired>
 <mess_loaded>Субтитри завантажені</mess_loaded>
 <mess_no_input>Будь ласка, використовуйте цей метод під час відтворення</mess_no_input>
 <mess_no_res>Без результатiв</mess_no_res>
