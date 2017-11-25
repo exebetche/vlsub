@@ -1,8 +1,8 @@
-<action_hash>Beräknar film-hash</action_hash>
+<action_hash>Beräknar filmens hashvärde</action_hash>
 <action_login>Loggar in</action_login>
 <action_logout>Loggar ut</action_logout>
-<action_noop>Kollar session</action_noop>
-<action_search>Kollar undertexter</action_search>
+<action_noop>Kontrollerar session</action_noop>
+<action_search>Söker efter undertexter</action_search>
 <int_all>Alla</int_all>
 <int_bool_false>Nej</int_bool_false>
 <int_bool_true>Ja</int_bool_true>
@@ -17,28 +17,87 @@
 <int_dowload_load>Läs in endast</int_dowload_load>
 <int_dowload_manual>Manuell nedladdning</int_dowload_manual>
 <int_dowload_save>Läs in och spara</int_dowload_save>
-<int_dowload_sel>Ladda ner</int_dowload_sel>
+<int_dowload_sel>Ladda ner urval</int_dowload_sel>
 <int_episode>Episod (serier)</int_episode>
 <int_help>Hjälp</int_help>
-<int_help_mess> Ladda ner undertexter från &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; och visa dem medan du tittar på film.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Usage:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub är tänkt att användas medan du spelar upp filmen, så starta den först (om ingen film spelas upp, får du en länk till nedladdning i din webbläsare).&lt;br&gt; &lt;br&gt; Välj språk för dina undertexter och klicka på knappen för en av de två sökmetoder som stöds av VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Metod 1: Sök via hash&lt;/b&gt;&lt;br&gt; Du rekommenderas att prova den här metoden först, eftersom sökningen då baseras på filmfilens avtryck, så att du kan hitta undertexter som är synkroniserade med din film.&lt;br&gt; &lt;br&gt; &lt;b&gt;Metod 2: Sök via namn&lt;/b&gt;&lt;br&gt; Används om första metoden misslyckas. Kolla bara så att filmtiteln är korrekt innan du klickar. Söker du undertexter till en serie, kan du även specificera säsong och episodnummer.&lt;br&gt; &lt;br&gt; &lt;b&gt;Ladda ner undertexter&lt;/b&gt;&lt;br&gt; Välj en undertext i listan och klicka på &#39;Ladda ner&#39;.&lt;br&gt; Den kommer att läggas i samma mapp som din film, med samma namn (annan filändelse) så att VLC läser in den automatiskt nästa gång du startar filmen.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ OBS!&lt;/b&gt; Befintliga undertexter skrivs över utan föregående varning, så flytta dem ifall det är viktigt att de sparas.&lt;br&gt; &lt;br&gt; Kolla fler VLC-tillägg &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess>      Ladda ner undertexter från 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  och visa dem när du tittar på en video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Användning:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Starta din video. Om du använder VLSub utan att spela upp en video 
+  får du en länk till att ladda ner undertexterna i din webbläsare 
+  men undertexterna kommer inte att sparas och laddas automatiskt.&lt;br&gt;
+  &lt;br&gt;
+  Välj språk för dina undertexter och klicka på 
+  knappen som motsvarar en av de två sökmetoderna
+  som tillhandahålls av VLSub:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Metod 1: Sök med hash&lt;/b&gt;&lt;br&gt;
+  Det är rekommenderat att använda denna metod först då den  
+  genomför en sökning på videofilens avtryck, så du 
+  kan hitta undertexter som är synkroniserade med din video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Metod 2: Sök med namn&lt;/b&gt;&lt;br&gt;
+  Om du inte lyckas med första metoden, kontrollera att 
+  titeln är korrekt innan du söker. Om du söker efter undertexter 
+  till en serie, kan du också ange säsong- och avsnittsnummer. &lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Ladda ner undertexter&lt;/b&gt;&lt;br&gt;
+  Välj undertexter och klicka på &#39;Ladda ner&#39;.&lt;br&gt;
+  Undertexterna kommer att placeras i samma mapp som din video, med 
+  samma namn (annan filändelse)
+  så VLC kan dom automatiskt nästa gång du
+  startar videon.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Varning:&lt;/b&gt; Existerande undertexter skrivs över 
+  utan dialogbekräftelse, lagra dom någon annanstans om 
+  de är viktiga.&lt;br&gt;
+  &lt;br&gt;
+  Hitta fler VLC-tillägg på
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>Användarspråk</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;VLSub fungerar inte med VLC 2.1.x på 
+  någon plattform&lt;/strong&gt;
+  på grund av att lua &quot;net&quot;-modulen som behövs för att interagera  
+  med opensubtitles har  
+  tagits bort från denna release av tillägget.
+  &lt;br&gt;
+  &lt;strong&gt;Fungerar med VLC 2.2 på mac och linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;På windows måste du installera en äldre version 
+  av VLC (2.0.8 till exempel)&lt;/strong&gt;
+  för att använda VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
 <int_ok>OK</int_ok>
+<int_os_password>Lösenord</int_os_password>
+<int_os_username>Användarnamn</int_os_username>
 <int_remove_tag>Ta bort taggar</int_remove_tag>
 <int_research>Sök igen</int_research>
 <int_save>Spara</int_save>
 <int_search_hash>Sök via hash</int_search_hash>
-<int_searching_transl>Söker översättningar...</int_searching_transl>
 <int_search_name>Sök via namn</int_search_name>
 <int_search_transl>Sök översättningar</int_search_transl>
+<int_searching_transl>Söker översättningar...</int_searching_transl>
 <int_season>Säsong (serier)</int_season>
-<int_show_conf>Konfigurera</int_show_conf>
-<int_show_help>Hjälp</int_show_help>
+<int_show_conf>Visa konfiguration</int_show_conf>
+<int_show_help>Visa hjälp</int_show_help>
 <int_title>Titel</int_title>
 <int_vlsub_work_dir>VLSub arbetsmapp</int_vlsub_work_dir>
 <mess_click_link>Klicka här för att öppna filen</mess_click_link>
 <mess_complete>Sökning slutförd</mess_complete>
 <mess_dowload_link>Nedladdningslänk</mess_dowload_link>
 <mess_downloading>Laddar ner undertext</mess_downloading>
+<mess_err_cant_download_interface_translation>Kunde inte ladda ner gränssnittsöverersättning</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Kan inte hitta en lämplig sökväg att spara konfiguration, vänliga ställ in den manuellt</mess_err_conf_access>
+<mess_err_wrong_path>Sökvägen innehåller ogiltiga tecken, vänligen korrigera</mess_err_wrong_path>
 <mess_error>Fel</mess_error>
 <mess_expired>Sessionen har upphört att gälla, försöker igen</mess_expired>
 <mess_loaded>Undertexter inlästa</mess_loaded>
@@ -48,6 +107,7 @@
 <mess_no_selection>Inga undertexter valda</mess_no_selection>
 <mess_not_found>Filen kan inte hittas</mess_not_found>
 <mess_not_found2>Filen kan inte hittas (ogiltiga tecken?)</mess_not_found2>
+<mess_not_load>Kunde inte ladda undertexter</mess_not_load>
 <mess_not_local>Den här metoden stöder endast lokala filer (tills vidare)</mess_not_local>
 <mess_overloaded>Servern överbelastad, försök senare</mess_overloaded>
 <mess_res>resultat</mess_res>
