@@ -1,8 +1,8 @@
-<action_hash>Calcul de l&#39;empreinte</action_hash>
+<action_hash>Hachage du film</action_hash>
 <action_login>Connexion</action_login>
 <action_logout>Déconnexion</action_logout>
 <action_noop>Vérification de la session</action_noop>
-<action_search>Recherche de sous-titres</action_search>
+<action_search>Recherche des sous-titres</action_search>
 <int_all>Tous</int_all>
 <int_bool_false>Non</int_bool_false>
 <int_bool_true>Oui</int_bool_true>
@@ -20,25 +20,87 @@
 <int_dowload_sel>Télécharger la sélection</int_dowload_sel>
 <int_episode>Episode (séries)</int_episode>
 <int_help>Aide</int_help>
-<int_help_mess>Télécharge les sous-titres sur &lt;a href=&quot;http://www.opensubtitles.org/&quot;&gt;opensubtitles.org&lt;/a&gt; et les affiche lors de la lecture d'une vidéo.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Utilisation&nbsp;:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub est conçu pour être utilisé lors de la lecture d'une vidéo, il faut donc lancer celle-ci en premier (si aucune vidéo n'est jouée, vous obtiendrez un lien pour télécharger les sous-titres depuis votre navigateur).&lt;br&gt; &lt;br&gt; Choisissez la langue de vos sous-titres et cliquez sur le bouton correspondant à la méthode de recherche que vous souhaitez utiliser&nbsp;:&lt;br&gt; &lt;br&gt; &lt;b&gt;Méthode 1&nbsp;: Recherche par hash&lt;/b&gt;&lt;br&gt; Il est recommandé d'utiliser cette méthode en premier car elle utilise l'empreinte numérique, le hash, du fichier en cours de lecture, les sous-titres trouvés seront donc correctement synchronisés avec votre vidéo.&lt;br&gt; &lt;br&gt; &lt;b&gt;Méthode 2&nbsp;: Recherche par nom&lt;/b&gt;&lt;br&gt; Si la première méthode n'a rien donné, vérifiez juste que le titre est correct avant de cliquer sur le bouton. Si vous cherchez des sous-titres pour un épisode de série, vous pouvez aussi renseigner le numéro de la saison et de l'épisode.&lt;br&gt; &lt;br&gt; &lt;b&gt;Téléchargement des sous-titres&lt;/b&gt;&lt;br&gt; Sélectionnez un des résultats dans la liste et cliquez sur «&nbsp;Télécharger&nbsp;».&lt;br&gt; Le fichier de sous-titre sera placé dans le même dossier que votre vidéo, avec le même nom (mais une extension différente), VLC pourra le charger automatiquement à la prochaîne lecture de la vidéo.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Attention&nbsp;:&lt;/b&gt; Si un fichier portant le même nom existe déjà, il sera écrasé sans confirmation, donc si vous souhaitez le conserver, déplacez-le dans un autre dossier avant de télécharger les sous-titres.&lt;br&gt; &lt;br&gt; Trouvez d'autres extensions pour VLC sur &lt;a href=&quot;http://addons.videolan.org&quot;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess>      Télécharge les sous-titres sur 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  et les affiche pendant la vidéo.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Utilisation&nbsp;:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Démarrez la vidéo. Si vous utilisez VLSub sans lire la vidéo, vous
+  obtiendrez un lien pour télécharger les sous-titres avec votre navigateur,
+  mais les sous-titres ne seront ni enregistrés, ni chargés
+  automatiquement.&lt;br&gt;
+  &lt;br&gt;
+  Choisissez la langue de vos sous-titres et cliquez sur
+  le bouton de recherche correspondant à la méthode de
+  recherche désirée&nbsp;:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Méthode 1&nbsp;: Recherche par hachage&lt;/b&gt;&lt;br&gt;
+  Il est recommandé d&#39;utiliser cette méthode en premier,
+  car elle utilise l&#39;empreinte du ficher pour la recherche,
+  de ce fait les sous-titres seront synchronisés avec votre
+  vidéo.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Méthode 2&nbsp;: Recherche par nom&lt;/b&gt;&lt;br&gt;
+  Si la première méthode échoue, vérifiez simplement que le
+  titre est correct avant de cliquer sur le bouton. Si vous
+  cherchez un épisode de série, vous pouvez également préciser
+  la saison et le numéro de l&#39;épisode.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Téléchargement des sous-titres&lt;/b&gt;&lt;br&gt;
+  Sélectionnez un résultat dans la liste et cliquez sur
+  «&nbsp;Télécharger&nbsp;».&lt;br&gt;
+  Le fichier de sous-titre sera placé dans le même répertoire
+  que votre vidéo, et portera le même nom (à l&#39;exception de
+  l&#39;extension), ainsi VLC sera capable de le charger automatiquement
+  à la prochaîne lecture.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Attention&nbsp;:&lt;/b&gt; Les sous-titres existants seront écrasés
+  sans confirmation, il convient donc de les déplacer ailleurs si vous
+  souhaitez les conserver.&lt;br&gt;
+  &lt;br&gt;
+  Trouvez d&#39;autres extensions pour VLC sur
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>Langue de l&#39;interface</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;VLSub ne fonctionne pas avec VLC 2.1.x, sur
+  aucune plateforme&lt;/strong&gt;,
+  le module &#39;net&#39; de lua requis pour interagir avec opensubtitles n&#39;étant
+  pas utilisable par les extensions dans cette version.
+  &lt;br&gt;
+  &lt;strong&gt;Fonctionne avec VLC 2.2 sur Mac et Linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;Sous Windows vous devez installer une ancienne version
+  de VLC (2.0.8 par exemple)&lt;/strong&gt;
+  pour utiliser VLSub&nbsp;:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
 <int_ok>Ok</int_ok>
+<int_os_password>Mot de passe</int_os_password>
+<int_os_username>Nom d&#39;utilisateur</int_os_username>
 <int_remove_tag>Supprimer les tags</int_remove_tag>
 <int_research>Recherche</int_research>
 <int_save>Sauvegarder</int_save>
 <int_search_hash>Recherche automatique</int_search_hash>
-<int_searching_transl>Recherche en cours...</int_searching_transl>
 <int_search_name>Recherche par titre</int_search_name>
 <int_search_transl>Recherche traductions</int_search_transl>
+<int_searching_transl>Recherche en cours...</int_searching_transl>
 <int_season>Saison (séries)</int_season>
 <int_show_conf>Configuration</int_show_conf>
 <int_show_help>Aide</int_show_help>
 <int_title>Titre</int_title>
-<int_vlsub_work_dir>VLSub working directory</int_vlsub_work_dir>
+<int_vlsub_work_dir>Répertoire de travail de VLSub</int_vlsub_work_dir>
 <mess_click_link>Cliquer ici pour ouvrir le fichier</mess_click_link>
 <mess_complete>Recherche terminée</mess_complete>
 <mess_dowload_link>Lien de téléchargement</mess_dowload_link>
 <mess_downloading>Téléchargement des sous-titres</mess_downloading>
+<mess_err_cant_download_interface_translation>Impossible de télécharger les langues de l&#39;interface</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Impossible de trouver un chemin correct pour enregistrer la configuration, veuillez en choisir un manuellement</mess_err_conf_access>
+<mess_err_wrong_path>Le chemin contient un caractère interdit, veuillez le corriger</mess_err_wrong_path>
 <mess_error>Erreur</mess_error>
 <mess_expired>Session expirée, nouvel essai</mess_expired>
 <mess_loaded>Sous-titres chargés</mess_loaded>
@@ -48,6 +110,7 @@
 <mess_no_selection>Aucun sous-titre sélectionné</mess_no_selection>
 <mess_not_found>Fichier non trouvé</mess_not_found>
 <mess_not_found2>Fichier non trouvé (caractére illégal?)</mess_not_found2>
+<mess_not_load>Impossible de charger les sous-titres</mess_not_load>
 <mess_not_local>Cette méthode ne fonctionne qu&#39;avec les fichiers locaux</mess_not_local>
 <mess_overloaded>Serveur surchargé, réessayer plus tard</mess_overloaded>
 <mess_res>résultat(s)</mess_res>
