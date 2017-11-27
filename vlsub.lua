@@ -107,7 +107,7 @@ local options = {
       so VLC will load them automatically the next time you'll 
       start the video.<br>
       <br>
-      <b>/!\\ Beware :</b> Existing subtitles are overwritten 
+      <b>/!\ Beware :</b> Existing subtitles are overwritten 
       without asking confirmation, so put them elsewhere if 
       they're important.<br>
       <br>
