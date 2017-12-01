@@ -1,4 +1,4 @@
-<action_hash>Lasketaan videon tarkistetta</action_hash>
+<action_hash>Lasketaan videon tarkistussummaa</action_hash>
 <action_login>Kirjaudutaan sisään</action_login>
 <action_logout>Kirjaudutaan ulos</action_logout>
 <action_noop>Tarkistetaan istuntoa</action_noop>
@@ -20,16 +20,66 @@
 <int_dowload_sel>Lataa valinta</int_dowload_sel>
 <int_episode>Jakso (sarja)</int_episode>
 <int_help>Apua</int_help>
-<int_help_mess>Lataa tekstitykset osoitteesta &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; ja näyttää ne videota katsottaessa.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Käyttö:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub on tarkoitettu käytettäväksi samalla kun katsot videota, joten aloita sen toisto ensin (jos mitään ei toisteta, saat tekstityksiin latauslinkin).&lt;br&gt; &lt;br&gt; Valitse teksityksille haluamasi kieli paina jompaa kumpaa etsintätavan nappia, joita VLSub tarjoaa:&lt;br&gt; &lt;br&gt; &lt;b&gt;Tapa 1: Etsi tarkisteen perusteella&lt;/b&gt;&lt;br&gt; On suositeltavaa käyttää tätä etsintätapaa ensin, sillä se etsii videon sen tiedostotarkisteen perusteella, jolloin tekstitykset ovat varmasti synkronisoitu.&lt;br&gt; &lt;br&gt; &lt;b&gt;Tapa 2: Etsi nimen perusteella&lt;/b&gt;&lt;br&gt; Jos tarkisteeseen pohjautuva etsintätapa ei tuottanut tulosta, voit kokeilla tätä. Tarkista, että videon nimi täsmää. Jos etsit jotain tiettyä tekstitystä sarjasta, voit antaa sarjan tuotantokauden ja jakson numeron.&lt;br&gt; &lt;br&gt; &lt;b&gt;Teksitysten lataus&lt;/b&gt;&lt;br&gt; Valitse yksi tekstitys listasta ja paina &#39;Lataa&#39;.&lt;br&gt; Tekstitys ladataan samaan hakemistoon kuin video (ja samalla nimellä, mutta eri tiedostopäätteellä), joten VLC lataa ne automaattisesti seuraavan kerran, kun lataat videon.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Varoitus :&lt;/b&gt; Jo-olemassa olevat tekstitykset korvataan, joten jos haluat säilyttä ne, siirrä ne toisaalle.&lt;br&gt; &lt;br&gt; Etsi lisää VLC:n laajennuksia osoitteesta: &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess>      Lataa tekstitykset osoitteesta 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  ja näytä ne katsoessasi videota.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Käyttö:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Käynnistä video. Jos käytät VLC:tä ilman, että olet ladannut videota, 
+  saat linkin josta voit ladata tekstityksen selaimen kautta, 
+  mutta tekstitykset eivät lataudu automaattisesti.&lt;br&gt;
+  &lt;br&gt;
+  Valitse tekstityksen kieli ja paina jompaa kumpaa nappia: &lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Metodi 1: Etsi tarkisteen perusteella&lt;/b&gt;&lt;br&gt;
+  On suositeltavaa kokeilla tätä metodia ensin, sillä se etsii 
+  tekstitystä videon tarkisteen perusteella, jolloin tekstitykset ovat 
+  valmiiksi synkronisoitu videosi kanssa..&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Metodi 2: Etsi nimen perusteella&lt;/b&gt;&lt;br&gt;
+  Jos ensimmäinen metodi ei tuota tulosta, voit kokeilla tätä. Tarkista, että
+  videon nimi on oikein. Mikäli etsit jonkin sarjan tiettyä jaksoa, voit myös
+  syöttää tähän kauden ja jakson numeron.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Tekstitysten lataaminen&lt;/b&gt;&lt;br&gt;
+  Valitse yksi tekstitys listasta ja paina 'Lataa valinta'.&lt;br&gt;
+  Se ladataan samaan hakemistoon videotiedostosi kanssa, ja löytyy 
+  samalla nimellä (eri tiedostopäätteellä), jolloin VLC lataa sen 
+  automaattisesti, kun seuraavan kerran käynnistät videon.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Varoitus:&lt;/b&gt; Aiemmin ladatut tekstitykset ylikirjoitetaan  
+  ilman varmistusta, joten on suositeltavaa ottaa ne talteen, mikäli ne ovat tärkeitä.&lt;br&gt;
+  &lt;br&gt;
+  Lisää laajennuksia osoitteesta
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>Käyttöliittymän kieli</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;VLSub ei toimi VLC:n versioilla 2.1.x millään 
+  alustalla,&lt;/strong&gt;
+  sillä lua:n "net"-moduuli jota tarvitaan 
+  opensubtitles:in kanssa on poistettu 
+  kyseisestä versiosta. 
+  &lt;br&gt;
+  &lt;strong&gt;Toimii VLC:n versiolla 2.2 macOS:ssä ja Linuxissa.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;Windowsissa joudut asentamaan VLC:n vanhemman version (esimerkiksi 2.0.8:n)&lt;/strong&gt; käyttääksesi VLSubia: 
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
 <int_ok>Ok</int_ok>
+<int_os_password>Salasana</int_os_password>
+<int_os_username>Käyttäjätunnus</int_os_username>
 <int_remove_tag>Poista tagit</int_remove_tag>
 <int_research>Etsintätapa</int_research>
 <int_save>Tallenna</int_save>
 <int_search_hash>Etsi tarkisteen perusteella</int_search_hash>
-<int_searching_transl>Etsitään käännöksiä ...</int_searching_transl>
 <int_search_name>Etsi nimen perusteella</int_search_name>
 <int_search_transl>Etsi käännöksiä</int_search_transl>
+<int_searching_transl>Etsitään käännöksiä...</int_searching_transl>
 <int_season>Kausi (sarja)</int_season>
 <int_show_conf>Näytä asetukset</int_show_conf>
 <int_show_help>Näytä ohjeet</int_show_help>
@@ -39,6 +89,9 @@
 <mess_complete>Tutkinta valmis</mess_complete>
 <mess_dowload_link>Latauslinkki</mess_dowload_link>
 <mess_downloading>Ladataan tekstitystä</mess_downloading>
+<mess_err_cant_download_interface_translation>Käyttöliittymän käännöstä ei voitu ladata</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Sopivaa polkua tallentaa asetukset ei löydy, ole hyvä ja aseta se manuaalisesti</mess_err_conf_access>
+<mess_err_wrong_path>Polku sisältää virheellisen kirjaimen, ole hyvä ja korjaa polku</mess_err_wrong_path>
 <mess_error>Virhe</mess_error>
 <mess_expired>Istunto vanhentunut, yritetään uudelleen</mess_expired>
 <mess_loaded>Tekstitykset ladattu</mess_loaded>
@@ -48,6 +101,7 @@
 <mess_no_selection>Ei tekstityksiä valittuna</mess_no_selection>
 <mess_not_found>Tiedostoa ei löydy</mess_not_found>
 <mess_not_found2>Tiedostoa ei löydy (laiton merkki?)</mess_not_found2>
+<mess_not_load>Tekstityksen lataus ei onnistunut</mess_not_load>
 <mess_not_local>Tämä metodi toimii vain paikallisella tiedostolla (tällä hetkellä)</mess_not_local>
 <mess_overloaded>Palvelin ylikuormittunut, yritä myöhemmin uudelleen</mess_overloaded>
 <mess_res>Tulokset</mess_res>
