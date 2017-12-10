@@ -1,0 +1,111 @@
+<action_hash>映画のハッシュを計算中</action_hash>
+<action_login>ログイン中</action_login>
+<action_logout>ログアウト中</action_logout>
+<action_noop>セッションのチェック中</action_noop>
+<action_search>字幕の検索中</action_search>
+<int_all>すべて</int_all>
+<int_bool_false>いいえ</int_bool_false>
+<int_bool_true>はい</int_bool_true>
+<int_cancel>キャンセル</int_cancel>
+<int_close>閉じる</int_close>
+<int_config>設定</int_config>
+<int_configuration>設定</int_configuration>
+<int_default_lang>字幕の言語</int_default_lang>
+<int_descr>OpenSubtitles.orgから字幕をダウンロード</int_descr>
+<int_display_code>ファイル名の言語コードを表示</int_display_code>
+<int_dowload_behav>字幕と処理する内容</int_dowload_behav>
+<int_dowload_load>読み込みのみ</int_dowload_load>
+<int_dowload_manual>手動ダウンロード</int_dowload_manual>
+<int_dowload_save>読み込みと保存</int_dowload_save>
+<int_dowload_sel>ダウンロードの選択</int_dowload_sel>
+<int_episode>エピソード (シリーズ)</int_episode>
+<int_help>ヘルプ</int_help>
+<int_help_mess>ビデオの再生中に 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  から字幕をダウンロードして表示させることができます。&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;使用方法:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  ビデオ再生を開始します。もしビデオを再生せずにVLSub
+  を使用している場合、ブラウザに字幕をダウンロードする
+  リンクが表示されますが、字幕は保存されず、また自動的に
+  読み込まれません。 &lt;br&gt;
+  &lt;br&gt;
+  字幕の言語を選択し、VLSubが提供する二つの検索方法から
+  一つを選択して対応するボタンをクリックしてください:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;方法 1: ハッシュによる検索&lt;/b&gt;&lt;br&gt;
+  この方法を最初に試してください。この方法ではビデオの
+  出力をもとに検索するため、ビデオに同期した字幕を探す
+  ことができます。&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;方法 2: 名前による検索&lt;/b&gt;&lt;br&gt;
+  ハッシュによる検索が失敗した場合、タイトルが正しいことを
+  確認してからクリックしてください。検索対象がシリーズの場合
+  シーズン、エピソードの番号を指定してください。&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;字幕のダウンロード&lt;/b&gt;&lt;br&gt;
+  リストにある字幕を選択して &#39;ダウンロード&#39; をクリックしてください。&lt;br&gt;
+  ビデオと同じディレクトリに同名 (別の拡張子) で保存されます。
+  VLCは次回のビデオ再生時に自動的に字幕を読み込みます。&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ 注意:&lt;/b&gt; 既存の字幕ファイルは確認なしに上書きされます。
+  重要なファイルは別のディレクトリに保存してください。&lt;br&gt;
+  &lt;br&gt;
+  VLCのエクステンションはこちら
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
+<int_int_lang>インターフェースの言語</int_int_lang>
+<int_no_support_mess>luaの &quot;net&quot; モジュールがopensubtilesとの連携機能が
+  このリリースから削除されたため、&lt;strong&gt;VLSubは
+  どのプラットフォームでもVLC 2.1.xとは動作
+  できません&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;MAC版およびLinux版のVLC 2.2とは動作可能です&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;VLSubをWindowsで動作させるためには古いVLCを
+  インストールする必要があります (たとえば2.0.8)&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
+<int_ok>Ok</int_ok>
+<int_os_password>パスワード</int_os_password>
+<int_os_username>ユーザー名</int_os_username>
+<int_remove_tag>タグの削除</int_remove_tag>
+<int_research>再検索</int_research>
+<int_save>保存</int_save>
+<int_search_hash>ハッシュによる検索</int_search_hash>
+<int_search_name>名前による検索</int_search_name>
+<int_search_transl>翻訳を検索</int_search_transl>
+<int_searching_transl>翻訳を検索中...</int_searching_transl>
+<int_season>シーズン (シリーズ)</int_season>
+<int_show_conf>設定の表示</int_show_conf>
+<int_show_help>ヘルプの表示</int_show_help>
+<int_title>タイトル</int_title>
+<int_vlsub_work_dir>VLSubの作業ディレクトリ</int_vlsub_work_dir>
+<mess_click_link>ファイルをオープンする場合、ここをクリック</mess_click_link>
+<mess_complete>再検索が完了しました</mess_complete>
+<mess_dowload_link>ダウンロードリンク</mess_dowload_link>
+<mess_downloading>字幕のダウンロード中</mess_downloading>
+<mess_err_cant_download_interface_translation>インターフェースの翻訳をダウンロードできません</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>設定を保存する適切なパスが見つからないため再指定してください</mess_err_conf_access>
+<mess_err_wrong_path>パスに不当な文字が含まれているため再指定してください</mess_err_wrong_path>
+<mess_error>エラー</mess_error>
+<mess_expired>セッションが切れたためリトライ中</mess_expired>
+<mess_loaded>字幕が読み込まれました</mess_loaded>
+<mess_no_input>再生中はこの方法を使用してください</mess_no_input>
+<mess_no_res>結果がみつかりません</mess_no_res>
+<mess_no_response>サーバーが応答しません</mess_no_response>
+<mess_no_selection>字幕が選択されていません</mess_no_selection>
+<mess_not_found>ファイルが見つかりません</mess_not_found>
+<mess_not_found2>ファイルが見つかりません (不当な文字?)</mess_not_found2>
+<mess_not_load>字幕を読み込めません</mess_not_load>
+<mess_not_local>この方法は現在ローカルファイルのみ有効です</mess_not_local>
+<mess_overloaded>サーバーが過負荷のため、後でリトライしてください</mess_overloaded>
+<mess_res>結果</mess_res>
+<mess_save_fail>字幕を保存できません</mess_save_fail>
+<mess_success>成功</mess_success>
+<mess_unauthorized>要求が承認されていません</mess_unauthorized>
