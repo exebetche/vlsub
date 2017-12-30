@@ -14,7 +14,7 @@
 <int_descr>Muat turun sarikata dari OpenSubtitles.org</int_descr>
 <int_display_code>Papar kod bahasa di dalam nama fail</int_display_code>
 <int_dowload_behav>Apa yang hendak dilakukan dengan sarikata</int_dowload_behav>
-<int_dowload_load>Muat sahaya</int_dowload_load>
+<int_dowload_load>Muat sahaja</int_dowload_load>
 <int_dowload_manual>Muat turun manual</int_dowload_manual>
 <int_dowload_save>Muat dan simpan</int_dowload_save>
 <int_dowload_sel>Pemilihan muat turun</int_dowload_sel>
@@ -105,7 +105,7 @@
 <mess_no_input>Sila gunakan kaedah ini ketika dimainkan</mess_no_input>
 <mess_no_res>Tiada keputusan</mess_no_res>
 <mess_no_response>Pelayan tidak memberi tindak balas</mess_no_response>
-<mess_no_selection>Tiada sarikat dipilih</mess_no_selection>
+<mess_no_selection>Tiada sarikata dipilih</mess_no_selection>
 <mess_not_found>Fail tidak ditemui</mess_not_found>
 <mess_not_found2>Fail tidak ditemui (aksara tidak sah?)</mess_not_found2>
 <mess_not_load>Tidak boleh memuatkan sarikata</mess_not_load>
