@@ -13,7 +13,7 @@
 <int_default_lang>Undertextspråk</int_default_lang>
 <int_descr>Ladda ner undertexter från OpenSubtitles.org</int_descr>
 <int_display_code>Visa språkkod i filnamn</int_display_code>
-<int_dowload_behav>Hur hantera undertexter</int_dowload_behav>
+<int_dowload_behav>Hur man använder undertexter</int_dowload_behav>
 <int_dowload_load>Läs in endast</int_dowload_load>
 <int_dowload_manual>Manuell nedladdning</int_dowload_manual>
 <int_dowload_save>Läs in och spara</int_dowload_save>
@@ -104,7 +104,7 @@
 <mess_no_input>Använd den här metoden under uppspelning</mess_no_input>
 <mess_no_res>Inget resultat</mess_no_res>
 <mess_no_response>Servern svarar inte</mess_no_response>
-<mess_no_selection>Inga undertexter valda</mess_no_selection>
+<mess_no_selection>Inga valda undertexter</mess_no_selection>
 <mess_not_found>Filen kan inte hittas</mess_not_found>
 <mess_not_found2>Filen kan inte hittas (ogiltiga tecken?)</mess_not_found2>
 <mess_not_load>Kunde inte ladda undertexter</mess_not_load>
