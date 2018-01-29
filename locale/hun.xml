@@ -1,56 +1,117 @@
-<action_hash>Film hash számítása</action_hash>
+<action_hash>Film hash kiszámítása</action_hash>
 <action_login>Bejelentkezés</action_login>
 <action_logout>Kijelentkezés</action_logout>
-<action_noop>Session vizsgálata</action_noop>
+<action_noop>Munkamenet vizsgálata</action_noop>
 <action_search>Feliratok keresése</action_search>
 <int_all>Mind</int_all>
 <int_bool_false>Nem</int_bool_false>
 <int_bool_true>Igen</int_bool_true>
 <int_cancel>Mégse</int_cancel>
-<int_close>Bezár</int_close>
+<int_close>Bezárás</int_close>
 <int_config>Beállítások</int_config>
 <int_configuration>Beállítások</int_configuration>
 <int_default_lang>Felirat nyelve</int_default_lang>
-<int_descr>Feliratok letöltése az OpenSubtitles.org -ról</int_descr>
+<int_descr>Feliratok letöltése az OpenSubtitles.org-ról</int_descr>
 <int_display_code>Nyelvi kód megjelenítése a fájl nevében</int_display_code>
 <int_dowload_behav>Mi legyen a feliratokkal</int_dowload_behav>
-<int_dowload_load>Csak betöltése</int_dowload_load>
+<int_dowload_load>Csak betöltés</int_dowload_load>
 <int_dowload_manual>Kézi letöltés</int_dowload_manual>
-<int_dowload_save>Betöltése és mentés</int_dowload_save>
+<int_dowload_save>Betöltés és mentés</int_dowload_save>
 <int_dowload_sel>Kijelölt letöltése</int_dowload_sel>
 <int_episode>Epizód (sorozat)</int_episode>
-<int_help>Segítség</int_help>
-<int_help_mess> Feliratok letöltése a &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; -ról valamint megjelenítésük lejátszás során.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Használat:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; A VLSub lejátszás közben használandó. Indítsd el a lejátszást (ha éppen nincs videó lejátszás folyamatban akkor a letöltési link a böngészőben fog megjelenni).&lt;br&gt; &lt;br&gt; Válaszd ki a keresendő felirat nyelvét, majd kattints a VLSub által támogatott két keresési metódus valamelyikére. :&lt;br&gt; &lt;br&gt; &lt;b&gt;Első metódus: Keresés hash alapján&lt;/b&gt;&lt;br&gt; Ajánlott, hogy ezzel a metódussal keress először, mert ez a videó fájl nyomata alapján keres, így a videódhoz igazított feliratot találhatsz.&lt;br&gt; &lt;br&gt; &lt;b&gt;Második metódus: Név szerinti keresés&lt;/b&gt;&lt;br&gt; Amennyiben nincs szerencséd az első metódussal, akkor használd ezt, de győződj meg róla, hogy a cím rendben van mielőtt rákattintasz a gombra. Amennyiben egy sorozathoz keresel feliratot, akkor megadhatsz évad és epizód számot is.&lt;br&gt; &lt;br&gt; &lt;b&gt;Feliratok letöltése&lt;/b&gt;&lt;br&gt; Válassz ki egy feliratot a listából és kattints a &#39;Letöltésre&#39;.&lt;br&gt; Ugyan abba a könyvtárba fog kerülni mint a videó, ugyan azzal a névvel (különböző kiterjesztéssel), így a videó következő lejátszásakor a Vlc automatikusan be fogja tölteni.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Figyelem :&lt;/b&gt; A már létező feliratuk megerősítés nélkül felülírásra kerülnek, tehát tedd őket máshova ha fontosak.&lt;br&gt; &lt;br&gt; További Vlc kiegészítőket a &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt; oldalon találhatsz.</int_help_mess>
+<int_help>Súgó</int_help>
+<int_help_mess>      Feliratok letöltése az
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;-ról,
+  és azok megjelenítése videonézés közben.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Használat:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Indítsa le a videót. Ha lejátszás nélkül használja a VLSubot,
+  akkor egy hivatkozást fog kapni a felirat letöltéséhez a
+  böngészőjében, de a feliratok nem lesznek automatikusan
+  mentve és betöltve.&lt;br&gt;
+  &lt;br&gt;
+  Válasszon nyelvet a feliratokhoz, és kattintson a két,
+  a VLSub által biztosított felkutatási módszer egyikéhez
+  tartozó gombra:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;1. módszer: Keresés ujjlenyomat alapján&lt;/b&gt;&lt;br&gt;
+  Ez az először ajánlott módszer, mert a videofájl ujjlenyomata
+  alapján végez keresést, így megtalálhatja azt a feliratot,
+  amely a videóhoz lett szinkronizálva.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;2. módszer: Keresés név alapján&lt;/b&gt;&lt;br&gt;
+  Ha első módszer nem vezetett eredményre, akkor ellenőrizze,
+  hogy a cím helyes-e. Ha sorozatfeliratot keres, akkor
+  megadhatja az évadot, és az epizód számát is.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Feliratok letöltése&lt;/b&gt;&lt;br&gt;
+  Válasszon egy feliratot a listából, és kattintson a „Letöltés”
+  gombra.&lt;br&gt;
+  Ugyanabba a mappába lesz téve, ahol a videó található,
+  ugyanazzal a névvel (csak más kiterjesztéssel),
+  így a VLC automatikus betölti, ha elindítja a videót.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Figyelem:&lt;/b&gt; A létező feliratok kérdés nélkül
+  felülírásra kerülnek, így tegye őket máshova, ha fontosak.&lt;br&gt;
+  &lt;br&gt;
+  Tudjon meg többet a VLC kiegészítőkről az
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;
+  oldalon.
+</int_help_mess>
 <int_int_lang>Kezelőfelület nyelve</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;A VLSub egyetlen platformon sem működik
+  az VLC 2.1.x verziójával,&lt;/strong&gt;
+  mert a „net” lua modul, amely az opensubtitles-zel
+  történő kapcsolódáshoz szükséges, el lett távolítva
+  ebben a kiadásban a kiegészítők közül.
+  &lt;br&gt;
+  &lt;strong&gt;Macen és Linuxon működik a VLC 2.2-es verziójával.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;Windowson a VLC egy régebi verzióját kell telepítenie
+  (például: 2.0.8)&lt;/strong&gt;
+  a VLSub használatához:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
 <int_ok>Ok</int_ok>
-<int_remove_tag>Tagek eltávolítása</int_remove_tag>
+<int_os_password>Jelszó</int_os_password>
+<int_os_username>Felhasználónév</int_os_username>
+<int_remove_tag>Címkék eltávolítása</int_remove_tag>
 <int_research>Kutatás</int_research>
 <int_save>Mentés</int_save>
 <int_search_hash>Hash szerinti keresés</int_search_hash>
-<int_searching_transl>Fordítások keresése ...</int_searching_transl>
 <int_search_name>Név szerinti keresés</int_search_name>
 <int_search_transl>Fordítások keresése</int_search_transl>
+<int_searching_transl>Fordítások keresése…</int_searching_transl>
 <int_season>Évad (sorozat)</int_season>
 <int_show_conf>Beállítások megjelenítése</int_show_conf>
-<int_show_help>Segítség megjelenítése</int_show_help>
+<int_show_help>Súgó megjelenítése</int_show_help>
 <int_title>Cím</int_title>
-<int_vlsub_work_dir>VLSub munka könyvtár</int_vlsub_work_dir>
-<mess_click_link>Kattints ide a fájl megnyitásához</mess_click_link>
+<int_vlsub_work_dir>VLSub munkakönyvtár</int_vlsub_work_dir>
+<mess_click_link>Kattintson ide a fájl megnyitásához</mess_click_link>
 <mess_complete>Kutatás befejezve</mess_complete>
-<mess_dowload_link>Letöltési link</mess_dowload_link>
+<mess_dowload_link>Letöltési hivatkozás</mess_dowload_link>
 <mess_downloading>Felirat letöltése</mess_downloading>
+<mess_err_cant_download_interface_translation>A felület fordításának letöltése meghiúsult</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Nem található megfelelő útvonal a beállítások mentéséhez, adja meg kézzel</mess_err_conf_access>
+<mess_err_wrong_path>Az útvonal hibás karaktert tartalmaz, javítsa ki</mess_err_wrong_path>
 <mess_error>Hiba</mess_error>
-<mess_expired>Lejárt session, újra próbálkozás</mess_expired>
+<mess_expired>Lejárt munkamenet, újrapróbálkozás</mess_expired>
 <mess_loaded>Feliratok betöltve</mess_loaded>
-<mess_no_input>Kérlek használd ezt a metódust lejátszás alatt</mess_no_input>
+<mess_no_input>Ezt a módszert használja lejátszás közben</mess_no_input>
 <mess_no_res>Nincs találat</mess_no_res>
-<mess_no_response>A szerver nem válaszol</mess_no_response>
+<mess_no_response>A kiszolgáló nem válaszol</mess_no_response>
 <mess_no_selection>Nincs felirat kiválasztva</mess_no_selection>
-<mess_not_found>Nem találom a fájlt</mess_not_found>
-<mess_not_found2>Nem találom a fájlt (nem engedélyezett karakter?)</mess_not_found2>
-<mess_not_local>Ez a metódus csak helyi fájlokkal működik (egyelőre)</mess_not_local>
-<mess_overloaded>A szerver túlterhelt, kérlek próbáld újra később</mess_overloaded>
-<mess_res>Találat(ok)</mess_res>
-<mess_save_fail>Nem sikerült a felirat mentése</mess_save_fail>
-<mess_success>Siker</mess_success>
-<mess_unauthorized>Engedélyezetlen kérés</mess_unauthorized>
+<mess_not_found>A fájl nem található</mess_not_found>
+<mess_not_found2>A fájl nem található (hibás karakter?)</mess_not_found2>
+<mess_not_load>A feliratok nem tölthetőek be</mess_not_load>
+<mess_not_local>Ez a módszer csak helyi fájlokkal működik (egyelőre)</mess_not_local>
+<mess_overloaded>A kiszolgáló túlterhelt, próbálja újra később</mess_overloaded>
+<mess_res>találat</mess_res>
+<mess_save_fail>A felirat nem menthető</mess_save_fail>
+<mess_success>Sikeres</mess_success>
+<mess_unauthorized>Nem engedélyezett kérés</mess_unauthorized>
