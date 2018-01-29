@@ -27,21 +27,32 @@
   &lt;br&gt;
   &lt;b&gt;&lt;u&gt;Uporaba:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
   &lt;br&gt;
-  Najprej je treba začeti s predvajanjem. Program VLSub le tako samodejno uporabi podnapise. Če se vsebina ne predvaja, se pokaže povezava za prejem podnapisa v brskalniku.&lt;br&gt;
+  Najprej je treba začeti s predvajanjem. Program VLSub le tako 
+  samodejno uporabi podnapise. Če se vsebina ne predvaja, se pokaže 
+  povezava za prejem podnapisa v brskalniku.&lt;br&gt;
   &lt;br&gt;
-  Izberite jezik podnapisa in kliknite na ustrezen gumb za zagon iskanja s programom VLSub:&lt;br&gt;
+  Izberite jezik podnapisa in kliknite na ustrezen gumb za zagon 
+  iskanja s programom VLSub:&lt;br&gt;
   &lt;br&gt;
   &lt;b&gt;Način 1: iskanje po nadzorni vsoti&lt;/b&gt;&lt;br&gt;
-  Ta način je priporočljivo izbrati prednostno, saj zažene iskanje glede na datotečni odtis in išče podnapise, ki so usklajeni s predvajanim posnetkom.&lt;br&gt;
+  Ta način je priporočljivo izbrati prednostno, saj zažene iskanje 
+  glede na datotečni odtis in išče podnapise, ki so usklajeni s 
+  predvajanim posnetkom.&lt;br&gt;
   &lt;br&gt;
   &lt;b&gt;Način 2: Iskanje po imenu&lt;/b&gt;&lt;br&gt;
-  V kolikor na prvi način ni ustreznih zadetkov, uporabite ta način, vendar vedno preverite pravilnost zapisa naslova posnetka. Za podnapise nanizank je dobro navesti tudi sezono in nadaljevanje.&lt;br&gt;
+  V kolikor na prvi način ni ustreznih zadetkov, uporabite ta način, 
+  vendar vedno preverite pravilnost zapisa naslova posnetka. Za podnapise 
+  nanizank je dobro navesti tudi sezono in nadaljevanje.&lt;br&gt;
   &lt;br&gt;
   &lt;b&gt;Prejemanje podnapisov&lt;/b&gt;&lt;br&gt;
   Izberite podnapis s seznama in kliknite na gumb » Prejmi «.&lt;br&gt;
-  Datoteka podnapisa bo shranjena v mapo, v kateri je že shranjen posnetek z istim imenom (različna bo pripona datoteke) in ga lahko predvajalnik naloži samodejno ob naslednjem zagonu posnetka.&lt;br&gt;
+  Datoteka podnapisa bo shranjena v mapo, v kateri je že shranjen posnetek 
+  z istim imenom (različna bo pripona datoteke) in ga lahko predvajalnik 
+  naloži samodejno ob naslednjem zagonu posnetka.&lt;br&gt;
   &lt;br&gt;
-  &lt;b&gt;/!\ Opozorilo:&lt;/b&gt; Obstoječi podnapisi bodo samodejno prepisani brez opozorila, zato je priporočljivo datoteke shranjevati v ločeno mapo.&lt;br&gt;
+  &lt;b&gt;/!\ Opozorilo:&lt;/b&gt; Obstoječi podnapisi bodo samodejno 
+  prepisani brez opozorila, zato je priporočljivo datoteke shranjevati 
+  v ločeno mapo.&lt;br&gt;
   &lt;br&gt;
   Več razširitev za predvajalnik VLC je objavljenih na spletišču
   &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
@@ -53,9 +64,11 @@
   z »omrežjem lua« spletišča OpenSubtitles 
   za to različico razširitve.
   &lt;br&gt;
-  &lt;strong&gt;Program deluje z različico VLC 2.2 v okolju Mac in Linux.&lt;/strong&gt;
+  &lt;strong&gt;Program deluje z različico VLC 2.2 v okolju 
+  Mac in Linux.&lt;/strong&gt;
   &lt;br&gt;
-  &lt;strong&gt;V okolju MS Windows je treba namestiti starejšo različico VLC (na primer VLC 2.0.8)&lt;/strong&gt;
+  &lt;strong&gt;V okolju MS Windows je treba namestiti starejšo 
+  različico VLC (na primer VLC 2.0.8)&lt;/strong&gt;
   za uporabo VLSub:
   &lt;br&gt;
   &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
