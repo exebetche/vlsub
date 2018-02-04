@@ -12,7 +12,7 @@
 <int_configuration>設定</int_configuration>
 <int_default_lang>字幕の言語</int_default_lang>
 <int_descr>OpenSubtitles.orgから字幕をダウンロード</int_descr>
-<int_display_code>ファイル名の言語コードを表示</int_display_code>
+<int_display_code>ファイル名に言語コードを表示</int_display_code>
 <int_dowload_behav>字幕と処理する内容</int_dowload_behav>
 <int_dowload_load>読み込みのみ</int_dowload_load>
 <int_dowload_manual>手動ダウンロード</int_dowload_manual>
@@ -20,7 +20,7 @@
 <int_dowload_sel>ダウンロードの選択</int_dowload_sel>
 <int_episode>エピソード (シリーズ)</int_episode>
 <int_help>ヘルプ</int_help>
-<int_help_mess>ビデオの再生中に 
+<int_help_mess>ビデオの再生中に
   &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
   opensubtitles.org&lt;/a&gt;
   から字幕をダウンロードして表示させることができます。&lt;br&gt;
