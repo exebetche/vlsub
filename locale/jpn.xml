@@ -20,7 +20,7 @@
 <int_dowload_sel>ダウンロードの選択</int_dowload_sel>
 <int_episode>エピソード (シリーズ)</int_episode>
 <int_help>ヘルプ</int_help>
-<int_help_mess>ビデオの再生中に 
+<int_help_mess>ビデオの再生中に
   &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
   opensubtitles.org&lt;/a&gt;
   から字幕をダウンロードして表示させることができます。&lt;br&gt;
@@ -94,7 +94,7 @@
 <mess_err_conf_access>設定を保存する適切なパスが見つからないため再指定してください</mess_err_conf_access>
 <mess_err_wrong_path>パスに不当な文字が含まれているため再指定してください</mess_err_wrong_path>
 <mess_error>エラー</mess_error>
-<mess_expired>セッションが切れたためリトライ中</mess_expired>
+<mess_expired>セッションの期限切れ、再試行中</mess_expired>
 <mess_loaded>字幕が読み込まれました</mess_loaded>
 <mess_no_input>再生中はこの方法を使用してください</mess_no_input>
 <mess_no_res>結果がみつかりません</mess_no_res>
@@ -104,7 +104,7 @@
 <mess_not_found2>ファイルが見つかりません (不当な文字?)</mess_not_found2>
 <mess_not_load>字幕を読み込めません</mess_not_load>
 <mess_not_local>この方法は現在ローカルファイルのみ有効です</mess_not_local>
-<mess_overloaded>サーバーが過負荷のため、後でリトライしてください</mess_overloaded>
+<mess_overloaded>サーバーが過負荷のため、後で再試行してください</mess_overloaded>
 <mess_res>結果</mess_res>
 <mess_save_fail>字幕を保存できません</mess_save_fail>
 <mess_success>成功</mess_success>
