@@ -36,6 +36,7 @@ local options = {
   showMediaInformation = true,
   progressBarSize = 80,
   intLang = 'eng',
+  enableProxy = false,
   translations_avail = {
     eng = 'English',
     cze = 'Czech', 
@@ -89,7 +90,8 @@ local options = {
     int_vlsub_work_dir = 'VLSub working directory',
     int_os_username = 'Username',
     int_os_password = 'Password',
-    int_help_mess =[[
+    int_enable_http_proxy = 'Enable HTTP Proxy',
+    int_help_mess = [[
       Download subtitles from 
       <a href='http://www.opensubtitles.org/'>
       opensubtitles.org
@@ -126,6 +128,14 @@ local options = {
       <b>/!\\ Beware :</b> Existing subtitles are overwritten 
       without asking confirmation, so put them elsewhere if 
       they're important.<br>
+      <b>HTTP Proxy Support</b><br>
+      Now downloading subtitles is supported over http proxy.<br>
+      To enable this set Enable HTTP Proxy to Yes in cofiguration dialog.<br>
+      For this to work set the HTTP_PROXY environment variable.<br>
+      format: <b><http/https>://<proxy_host>:<proxy_port><br></b>
+      Skip the trailing backslash.<br>
+      <b>HTTP 1.0/1.1/2.0 Support</b><br>
+      Select desired HTTP porotocol version in main dialog<br>
       <br>
       Find more VLC extensions at 
       <a href='http://addons.videolan.org'>addons.videolan.org</a>.
@@ -174,14 +184,20 @@ local options = {
     mess_not_load = 'Unable to load subtitles',
     mess_downloading = 'Downloading subtitle',
     mess_dowload_link = 'Download link',
-    mess_err_conf_access ='Can\'t find a suitable path to save'..
-      'config, please set it manually',
-    mess_err_wrong_path ='the path contains illegal character, '..
-      'please correct it',
-    mess_err_cant_download_interface_translation='could not download interface translation'
+    mess_err_conf_access = 'Can\'t find a suitable path to save' ..
+        'config, please set it manually',
+    mess_err_wrong_path = 'the path contains illegal character, ' ..
+        'please correct it',
+    mess_err_cant_download_interface_translation = 'could not download interface translation',
+    mess_not_valid_zip_file = 'Downloaded Zip file is not valid'
   }
 }
 
+local protocol = {
+  { '1.0', 'HTTP 1.0' },
+  { '1.1', 'HTTP 1.1' },
+  { '2.0', 'HTTP 2.0' }
+}
 local languages = {
   {'alb', 'Albanian'},
   {'ara', 'Arabic'},
@@ -401,12 +417,11 @@ function interface_main()
     openSub.movie.title or "", 2, 2, 2, 1)
   dlg:add_button(lang["int_search_name"], 
     searchIMBD, 4, 2, 1, 1)
-  dlg:add_label(lang["int_season"]..':', 1, 3, 1, 1)
-  input_table['seasonNumber'] = dlg:add_text_input(
-    openSub.movie.seasonNumber or "", 2, 3, 2, 1)
-  dlg:add_label(lang["int_episode"]..':', 1, 4, 1, 1)
-  input_table['episodeNumber'] = dlg:add_text_input(
-    openSub.movie.episodeNumber or "", 2, 4, 2, 1)
+  dlg:add_label(lang["int_season"] .. ':', 1, 3, 1, 1)
+  input_table['seasonNumber'] = dlg:add_text_input(openSub.movie.seasonNumber or "", 2, 3, 2, 1)
+  input_table['protocol'] = dlg:add_dropdown(4, 3, 1, 1)
+  dlg:add_label(lang["int_episode"] .. ':', 1, 4, 1, 1)
+  input_table['episodeNumber'] = dlg:add_text_input(openSub.movie.episodeNumber or "", 2, 4, 2, 1)
   input_table['mainlist'] = dlg:add_list(1, 5, 4, 1)
   input_table['message'] = nil
   input_table['message'] = dlg:add_label(' ', 1, 6, 4, 1)
@@ -425,7 +440,13 @@ function interface_main()
     openSub.conf.languages, 
     2, 
     lang["int_all"])
-    
+
+  assoc_select_conf('protocol',
+    'protocol',
+    openSub.conf.protocol,
+    0,
+    protocol[0])
+
   display_subtitles()
 end
 
@@ -478,42 +499,37 @@ function interface_config()
     dlg	:add_label(
       lang["int_vlsub_work_dir"], 1, 6, 2, 1)
   end
-  
-  input_table['dir_path'] = dlg:add_text_input(
-    openSub.conf.dirPath, 2, 6, 2, 1)
-  
-  dlg:add_label(
-    lang["int_os_username"]..':', 1, 7, 0, 1)
-  input_table['os_username'] = dlg:add_text_input(
-    type(openSub.option.os_username) == "string" 
-    and openSub.option.os_username or "", 2, 7, 2, 1)
-  dlg:add_label(
-    lang["int_os_password"]..':', 1, 8, 0, 1)
-  input_table['os_password'] = dlg:add_password(
-    type(openSub.option.os_password) == "string" 
-    and openSub.option.os_password or "", 2, 8, 2, 1)
-        
+
+  input_table['dir_path'] = dlg:add_text_input(openSub.conf.dirPath, 2, 6, 2, 1)
+
+  dlg:add_label(lang["int_os_username"] .. ':', 1, 7, 0, 1)
+  input_table['os_username'] = dlg:add_text_input(type(openSub.option.os_username) == "string"
+      and openSub.option.os_username or "", 2, 7, 2, 1)
+  dlg:add_label(lang["int_os_password"] .. ':', 1, 8, 0, 1)
+  input_table['os_password'] = dlg:add_password(type(openSub.option.os_password) == "string"
+      and openSub.option.os_password or "", 2, 8, 2, 1)
+
+  -- enable HTTP proxy support //read from environment HTTP_PROXY
+  dlg:add_label(lang["int_enable_http_proxy"] .. ':', 1, 9, 0, 1)
+  input_table['enableProxy'] = dlg:add_dropdown(2, 9, 0, 0)
+
   input_table['message'] = nil
-  input_table['message'] = dlg:add_label(' ', 1, 9, 3, 1)
-  
-  dlg:add_button(
-    lang["int_cancel"],
-    show_main, 2, 10, 1, 1)
-  dlg:add_button(
-    lang["int_save"],
-    apply_config, 3, 10, 1, 1)
-  
-  input_table['langExt']:add_value(
-    lang["int_bool_"..tostring(openSub.option.langExt)], 1)
-  input_table['langExt']:add_value(
-    lang["int_bool_"..tostring(not openSub.option.langExt)], 2)
-  input_table['removeTag']:add_value(
-    lang["int_bool_"..tostring(openSub.option.removeTag)], 1)
-  input_table['removeTag']:add_value(
-    lang["int_bool_"..tostring(not openSub.option.removeTag)], 2)
-  
-  assoc_select_conf(
-    'intLang',
+  input_table['message'] = dlg:add_label(' ', 1, 10, 3, 1)
+
+  dlg:add_button(lang["int_cancel"],
+    show_main, 2, 11, 1, 1)
+  dlg:add_button(lang["int_save"],
+    apply_config, 3, 11, 1, 1)
+
+  input_table['langExt']:add_value(lang["int_bool_" .. tostring(openSub.option.langExt)], 1)
+  input_table['langExt']:add_value(lang["int_bool_" .. tostring(not openSub.option.langExt)], 2)
+  input_table['removeTag']:add_value(lang["int_bool_" .. tostring(openSub.option.removeTag)], 1)
+  input_table['removeTag']:add_value(lang["int_bool_" .. tostring(not openSub.option.removeTag)], 2)
+
+  input_table['enableProxy']:add_value(lang["int_bool_" .. tostring(openSub.option.enableProxy)], 1)
+  input_table['enableProxy']:add_value(lang["int_bool_" .. tostring(not openSub.option.enableProxy)], 2)
+
+  assoc_select_conf('intLang',
     'intLang',
     openSub.conf.translations_avail,
     2)
@@ -969,7 +985,11 @@ function apply_config()
   if input_table["removeTag"]:get_value() == 2 then
     openSub.option.removeTag = not openSub.option.removeTag
   end
-  
+
+  if input_table["enableProxy"]:get_value() == 2 then
+    openSub.option.enableProxy = not openSub.option.enableProxy
+  end
+
   -- Set a custom working directory
   local dir_path = input_table['dir_path']:get_text()
   local dir_path_err = false
@@ -1169,7 +1189,9 @@ openSub = {
     useragent = app_useragent,
     translations_avail = {},
     downloadBehaviours = nil,
-    languages = languages
+    languages = languages,
+    protocol = protocol,
+    enableProxy = {}
   },
   option = options,
   session = {
@@ -1200,23 +1222,31 @@ openSub = {
   request = function(methodName)
     local params = openSub.methods[methodName].params()
     local reqTable = openSub.getMethodBase(methodName, params)
-    local request = "<?xml version='1.0'?>"..dump_xml(reqTable)
-    local host, path = parse_url(openSub.conf.url)		
+    local request = "<?xml version='1.0'?>" .. dump_xml(reqTable)
+    local host, path = parse_url(openSub.conf.url)
+    local proto = openSub.conf.protocol[input_table['protocol']:get_value()][1]
     local header = {
-      "POST "..path.." HTTP/"..openSub.conf.HTTPVersion, 
-      "Host: "..host, 
-      "User-Agent: "..openSub.conf.userAgentHTTP, 
-      "Content-Type: text/xml", 
-      "Content-Length: "..string.len(request),
+      "POST " .. (openSub.option.enableProxy and openSub.conf.url or path) .. " HTTP/" .. proto,
+      "Host: " .. host,
+      "User-Agent: " .. openSub.conf.userAgentHTTP,
+      "Content-Type: text/xml",
+      "Content-Length: " .. string.len(request),
       "",
       ""
     }
     request = table.concat(header, "\r\n")..request
     
     local response
-    local status, responseStr = http_req(host, 80, request)
-    
-    if status == 200 then 
+    local status, responseStr
+
+    if (openSub.option.enableProxy) then
+      local proxyHost, proxyPort = parse_url_2(os.getenv("HTTP_PROXY"))
+      status, responseStr = http_req(proxyHost, proxyPort, request)
+    else
+      status, responseStr = http_req(host, 80, request)
+    end
+
+    if status == 200 then
       response = parse_xmlrpc(responseStr)
       
       if response then
@@ -1852,15 +1882,19 @@ end
 
 function dump_zip(url, dir, subfileName)
   -- Dump zipped data in a temporary file
-  setMessage(openSub.actionLabel..": "..progressBarContent(0))
-  local resp = get(url)
-  
-  if not resp then 
+  setMessage(openSub.actionLabel .. ": " .. progressBarContent(0))
+  local resp, contentType = get(url)
+  if not resp then
     setError(lang["mess_no_response"])
     return false 
   end
-  
-  local tmpFileName = dir..slash..subfileName..".gz"
+
+  if contentType ~= "application/zip" then
+    setError(lang["mess_not_valid_zip_file"])
+    return false;
+  end
+
+  local tmpFileName = dir .. slash .. subfileName .. ".gz"
   if not file_touch(tmpFileName) then
     vlc.msg.dbg("[VLsub] Cant touch:"..tmpFileName)
     if openSub.conf.os == "win" then
@@ -1932,19 +1966,27 @@ end
 
 function get(url)
   local host, path = parse_url(url)
+  local proto = openSub.conf.protocol[input_table['protocol']:get_value()][1]
   local header = {
-    "GET "..path.." HTTP/"..openSub.conf.HTTPVersion, 
-    "Host: "..host, 
-    "User-Agent: "..openSub.conf.userAgentHTTP,
+    "GET " .. (openSub.option.enableProxy and url or path) .. " HTTP/" .. proto,
+    "Host: " .. host,
+    "User-Agent: " .. openSub.conf.userAgentHTTP,
     "",
     ""
   }
   local request = table.concat(header, "\r\n")
 
-  local status, response = http_req(host, 80, request)
-  
-  if status == 200 then 
-    return response
+  local status, response, contentType
+
+  if (openSub.option.enableProxy) then
+    local proxyHost, proxyPort = parse_url_2(os.getenv("HTTP_PROXY"))
+    status, response, contentType = http_req(proxyHost, proxyPort, request)
+  else
+    status, response, contentType = http_req(host, 80, request)
+  end
+
+  if status == 200 then
+    return response, contentType
   else
     vlc.msg.err("[VLSub] HTTP "..tostring(status).." : "..response)
     return false
@@ -1963,39 +2005,40 @@ function http_req(host, port, request)
 	vlc.net.send(fd, request)
 	vlc.net.poll(pollfds)
 
-	local response = vlc.net.recv(fd, 2048)
-	local buf = ""
-	local headerStr, header, body
-	local contentLength, status, TransferEncoding, chunked
-	local pct = 0
-	
-	while response and #response>0 do
-		buf = buf..response
-		
-		if not header then
-			headerStr, body = buf:match("(.-\r?\n)\r?\n(.*)")
+  local response = vlc.net.recv(fd, 2048)
+  local buf = ""
+  local headerStr, header, body, contentType
+  local contentLength, status, TransferEncoding, chunked
+  local pct = 0
 
-			if headerStr then
-				header = parse_header(headerStr);
-				status = tonumber(header["statuscode"]);
-				contentLength = tonumber(header["Content-Length"]);
-				if not contentLength then
-					contentLength = tonumber(header["X-Uncompressed-Content-Length"])
-				end
-				
-				TransferEncoding = trim(header["Transfer-Encoding"]);
-				chunked = (TransferEncoding=="chunked");
-				
-				buf = body;
-				body = "";
-			end
-		end
-		
-		if chunked then
-			chunk_size_hex, chunk_content = buf:match("(%x+)\r?\n(.*)")
-			chunk_size = tonumber(chunk_size_hex,16)
-			chunk_content_len = chunk_content:len()
-			chunk_remaining = chunk_size-chunk_content_len
+  while response and #response > 0 do
+    buf = buf .. response
+
+    if not header then
+      headerStr, body = buf:match("(.-\r?\n)\r?\n(.*)")
+
+      if headerStr then
+        header = parse_header(headerStr);
+        status = tonumber(header["statuscode"]);
+        contentLength = tonumber(header["Content-Length"]);
+        contentType = trim(header["Content-Type"])
+        if not contentLength then
+          contentLength = tonumber(header["X-Uncompressed-Content-Length"])
+        end
+
+        TransferEncoding = trim(header["Transfer-Encoding"]);
+        chunked = (TransferEncoding == "chunked");
+
+        buf = body;
+        body = "";
+      end
+    end
+
+    if chunked then
+      chunk_size_hex, chunk_content = buf:match("(%x+)\r?\n(.*)")
+      chunk_size = tonumber(chunk_size_hex, 16)
+      chunk_content_len = chunk_content:len()
+      chunk_remaining = chunk_size - chunk_content_len
 
 			while chunk_content_len > chunk_size do
 				body = body..chunk_content:sub(0, chunk_size)
@@ -2051,7 +2094,7 @@ function http_req(host, port, request)
 		return http_req(host, port, request)
 	end
 
-	return status, body
+  return status, body, contentType
 end
 
 function parse_header(data)
@@ -2077,7 +2120,29 @@ function parse_url(url)
     url_parsed["option"]
 end
 
-            --[[ XML utils]]--
+function split(str, delimiter)
+  local result = {}
+  local from = 1
+  local delim_from, delim_to = string.find(str, delimiter, from)
+  while delim_from do
+    table.insert(result, string.sub(str, from, delim_from - 1))
+    from = delim_to + 1
+    delim_from, delim_to = string.find(str, delimiter, from)
+  end
+  table.insert(result, string.sub(str, from))
+  return result
+end
+
+function parse_url_2(url)
+  local parts = split(url, ":")
+  local host, port = string.sub(parts[2], 3), parts[3]
+  if (port == nil or port == '') then
+    port = '80'
+  end
+  return host, port
+end
+
+--[[ XML utils]] --
 
 function parse_xml(data)
   local tree = {}
