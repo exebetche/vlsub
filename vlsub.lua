@@ -128,12 +128,14 @@ local options = {
       <b>/!\\ Beware :</b> Existing subtitles are overwritten 
       without asking confirmation, so put them elsewhere if 
       they're important.<br>
+      <br>
       <b>HTTP Proxy Support</b><br>
       Now downloading subtitles is supported over http proxy.<br>
       To enable this set Enable HTTP Proxy to Yes in cofiguration dialog.<br>
       For this to work set the HTTP_PROXY environment variable.<br>
-      format: <b><http/https>://<proxy_host>:<proxy_port><br></b>
+      format: <b>&lt;http/https&gt;://&lt;proxy_host&gt;:&lt;proxy_port&gt;<br></b>
       Skip the trailing backslash.<br>
+      <br>
       <b>HTTP 1.0/1.1/2.0 Support</b><br>
       Select desired HTTP porotocol version in main dialog<br>
       <br>
