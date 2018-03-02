@@ -1,0 +1,56 @@
+<action_hash>Изчисляване на хаша</action_hash>
+<action_login>Вписване</action_login>
+<action_logout>Отписване</action_logout>
+<action_noop>Проверка на сесия</action_noop>
+<action_search>Търсене на субтитри</action_search>
+<int_all>Всички</int_all>
+<int_bool_false>Не</int_bool_false>
+<int_bool_true>Да</int_bool_true>
+<int_cancel>Отмени</int_cancel>
+<int_close>Затвори</int_close>
+<int_config>Конфиг</int_config>
+<int_configuration>Конфигурация</int_configuration>
+<int_default_lang>Език на субтитрите</int_default_lang>
+<int_descr>Свали субтитри от OpenSubtitles.org</int_descr>
+<int_display_code>Покажи кода на езика в името на файла</int_display_code>
+<int_dowload_behav>Какво да се прави със субтитрите</int_dowload_behav>
+<int_dowload_load>Зареди само</int_dowload_load>
+<int_dowload_manual>Ръчно сваляне</int_dowload_manual>
+<int_dowload_save>Зареди и запази</int_dowload_save>
+<int_dowload_sel>Свали избраното</int_dowload_sel>
+<int_episode>Епизод (серии)</int_episode>
+<int_help>Помощ</int_help>
+<int_help_mess>Свали субтитри от &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; и ги покажи докато се гледа видео.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Използване:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub се ползва докато гледате видео, затова първо я пуснете.&lt;br&gt; &lt;br&gt; Изберете езика на вашите субтитри и натиснете на един от двата бутона, за методите, предложени от VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Метод 1: Търсене по хаш&lt;/b&gt;&lt;br&gt; Препоръчително е да пробвате първо този метод, защото ще потърси субтитри, синхронизирани с вашето видео.&lt;br&gt; &lt;br&gt; &lt;b&gt;Метод 2: Търсене по име&lt;/b&gt;&lt;br&gt; Ако нямате късмет с първия метод, проверете дали заглавието е правилно, преди да цъкнете бутона. Ако търсите субтитри за сериал, можете да добавите и сезон и номер на епизода.&lt;br&gt; &lt;br&gt; &lt;b&gt;Сваляне на субтитри&lt;/b&gt;&lt;br&gt; Изберете едни от субтитрите в списъка и цъкнете на &#39;Свали&#39;.&lt;br&gt; Субтитрите ще бъдат сложени в същата директория като видеото, със същото име (но различен формат),за да може VLC да ги зареди автоматично при следващо пускане на същото видео.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Внимание :&lt;/b&gt; Съществуващи субтитри ще бъдат презаписани без искане на потвърждение, затова ги сложете в друга директория, ако са важни.&lt;br&gt; &lt;br&gt; Намерете още допълнения за VLC: &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Език на програмата</int_int_lang>
+<int_ok>OК</int_ok>
+<int_remove_tag>Махни таговеRemove tags</int_remove_tag>
+<int_research>Търсене</int_research>
+<int_save>Запази</int_save>
+<int_search_hash>Търсене по хаш</int_search_hash>
+<int_searching_transl>Търсене на преводи ...</int_searching_transl>
+<int_search_name>Търсене по име</int_search_name>
+<int_search_transl>Търсене на преводи</int_search_transl>
+<int_season>Сезон</int_season>
+<int_show_conf>Покажи конфиг</int_show_conf>
+<int_show_help>Покажи помощта</int_show_help>
+<int_title>Заглавие</int_title>
+<int_vlsub_work_dir>Работна директория на VLSub</int_vlsub_work_dir>
+<mess_click_link>Натиснете тук за отваряне на файла</mess_click_link>
+<mess_complete>Търсенето завършено</mess_complete>
+<mess_dowload_link>Линк за сваляне</mess_dowload_link>
+<mess_downloading>Сваляне на субтитрите</mess_downloading>
+<mess_error>Грешка</mess_error>
+<mess_expired>Сесията е изтекла, опитване наново</mess_expired>
+<mess_loaded>Субтитрите са заредени</mess_loaded>
+<mess_no_input>Моля, използвайте този метод при гледане</mess_no_input>
+<mess_no_res>Няма резултати</mess_no_res>
+<mess_no_response>Сървърът не отговаря</mess_no_response>
+<mess_no_selection>Няма избрани субтитри</mess_no_selection>
+<mess_not_found>Файлът не е намерен</mess_not_found>
+<mess_not_found2>Файлът не е намерен (непозволен символ?)</mess_not_found2>
+<mess_not_local>Този метод работи само с локални файлове (за сега)</mess_not_local>
+<mess_overloaded>Сървърът е натоварен, опитайте след малко</mess_overloaded>
+<mess_res>Резултат(и)</mess_res>
+<mess_save_fail>Субтитрите не могат да се запазят</mess_save_fail>
+<mess_success>Успех</mess_success>
+<mess_unauthorized>Заявката е неупълномощена</mess_unauthorized>
