@@ -182,6 +182,7 @@ local options = {
   }
 }
 
+-- https://www.opensubtitles.org/addons/export_languages.php
 local languages = {
   {'alb', 'Albanian'},
   {'ara', 'Arabic'},
@@ -193,7 +194,9 @@ local languages = {
   {'bul', 'Bulgarian'},
   {'bur', 'Burmese'},
   {'cat', 'Catalan'},
-  {'chi', 'Chinese'},
+  {'chi', 'Chinese Simplified'},
+  {'zht', 'Chinese Traditional'},
+  {'zhe', 'Chinese Bilingual'},
   {'hrv', 'Croatian'},
   {'cze', 'Czech'},
   {'dan', 'Danish'},
@@ -263,6 +266,8 @@ local lang_os_to_iso = {
   my = "bur",
   ca = "cat",
   zh = "chi",
+  zt = "zht",
+  ze = "zhe",
   hr = "hrv",
   cs = "cze",
   da = "dan",
