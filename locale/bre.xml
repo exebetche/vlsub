@@ -1,0 +1,116 @@
+<action_hash>O jediñ hash ar film</action_hash>
+<action_login>Enskrivañ e-barzh</action_login>
+<action_logout>O tigevreañ</action_logout>
+<action_noop>O gwiriañ an dalc&#39;h</action_noop>
+<action_search>O klask war-lerc&#39;h istitoù</action_search>
+<int_all>An holl</int_all>
+<int_bool_false>Ket</int_bool_false>
+<int_bool_true>Ya</int_bool_true>
+<int_cancel>Nullañ</int_cancel>
+<int_close>Serriñ</int_close>
+<int_config>Keflu</int_config>
+<int_configuration>Kefluniadur</int_configuration>
+<int_default_lang>Yezhoù an istitloù</int_default_lang>
+<int_descr>Pellgargañ istitloù eus OpenSubstitles.org</int_descr>
+<int_display_code>Diskouez kod ar yezh e-barzh anv ar restr</int_display_code>
+<int_dowload_behav>Petra ober gant an istitloù</int_dowload_behav>
+<int_dowload_load>Kargañ hepken</int_dowload_load>
+<int_dowload_manual>Pellgargañ gant an dorn</int_dowload_manual>
+<int_dowload_save>Kargañ hag enrollañ</int_dowload_save>
+<int_dowload_sel>Pellgargañ an diuzadenn</int_dowload_sel>
+<int_episode>Rann (heuliadennoù)</int_episode>
+<int_help>Skoazell</int_help>
+<int_help_mess>      Pellgargañ an istitloù diouzh 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  ha diskouez anezho pa vez sellout ouzh ur video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Implij:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Kregiñ gant ho video. Ma rit gant VLSub hep lenn ur video 
+  bez ho po ul liamm da bellgargañ an istitl en ho merdeer
+  ne vo ket em-enrollet na em-garget an istitl.&lt;br&gt;
+  &lt;br&gt;
+  Diuzit ar yezh evit hoc&#39;h istitl ha klikit war ar bouton
+  hag a genglot gant unan eus an hentennoù enklask
+  pourvezet gant VLSub:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Hentenn 1/unan: Klask dre hash&lt;/b&gt;&lt;br&gt;
+  Aliet eo klask ober gant an hentenn-mañ da gentañ-penn, dre ma 
+  kas da benn un enklask diazezet war roudenn restr ar video, hag e c&#39;hallec&#39;h 
+  kavout istitloù sinkronelaet gant ho video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Hentenn 2/div: Klask dre anv&lt;/b&gt;&lt;br&gt;
+  Ma n&#39;ho peus ket bet chañs gant an hentenn gentañ, gwirit ez eo reizh 
+  an titl a-raok klikañ. Ma klaskit istitloù 
+  evit un heuliadenn, gellout a rit pourveziñ niver ur c&#39;houlzad pe ur rann.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Pellgargañ Istitloù&lt;/b&gt;&lt;br&gt;
+  Diuziñ unan eus an istitloù e-barzh al listenn ha klikañ war &#39;Pellgargañ&#39;.&lt;br&gt;
+  Lakaet e vo e-barzh ar memes kavlec&#39;h hag o video, gant 
+  ar memes anv (astennoù disheñvel)
+  neuze VLC a em-gargo anezho ar wech a zeu ma vo lañset ar video
+  ganeoc&#39;h.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Diwallit avat:&lt;/b&gt; Flastret e vez an istitloù 
+  hep goulenn tra ebet ganeoc&#39;h,  lakait anezho e lec&#39;h neuze 
+  ma vezont a-bouez.&lt;br&gt;
+  &lt;br&gt;
+  Kavit muioc&#39;h a astennoù VLC war
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
+<int_int_lang>Yezh an etrefas</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;VLSub na &#39;z a ket en-dro gant VLC 2.1.x war 
+  ar savenn&lt;/strong&gt;
+  abalamour d&#39;al lugant &quot;net&quot; lua rekiset evit etreober 
+  gant opensubtitles a zo bet 
+  dilamet e-barzh ar gasadenn-mañ evit an astennoù.
+  &lt;br&gt;
+  &lt;strong&gt;Mont a ra en-dro gant VLC 2.2 war mac ha linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;Dindan windows bez ho peus da staliañ ur stumm koshoc&#39;h 
+  eus VLC (2.0.8 da skouer)&lt;/strong&gt;
+  evit ober gant VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
+<int_ok>Mat eo</int_ok>
+<int_os_password>Ger-tremen</int_os_password>
+<int_os_username>Anv-implijer:</int_os_username>
+<int_remove_tag>Dilemel al liketennoù</int_remove_tag>
+<int_research>Klask</int_research>
+<int_save>Enrollañ</int_save>
+<int_search_hash>Klask dre hash</int_search_hash>
+<int_search_name>Klask dre anv</int_search_name>
+<int_search_transl>Klask war-lerc&#39;h troidigezhioù</int_search_transl>
+<int_searching_transl>O klask war-lerc&#39;h troidigezhioù...</int_searching_transl>
+<int_season>Sezon (heuliadennoù)</int_season>
+<int_show_conf>Diskouez keflu</int_show_conf>
+<int_show_help>Diskouez ar skoazell</int_show_help>
+<int_title>Titl</int_title>
+<int_vlsub_work_dir>Kavlec&#39;h labour VLSub</int_vlsub_work_dir>
+<mess_click_link>Klikit amañ evit digeriñ ar restr</mess_click_link>
+<mess_complete>Enklask echuet</mess_complete>
+<mess_dowload_link>Pellgargañ al liamm</mess_dowload_link>
+<mess_downloading>O pellgargañ an istitl</mess_downloading>
+<mess_err_cant_download_interface_translation>N&#39;hall ket pellgargañ troidigezh an etrefas</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>N&#39;haller ket kavout un hent dereat evit enrollañ ar c&#39;hefluniañ, keflunit anezhañ gant an dorn mar plij</mess_err_conf_access>
+<mess_err_wrong_path>An hentig a endalc&#39;h arouezioù maez-lezenn, reizhit an dra-se mar plij</mess_err_wrong_path>
+<mess_error>Fazi</mess_error>
+<mess_expired>Tarzh diamzeriet, oc&#39;h adklask</mess_expired>
+<mess_loaded>Istitloù karget</mess_loaded>
+<mess_no_input>Grit gant an hentenn-mañ pa vez o lenn</mess_no_input>
+<mess_no_res>Disoc&#39;h ebet</mess_no_res>
+<mess_no_response>Ne respont ket ar servijer</mess_no_response>
+<mess_no_selection>Istitl ebet diuzet</mess_no_selection>
+<mess_not_found>Restr nann kavet</mess_not_found>
+<mess_not_found2>Restr nann kavet (arouez maez-lezenn?)</mess_not_found2>
+<mess_not_load>Divarrek da gargañ istitloù</mess_not_load>
+<mess_not_local>Mont a ra en-dro an hentenn-mañ gant ar restr lec&#39;hel hepken (evit ar mare)</mess_not_local>
+<mess_overloaded>Dreist-karget eo ar servijer, klaskit diwezhatoc&#39;h mar plij</mess_overloaded>
+<mess_res>disoc&#39;h(où)</mess_res>
+<mess_save_fail>Divarrek da enrollañ istitloù</mess_save_fail>
+<mess_success>Berzh</mess_success>
+<mess_unauthorized>Reket nann-aotreet</mess_unauthorized>
