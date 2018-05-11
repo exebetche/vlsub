@@ -20,54 +20,53 @@
 <int_dowload_sel>Transferir seleção</int_dowload_sel>
 <int_episode>Episódio (série)</int_episode>
 <int_help>Ajuda</int_help>
-<int_help_mess> Descarregar legendas de 
+<int_help_mess> Transferir legendas de 
   &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
   opensubtitles.org&lt;/a&gt;
-  e apresentá-las durante a reprodução do vídeo.&lt;br&gt;
+  e exibi-las enquanto vê um vídeo.&lt;br&gt;
   &lt;br&gt;
-  &lt;b&gt;&lt;u&gt;Uso:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Utilização:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
   &lt;br&gt;
-  O VLSub deve ser usado durante a reprodução de um vídeo, 
-  por isso comece um (se nada estiver a ser reproduzido irá 
-  obter um link para fazer o download das legendas no seu browser).&lt;br&gt;
+  Inicie o seu vídeo. Se utilizar VLSub sem reproduzir um vídeo, 
+  irá obter uma hiperligação para transferir as legendas no seu navegador).&lt;br&gt;
   &lt;br&gt;
-  Escolha a língua das suas legendas e de seguida clique num 
-  dos botões correspondente aos dois métodos de pesquisa 
+  Escolha o idioma para as suas legendas e clique num 
+  dos botões correspondentes para um ou dois métodos de pesquisa 
   disponibilizados pelo VLSub:&lt;br&gt;
   &lt;br&gt;
-  &lt;b&gt;Método 1: Procurar por hash&lt;/b&gt;&lt;br&gt;
-  É recomendado que experimente este método primeiro, porque 
-  a procura é baseada no reconhecimento do ficheiro e deverá 
-  encontrar legendas sincronizadas com o vídeo.&lt;br&gt;
+  &lt;b&gt;Método 1: Pesquise por hash&lt;/b&gt;&lt;br&gt;
+  É recomendado que experimente primeiro este método, porque 
+  este realiza uma pesquisa baseada no reconhecimento do ficheiro e assim 
+  pode encontrar legendas sincronizadas com o seu vídeo.&lt;br&gt;
   &lt;br&gt;
-  &lt;b&gt;Método 2: Procurar por nome&lt;/b&gt;&lt;br&gt;
-  Se não teve sorte com o primeiro método, verifique que o 
-  título está correcto antes de clicar. Se estiver à procura 
-  de legendas para uma série pode também indicar o número da 
+  &lt;b&gt;Método 2: Pesquise por nome&lt;/b&gt;&lt;br&gt;
+  Se não teve sorte com o primeiro método, verifique se o 
+  título está correto antes de clicar. Se estiver à procura 
+  de legendas para uma série também pode indicar o número da 
   temporada e do episódio.&lt;br&gt;
   &lt;br&gt;
-  &lt;b&gt;A carregar legendas&lt;/b&gt;&lt;br&gt;
-  Selecione uma legenda da lista e clique em &#39;Descarregar&#39;.&lt;br&gt;
-  Será posta no mesmo directório que o vídeo, com 
-  o mesmo nome (com a diferença da extensão) e será 
-  carregada automaticamente pelo VLC a próxima vez que 
-  começar o vídeo.&lt;br&gt;
+  &lt;b&gt;Transferência de Legendas&lt;/b&gt;&lt;br&gt;
+  Selecione uma legenda da lista e clique em &#39;Transferir&#39;.&lt;br&gt;
+  Esta será colocada na mesma diretoria do seu vídeo, com 
+  o mesmo nome (extensão diferente) e assim o VLC
+  irá carregá-la automaticamente da próxima vez que 
+  iniciar o vídeo.&lt;br&gt;
   &lt;br&gt;
-  &lt;b&gt;/!\ Cuidado:&lt;/b&gt; Legendas existentes serão 
-  substituídas sem perguntar por confirmação, por isso ponha-as 
-  noutro lado se forem importantes.&lt;br&gt;
+  &lt;b&gt;/!\ Cuidado:&lt;/b&gt; As legendas existentes serão substituídas 
+  sem perguntar por confirmação, por isso coloque-as 
+  noutro lado se estas forem importantes.&lt;br&gt;
   &lt;br&gt;
-  Encontre mais extensões para o VLC em
+  Encontre mais extensões do VLC em
   &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
 </int_help_mess>
 <int_int_lang>Idioma da interface</int_int_lang>
-<int_no_support_mess>      &lt;strong&gt;VLSub não está a funcionar com  o VLC 2.1.x em 
+<int_no_support_mess>      &lt;strong&gt;O VLSub não está a funcionar com VLC 2.1.x em 
   qualquer plataforma&lt;/strong&gt;
   porque o módulo &quot;net&quot; lua necessário para interagir 
   com &quot;opensubtitles&quot; foi removido
   neste lançamento para as extensões.
   &lt;br&gt;
-  &lt;strong&gt;Funciona com o VLC 2.2 no linux e mac.&lt;/strong&gt;
+  &lt;strong&gt;Funciona com VLC 2.2, Linux e Mac.&lt;/strong&gt;
   &lt;br&gt;
   &lt;strong&gt;No Windows tem de instalar uma versão 
   mais antiga do VLC (por exempo, 2.0.8)&lt;/strong&gt;
@@ -94,9 +93,9 @@
 <int_vlsub_work_dir>VLSub directório de trabalho</int_vlsub_work_dir>
 <mess_click_link>Clique aqui para abrir o ficheiro</mess_click_link>
 <mess_complete>Pesquisa terminada</mess_complete>
-<mess_dowload_link>Link para download</mess_dowload_link>
-<mess_downloading>A descarregar legenda</mess_downloading>
-<mess_err_cant_download_interface_translation>Não foi possível descarregar a tradução da interface</mess_err_cant_download_interface_translation>
+<mess_dowload_link>Hiperligação da transferência</mess_dowload_link>
+<mess_downloading>A transferir a legenda</mess_downloading>
+<mess_err_cant_download_interface_translation>Não foi possível transferir a tradução da interface</mess_err_cant_download_interface_translation>
 <mess_err_conf_access>Não foi possível encontrar um caminho para guardar a configuração, por favor defina um manualmente</mess_err_conf_access>
 <mess_err_wrong_path>O caminho indicado contem carateres ilegais, por favor corrija-o</mess_err_wrong_path>
 <mess_error>Erro</mess_error>
