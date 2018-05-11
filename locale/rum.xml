@@ -1,8 +1,8 @@
-<action_hash>Se calculează hash-ul filmului</action_hash>
+<action_hash>Calculul procesării filmului</action_hash>
 <action_login>Autentificare</action_login>
 <action_logout>Dezautentificare</action_logout>
 <action_noop>Se verifică sesiunea</action_noop>
-<action_search>Se caută subtitluri</action_search>
+<action_search>Căutare subtitrări</action_search>
 <int_all>Toate</int_all>
 <int_bool_false>Nu</int_bool_false>
 <int_bool_true>Da</int_bool_true>
@@ -20,16 +20,73 @@
 <int_dowload_sel>Descarcă ce e selectat</int_dowload_sel>
 <int_episode>Episod (serii)</int_episode>
 <int_help>Ajutor</int_help>
-<int_help_mess> Descarcă subtitluri de la &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; și afișează-le în timpul redării unui film.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Utilizare:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub este recomandat să fie folosit în timpul vizionării unui film, deci mai întâi pornește-l (dacă nimic nu este redat vei primi o legătură pentru descărcarea subtitlurilor în navigatorul tău).&lt;br&gt; &lt;br&gt; Alege limba pentru subtitlurile tale și apasă butonul corespunzător uneia din cele două metode de căutare furnizate de VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Metoda 1: Caută după hash&lt;/b&gt;&lt;br&gt; Este recomandat să încerci mai întâi această metodă deoarece va efectua o căutare după amprenta fișierului video și vei găsi subtitluri sincronizate cu filmul tău.&lt;br&gt; &lt;br&gt; &lt;b&gt;Metoda 2: Caută după nume&lt;/b&gt;&lt;br&gt; Dacă nu ai succes cu prima metodă, doar verifică dacă titlul este corect înainte să apeși. Când cauți subtitluri pentru o serie poți furniza de asemenea și un sezon și un număr de episod.&lt;br&gt; &lt;br&gt; &lt;b&gt;Descărcarea subtitlurilor&lt;/b&gt;&lt;br&gt; Alege un subtitlu din listă și apasă pe butonul &#39;Descarcă&#39;.&lt;br&gt; Va fi pus în același dosar ca și filmul, cu același nume (extensie diferită) și astfel Vlc le va încarca automat data următoare când pornești filmul.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Atenție:&lt;/b&gt; Subtitlurile existente sunt suprascrise fără confirmare, deci pune-le în altă parte dacă sunt importante.&lt;br&gt; &lt;br&gt; Poți găsi mai multe extensii Vlc la &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess> Descărcare subtitrări de pe 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  și afișarea lor în timpul redării fișierului video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Folosire:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Porniți videoclipul. Dacă utilizați VLSub fără a reda un videoclip 
+  veți obține un link pentru a descărca subtitrările din browserul dvs. 
+  dar subtitrările nu vor fi salvate și încărcate automat.&lt;br&gt;
+  &lt;br&gt;
+  Alegeți limba pentru subtitrări și faceți clic pe 
+  butonul corespunzător uneia dintre cele două metode de căutare
+  furnizate de VLSub:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Metoda 1: Căutare după hash&lt;/b&gt;&lt;br&gt;
+  Se recomandă să încercați mai întâi această metodă, deoarece 
+  efectuează o căutare bazată pe amprenta fișierului video, așa că 
+  puteți găsi subtitrări sincronizate cu videoclipul dvs.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Metoda 2: Căutare după nume&lt;/b&gt;&lt;br&gt;
+  Dacă nu aveți noroc cu prima metodă, verificați dacă 
+  titlul este corect înainte de a da clic. Dacă căutați subtitrări 
+  pentru un serial, puteți scrie, de asemenea, numărul sezonului și 
+  al episodului.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Descărcarea subtitrărilor&lt;/b&gt;&lt;br&gt;
+  Selectați o subtitrare din listă și faceți clic pe &quot;Descărcați&quot;.&lt;br&gt;
+  Aceasta va fi pusă în același director cu videoclipul dvs., cu 
+  același nume (extensie diferită)
+  astfel încât VLC le va încărca automat data viitoare
+  când porniți videoclipul.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Atenție:&lt;/b&gt; Subtitrările existente sunt suprascrise
+  fără confirmare, deci copiați-le în altă locație dacă 
+  sunt importante.&lt;br&gt;
+  &lt;br&gt;
+  Găsiți mai multe extensii VLC pe pagina
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>Limba interfeței</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;VLSub nu funcționează cu VLC 2.1.x pe 
+  orice platformă&lt;/strong&gt;
+  deoarece modulul lua &quot;net&quot; necesar pentru a interacționa 
+  cu opensubtitles a fost eliminat
+  în această versiune pentru extensii.
+  &lt;br&gt;
+  &lt;strong&gt;Funcționează cu VLC 2.2 pe mac și linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;Pe windows trebuie instalată o versiune mai veche 
+  a VLC (de exemplu, 2.0.8)&lt;/strong&gt;
+  pentru a folosi VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
 <int_ok>Ok</int_ok>
+<int_os_password>Parolă</int_os_password>
+<int_os_username>Nume utilizator</int_os_username>
 <int_remove_tag>Înlătură etichetele</int_remove_tag>
 <int_research>Caută</int_research>
 <int_save>Salvează</int_save>
 <int_search_hash>Caută după hash</int_search_hash>
-<int_searching_transl>Se caută traduceri...</int_searching_transl>
 <int_search_name>Caută după nume</int_search_name>
 <int_search_transl>Caută traduceri</int_search_transl>
+<int_searching_transl>Căutare traduceri ...</int_searching_transl>
 <int_season>Sezon (serii)</int_season>
 <int_show_conf>Afișează config</int_show_conf>
 <int_show_help>Afișează ajutor</int_show_help>
@@ -39,6 +96,9 @@
 <mess_complete>Cautare finalizată</mess_complete>
 <mess_dowload_link>Legătură pentru descărcare</mess_dowload_link>
 <mess_downloading>Se descărcă subtitlul</mess_downloading>
+<mess_err_cant_download_interface_translation>Nu s-a putut descărca traducerea interfeței</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Nu s-a găsit o metodă potrivită pentru salvarea config, vă rugăm să o setați manual</mess_err_conf_access>
+<mess_err_wrong_path>Calea conține un caracter necorespunzător, vă rugăm să o corectați</mess_err_wrong_path>
 <mess_error>Eroare</mess_error>
 <mess_expired>Sesiunea a expirat, se încearcă din nou</mess_expired>
 <mess_loaded>Subtitluri încărcate</mess_loaded>
@@ -48,6 +108,7 @@
 <mess_no_selection>Niciun subtitlu selectat</mess_no_selection>
 <mess_not_found>Fișierul nu a fost găsit</mess_not_found>
 <mess_not_found2>Fișierul nu a fost găsit (character nelegal?)</mess_not_found2>
+<mess_not_load>Imposibil de încărcat subtitrările</mess_not_load>
 <mess_not_local>Această metodă funcționează doar cu un fișier local (momentan)</mess_not_local>
 <mess_overloaded>Server supraîncărcat, te rog încearcă din nou mai târziu</mess_overloaded>
 <mess_res>rezultat(e)</mess_res>
