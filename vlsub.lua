@@ -186,6 +186,7 @@ local languages = {
   {'alb', 'Albanian'},
   {'ara', 'Arabic'},
   {'arm', 'Armenian'},
+  {'aze','Azerbaijan'}	
   {'baq', 'Basque'},
   {'ben', 'Bengali'},
   {'bos', 'Bosnian'},
