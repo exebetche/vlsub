@@ -22,7 +22,7 @@ Create a directory "extensions" at this location if it doesn't exists, then extr
 * Mac OS X (current user): /Users/%your_name%/Library/Application Support/org.videolan.vlc/lua/extensions/
 
 To install the translations, copy the directory named "locale" into the VLSub working directory :
-* To know this directory, once VLsub is installed as explained above, launCh VLC and open VLsub, and click "show config", and you will see it there.
+* To know this directory, once VLsub is installed as explained above, launch VLC and open VLsub, and click "show config", and you will see it there.
 
 #### USAGE:
 * Start Vlc
