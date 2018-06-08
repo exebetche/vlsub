@@ -104,13 +104,13 @@
 <mess_no_input>Por favor use este método durante a reprodução</mess_no_input>
 <mess_no_res>Sem resultado</mess_no_res>
 <mess_no_response>O servidor não responde</mess_no_response>
-<mess_no_selection>Nenhuma legenda está selecionada</mess_no_selection>
+<mess_no_selection>Sem legendas selecionadas</mess_no_selection>
 <mess_not_found>Ficheiro não encontrado</mess_not_found>
 <mess_not_found2>Ficheiro não encontrado (caractér ilegal?)</mess_not_found2>
 <mess_not_load>Incapaz de carregar as legendas</mess_not_load>
 <mess_not_local>Este método funciona apenas com ficheiros locais (de momento)</mess_not_local>
 <mess_overloaded>Servidor sobrecarregado, por favor tente mais tarde</mess_overloaded>
 <mess_res>resultado(s)</mess_res>
-<mess_save_fail>Não foi possível guardar as legendas</mess_save_fail>
+<mess_save_fail>Não é possível guardar as legendas</mess_save_fail>
 <mess_success>Sucesso</mess_success>
 <mess_unauthorized>Pedido não autorizado</mess_unauthorized>
