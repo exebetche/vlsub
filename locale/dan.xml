@@ -20,16 +20,69 @@
 <int_dowload_sel>Download valgte</int_dowload_sel>
 <int_episode>Episode (serier)</int_episode>
 <int_help>Hjælp</int_help>
-<int_help_mess>Download undertekster fra &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; og vis dem mens du ser en video.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Brug:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub er tænkt til brug mens du ser en video, så start først videoen (hvis ikke der afspilles noget vil du få et link til at downloade underteksterne i din browser).&lt;br&gt; &lt;br&gt; Vælg sprog for dine undertekster, og klik på en af knapperne for de to søgemetoder, som VLSub tilbyder:&lt;br&gt; &lt;br&gt; &lt;b&gt;Metode 1: Søg efter hash&lt;/b&gt;&lt;br&gt; Det anbefales at du prøver denne metode først, fordi den foretager en søgning ud fra videofilens identitet, så du kan finde undertekster der er synkroniseret med din video.&lt;br&gt; &lt;br&gt; &lt;b&gt;Metode 2: Søg efter navn&lt;/b&gt;&lt;br&gt; Har du ikke held med den første metode, så tjek at titlen er korrekt inden du trykker. Hvis du søger efter undertekster til en serie kan du angive et sæson- og episodenummer.&lt;br&gt; &lt;br&gt; &lt;b&gt;Downloader undertekster&lt;/b&gt;&lt;br&gt; Vælg en undertekst i listen og tryk på &#39;Download&#39;.&lt;br&gt; Den lægges i samme mappe som din video, med samme navn (men anden filendelse), så VLC indlæser den automatisk næste gang du starter videoen.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Advarsel :&lt;/b&gt; Eksisterende undertekster vil blive overskrevet uden du bliver spurgt om bekræftigelse, så læg dem et andet sted hvis de er vigtige.&lt;br&gt; &lt;br&gt; Find flere VLC-udvidelser på &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess>Download undertekster fra 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt; og vis dem mens du ser en video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Brug:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  VLSub er tænkt til brug mens du ser en video,
+  så start først videoen (hvis ikke der afspilles noget vil du 
+  få et link til at downloade underteksterne i din browser).&lt;br&gt;
+  &lt;br&gt;
+  Vælg sprog for dine undertekster, og klik på en af knapperne for 
+  de to søgemetoder, som VLSub tilbyder:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Metode 1: Søg efter hash&lt;/b&gt;&lt;br&gt;
+  Det anbefales at du prøver denne metode først, fordi den foretager 
+  en søgning ud fra videofilens identitet, så du kan finde undertekster 
+  der er synkroniseret med din video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Metode 2: Søg efter navn&lt;/b&gt;&lt;br&gt;
+  Har du ikke held med den første metode, så tjek at titlen er korrekt 
+  inden du trykker. Hvis du søger efter undertekster til en serie kan 
+  du angive et sæson- og episodenummer.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Downloader undertekster&lt;/b&gt;&lt;br&gt;
+  Vælg en undertekst i listen og tryk på &#39;Download&#39;.&lt;br&gt;
+  Den lægges i samme mappe som din video, med samme navn 
+  (men anden filendelse), så VLC indlæser den automatisk 
+  næste gang du starter videoen.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Advarsel :&lt;/b&gt; Eksisterende undertekster vil blive overskrevet 
+  uden du bliver spurgt om bekræftigelse, så læg dem et andet sted hvis 
+  de er vigtige.&lt;br&gt;
+  &lt;br&gt;
+  Find flere VLC-udvidelser på
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>Sprog for brugerflade</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;VLSub virker ikke på nogen platform 
+  med VLC 2.1.x, &lt;/strong&gt;
+  fordi lua &quot;net&quot;-modulet, som kræves til at 
+  interagerer med opensubtitles er blevet 
+  fjernet i denne udgivelse til udvidelserne.
+  &lt;br&gt;
+  &lt;strong&gt;Virker med VLC 2.2 på mac og linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;På windows skal du installere en 
+  ældre version af VLC for at&lt;/strong&gt;
+  bruge VLSub (f.eks. 2.0.8):
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
 <int_ok>OK</int_ok>
+<int_os_password>Adgangskode</int_os_password>
+<int_os_username>Brugernavn</int_os_username>
 <int_remove_tag>Fjern tags</int_remove_tag>
 <int_research>Søg</int_research>
 <int_save>Gem</int_save>
 <int_search_hash>Søg efter hash</int_search_hash>
-<int_searching_transl>Søger efter oversættelser...</int_searching_transl>
 <int_search_name>Søg efter navn</int_search_name>
 <int_search_transl>Søg efter oversættelser</int_search_transl>
+<int_searching_transl>Søger efter oversættelser...</int_searching_transl>
 <int_season>Sæson (serier)</int_season>
 <int_show_conf>Vis konfiguration</int_show_conf>
 <int_show_help>Vis hjælp</int_show_help>
@@ -37,8 +90,11 @@
 <int_vlsub_work_dir>VLSub arbejdsmappe</int_vlsub_work_dir>
 <mess_click_link>Klik her for at åbne filen</mess_click_link>
 <mess_complete>Søgning fuldført</mess_complete>
-<mess_dowload_link>Downoadlink</mess_dowload_link>
+<mess_dowload_link>Downloadlink</mess_dowload_link>
 <mess_downloading>Downloader undertekst</mess_downloading>
+<mess_err_cant_download_interface_translation>Kunne ikke downloade oversættelse af brugerflade</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Kan ikke finde egnet sti til at gemme konfiguration. Sæt den venligst manuelt</mess_err_conf_access>
+<mess_err_wrong_path>Stien indeholder ulovlige tegn. Ret det venligst</mess_err_wrong_path>
 <mess_error>Fejl</mess_error>
 <mess_expired>Session udløbet, prøver igen</mess_expired>
 <mess_loaded>Undertekster indlæst</mess_loaded>
@@ -48,6 +104,7 @@
 <mess_no_selection>Ingen undertekster valgt</mess_no_selection>
 <mess_not_found>Fil ikke fundet</mess_not_found>
 <mess_not_found2>Fil ikke fundet (ugyldigt tegn?)</mess_not_found2>
+<mess_not_load>Kan ikke indlæse undertekster</mess_not_load>
 <mess_not_local>Denne metode virker kun med lokal fil (indtil videre)</mess_not_local>
 <mess_overloaded>Server overbelastet, prøv venligst igen senere</mess_overloaded>
 <mess_res>resultat(er)</mess_res>

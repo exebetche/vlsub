@@ -1,4 +1,4 @@
-<action_hash>מחרוזת הגיבוב של הסרט מחושבת</action_hash>
+<action_hash>גיבוב הסרט מחושב</action_hash>
 <action_login>מתבצעת כניסה</action_login>
 <action_logout>מתבצעת יציאה</action_logout>
 <action_noop>ההפעלה נבדקת</action_noop>
@@ -20,16 +20,71 @@
 <int_dowload_sel>להוריד את הבחירה</int_dowload_sel>
 <int_episode>פרק (סדרה)</int_episode>
 <int_help>עזרה</int_help>
-<int_help_mess>&lt;div style=&#39;direction: rtl;&#39;&gt; הורדת כתוביות מ־&lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; והצגתן בעת צפייה בווידאו.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Usage:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub מיועדת לשימוש בעת הצפייה בווידאו, לכן יש להפעיל אותה תחילה (אם שום דבר לא מתנגן יופיע קישור להורדת הכתוביות בדפדפן שלך).&lt;br&gt; &lt;br&gt; יש לבחור את שפת הכתוביות המועדפת עליך וללחוץ על הלחצן המתאים לאחת משתי שיטות המחקר שמוצעות על ידי VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;שיטה מס׳ 1: חיפוש לפי מחרוזת גיבוב&lt;/b&gt;&lt;br&gt; מומלץ לנסות את השיטה הזאת קודם, כיוון שהיא מבססת את המחקר על חותמת קובץ הווידאו, כך שניתן למצוא כתוביות שיסתנכרנו עם סרטון הווידאו שלך.&lt;br&gt; &lt;br&gt; &lt;b&gt;שיטה מס׳ 2: חיפוש לפי שם&lt;/b&gt;&lt;br&gt; אם לא שפר מזלך עם השיטה הראשונה, עליך פשוט לבדוק האם הכותרת נכונה לפני המשך התהליך. אם הכתוביות הרצויות לך הן של סדרה, ניתן גם לציין עונה ואת מספר הפרק.&lt;br&gt; &lt;br&gt; &lt;b&gt;הורדת כתוביות&lt;/b&gt;&lt;br&gt; ניתן לבחור בערכת כתוביות אחת מהרשימה וללחוץ על &#39;הורדה&#39;.&lt;br&gt; פעולה זו תוסיף את הכתוביות באותה התיקייה עם קובץ הווידאו, באותו השם (עם סיומת שונה) כדי של־VLC תהיה אפשרות לטעון אותה אוטומטית בפעם הבאה שהווידאו יופעל.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ לתשומת לבך :&lt;/b&gt; כתוביות קיימות נדרסות ללא צורך באישור, לכן כדאי לשים אותן במקום אחר אם הן חשובות.&lt;br&gt; &lt;br&gt; ניתן למצוא עוד תוספות של VLC בכתובת &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess>      הורדת כתוביות מהאתר 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  והצגתן בזמן הצגת סרטון.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;שימוש:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  ניתן לנגן את הסרטון שלך. אם בחרת להשתמש ב־VLSub ללא נגינת סרטון 
+  יופיע בפניך קישור להורדת הכתוביות בדפדפן שלך 
+  אך הכתוביות לא תישמרנה ותיטענה אוטומטית.&lt;br&gt;
+  &lt;br&gt;
+  ניתן לבחור את שפת הכתוביות שלך וללחוץ על 
+  הכפתור המתאים לאחת מתוך שתי גישות מחקר
+  שמסופקות על ידי VLSub:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;שיטה 1: חיפוש לפי גיבוב&lt;/b&gt;&lt;br&gt;
+  מומלץ לנסות את השיטה הזאת קודם, כיוון שהיא 
+  מבצעת חיפוש על סמך טביעת האצבע של הסרטון, כדי 
+  שניתן יהיה למצוא כתוביות מסונכרנות לסרטון שלך.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;שיטה 2: חיפוש לפי שם&lt;/b&gt;&lt;br&gt;
+  אם השיטה הראשונה לא צלחה, עליך פשוט לוודא שהכותרת 
+  נכונה לפי הלחיצה. בחיפוש אחר כתוביות לסדרות, ניתן גם 
+  לציין עונה ומספר פרק.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;הורדת כתוביות&lt;/b&gt;&lt;br&gt;
+  יש לבחור בכתובית אחת מהרשימה וללחוץ על ‚הורדה’.&lt;br&gt;
+  הקובץ יתקבל לאותה התיקייה בה נמצא הסרטון, באותו השם 
+  (עם סיומת שונה)  כדי ש־VLC יטען אותו אוטומטית
+  עם נגינת הסרטון.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ לתשומת לבך:&lt;/b&gt; כתוביות קיימות משוכתבות 
+  ללא הצגת בקשה, כך שכדאי לשים אותן במקום אחר 
+  אם יש להן ערך.&lt;br&gt;
+  &lt;br&gt;
+  ניתן למצוא תוספות נוספות ל־ VLC בכתובת
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>שפת המנשק</int_int_lang>
+<int_no_support_mess>&lt;strong&gt;      VLSub לא עובד עם VLC 2.1.x באף 
+  אחת מהפלטפורמות&lt;/strong&gt;
+  כיוון שהרכיב „net” של Lua שנדרש לטובת תקשורת 
+  מול opensubtitles הוסר 
+  במהדורה זו של ההרחבות.
+  &lt;br&gt;
+  &lt;strong&gt;עובד עם VLC 2.2 על גבי mac ולינוקס.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;ב־windows עליך להתקין גרסה ישנה יותר 
+  של VLC (לדוגמה 2.0.8)&lt;/strong&gt;
+  כדי להשתמש ב־VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
 <int_ok>אישור</int_ok>
+<int_os_password>סיסמה</int_os_password>
+<int_os_username>שם משתמש</int_os_username>
 <int_remove_tag>הסרת תגיות</int_remove_tag>
 <int_research>מחקר</int_research>
 <int_save>שמירה</int_save>
 <int_search_hash>חיפוש לפי מחרוזת גיבוב</int_search_hash>
-<int_searching_transl>בחיפוש אחר כתוביות ...</int_searching_transl>
 <int_search_name>Sחיפוש לפי שם</int_search_name>
 <int_search_transl>חיפוש כתוביות</int_search_transl>
+<int_searching_transl>מתבצע חיפוש אחר כתוביות…</int_searching_transl>
 <int_season>עונה (סדרה)</int_season>
 <int_show_conf>הצגת ההגדרות</int_show_conf>
 <int_show_help>הצגת העזרה</int_show_help>
@@ -39,6 +94,9 @@
 <mess_complete>המחקר הושלם</mess_complete>
 <mess_dowload_link>קישור להורדה</mess_dowload_link>
 <mess_downloading>הכתוביות בהורדה</mess_downloading>
+<mess_err_cant_download_interface_translation>לא ניתן להוריד את תרגום המנשק</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>לא ניתן למצוא נתיב מתאים לשמירת התצורה, נא להגדיר אותו ידנית</mess_err_conf_access>
+<mess_err_wrong_path>הנתיב מכיל תווים בלתי חוקיים, נא לתקן אותו</mess_err_wrong_path>
 <mess_error>שגיאה</mess_error>
 <mess_expired>ההפעלה פגה, מתבצע ניסיון נוסף</mess_expired>
 <mess_loaded>הכתוביות נטענו</mess_loaded>
@@ -48,6 +106,7 @@
 <mess_no_selection>לא נבחרו כתוביות</mess_no_selection>
 <mess_not_found>הקובץ לא נמצא</mess_not_found>
 <mess_not_found2>הקובץ לא נמצא (תווים בלתי חוקיים?)</mess_not_found2>
+<mess_not_load>לא ניתן לטעון כתוביות</mess_not_load>
 <mess_not_local>שיטה זו עובדת עם קבצים מקומיים בלבד (כרגע)</mess_not_local>
 <mess_overloaded>השרת עמוס, נא לנסות שוב מאוחר יותר</mess_overloaded>
 <mess_res>תוצאה/אות</mess_res>

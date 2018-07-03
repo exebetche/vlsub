@@ -1,0 +1,114 @@
+<action_hash>Reikna tætigildi kvikmyndar</action_hash>
+<action_login>Skrái inn</action_login>
+<action_logout>Skrái út</action_logout>
+<action_noop>Athuga setu</action_noop>
+<action_search>Leita að skjátextum</action_search>
+<int_all>Allt</int_all>
+<int_bool_false>Nei</int_bool_false>
+<int_bool_true>Já</int_bool_true>
+<int_cancel>Hætta við</int_cancel>
+<int_close>Loka</int_close>
+<int_config>Uppsetn.</int_config>
+<int_configuration>Uppsetning</int_configuration>
+<int_default_lang>Tungumál skjátexta</int_default_lang>
+<int_descr>Sækja skjátexta frá OpenSubtitles.org</int_descr>
+<int_display_code>Birta tungumálskóða í skráarheiti</int_display_code>
+<int_dowload_behav>Hvað á að gera við skjátexta</int_dowload_behav>
+<int_dowload_load>Aðeins hlaða inn</int_dowload_load>
+<int_dowload_manual>Hlaða niður handvirkt</int_dowload_manual>
+<int_dowload_save>Hlaða og vista</int_dowload_save>
+<int_dowload_sel>Sækja valið</int_dowload_sel>
+<int_episode>Þáttur (þáttaröð)</int_episode>
+<int_help>Hjálp</int_help>
+<int_help_mess>      Sæktu skjátexta frá 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  og sýndu þá um leið og horft er á mynd.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Notkun:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Ræstu myndskeiðið/kvikmyndina. Ef þú notar VLSub án þess að spila myndskeið 
+  færðu uppgefinn tengil til að sækja skjátextana í vafranum þínum 
+  en þá eru þeir ekki vistaðir og hlaðið inn sjálfvirkt.&lt;br&gt;
+  &lt;br&gt;
+  Veldu tungumál fyrir skjátextana og smelltu á 
+  hnappinn sem samsvarar annarri þeirra leitaraðferða
+  sem VLSub býður upp á:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Aðferð 1: Leita eftir tætigildi (hash)&lt;/b&gt;&lt;br&gt;
+  Mælt er með að prófa þetta fyrst, því þá er leitað 
+  eftir fingrafari sjálfrar myndarinnar, þannig að líklegra er að finna skjátexta sem samstilltir eru við myndskeiðið þitt.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Aðferð 2: Leita eftir nafni&lt;/b&gt;&lt;br&gt;
+  Ef fyrri aðferðin gefur ekki góða raun, skaltu skoða hvort titillinn er réttur áður en þú smellir. Ef þú leitar að skjátextum 
+  fyrir þáttaröð, geturðu einnig gefið upp árgang og númer
+  þáttar.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Niðurhal skjátexta&lt;/b&gt;&lt;br&gt;
+  Veldu eina skjátextaskrá í listanum og smelltu á &#39;Sækja&#39;.&lt;br&gt;
+  Hún verður vistuð í sömu möppu og myndskeiðið, undir sama heiti (önnur skráarending)
+  svo að VLC muni hlaða henni inn sjálfkrafa næst þegar þú
+  spilar myndskeiðið.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Varúð:&lt;/b&gt; Skrifað er yfir fyrirliggjandi skjátexta
+  án þess að biðja um staðfestingu, þannig að þú ættir að geyma
+  afrit af þeim annarsstaðar, séu þeir mikilvægir.&lt;br&gt;
+  &lt;br&gt;
+  Skoðaðu fleiri viðbætur fyrir VLC á
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
+<int_int_lang>Tungumál viðmóts</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;VLSub virkar ekki með VLC 2.1.x á 
+  neinu stýrikerfi&lt;/strong&gt;
+  vegna þess að Lua &quot;net&quot; einingin sem nauðsynleg er
+  fyrir   virkni með opensubtitles var fjarlægð 
+  úr þessari útgáfu viðbótarinnar.
+  &lt;br&gt;
+  &lt;strong&gt;Virkar með VLC 2.2 á Mac og Linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;Á Windows þarftu að setja upp eldri útgáfu 
+  af VLC (til dæmis 2.0.8)&lt;/strong&gt;
+  til að geta notað VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
+<int_ok>Í lagi</int_ok>
+<int_os_password>Lykilorð</int_os_password>
+<int_os_username>Notandanafn</int_os_username>
+<int_remove_tag>Fjarlægja merki</int_remove_tag>
+<int_research>Kanna</int_research>
+<int_save>Vista</int_save>
+<int_search_hash>Leita eftir tætigildi</int_search_hash>
+<int_search_name>Leita eftir nafni</int_search_name>
+<int_search_transl>Leita í þýðingum</int_search_transl>
+<int_searching_transl>Leita í þýðingum...</int_searching_transl>
+<int_season>Árgangur (þáttaröð)</int_season>
+<int_show_conf>Birta stillingaskrá</int_show_conf>
+<int_show_help>Birta hjálp</int_show_help>
+<int_title>Titill</int_title>
+<int_vlsub_work_dir>Vinnumappa VLSub</int_vlsub_work_dir>
+<mess_click_link>Smelltu til að opna skrána</mess_click_link>
+<mess_complete>Könnun lokið</mess_complete>
+<mess_dowload_link>Niðurhalstengill</mess_dowload_link>
+<mess_downloading>Sæki skjátexta</mess_downloading>
+<mess_err_cant_download_interface_translation>Gat ekki sótt viðmótsþýðingu</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Gat ekki fundið hentuga slóð til að vista stillingaskrána á, þú verður að gera það handvirkt.</mess_err_conf_access>
+<mess_err_wrong_path>Slóðin inniheldur ógildan staf, endilega leiðréttu þetta</mess_err_wrong_path>
+<mess_error>Villa</mess_error>
+<mess_expired>Seta útrunnin, reyni aftur</mess_expired>
+<mess_loaded>Skjátextum hlaðið inn</mess_loaded>
+<mess_no_input>Notaðu þessa aðferð á meðan afspilun stendur</mess_no_input>
+<mess_no_res>Engar niðurstöður</mess_no_res>
+<mess_no_response>Þjónn svarar ekki</mess_no_response>
+<mess_no_selection>Engir skjátextar valdir</mess_no_selection>
+<mess_not_found>Skrá fannst ekki</mess_not_found>
+<mess_not_found2>Skrá fannst ekki (ógildur stafur?)</mess_not_found2>
+<mess_not_load>Mistókst að hlaða inn skjátextum</mess_not_load>
+<mess_not_local>Þessi aðferð virkar einungis með staðværum skrám (eins og er)</mess_not_local>
+<mess_overloaded>Þjónninn er yfirhlaðinn, reyndu aftur síðar</mess_overloaded>
+<mess_res>niðurstöður</mess_res>
+<mess_save_fail>Mistókst að vista skjátexta</mess_save_fail>
+<mess_success>Tókst</mess_success>
+<mess_unauthorized>Beiðni ekki heimil</mess_unauthorized>

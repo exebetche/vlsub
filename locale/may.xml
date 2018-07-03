@@ -1,0 +1,117 @@
+<action_hash>Mengira cincangan cereka</action_hash>
+<action_login>Mendaftar masuk</action_login>
+<action_logout>Mendaftar keluar</action_logout>
+<action_noop>Memeriksa sesi</action_noop>
+<action_search>Menggelintar sarikata</action_search>
+<int_all>Semua</int_all>
+<int_bool_false>Tidak</int_bool_false>
+<int_bool_true>Ya</int_bool_true>
+<int_cancel>Batal</int_cancel>
+<int_close>Tutup</int_close>
+<int_config>Konfig</int_config>
+<int_configuration>Konfigurasi</int_configuration>
+<int_default_lang>Bahasa sarikata</int_default_lang>
+<int_descr>Muat turun sarikata dari OpenSubtitles.org</int_descr>
+<int_display_code>Papar kod bahasa di dalam nama fail</int_display_code>
+<int_dowload_behav>Apa yang hendak dilakukan dengan sarikata</int_dowload_behav>
+<int_dowload_load>Muat sahaja</int_dowload_load>
+<int_dowload_manual>Muat turun manual</int_dowload_manual>
+<int_dowload_save>Muat dan simpan</int_dowload_save>
+<int_dowload_sel>Pemilihan muat turun</int_dowload_sel>
+<int_episode>Episod (siri)</int_episode>
+<int_help>Bantuan</int_help>
+<int_help_mess>Muat turun sarikata dari 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  dan paparkannya ketika menonton video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Penggunaan:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Mulakan video anda. Jika anda guna VLSub tanpa memainkan video 
+  anda akan pergi ke pautan muat turun sarikata melalui pelayar anda 
+  tetapi sarikata tidak disimpan dan dimuatkan secara automatik.&lt;br&gt;
+  &lt;br&gt;
+  Pilih bahasa sarikata anda dan klik pada butang berkenaan 
+  mengikut kaedah kajian satu atau kajian dua yang
+  disediakan oleh VLSub:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Kaedah 1: Gelintar mengikut cincangan&lt;/b&gt;&lt;br&gt;
+  Disarankan menggunakan kaedah ini dahulu, kerana ia 
+  melakukan kajian berdasarkan cetakan fail video, supaya 
+  anda dapat mencari sarikata yang segerak dengan video anda.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Kaedah 2: Gelintar mengikut nama&lt;/b&gt;&lt;br&gt;
+  Jika kaedah pertama tidak berjaya, hanya tandakan 
+  tajuk sebelum mengklik. Jika anda menggelintar sarikata 
+  siri, anda boleh masukkan musim dan nombor
+  episodnya.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Memuat Turun Sarikata&lt;/b&gt;&lt;br&gt;
+  Pilih satu sarikata di dalam senarai dan klik &#39;Muat Turun&#39;.&lt;br&gt;
+  Ia akan dimasukkan ke dalam direktori yang sama dengan 
+  video anda yang sama namanya (tetapi berlain sambungan)
+  supaya VLC dapat memuatkannya secara automatik jika anda
+  memulakan video dilain masa.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Amaran:&lt;/b&gt; Sarikata sedia akan ditulis-ganti 
+  tanpa ditanya pengesahan terlebih dahulu, oleh itu asingkannya 
+  jika sarikata itu penting.&lt;br&gt;
+  &lt;br&gt;
+  Ketahui lebih lanjut berkenaan sambungan VLC di
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
+<int_int_lang>Bahasa antaramuka</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;VLSub tidak berfungsi dengan VLC 2.1.x pada 
+  mana-mana platform&lt;/strong&gt;
+  ini kerana modul &quot;net&quot; lua diperlukan untuk 
+  berinteraksi dengan opensubtitles telah dibuang 
+  dalam keluaran bagi sambungan.
+  &lt;br&gt;
+  &lt;strong&gt;Berfungsi dengan VLC 2.2 pada mac dan linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;Pada windows nada perlu memasang versi  lama 
+  VLC (2.0.8 sebagai contoh)&lt;/strong&gt;
+  untuk menggunakan VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
+<int_ok>Ok</int_ok>
+<int_os_password>Kata laluan</int_os_password>
+<int_os_username>Nama pengguna</int_os_username>
+<int_remove_tag>Buang tag</int_remove_tag>
+<int_research>Kaji</int_research>
+<int_save>Simpan</int_save>
+<int_search_hash>Gelintar mengikut cincangan</int_search_hash>
+<int_search_name>Gelintar mengikut nama</int_search_name>
+<int_search_transl>Gelintar terjemahan</int_search_transl>
+<int_searching_transl>Menggelintar terjemahan...</int_searching_transl>
+<int_season>Musim (siri)</int_season>
+<int_show_conf>Tunjuk konfig</int_show_conf>
+<int_show_help>Tunjuk bantuan</int_show_help>
+<int_title>Tajuk</int_title>
+<int_vlsub_work_dir>Direktori kerja VLSub</int_vlsub_work_dir>
+<mess_click_link>Klik di sini untuk membuka fail</mess_click_link>
+<mess_complete>Kaji selesai</mess_complete>
+<mess_dowload_link>Pautan muat turun</mess_dowload_link>
+<mess_downloading>Memuat turun sarikata</mess_downloading>
+<mess_err_cant_download_interface_translation>Tidak dapat memuat turun terjemahan antaramuka</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Tidak dapat cari laluan yang sesuai untuk menyimpan konfig, sila tetapkannya secara manual</mess_err_conf_access>
+<mess_err_wrong_path>Laluan mengandungi aksara tidak sah, sila betulkannya</mess_err_wrong_path>
+<mess_error>Ralat</mess_error>
+<mess_expired>Sesi telah tamat tempoh, mencuba sekali lagi</mess_expired>
+<mess_loaded>Sarikata dimuatkan</mess_loaded>
+<mess_no_input>Sila gunakan kaedah ini ketika dimainkan</mess_no_input>
+<mess_no_res>Tiada keputusan</mess_no_res>
+<mess_no_response>Pelayan tidak memberi tindak balas</mess_no_response>
+<mess_no_selection>Tiada sarikata dipilih</mess_no_selection>
+<mess_not_found>Fail tidak ditemui</mess_not_found>
+<mess_not_found2>Fail tidak ditemui (aksara tidak sah?)</mess_not_found2>
+<mess_not_load>Tidak boleh memuatkan sarikata</mess_not_load>
+<mess_not_local>Kaedah ini hanya berfungsi dengan fail setempat sahaja (buat masa ini)</mess_not_local>
+<mess_overloaded>Pelayan terlebih beban, sila cuba lagi kemudian</mess_overloaded>
+<mess_res>keputusan</mess_res>
+<mess_save_fail>Tidak boleh menyimpan sarikata</mess_save_fail>
+<mess_success>Berjaya</mess_success>
+<mess_unauthorized>Permintaan tidak diizinkan</mess_unauthorized>

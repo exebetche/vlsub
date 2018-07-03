@@ -37,23 +37,7 @@ local options = {
   progressBarSize = 80,
   intLang = 'eng',
   translations_avail = {
-    eng = 'English',
-    cze = 'Czech', 
-    dan = 'Danish', 
-    dut = 'Nederlands',
-    fin = 'Finnish',
-    fre = 'Français',
-    ell = 'Greek',
-    baq = 'Basque',
-    pob = 'Brazilian Portuguese',
-    por = 'Portuguese (Portugal)',
-    rum = 'Romanian',
-    slo = 'Slovak',
-    spa = 'Spanish',
-    swe = 'Swedish',
-    ukr = 'Ukrainian',
-    hun = 'Hungarian',
-    scc = 'Serbian'
+    eng = 'English'
   },
   translation = {
     int_all = 'All',
@@ -123,7 +107,7 @@ local options = {
       so VLC will load them automatically the next time you'll 
       start the video.<br>
       <br>
-      <b>/!\\ Beware :</b> Existing subtitles are overwritten 
+      <b>/!\ Beware :</b> Existing subtitles are overwritten 
       without asking confirmation, so put them elsewhere if 
       they're important.<br>
       <br>
@@ -1078,8 +1062,7 @@ function get_available_translations()
 -- causing error  with github https CA certficate on OS X an XP)
 -- https://github.com/exebetche/vlsub/tree/master/locale
 
-  local translations_url = "http://addons.videolan.org/CONTENT/"..
-    "content-files/148752-vlsub_translations.xml"
+  local translations_url = "http://pastebin.com/raw/nWs1yYfx"
   
   if input_table['intLangBut']:get_text() == lang["int_search_transl"] 
   then

@@ -1,53 +1,117 @@
-<action_hash>Розрахунок вiдео хашу</action_hash>
-<action_login>Увiйти</action_login>
-<action_logout>Вийти</action_logout>
-<action_noop>Перевiрити сеанс</action_noop>
-<action_search>Пошук субтитрiв</action_search>
+<action_hash>Розрахунок хешу фільму</action_hash>
+<action_login>Вхід</action_login>
+<action_logout>Вихід</action_logout>
+<action_noop>Перевірка сеансу</action_noop>
+<action_search>Пошук субтитрів</action_search>
 <int_all>Усi</int_all>
-<int_cancel>Вiдмiнити</int_cancel>
+<int_bool_false>Ні</int_bool_false>
+<int_bool_true>Так</int_bool_true>
+<int_cancel>Скасувати</int_cancel>
 <int_close>Закрити</int_close>
-<int_config>Настройки</int_config>
-<int_configuration>Настройки</int_configuration>
+<int_config>Файл налаштувань</int_config>
+<int_configuration>Налаштування</int_configuration>
 <int_default_lang>Мова субтитрiв</int_default_lang>
-<int_descr>Завантаження субтитрiв з OpenSubtitles.org</int_descr>
-<int_display_code>Показувати мовний код в назвi файлу</int_display_code>
-<int_dowload_behav>Що робити з субтитрами</int_dowload_behav>
+<int_descr>Завантажити субтитри з OpenSubtitles.org</int_descr>
+<int_display_code>Показувати код мови у назвi файлу</int_display_code>
+<int_dowload_behav>Дії з субтитрами</int_dowload_behav>
 <int_dowload_load>Тiльки завантажити</int_dowload_load>
-<int_dowload_manual>Ручне завантаження</int_dowload_manual>
+<int_dowload_manual>Вручну завантажити</int_dowload_manual>
 <int_dowload_save>Завантажити i зберегти</int_dowload_save>
 <int_dowload_sel>Завантажити вибранi</int_dowload_sel>
 <int_episode>Епiзод (серiï)</int_episode>
-<int_help>Допомога</int_help>
-<int_help_mess>Завинтажити субтитри з &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; i показати протягом вiдтворення.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Використання:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub буде використовуватись протягом вiдтворення, так що вiдкрийте його першим (якщо нiчого немає у вiдтвореннi, получите посилання для загрузки з браузера).&lt;br&gt; &lt;br&gt; Вибери мову субтитрiв i нажми на вiдповiдну кнопку, одного з двох методiв пошуку  представлених вiд VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Метод 1: Пошук по хашу&lt;/b&gt;&lt;br&gt;Це рекомендований метод, тому що пошук ведеться завдяки розпiзнавання вiдео, це дає змову найти синхронiзованi субтитри для вiдео.&lt;br&gt; &lt;br&gt; &lt;b&gt;Метод 2: Пошук по iменi&lt;/b&gt;&lt;br&gt; Якщо перший метод не спрацював, перевiр назву чи вона вiрна перед тим як нажати на кнопку, можеш ввести номер сезону i номер серiï.&lt;br&gt; &lt;br&gt; &lt;b&gt;Завантаження субтитрiв&lt;/b&gt;&lt;br&gt;Вибери однi субтитри з списку i нажми на &quot;Завантажити&quot;.&lt;br&gt; Завантажаться в ту ж папку де знаходиться вiдео, з таким ж iм&#39;ям(рiзнi розширення) тому Vlc ïх завантажить автоматично коли почнеться вiдтворення вiдео.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Обережно :&lt;/b&gt; iснуючi субтитри будуть перезаписанi без запиту пiдтвердження, тому якщо тобi важливi iснуючi субтитри, переiменуй ïх або збережи у iншiй папцi.&lt;br&gt; &lt;br&gt; Можеш знайти бiльше розширеннь для Vlc на цiй сторiнцi &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help>Довідка</int_help>
+<int_help_mess>      Звантажуйте субтитри із 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  та відображайте їх під час перегляду відео.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Використання:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Запустіть своє відео. Якщо ви використовуєте VLSub без відтворення відео, 
+  то отримаєте посилання для звантаження субтитрів у своєму веб-переглядачі, 
+  але ці субтитри не будуть автоматично збережені та завантажені.&lt;br&gt;
+  &lt;br&gt;
+  Виберіть мову для ваших субтитрів та клацніть на 
+  кнопці, що відповідає одному з двох методів,
+  наданих VLSub:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Метод 1: пошук за хешем&lt;/b&gt;&lt;br&gt;
+  Рекомендується спробувати спершу цей метод, бо він 
+  виконує пошук на основі файлу відео, тобто ви 
+  можете знайти субтитри, синхронізовані із вашим відео.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Пошук 2: пошук за назвою&lt;/b&gt;&lt;br&gt;
+  Коли вам не повезло з першим методом, просто перевірте 
+  правильність заголовку перед клацанням. У випадку пошуку субтитрів 
+  для багатосерійного фільму можна також вказати номери сезону та 
+  епізоду.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Завантаження субтитрів&lt;/b&gt;&lt;br&gt;
+  Виберіть одні субтитри зі списку та клацніть &#39;Завантажити&#39;.&lt;br&gt;
+  Вони будуть розміщені у тому ж каталозі, що й ваше відео, з 
+  тим самим ім&#39;ям (інше розширення),
+  тому VLC буде автоматично завантажувати їх наступного разу, коли ви
+  запустите це відео.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ УВАГА:&lt;/b&gt; Наявні субтитри будуть переписані 
+  без запиту підтвердження, тому розмістіть їх деінде, коли вони 
+  ще важливі.&lt;br&gt;
+  &lt;br&gt;
+  Знайдуть більше розширень VLC на
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>Мова iнтерфейсу</int_int_lang>
-<int_ok>Ок</int_ok>
-<int_remove_tag>Видалити таг</int_remove_tag>
+<int_no_support_mess>      &lt;strong&gt;VLSub не працює із VLC 2.1.x на 
+  будь-якій платформі,&lt;/strong&gt;
+  тому модуль lua "net", потрібний для взаємодії 
+  з відкритими субтитрами, вже вилучений 
+  у цьому випуску із розширень.
+  &lt;br&gt;
+  &lt;strong&gt;Працює із VLC 2.2 на mac та linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;На windows вам потрібно встановити старішу версію 
+  VLC (наприклад, 2.0.8)&lt;/strong&gt;
+  для використання VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
+<int_ok>Гаразд</int_ok>
+<int_os_password>Пароль</int_os_password>
+<int_os_username>Ім&#39;я користувача</int_os_username>
+<int_remove_tag>Видалити теги</int_remove_tag>
 <int_research>Новий пошук</int_research>
 <int_save>Зберегти</int_save>
-<int_search_hash>Шукати за хашем</int_search_hash>
-<int_searching_transl>Пошук перекладу...</int_searching_transl>
-<int_search_name>Пошук по iменi</int_search_name>
-<int_search_transl>Пошук перекладу</int_search_transl>
+<int_search_hash>Пошук за хешем</int_search_hash>
+<int_search_name>Пошук за іменем</int_search_name>
+<int_search_transl>Пошук перекладів</int_search_transl>
+<int_searching_transl>Пошук перекладів…</int_searching_transl>
 <int_season>Сезон (серiï)</int_season>
-<int_show_conf>Показати файл настройок</int_show_conf>
-<int_show_help>Показати допомогу</int_show_help>
+<int_show_conf>Показати файл налаштувань</int_show_conf>
+<int_show_help>Показати довідку</int_show_help>
 <int_title>Назва</int_title>
-<mess_click_link>Нажати тут щоб вiдкрити</mess_click_link>
+<int_vlsub_work_dir>Робочий каталог VLSub</int_vlsub_work_dir>
+<mess_click_link>Клацніть тут, щоб відкрити файл</mess_click_link>
 <mess_complete>Новий пошук завершений</mess_complete>
-<mess_dowload_link>Скачати посилання</mess_dowload_link>
-<mess_downloading>Скачати субтитри</mess_downloading>
+<mess_dowload_link>Звантажити посилання</mess_dowload_link>
+<mess_downloading>Звантаження субтитрів</mess_downloading>
+<mess_err_cant_download_interface_translation>Неможливо звантажити переклад інтерфейсу</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Не вдається знайти відповідний шлях для збереження конфігурації. Будь ласка, задайте його вручну</mess_err_conf_access>
+<mess_err_wrong_path>Цей шлях містить неправильний символ. Виправте це</mess_err_wrong_path>
 <mess_error>Помилка</mess_error>
-<mess_expired>Сеанс закiнчився, повторне пiдключення</mess_expired>
-<mess_loaded>Субтитри завантаженнi</mess_loaded>
-<mess_no_input>Будь ласка використовуй цей медот протягом вiдтворення</mess_no_input>
+<mess_expired>Сеанс закінчився, повторне під&#39;єднання</mess_expired>
+<mess_loaded>Субтитри завантажені</mess_loaded>
+<mess_no_input>Будь ласка, використовуйте цей метод під час відтворення</mess_no_input>
 <mess_no_res>Без результатiв</mess_no_res>
 <mess_no_response>Сервер не вiдповiдає</mess_no_response>
 <mess_no_selection>Субтитри не вибранi</mess_no_selection>
-<mess_not_found>Файл не знайденний</mess_not_found>
-<mess_not_found2>Файл не знайденний (недозволеннi символи?)</mess_not_found2>
-<mess_not_local>Цей метод працює тiльки з локальними файлами (на даний момент)</mess_not_local>
-<mess_overloaded>Сервер перезавантаженний, будь ласка спробуй чуть пiзнiше</mess_overloaded>
+<mess_not_found>Файл не знайдений</mess_not_found>
+<mess_not_found2>Файл не знайдений (недозволений символ?)</mess_not_found2>
+<mess_not_load>Неможливо звантажити субтитри</mess_not_load>
+<mess_not_local>Цей метод працює тільки з локальним файлом (наразі)</mess_not_local>
+<mess_overloaded>Сервер перезавантажений, спробуйте пізніше</mess_overloaded>
 <mess_res>результат(iв)</mess_res>
 <mess_save_fail>Неможливо зберегти субтитри</mess_save_fail>
-<mess_success>Правильно</mess_success>
+<mess_success>Успіх</mess_success>
 <mess_unauthorized>Неавторизований запит</mess_unauthorized>

@@ -1,0 +1,115 @@
+<action_hash>Poteka preračunavanje nadzorne vsote videa ...</action_hash>
+<action_login>Poteka prijavljanje ...</action_login>
+<action_logout>Poteka odjavljanje ...</action_logout>
+<action_noop>Poteka preverjanje seje ...</action_noop>
+<action_search>Poteka iskanje podnapisov ...</action_search>
+<int_all>Vse</int_all>
+<int_bool_false>Ne</int_bool_false>
+<int_bool_true>Da</int_bool_true>
+<int_cancel>Prekliči</int_cancel>
+<int_close>Zapri</int_close>
+<int_config>Prilagoditev</int_config>
+<int_configuration>Prilagoditev</int_configuration>
+<int_default_lang>Jezik podnapisov</int_default_lang>
+<int_descr>Prejmi podnapise z OpenSubtitles.org</int_descr>
+<int_display_code>V imenu datoteke prikaži kodo jezika</int_display_code>
+<int_dowload_behav>Podnapise</int_dowload_behav>
+<int_dowload_load>le naloži</int_dowload_load>
+<int_dowload_manual>prejmi na disk</int_dowload_manual>
+<int_dowload_save>naloži in shrani</int_dowload_save>
+<int_dowload_sel>Prejmi izbor</int_dowload_sel>
+<int_episode>Epizoda (nanizanka/nadaljevanka)</int_episode>
+<int_help>Pomoč</int_help>
+<int_help_mess>      Program omogoča prejemanje podnapisov z
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  in prikazovanje med gledanjem posnetka.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Uporaba:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Najprej je treba začeti s predvajanjem. Program VLSub le tako 
+  samodejno uporabi podnapise. Če se vsebina ne predvaja, se pokaže 
+  povezava za prejem podnapisa v brskalniku.&lt;br&gt;
+  &lt;br&gt;
+  Izberite jezik podnapisa in kliknite na ustrezen gumb za zagon 
+  iskanja s programom VLSub:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Način 1: iskanje po nadzorni vsoti&lt;/b&gt;&lt;br&gt;
+  Ta način je priporočljivo izbrati prednostno, saj zažene iskanje 
+  glede na datotečni odtis in išče podnapise, ki so usklajeni s 
+  predvajanim posnetkom.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Način 2: Iskanje po imenu&lt;/b&gt;&lt;br&gt;
+  V kolikor na prvi način ni ustreznih zadetkov, uporabite ta način, 
+  vendar vedno preverite pravilnost zapisa naslova posnetka. Za podnapise 
+  nanizank je dobro navesti tudi sezono in nadaljevanje.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Prejemanje podnapisov&lt;/b&gt;&lt;br&gt;
+  Izberite podnapis s seznama in kliknite na gumb » Prejmi «.&lt;br&gt;
+  Datoteka podnapisa bo shranjena v mapo, v kateri je že shranjen posnetek 
+  z istim imenom (različna bo pripona datoteke) in ga lahko predvajalnik 
+  naloži samodejno ob naslednjem zagonu posnetka.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Opozorilo:&lt;/b&gt; Obstoječi podnapisi bodo samodejno 
+  prepisani brez opozorila, zato je priporočljivo datoteke shranjevati 
+  v ločeno mapo.&lt;br&gt;
+  &lt;br&gt;
+  Več razširitev za predvajalnik VLC je objavljenih na spletišču
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
+<int_int_lang>Jezik vmesnika</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;Program VLSub ni podprt v različici predvajalnika VLC 2.1.x v 
+  kateremkoli okolju&lt;/strong&gt;,
+  ker je odstranjena zahteva za povezovanje 
+  z »omrežjem lua« spletišča OpenSubtitles 
+  za to različico razširitve.
+  &lt;br&gt;
+  &lt;strong&gt;Program deluje z različico VLC 2.2 v okolju 
+  Mac in Linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;V okolju MS Windows je treba namestiti starejšo 
+  različico VLC (na primer VLC 2.0.8)&lt;/strong&gt;
+  za uporabo VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
+<int_ok>V redu</int_ok>
+<int_os_password>Geslo</int_os_password>
+<int_os_username>Uporabniško ime</int_os_username>
+<int_remove_tag>Odstrani oznake</int_remove_tag>
+<int_research>Poišči</int_research>
+<int_save>Shrani</int_save>
+<int_search_hash>Poišči po nadzorni vsoti</int_search_hash>
+<int_search_name>Poišči po imenu</int_search_name>
+<int_search_transl>Iskanje podnapisov</int_search_transl>
+<int_searching_transl>Iskanje prevodov ...</int_searching_transl>
+<int_season>Sezona (nanizanke in nadaljevanke)</int_season>
+<int_show_conf>Pokaži nastavitve</int_show_conf>
+<int_show_help>Pokaži pomoč</int_show_help>
+<int_title>Naslov</int_title>
+<int_vlsub_work_dir>Delovna mapa VLSub</int_vlsub_work_dir>
+<mess_click_link>Kliknite za odpiranje datoteke</mess_click_link>
+<mess_complete>Iskanje je končano</mess_complete>
+<mess_dowload_link>Povezava za prejem</mess_dowload_link>
+<mess_downloading>Poteka prejemanje podnapisov ...</mess_downloading>
+<mess_err_cant_download_interface_translation>Prevoda vmesnika ni mogoče prejeti</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Ni mogoče najti ustrezne poti za shranjevanje datoteke nastavitev. Določiti jo je treba ročno.</mess_err_conf_access>
+<mess_err_wrong_path>Naslov poti vključuje neveljaven znak, ki ga je treba spremeniti.</mess_err_wrong_path>
+<mess_error>Napaka</mess_error>
+<mess_expired>Seja je potekla, opravilo bo izvedeno znova</mess_expired>
+<mess_loaded>Podnapisi so naloženi</mess_loaded>
+<mess_no_input>Uporabite ta način med predvajanjem</mess_no_input>
+<mess_no_res>Ni zadetkov</mess_no_res>
+<mess_no_response>Strežnik se ne odziva</mess_no_response>
+<mess_no_selection>Ni izbranih podnapisov</mess_no_selection>
+<mess_not_found>Datoteke ni mogoče najti</mess_not_found>
+<mess_not_found2>Datoteke ni mogoče najti (Ali so uporabljeni neveljavni znaki?)</mess_not_found2>
+<mess_not_load>Podnapisov ni mogoče naložiti</mess_not_load>
+<mess_not_local>Ta način deluje trenutno le z krajevno datoteko</mess_not_local>
+<mess_overloaded>Strežnik je preobremenjen, poskusite znova kasneje</mess_overloaded>
+<mess_res>zadetkov</mess_res>
+<mess_save_fail>Podnapisov ni mogoče shraniti</mess_save_fail>
+<mess_success>Opravilo je uspešno končano.</mess_success>
+<mess_unauthorized>Zahteva ni overjena.</mess_unauthorized>

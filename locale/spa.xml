@@ -20,19 +20,60 @@
 <int_dowload_sel>Descargar seleccionados</int_dowload_sel>
 <int_episode>Capítulo (serie)</int_episode>
 <int_help>Ayuda</int_help>
-<int_help_mess> Descarga los subtítulos de &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; y los añade automáticamente mientras reproduces un video.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Uso:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub está pensado para utilizarse mientras reproduces un video, así que comienza por reproducir tu video (si ningún video se encuentra en reproducción vas a obtener un enlace para descargar los subtítulos con tu navegador).&lt;br&gt; &lt;br&gt; Selecciona el idioma de los subtítulos y haz clic en el botón correspondiente a uno de los dos métodos de búsqueda proporcionados por VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Método 1: Buscar por hash&lt;/b&gt;&lt;br&gt; Se recomienda probar primero con este método porque la búsqueda se basa en información propia del archivo de video, así que encontrarás subtítulos especialmente sincronizados con tu video.&lt;br&gt; &lt;br&gt; &lt;b&gt; Método 2: Buscar por nombre&lt;/b&gt;&lt;br&gt; Si no tuviste suerte con el primer método puedes buscar por nombre. Asegurate de comprobar que el título sea el correcto antes de hacer clic para buscar. Si estás buscando subtítulos para una serie también puedes indicar la temporada y el número de capítulo.&lt;br&gt; &lt;br&gt; &lt;b&gt;Descargar subtítulos&lt;/b&gt;&lt;br&gt;Selecciona uno de los subtítulos en la lista y haz clic en "Descargar seleccionados". Se descargará en el mismo directorio donde se ubica tu video y con el mismo nombre (pero diferente extensión) para que VLC lo cargue automáticamente cuando reproduzcas el video de nuevo.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Cuidado :&lt;/b&gt; Los subtítulos pre existentes serán sobrescritos sin solicitar confirmación alguna, así que guarda una copia en cualquier otro directorio si deseas conservarlos.&lt;br&gt; &lt;br&gt; Encuentra más extensiones para VLC en el sitio &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess>      Descarga los subtítulos de 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  y los añade automáticamente mientras reproduces un video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Uso:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  VLSub está pensado para utilizarse mientras reproduces un video, 
+  así que comienza por reproducir tu video (si ningún video se encuentra 
+  en reproducción vas a obtener un enlace para descargar los subtítulos 
+  con tu navegador).&lt;br&gt;
+  &lt;br&gt;
+  Selecciona el idioma de los subtítulos y haz clic en el botón correspondiente
+  a uno de los dos métodos de búsqueda proporcionados por VLSub:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Método 1: Buscar por hash&lt;/b&gt;&lt;br&gt;
+  Se recomienda probar primero con este método porque la búsqueda se basa en 
+  información propia del archivo de video, así que encontrarás subtítulos 
+  especialmente sincronizados con tu video.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt; Método 2: Buscar por nombre&lt;/b&gt;&lt;br&gt;
+  Si no tuviste suerte con el primer método puedes buscar por nombre. 
+  Asegurate de comprobar que el título sea el correcto antes de hacer clic 
+  para buscar. Si estás buscando subtítulos para una serie también puedes 
+  indicar la temporada y el número de capítulo.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Descargar subtítulos&lt;/b&gt;&lt;br&gt;
+  Selecciona uno de los subtítulos en la lista y haz clic en 
+  &quot;Descargar seleccionados&quot;. Se descargará en el mismo directorio 
+  donde se ubica tu video y con el mismo nombre (pero diferente extensión) para 
+  que VLC lo cargue automáticamente cuando reproduzcas el video de nuevo.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Cuidado :&lt;/b&gt; Los subtítulos pre existentes serán sobrescritos 
+  sin solicitar confirmación alguna, así que guarda una copia en cualquier otro 
+  directorio si deseas conservarlos.&lt;br&gt;
+  &lt;br&gt;
+  Encuentra más extensiones para VLC en el sitio
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>Idioma de la interfaz</int_int_lang>
-<int_no_support_mess>&lt;strong&gt;VLSub no está funcionando en VLC 2.1.x en ninguna plataforma&lt;/strong&gt;
-      dado que el módulo lua &quot;net&quot; necesario para interactuar con opensubtitles ha sido removido para las extensiones en esta versión de VLC.
-      &lt;br&gt;
-      &lt;strong&gt;Funciona en VLC Vlc 2.2 para Mac y Linux.&lt;/strong&gt;
-      &lt;br&gt;
-      &lt;strong&gt;En Windows tienes que instalar una versión más antigua de VLC (2.0.8 por ejemplo)&lt;/strong&gt;
-      para poder usar VLSub:
-      &lt;br&gt;
-      &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
-      href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
-      http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+<int_no_support_mess>      &lt;strong&gt;VLSub no está funcionando en VLC 2.1.x en 
+  ninguna plataforma&lt;/strong&gt;
+  dado que el módulo lua &quot;net&quot; necesario para interactuar con 
+  opensubtitles ha sido removido para las extensiones en esta versión de VLC.
+  &lt;br&gt;
+  &lt;strong&gt;Funciona en VLC Vlc 2.2 para Mac y Linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;En Windows tienes que instalar una versión más antigua 
+  de VLC (2.0.8 por ejemplo)&lt;/strong&gt;
+  para poder usar VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
 <int_ok>Ok</int_ok>
 <int_os_password>Contraseña</int_os_password>
 <int_os_username>Nombre de usuario</int_os_username>
@@ -40,9 +81,9 @@
 <int_research>Buscar</int_research>
 <int_save>Guardar</int_save>
 <int_search_hash>Buscar por hash</int_search_hash>
-<int_searching_transl>Buscando traducciones...</int_searching_transl>
-<int_search_name>Buscar por nombre</int_search_name>
-<int_search_transl>Buscar traducciones</int_search_transl>
+<int_search_name>Buscando traducciones...</int_search_name>
+<int_search_transl>Buscar por nombre</int_search_transl>
+<int_searching_transl>Buscar traducciones</int_searching_transl>
 <int_season>Temporada (serie)</int_season>
 <int_show_conf>Mostrar configuración</int_show_conf>
 <int_show_help>Mostrar ayuda</int_show_help>
@@ -52,9 +93,10 @@
 <mess_complete>Búsqueda finalizada</mess_complete>
 <mess_dowload_link>Enlace de descarga</mess_dowload_link>
 <mess_downloading>Descargando subtítulo</mess_downloading>
-<mess_err_conf_access>No se puede encontrar una ruta adecuada para guardar la configuración, por favor indicala manulmente</mess_err_conf_access>
+<mess_err_cant_download_interface_translation>No se puede descargar la traducción de la interfaz</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>No se puede encontrar una ruta apropiada para guardar la configuración, establezcala manualmente</mess_err_conf_access>
+<mess_err_wrong_path>La ruta contiene caracteres ilegales, por favor corrijela antes de continuar</mess_err_wrong_path>
 <mess_error>Error</mess_error>
-<mess_err_wrong_path>la ruta contiene caracteres ilegales, por favor corrijela antes de continuar</mess_err_wrong_path>
 <mess_expired>Expiró la sesión, probando de nuevo</mess_expired>
 <mess_loaded>Subtítulos cargados</mess_loaded>
 <mess_no_input>Por favor usa este método durante la reproducción</mess_no_input>
@@ -63,6 +105,7 @@
 <mess_no_selection>Ningún subtítulo fue seleccionado</mess_no_selection>
 <mess_not_found>Archivo no encontrado</mess_not_found>
 <mess_not_found2>Archivo no encontrado (¿caracter ilegal?)</mess_not_found2>
+<mess_not_load>No se pueden cargar los subtítulos</mess_not_load>
 <mess_not_local>Este método sólo funciona con un archivo local (por el  momento)</mess_not_local>
 <mess_overloaded>Servidor sobrecargado, por favor prueba más tarde</mess_overloaded>
 <mess_res>resultado(s)</mess_res>

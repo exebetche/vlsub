@@ -1,4 +1,4 @@
-<action_hash>Výpočet hash filmu</action_hash>
+<action_hash>Výpočet súčtu hash pre film</action_hash>
 <action_login>Prihlásenie</action_login>
 <action_logout>Odhlásenie</action_logout>
 <action_noop>Kontrola relácie</action_noop>
@@ -9,48 +9,104 @@
 <int_cancel>Zrušiť</int_cancel>
 <int_close>Zavrieť</int_close>
 <int_config>Nastavenie</int_config>
-<int_configuration>Nastavenie</int_configuration>
+<int_configuration>Konfigurácia</int_configuration>
 <int_default_lang>Jazyk titulkov</int_default_lang>
 <int_descr>Sťahovanie titulkov z OpenSubtitles.org</int_descr>
 <int_display_code>Zobraziť kód jazyka v názve súboru</int_display_code>
-<int_dowload_behav>Čo robiť s titulkami</int_dowload_behav>
-<int_dowload_load>Len nahrať</int_dowload_load>
-<int_dowload_manual>Stiahnuť ručne</int_dowload_manual>
-<int_dowload_save>Nahrať a uložiť</int_dowload_save>
+<int_dowload_behav>Čo urobiť s titulkami</int_dowload_behav>
+<int_dowload_load>Len načítať</int_dowload_load>
+<int_dowload_manual>Stiahnuť manuálne</int_dowload_manual>
+<int_dowload_save>Načítať a uložiť</int_dowload_save>
 <int_dowload_sel>Stiahnuť vybrané</int_dowload_sel>
 <int_episode>Epizóda (seriál)</int_episode>
-<int_help>Pomoc</int_help>
-<int_help_mess>Sťahovanie titulkov z &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; a ich zobrazenie počas sledovania videa.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Použitie:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub je určený pre použitie počas sledovania videa, takže ho najprv začnite prehrávať (pokiaľ sa nič neprehráva, dostanete link na stiahnutie titulkov vo svojom prehliadači Internetu).&lt;br&gt; &lt;br&gt; Vyberte jazyk pre vaše titulky a kliknite na tlačidlo zodpovedajúce jednej z dvoch vyhľadávacích metód, ktoré vám VLSub ponúka:&lt;br&gt; &lt;br&gt; &lt;b&gt;Metóda 1: Hľadať podľa hash&lt;/b&gt;&lt;br&gt; Odporúča sa vyskúšať najprv túto metódu, pretože tá robí vyhľadávanie založené na odtlačku videosúboru, takže môžete nájsť titulky synchronizované s vaším videom.&lt;br&gt; &lt;br&gt; &lt;b&gt;Metóda 2: Hľadať podľa názvu&lt;/b&gt;&lt;br&gt; Ak neuspejete s prvou metódou, pred kliknutím na tlačidlo len skontrolujte názov, či je správny. Ak hľadáte titulky pre seriál, môžete tiež uviesť číslo série a epizódy.&lt;br&gt; &lt;br&gt; &lt;b&gt;Sťahovanie titulkov&lt;/b&gt;&lt;br&gt; Označte jeden výsledok v zozname a kliknite na &#39;Stiahnuť vybrané&#39;.&lt;br&gt; Bude uložený v rovnakom adresári, ako je vaše video, s rovnakým názvom (rôzna prípona), takže nabudúce pri ďalšom spustení videa ich VLC načíta automaticky.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Pozor :&lt;/b&gt; Existujúce titulky sú prepísané bez vypýtania si potvrdenia, takže si ich presuňte inde, ak sú dôležité.&lt;br&gt; &lt;br&gt; Viac rozšírení pre VLC nájdete na &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help>Pomocník</int_help>
+<int_help_mess>      Sťahovanie titulkov z 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  a ich zobrazenie počas sledovania videa.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;Použitie:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  Spustite video. Ak používate VLSub bez prehrávania videa 
+  získate odkaz na stiahnutie titulkov v prehliadači, 
+  ale titulky sa neuložia a nenačítajú automaticky.&lt;br&gt;
+  &lt;br&gt;
+  Vyberte si jazyk titulkov a kliknite na 
+  tlačidlo zodpovedajúce jednej z dvoch metód vyhľadania, 
+  ktoré podporuje VLSub:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Metóda 1: Vyhľadávania podľa výsledku funkcie hash&lt;/b&gt;&lt;br&gt;
+  Túto metódu by ste mali vyskúšať ako prvú, pretože  
+  vykonáva hľadanie založené na odtlačku súboru s videom, takže 
+  môžete nájsť titulky, ktoré budú synchronizované s vaším videom.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Metóda 2: Vyhľadávanie podľa názvu&lt;/b&gt;&lt;br&gt;
+  Ak nebudete úspešní s použitím prvej metódy, jednoducho ešte pred kliknutím skontrolujte, či je názov správny. Ak hľadáte titulky pre seriál, 
+  môžete zadať sériu a konkrétne číslo 
+  epizódy.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;Stiahnutie titulkov&lt;/b&gt;&lt;br&gt;
+  Vyberte jedny titulky s zozname a kliknite na tlačidlo pre &#39;Stiahnutie&#39;.&lt;br&gt;
+  Súbor sa uloží do rovnakého priečinka ako vaše video, s 
+  použitím rovnakého názvu (koncovka je však odlišná),
+  takže program VLC ho načíta automaticky pri 
+  ďalšom spustení videa.&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ Pozor:&lt;/b&gt; Existujúce titulky sa bez varovania prepíšu, 
+  takže ak sú pre vás dôležité, uložte si ich 
+  na iné miesto.&lt;br&gt;
+  &lt;br&gt;
+  Viac rozšírení programu VLC nájdete na stránke 
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.
+</int_help_mess>
 <int_int_lang>Jazyk rozhrania</int_int_lang>
-<int_ok>Ok</int_ok>
-<int_remove_tag>Odstrániť formátovacie značky</int_remove_tag>
+<int_no_support_mess>      &lt;strong&gt;VLSub nefunguje v kombinácii s VLC 2.1.x na akejkoľvek platforme&lt;/strong&gt;
+  pretože v tomto vydaní programu bol z rozšírení odstránený modul lua "net" potrebný na interakciu s portálom opensubtitles.
+  &lt;br&gt;
+  &lt;strong&gt;Funguje s programom VLC 2.2 na systémoch MAC a Linux.&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;Pri systéme Windows si musíte nainštalovať staršiu verziu programu VLC (napríklad 2.0.8),&lt;/strong&gt;
+  ak chcete používať VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
+<int_ok>OK</int_ok>
+<int_os_password>Heslo</int_os_password>
+<int_os_username>Meno používateľa</int_os_username>
+<int_remove_tag>Odstrániť značky</int_remove_tag>
 <int_research>Hľadanie</int_research>
 <int_save>Uložiť</int_save>
-<int_search_hash>Hľadať podľa hash</int_search_hash>
-<int_searching_transl>Vyhľadávanie prekladov...</int_searching_transl>
+<int_search_hash>Hľadať podľa výsledku funkcie hash</int_search_hash>
 <int_search_name>Hľadať podľa názvu</int_search_name>
 <int_search_transl>Hľadať preklady</int_search_transl>
+<int_searching_transl>Vyhľadávanie prekladov...</int_searching_transl>
 <int_season>Séria (seriál)</int_season>
-<int_show_conf>Ukázať nastavenie</int_show_conf>
-<int_show_help>Ukázať pomoc</int_show_help>
+<int_show_conf>Zobraziť konfiguráciu</int_show_conf>
+<int_show_help>Zobraziť pomocníka</int_show_help>
 <int_title>Názov</int_title>
-<int_vlsub_work_dir>Pracovný adresár VLSub</int_vlsub_work_dir>
+<int_vlsub_work_dir>Pracovný priečinok VLSub</int_vlsub_work_dir>
 <mess_click_link>Kliknutím sem otvoríte súbor</mess_click_link>
-<mess_complete>Hľadanie dokončené</mess_complete>
-<mess_dowload_link>Link na stiahnutie</mess_dowload_link>
+<mess_complete>Hľadanie bolo dokončené</mess_complete>
+<mess_dowload_link>Odkaz na stiahnutie</mess_dowload_link>
 <mess_downloading>Sťahovanie titulkov</mess_downloading>
+<mess_err_cant_download_interface_translation>Preklad rozhrania nemožno stiahnuť</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>Nepodarilo sa nájsť vhodnú cestu na uloženie konfigurácie. Prosím nastavte ju manuálne</mess_err_conf_access>
+<mess_err_wrong_path>Cesta obsahuje neplatný znak, prosím opravte chybu</mess_err_wrong_path>
 <mess_error>Chyba</mess_error>
-<mess_expired>Relácia vypršala, opakovanie</mess_expired>
+<mess_expired>Relácia vypršala, obnovuje sa</mess_expired>
 <mess_loaded>Titulky načítané</mess_loaded>
-<mess_no_input>Použite túto metódu počas prehrávania</mess_no_input>
+<mess_no_input>Prosím použite túto metódu počas prehrávania</mess_no_input>
 <mess_no_res>Žiadny výsledok</mess_no_res>
 <mess_no_response>Server neodpovedá</mess_no_response>
-<mess_no_selection>Nezvolené žiadne titulky</mess_no_selection>
-<mess_not_found>Súbor nebol nájdený</mess_not_found>
-<mess_not_found2>Súbor nebol nájdený (nepovolený znak?)</mess_not_found2>
-<mess_not_local>Táto metóda funguje iba s lokálnym súborom (zatiaľ)</mess_not_local>
-<mess_overloaded>Server preťažený, skúste to znova neskôr</mess_overloaded>
+<mess_no_selection>Nie sú vybrané žiadne titulky</mess_no_selection>
+<mess_not_found>Súbor sa nenašiel</mess_not_found>
+<mess_not_found2>Súbor sa nenašiel (neplatný znak?)</mess_not_found2>
+<mess_not_load>Nemožno načítať titulky</mess_not_load>
+<mess_not_local>Táto metóda funguje (zatiaľ) iba s lokálnym súborom</mess_not_local>
+<mess_overloaded>Server je preťažený, skúste to neskôr</mess_overloaded>
 <mess_res>výsledky</mess_res>
 <mess_save_fail>Nemožno uložiť titulky</mess_save_fail>
-<mess_success>Úspech</mess_success>
-<mess_unauthorized>Požiadavka odmietnutá</mess_unauthorized>
+<mess_success>Úspešne dokončené</mess_success>
+<mess_unauthorized>Neautorizovaná požiadavka</mess_unauthorized>

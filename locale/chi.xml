@@ -1,0 +1,109 @@
+<action_hash>正在计算影片 hash</action_hash>
+<action_login>正在登录</action_login>
+<action_logout>正在退出</action_logout>
+<action_noop>正在检查会话</action_noop>
+<action_search>正在搜索字幕</action_search>
+<int_all>全部</int_all>
+<int_bool_false>否</int_bool_false>
+<int_bool_true>是</int_bool_true>
+<int_cancel>取消</int_cancel>
+<int_close>关闭</int_close>
+<int_config>配置</int_config>
+<int_configuration>配置</int_configuration>
+<int_default_lang>字幕语言</int_default_lang>
+<int_descr>从 OpenSubtitles.org 下载字幕</int_descr>
+<int_display_code>在文件名中显示语言代码</int_display_code>
+<int_dowload_behav>如何处理字幕</int_dowload_behav>
+<int_dowload_load>只加载</int_dowload_load>
+<int_dowload_manual>手动下载</int_dowload_manual>
+<int_dowload_save>加载并保存</int_dowload_save>
+<int_dowload_sel>下载选中项</int_dowload_sel>
+<int_episode>集 (连续剧)</int_episode>
+<int_help>帮助</int_help>
+<int_help_mess>      观看视频时，从 
+  &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
+  opensubtitles.org&lt;/a&gt;
+  下载并显示字幕。&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;&lt;u&gt;使用方法:&lt;/u&gt;&lt;/b&gt;&lt;br&gt;
+  &lt;br&gt;
+  播放视频。如果使用 VLSub 时没有视频在播放，
+  虽然能获取字幕的下载链接（浏览器访问） 
+  但不会自动保存并加载字幕。&lt;br&gt;
+  &lt;br&gt;
+  选择字幕语言，并点击 
+  VLSub 提供的两种搜索方式所对应的按钮:&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;方式 1: 按 hash 搜索&lt;/b&gt;&lt;br&gt;
+  强烈建议首先尝试此方式，因为根据视频文件指纹进行搜索， 
+  可确保找到的字幕与视频同步。&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;方式 2: 按名称搜索&lt;/b&gt;&lt;br&gt;
+  如果第一种方式没有合适的结果，可选择此方式。 
+  点击之前请检查标题是否正确。 
+  如果搜索的是连续剧，还可以填写季数与集数。&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;下载字幕&lt;/b&gt;&lt;br&gt;
+  选择列表中的字幕并点击「下载」。&lt;br&gt;
+  字幕将保存到视频所在目录， 
+  名称与视频一致 (扩展名不同)。
+  下次播放该视频时，VLC 将自动加载它们。&lt;br&gt;
+  &lt;br&gt;
+  &lt;b&gt;/!\ 注意:&lt;/b&gt; 现有字幕文件将被自动覆盖。 
+  如果文件夹中有重要字幕，请务必挪到其他地方。&lt;br&gt;
+  &lt;br&gt;
+  可在扩展中心找到更多 VLC 扩展 
+  &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;。
+</int_help_mess>
+<int_int_lang>界面语言</int_int_lang>
+<int_no_support_mess>      &lt;strong&gt;VLSub 不支持所有平台的 VLC 2.1.x&lt;/strong&gt;，
+  因为访问 opensubtitles 需要 lua「net」模块，
+  而该版本的 VLC 不支持扩展使用该模块。
+  &lt;br&gt;
+  &lt;strong&gt;支持 mac 及 linux 平台的 VLC 2.2。&lt;/strong&gt;
+  &lt;br&gt;
+  &lt;strong&gt;windows 平台需要安装旧版 VLC (例如 2.0.8)&lt;/strong&gt;
+  才能使用 VLSub:
+  &lt;br&gt;
+  &lt;a target=&quot;_blank&quot; rel=&quot;nofollow&quot; 
+  href=&quot;http://download.videolan.org/pub/videolan/vlc/2.0.8/&quot;&gt;
+  http://download.videolan.org/pub/videolan/vlc/2.0.8/&lt;/a&gt;&lt;br&gt;
+</int_no_support_mess>
+<int_ok>确定</int_ok>
+<int_os_password>密码</int_os_password>
+<int_os_username>用户名</int_os_username>
+<int_remove_tag>移除标签</int_remove_tag>
+<int_research>搜索</int_research>
+<int_save>保存</int_save>
+<int_search_hash>按 hash 搜索</int_search_hash>
+<int_search_name>按名称搜索</int_search_name>
+<int_search_transl>搜索翻译</int_search_transl>
+<int_searching_transl>正在搜索翻译...</int_searching_transl>
+<int_season>季 (连续剧)</int_season>
+<int_show_conf>显示配置</int_show_conf>
+<int_show_help>显示帮助</int_show_help>
+<int_title>标题</int_title>
+<int_vlsub_work_dir>VLSub 工作目录</int_vlsub_work_dir>
+<mess_click_link>点击可打开文件</mess_click_link>
+<mess_complete>搜索完成</mess_complete>
+<mess_dowload_link>下载链接</mess_dowload_link>
+<mess_downloading>正在下载字幕</mess_downloading>
+<mess_err_cant_download_interface_translation>无法下载界面翻译</mess_err_cant_download_interface_translation>
+<mess_err_conf_access>无法找到可保存配置的合适路径，请手动设置</mess_err_conf_access>
+<mess_err_wrong_path>路径含非法字符，请修改</mess_err_wrong_path>
+<mess_error>错误</mess_error>
+<mess_expired>会话已过期，正在重试</mess_expired>
+<mess_loaded>字幕已加载</mess_loaded>
+<mess_no_input>请在播放期间使用此方式</mess_no_input>
+<mess_no_res>无结果</mess_no_res>
+<mess_no_response>服务器未响应</mess_no_response>
+<mess_no_selection>未选择字幕</mess_no_selection>
+<mess_not_found>文件未找到</mess_not_found>
+<mess_not_found2>文件未找到 (有非法字符?)</mess_not_found2>
+<mess_not_load>无法加载字幕</mess_not_load>
+<mess_not_local>该方式只支持本地文件 (目前)</mess_not_local>
+<mess_overloaded>服务器超载，请稍后再试</mess_overloaded>
+<mess_res>条结果</mess_res>
+<mess_save_fail>无法保存字幕</mess_save_fail>
+<mess_success>成功</mess_success>
+<mess_unauthorized>请求未经授权</mess_unauthorized>
