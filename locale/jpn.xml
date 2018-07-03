@@ -20,7 +20,7 @@
 <int_dowload_sel>ダウンロードの選択</int_dowload_sel>
 <int_episode>エピソード (シリーズ)</int_episode>
 <int_help>ヘルプ</int_help>
-<int_help_mess>ビデオの再生中に
+<int_help_mess>ビデオの再生中に 
   &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;
   opensubtitles.org&lt;/a&gt;
   から字幕をダウンロードして表示させることができます。&lt;br&gt;
@@ -86,7 +86,7 @@
 <int_show_help>ヘルプの表示</int_show_help>
 <int_title>タイトル</int_title>
 <int_vlsub_work_dir>VLSubの作業ディレクトリ</int_vlsub_work_dir>
-<mess_click_link>ファイルをオープンする場合、ここをクリック</mess_click_link>
+<mess_click_link>ファイルを開くにはここをクリック</mess_click_link>
 <mess_complete>再検索が完了しました</mess_complete>
 <mess_dowload_link>ダウンロードリンク</mess_dowload_link>
 <mess_downloading>字幕のダウンロード中</mess_downloading>
