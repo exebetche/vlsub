@@ -318,13 +318,6 @@ local lang_os_to_iso = {
   vi = "vie"
 }
 
-local removable_ad_strings = {
-    'Advertise your product or brand here', 
-    'contact www.OpenSubtitles.org today',
-    'Support us and become VIP member',
-    'to remove all ads from OpenSubtitles.org',
-    }
-
 local dlg = nil
 local input_table = {} -- General widget id reference
 local select_conf = {} -- Drop down widget / option table association 
@@ -1755,9 +1748,9 @@ function download_subtitles()
   local data = ""
   local subfile = io.open(target, "wb")
 
-  while data ~= nil do
-    subfile:write(data .. "\n")
-    data = filter_ads(stream:readline())
+  while data do
+    subfile:write(data)
+    data = stream:read(65536)
   end
   
   subfile:flush()
@@ -1782,23 +1775,6 @@ function download_subtitles()
   -- close vlsub window after downloading
   if index == 0 then
     close()
-  end
-end
-
-function filter_ads(data)
-
-  for key,value in ipairs(removable_ad_strings) do 
-    if trim(data) == value then
-      data = ""
-    end
-  end
-
-  return data
-end
-
-function trim(s)
-  if s then
-    return s:match'^%s*(.*%S)' or ''
   end
 end
 
