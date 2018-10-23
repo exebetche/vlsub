@@ -1676,7 +1676,7 @@ function download_subtitles()
   
   openSub.actionLabel = lang["mess_downloading"] 
   
-  display_subtitles() -- reset selection
+  local item = openSub.itemStore[index]
   
   if openSub.option.downloadBehaviour == 'manual' 
   or not openSub.file.hasInput then
