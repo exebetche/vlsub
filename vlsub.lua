@@ -62,15 +62,15 @@ local options = {
     int_config = 'Config',
     int_configuration = 'Configuration',
     int_help = 'Help',
-    int_search_hash = 'Search by hash',
+    int_search_hash = '&Search by hash',
     int_search_name = 'Search by name',
     int_title = 'Title',
     int_season = 'Season (series)',
     int_episode = 'Episode (series)',
     int_show_help = 'Show help',
     int_show_conf = 'Show config',
-    int_dowload_sel = 'Download selection',
-    int_close = 'Close',
+    int_dowload_sel = '&Download selection',
+    int_close = '&Close',
     int_ok = 'Ok',
     int_save = 'Save',
     int_cancel = 'Cancel',
@@ -333,7 +333,7 @@ function descriptor()
     version = app_version,
     author = "exebetche",
     url = 'http://www.opensubtitles.org/',
-    shortdesc = app_name;
+    shortdesc = "&"..app_name;
     description = options.translation.int_descr,
     capabilities = {"menu", "input-listener" }
   }
@@ -556,6 +556,8 @@ function trigger_menu(dlg_id)
     dlg = vlc.dialog(
       openSub.conf.useragent)
     interface_main()
+    -- Trigger search after window has appeared
+    searchHash()
   elseif dlg_id == 2 then
     close_dlg()
     dlg = vlc.dialog(
@@ -1726,9 +1728,16 @@ end
 function download_subtitles()
   local index = get_first_sel(input_table["mainlist"])
   
-  if index == 0 then
-    setMessage(lang["mess_no_selection"])
-    return false
+  local item
+  if index > 0 then
+    item = openSub.itemStore[index]
+  else
+    if openSub.itemStore[1].MovieReleaseName ~= "" then
+      item = openSub.itemStore[1]
+    else
+      setMessage(lang["mess_no_selection"])
+      return false
+    end
   end
   
   openSub.actionLabel = lang["mess_downloading"] 
@@ -1824,7 +1833,7 @@ function download_subtitles()
   local stream = vlc.stream(tmpFileURI)
   local data = ""
   local subfile = io.open(target, "wb")
-  
+
   while data do
     subfile:write(data)
     data = stream:read(65536)
@@ -1848,6 +1857,11 @@ function download_subtitles()
   end
   
   setMessage(message)
+  
+  -- close vlsub window after downloading
+  if index == 0 then
+    close()
+  end
 end
 
 function dump_zip(url, dir, subfileName)
