@@ -334,7 +334,7 @@ function descriptor()
     version = app_version,
     author = "exebetche",
     url = 'http://www.opensubtitles.org/',
-    shortdesc = app_name;
+    shortdesc = "&"..app_name;
     description = options.translation.int_descr,
     capabilities = {"menu", "input-listener" }
   }
