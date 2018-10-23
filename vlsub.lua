@@ -330,11 +330,11 @@ local app_useragent = app_name.." "..app_version;
 
 function descriptor()
   return { 
-    title = "&"..app_useragent,
+    title = app_useragent,
     version = app_version,
     author = "exebetche",
     url = 'http://www.opensubtitles.org/',
-    shortdesc = "&"..app_name;
+    shortdesc = app_name;
     description = options.translation.int_descr,
     capabilities = {"menu", "input-listener" }
   }
