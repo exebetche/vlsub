@@ -1,0 +1,56 @@
+<action_hash>Video hash hesaplanıyor</action_hash>
+<action_login>Giriş yapılıyor</action_login>
+<action_logout>Çıkış yapılıyor</action_logout>
+<action_noop>Oturum kontrol ediliyor</action_noop>
+<action_search>Alryazılarda ara</action_search>
+<int_all>Hepsi</int_all>
+<int_bool_false>Hayır</int_bool_false>
+<int_bool_true>Evet</int_bool_true>
+<int_cancel>İptal</int_cancel>
+<int_close>Kapat</int_close>
+<int_config>Ayar</int_config>
+<int_configuration>Ayarlar</int_configuration>
+<int_default_lang>Altyazı dili</int_default_lang>
+<int_descr>Altyazıları OpenSubtitles.org'dan indir</int_descr>
+<int_display_code>Dosyada dil kodunu göster</int_display_code>
+<int_dowload_behav>What to do with subtitles</int_dowload_behav>
+<int_dowload_load>Load only</int_dowload_load>
+<int_dowload_manual>Elle yükle</int_dowload_manual>
+<int_dowload_save>Yükle ve Kaydet</int_dowload_save>
+<int_dowload_sel>Seçileni Yükle</int_dowload_sel>
+<int_episode>Bölüm (seri)</int_episode>
+<int_help>Yardım</int_help>
+<int_help_mess>Download subtitles from &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; and display them while watching a video.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Usage:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub is meant to be used while you are watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).&lt;br&gt; &lt;br&gt; Choose the language for your subtitles and click on the button corresponding to one of the two research methods provided by VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Method 1: Search by hash&lt;/b&gt;&lt;br&gt; It is recommended to try this method first, because it performs a research based on the video file print, so you can find subtitles synchronized with your video.&lt;br&gt; &lt;br&gt; &lt;b&gt;Method 2: Search by name&lt;/b&gt;&lt;br&gt; If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a series, you can also provide a season and episode number.&lt;br&gt; &lt;br&gt; &lt;b&gt;Downloading Subtitles&lt;/b&gt;&lt;br&gt; Select one subtitle in the list and click on &#39;Download&#39;.&lt;br&gt; It will be put in the same directory as that of your video, with the same name (different extension) so VLC will load them automatically the next time you&#39;ll start the video.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Beware :&lt;/b&gt; Existing subtitles are overwritten without asking confirmation, so put them elsewhere if they&#39;re important.&lt;br&gt; &lt;br&gt; Find more VLC extensions at &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Arayüz dili</int_int_lang>
+<int_ok>Ok</int_ok>
+<int_remove_tag>Etiketleri sil</int_remove_tag>
+<int_research>Araştır</int_research>
+<int_save>Kaydet</int_save>
+<int_search_hash>Etikete göre ara</int_search_hash>
+<int_searching_transl>Altyazı çevirileri aranıyor ...</int_searching_transl>
+<int_search_name>İsmi göre ara</int_search_name>
+<int_search_transl>Çevirilerde ara</int_search_transl>
+<int_season>Sezon (seri)</int_season>
+<int_show_conf>Ayarı Görüntüle</int_show_conf>
+<int_show_help>Yardımı Görüntüle</int_show_help>
+<int_title>Başlık</int_title>
+<int_vlsub_work_dir>VLSub çalışma dizini</int_vlsub_work_dir>
+<mess_click_link>Dosyayı açmak için tıkla</mess_click_link>
+<mess_complete>Arama tamamlandı</mess_complete>
+<mess_dowload_link>İndirme linki</mess_dowload_link>
+<mess_downloading>Altyazı indiriliyor</mess_downloading>
+<mess_error>Hata</mess_error>
+<mess_expired>Oturum sona erdi, tekrar deneniyor</mess_expired>
+<mess_loaded>Altyazılar yüklendi</mess_loaded>
+<mess_no_input>Oynatma esnasında bu metodu kullan</mess_no_input>
+<mess_no_res>Sonuç bulunamadı</mess_no_res>
+<mess_no_response>Sunucu yanıt vermiyor</mess_no_response>
+<mess_no_selection>Altyazı seçilmedi</mess_no_selection>
+<mess_not_found>Dosya bulunamadı</mess_not_found>
+<mess_not_found2>Dosya bulunamadı (illegal karakter?)</mess_not_found2>
+<mess_not_local>Bu metod sadece lokal dosyalar ile çalışıyor (şu an)</mess_not_local>
+<mess_overloaded>Server yoğun, lütfen daha sonra dene</mess_overloaded>
+<mess_res>sonuç(lar)</mess_res>
+<mess_save_fail>Altyazı kayıt edilemiyor</mess_save_fail>
+<mess_success>Başarılı</mess_success>
+<mess_unauthorized>Yetkilendirilmemiş Talep</mess_unauthorized>

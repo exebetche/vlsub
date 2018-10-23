@@ -1,22 +1,18 @@
 --[[
 VLSub Extension for VLC media player 1.1 and 2.0
 Copyright 2013 Guillaume Le Maout
-
 Authors:  Guillaume Le Maout
 Contact: 
 http://addons.videolan.org/messages/?action=newmessage&username=exebetche
 Bug report: http://addons.videolan.org/content/show.php/?content=148752
-
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
-
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
-
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
@@ -45,6 +41,7 @@ local options = {
     cze = 'Czech', 
     dan = 'Danish', 
     dut = 'Nederlands',
+    fin = 'Finnish',
     fre = 'Français',
     ell = 'Greek',
     baq = 'Basque',
@@ -55,7 +52,8 @@ local options = {
     spa = 'Spanish',
     swe = 'Swedish',
     ukr = 'Ukrainian',
-    hun = 'Hungarian'
+    hun = 'Hungarian',
+    scc = 'Serbian'
   },
   translation = {
     int_all = 'All',
@@ -179,7 +177,8 @@ local options = {
     mess_err_conf_access ='Can\'t find a suitable path to save'..
       'config, please set it manually',
     mess_err_wrong_path ='the path contains illegal character, '..
-      'please correct it'
+      'please correct it',
+    mess_err_cant_download_interface_translation='could not download interface translation'
   }
 }
 
@@ -418,7 +417,7 @@ function interface_main()
   dlg:add_button(
     lang["int_dowload_sel"], download_subtitles, 3, 7, 1, 1)
   dlg:add_button(
-    lang["int_close"], deactivate, 4, 7, 1, 1) 
+    lang["int_close"], close, 4, 7, 1, 1) 
   
   assoc_select_conf(
     'language',
@@ -490,7 +489,7 @@ function interface_config()
     and openSub.option.os_username or "", 2, 7, 2, 1)
   dlg:add_label(
     lang["int_os_password"]..':', 1, 8, 0, 1)
-  input_table['os_password'] = dlg:add_text_input(
+  input_table['os_password'] = dlg:add_password(
     type(openSub.option.os_password) == "string" 
     and openSub.option.os_password or "", 2, 8, 2, 1)
         
@@ -937,7 +936,10 @@ function apply_config()
   if lg_sel and lg_sel ~= 1 
   and openSub.conf.translations_avail[lg_sel] then
     local lg = openSub.conf.translations_avail[lg_sel][1]
-    set_translation(lg)
+    if not set_translation(lg) then
+      vlc.msg.err("[VLSub] Couldn't not set translation")
+      return false
+    end
     SetDownloadBehaviours()
   end
   
@@ -1077,7 +1079,7 @@ function get_available_translations()
 -- (drop previous direct download from github repo 
 -- causing error  with github https CA certficate on OS X an XP)
 -- https://github.com/exebetche/vlsub/tree/master/locale
-  
+
   local translations_url = "http://addons.videolan.org/CONTENT/"..
     "content-files/148752-vlsub_translations.xml"
   
@@ -1085,7 +1087,11 @@ function get_available_translations()
   then
     openSub.actionLabel = lang["int_searching_transl"]
     
-    local translations_content, lol = get(translations_url)
+    local translations_content = get(translations_url)
+    if not translations_content then
+      collectgarbage()
+      return false
+    end
     local translations_avail = openSub.option.translations_avail
     all_trsl = parse_xml(translations_content)
     local lg, trsl
@@ -1107,6 +1113,7 @@ function get_available_translations()
     setMessage(success_tag(lang["mess_complete"]))
     collectgarbage()
   end
+  return true
 end
 
 function set_translation(lg)
@@ -1129,9 +1136,10 @@ function set_translation(lg)
       load_transl(transl_file_path)
       apply_translation()
     else
-    -- Load translation file from internet
-      if not all_trsl then
-        get_available_translations()
+      -- Load translation file from internet
+      if not all_trsl and not get_available_translations() then
+        setMessage(error_tag(lang["mess_err_cant_download_interface_translation"]))
+        return false
       end
 
       if not all_trsl or not all_trsl[lg] then
@@ -1147,6 +1155,7 @@ function set_translation(lg)
   lang = nil
   lang = openSub.option.translation
   collectgarbage()
+  return true
 end 
 
             --[[ Core ]]--
@@ -1157,8 +1166,9 @@ openSub = {
   conf = {
     url = "http://api.opensubtitles.org/xml-rpc",
     path = nil,
-    userAgentHTTP = "VLSub",
-    useragent = "VLSub 0.9",
+    HTTPVersion = "1.1",
+    userAgentHTTP = app_useragent,
+    useragent = app_useragent,
     translations_avail = {},
     downloadBehaviours = nil,
     languages = languages
@@ -1195,7 +1205,7 @@ openSub = {
     local request = "<?xml version='1.0'?>"..dump_xml(reqTable)
     local host, path = parse_url(openSub.conf.url)		
     local header = {
-      "POST "..path.." HTTP/1.1", 
+      "POST "..path.." HTTP/"..openSub.conf.HTTPVersion, 
       "Host: "..host, 
       "User-Agent: "..openSub.conf.userAgentHTTP, 
       "Content-Type: text/xml", 
@@ -1210,6 +1220,7 @@ openSub = {
     
     if status == 200 then 
       response = parse_xmlrpc(responseStr)
+      
       if response then
         if response.status == "200 OK" then
           return openSub.methods[methodName]
@@ -1228,7 +1239,6 @@ openSub = {
       end
     elseif status == 401 then
       setError("Request unauthorized")
-      
       response = parse_xmlrpc(responseStr)
       if openSub.session.token ~= response.token then
         setMessage("Session expired, retrying")
@@ -1360,6 +1370,34 @@ openSub = {
       callback = function(resp)
         openSub.itemStore = resp.data
       end
+    },
+    SearchSubtitles2 = {
+      methodName = "SearchSubtitles",
+      params = function()
+        openSub.actionLabel = lang["action_search"]
+        setMessage(openSub.actionLabel..": "..
+          progressBarContent(0))
+                
+        local member = {
+             { name="sublanguageid", value={ 
+              string=openSub.movie.sublanguageid } },
+             { name="tag", value={ 
+              string=openSub.file.completeName } } }
+        
+        return {
+          { value={ string=openSub.session.token } },
+          { value={
+            array={
+             data={
+              value={
+               struct={
+                member=member
+                  }}}}}}
+        }
+      end,
+      callback = function(resp)
+        openSub.itemStore = resp.data
+      end
     }
   },
   getInputItem = function()
@@ -1409,6 +1447,10 @@ openSub = {
         file.dir, file.completeName = string.match(
           file.path,
           '^(.+/)([^/]*)$')
+        if file.dir == nil then
+          -- happens on http://example.org/?x=y
+          file.dir = openSub.conf.dirPath..slash
+        end
         
         local file_stat = vlc.net.stat(file.path)
         if file_stat 
@@ -1419,6 +1461,9 @@ openSub = {
         file.is_archive = false
       end
       
+      if file.completeName == nil then
+        file.completeName = ''
+      end
       file.name, file.ext = string.match(
         file.completeName,
         '^([^/]-)%.?([^%.]*)$')
@@ -1446,14 +1491,35 @@ openSub = {
       return false 
     end
     
+    local infoString = openSub.file.cleanName
+    if infoString == nil then
+      infoString = ''
+    end
+    
+    if infoString == '' then
+      -- read from meta-title
+      local meta = vlc.var.get(vlc.object.input(), 'meta-title')
+      if meta ~= nil then
+        infoString = meta
+      end
+    end
+    
+    if infoString == '' then
+      -- read from metadata
+      local metas = vlc.input.item():metas()
+      if metas['title'] ~= nil then
+        infoString = metas['title']
+      end
+    end
+    
     local showName, seasonNumber, episodeNumber = string.match(
-      openSub.file.cleanName,
-      "(.+)[sS](%d%d)[eE](%d%d).*")
+      infoString,
+      "(.+)[sS](%d?%d)[eE](%d%d).*")
 
     if not showName then
       showName, seasonNumber, episodeNumber = string.match(
-      openSub.file.cleanName,
-      "(.+)(%d)[xX](%d%d).*")
+      infoString,
+      "(.-)(%d?%d)[xX](%d%d).*")
     end
     
     if showName then
@@ -1461,7 +1527,7 @@ openSub = {
       openSub.movie.seasonNumber = seasonNumber
       openSub.movie.episodeNumber = episodeNumber
     else
-      openSub.movie.title = openSub.file.cleanName
+      openSub.movie.title = infoString
       openSub.movie.seasonNumber = ""
       openSub.movie.episodeNumber = ""
     end
@@ -1642,9 +1708,9 @@ function display_subtitles()
   elseif openSub.itemStore then 
     for i, item in ipairs(openSub.itemStore) do
       mainlist:add_value(
-      item.SubFileName..
-      " ["..item.SubLanguageID.."]"..
-      " ("..item.SubSumCD.." CD)", i)
+      (item.SubFileName or "???")..
+      " ["..(item.SubLanguageID or "?").."]"..
+      " ("..(item.SubSumCD or "?").." CD)", i)
     end
     setMessage("<b>"..lang["mess_complete"]..":</b> "..
       #(openSub.itemStore).."  "..lang["mess_res"])
@@ -1692,7 +1758,23 @@ function download_subtitles()
   end
   
   local message = ""
-  local subfileName = openSub.file.name or ""
+  local subfileName = "subtitle"
+  if openSub.file.name == nil or openSub.file.name == '' then
+    -- happens on http://example.org/?x=y
+    local uriName = nil
+    if item.SubFileName then
+      uriName = string.sub(
+        item.SubFileName, 1, #item.SubFileName - 4)
+    else
+      uriName = openSub.getInputItem():uri()
+    end
+    uriName = vlc.strings.encode_uri_component(uriName)
+    if uriName then
+      subfileName = string.sub(uriName, -64, -1)
+    end
+  else
+    subfileName = openSub.file.name 
+  end
   
   if openSub.option.langExt then
     subfileName = subfileName.."."..item.SubLanguageID
@@ -1792,9 +1874,17 @@ function dump_zip(url, dir, subfileName)
     return false 
   end
   
-  local tmpFileName = dir..subfileName..".gz"
+  local tmpFileName = dir..slash..subfileName..".gz"
   if not file_touch(tmpFileName) then
-    return false
+    vlc.msg.dbg("[VLsub] Cant touch:"..tmpFileName)
+    if openSub.conf.os == "win" then
+      -- todo for windows
+      return false
+    else
+      -- using tmp dir to download
+      tmpFileName = "/tmp/"..subfileName..".gz"
+      vlc.msg.dbg("[VLsub] Fixing to:"..tmpFileName)
+    end
   end
   local tmpFile = assert(io.open(tmpFileName, "wb"))
   
@@ -1811,6 +1901,7 @@ function add_sub(subPath)
   if vlc.item or vlc.input.item() then
     subPath = decode_uri(subPath)
     vlc.msg.dbg("[VLsub] Adding subtitle :" .. subPath)
+    vlc.var.set(vlc.object.input(), 'sub-file', subPath)
     return vlc.input.add_subtitle(subPath)
   end
   return false
@@ -1856,77 +1947,125 @@ end
 function get(url)
   local host, path = parse_url(url)
   local header = {
-    "GET "..path.." HTTP/1.1", 
+    "GET "..path.." HTTP/"..openSub.conf.HTTPVersion, 
     "Host: "..host, 
     "User-Agent: "..openSub.conf.userAgentHTTP,
     "",
     ""
   }
   local request = table.concat(header, "\r\n")
-    
-  local response
+
   local status, response = http_req(host, 80, request)
   
   if status == 200 then 
     return response
   else
-    return false, status, response
+    vlc.msg.err("[VLSub] HTTP "..tostring(status).." : "..response)
+    return false
   end
 end
 
 function http_req(host, port, request)
-  local fd = vlc.net.connect_tcp(host, port)
-  if not fd then return false end
-  local pollfds = {}
-  
-  pollfds[fd] = vlc.net.POLLIN
-  vlc.net.send(fd, request)
-  vlc.net.poll(pollfds)
-  
-  local chunk = vlc.net.recv(fd, 2048)
-  local response = ""
-  local headerStr, header, body
-  local contentLength, status
-  local pct = 0
-  
-  while chunk do
-    response = response..chunk
-    if not header then
-        headerStr, body = response:match("(.-\r?\n)\r?\n(.*)")
-        if headerStr then
-            response = body
-            header = parse_header(headerStr)
-            contentLength = tonumber(header["Content-Length"])
-            status = tonumber(header["statuscode"])
-        end
-    end
+	local fd = vlc.net.connect_tcp(host, port)
+	if not fd then 
+		setError("Unable to connect to server")
+		return nil, "" 
+	end
+	local pollfds = {}
+	
+	pollfds[fd] = vlc.net.POLLIN
+	vlc.net.send(fd, request)
+	vlc.net.poll(pollfds)
 
-    if contentLength then
-        bodyLenght = #response
-        pct = bodyLenght / contentLength * 100
-        setMessage(openSub.actionLabel..": "..progressBarContent(pct))
-      if bodyLenght >= contentLength then
-        break
+	local response = vlc.net.recv(fd, 2048)
+	local buf = ""
+	local headerStr, header, body
+	local contentLength, status, TransferEncoding, chunked
+	local pct = 0
+	
+	while response and #response>0 do
+		buf = buf..response
+		
+		if not header then
+			headerStr, body = buf:match("(.-\r?\n)\r?\n(.*)")
+
+			if headerStr then
+				header = parse_header(headerStr);
+				status = tonumber(header["statuscode"]);
+				contentLength = tonumber(header["Content-Length"]);
+				if not contentLength then
+					contentLength = tonumber(header["X-Uncompressed-Content-Length"])
+				end
+				
+				TransferEncoding = trim(header["Transfer-Encoding"]);
+				chunked = (TransferEncoding=="chunked");
+				
+				buf = body;
+				body = "";
+			end
+		end
+		
+		if chunked then
+			chunk_size_hex, chunk_content = buf:match("(%x+)\r?\n(.*)")
+			chunk_size = tonumber(chunk_size_hex,16)
+			chunk_content_len = chunk_content:len()
+			chunk_remaining = chunk_size-chunk_content_len
+
+			while chunk_content_len > chunk_size do
+				body = body..chunk_content:sub(0, chunk_size)
+				buf = chunk_content:sub(chunk_size+2)
+				
+				chunk_size_hex, chunk_content = buf:match("(%x+)\r?\n(.*)")
+				
+				if not chunk_size_hex 
+				or chunk_size_hex == "0" then
+					chunk_size = 0
+					break
+				end
+				
+				chunk_size = tonumber(chunk_size_hex,16)
+				chunk_content_len = chunk_content:len()
+				chunk_remaining = chunk_size-chunk_content_len
+			end
+			
+			if chunk_size == 0 then
+				break
+			end
+		end
+
+		if contentLength then
+      if #body == 0 then
+        bodyLength = #buf
+      else
+        bodyLength = #body
       end
-    end
+      
+			pct = bodyLength / contentLength * 100
+			setMessage(openSub.actionLabel..": "..progressBarContent(pct))
+			if bodyLength >= contentLength then
+				break
+			end
+		end
 
-    vlc.net.poll(pollfds)
-    chunk = vlc.net.recv(fd, 1024)
-  end
+		vlc.net.poll(pollfds)
+		response = vlc.net.recv(fd, 1024)
+	end
+	
+	if not chunked then
+		body = buf
+	end
+	
+	if status == 301 
+	and header["Location"] then
+		local host, path = parse_url(trim(header["Location"]))
+		request = request
+		:gsub("^([^%s]+ )([^%s]+)", "%1"..path)
+		:gsub("(Host: )([^\n]*)", "%1"..host)
 
-  vlc.net.close(fd)
-  
-  if status == 301 
-  and header["Location"] then
-    local host, path = parse_url(trim(header["Location"]))
-    request = request
-    :gsub("^([^%s]+ )([^%s]+)", "%1"..path)
-    :gsub("(Host: )([^\n]*)", "%1"..host)
-    
-    return http_req(host, port, request)
-  end
+		return http_req(host, port, request)
+	end
 
-  return status, response
+	return status, body
 end
 
 function parse_header(data)
@@ -2011,60 +2150,66 @@ function parse_xml(data)
   return tree
 end
 
-function parse_xmlrpc(data)
-  local tree = {}
-  local stack = {}
-  local tmp = {}
-  local tmpTag = ""
-  local level = 0
-  local op, tag, p, empty, val
-  local resolve_xml =  vlc.strings.resolve_xml_special_chars
-  table.insert(stack, tree)
-
-  for op, tag, p, empty, val in string.gmatch(
-    data, 
-    "<(%/?)([%w:]+)(.-)(%/?)>[%s\r\n\t]*([^<]*)"
-  ) do
-    if op=="/" then
-      if tag == "member" or tag == "array" then
-        if level>0  then
-          level = level - 1
-          table.remove(stack)
-        end
-      end
-    elseif tag == "name" then 
-      level = level + 1
-      if val~= "" then tmpTag  = resolve_xml(val) end
-      
-      if type(stack[level][tmpTag]) == "nil" then
-        stack[level][tmpTag] = {}
-        table.insert(stack, stack[level][tmpTag])
-      else
-        tmp = nil
-        tmp = {}
-        table.insert(stack[level-1], tmp)
-        
-        stack[level] = nil
-        stack[level] = tmp
-        table.insert(stack, tmp)
-      end
-      if empty ~= "" then
-        level = level - 1
-        stack[level][tmpTag] = ""
-        table.remove(stack)
-      end
-    elseif tag == "array" then
-      level = level + 1
-      tmp = nil
-      tmp = {}
-      table.insert(stack[level], tmp)
-      table.insert(stack, tmp)
-    elseif val ~= "" then 
-      stack[level][tmpTag] = resolve_xml(val)
-    end
-  end
-  collectgarbage()
-  return tree
+function parse_xmlrpc(xmlText)
+	local stack = {}
+	local tree = {}
+	local tmp, name = nil, nil
+	table.insert(stack, tree)
+	local FromXmlString =  vlc.strings.resolve_xml_special_chars
+	
+	local data_handle = {
+		int = function(v) return tonumber(v) end,
+		i4 = function(v) return tonumber(v) end,
+		double = function(v) return tonumber(v) end,
+		boolean = function(v) return tostring(v) end,
+		base64 = function(v) return tostring(v) end, -- FIXME
+		["string"] = function(v) return FromXmlString(v) end
+	}
+	
+   for c, label, empty, value 
+   in xmlText:gmatch("<(%/?)([%w_:]+)(%/?)>([^<]*)") do
+   
+		if c == "" 
+		then -- start tag
+			if label == "struct"
+			or label == "array" then
+				tmp = nil
+				tmp = {}
+				if name then
+					stack[#stack][name] = tmp
+				else
+					table.insert(stack[#stack], tmp)
+				end
+				table.insert(stack, tmp)
+				name = nil
+			elseif label == "name" then
+				name = value
+			elseif data_handle[label] then
+				if name then
+					stack[#stack][name] = data_handle[label](value)
+				else
+					table.insert(stack[#stack], 
+					data_handle[label](value))
+				end
+				name = nil
+			end
+			if empty == "/"  -- empty tag
+			and #stack>0 
+			and (label == "struct"
+			or label == "array")
+			then
+				table.remove(stack)
+			end
+		else -- end tag
+			if #stack>0 
+			and (label == "struct"
+			or label == "array")then
+				table.remove(stack)
+			end
+		end
+	end
+	
+	return tree[1]
 end
 
 function dump_xml(data)
@@ -2242,7 +2387,6 @@ function mkdir_p(path)
 end
 
 function decode_uri(str)
-  vlc.msg.err(slash)
   return str:gsub("/", slash)
 end
 

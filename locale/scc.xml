@@ -1,0 +1,56 @@
+<action_hash>Izračunavanje video hasha</action_hash>
+<action_login>Prijavljivanje</action_login>
+<action_logout>Odjavljivanje</action_logout>
+<action_noop>Proveravanje sesije</action_noop>
+<action_search>Traženje prevoda</action_search>
+<int_all>SVE</int_all>
+<int_bool_false>Ne</int_bool_false>
+<int_bool_true>Da</int_bool_true>
+<int_cancel>Otkaži</int_cancel>
+<int_close>Zatvori</int_close>
+<int_config>Konfiguriši</int_config>
+<int_configuration>Konfiguracija</int_configuration>
+<int_default_lang>Jezik prevoda</int_default_lang>
+<int_descr>Skini prevod sa OpenSubtitles.org</int_descr>
+<int_display_code>Prikaži šifru jezika u nazivu fajla</int_display_code>
+<int_dowload_behav>Šta uraditi sa prevodom</int_dowload_behav>
+<int_dowload_load>Samo učitaj</int_dowload_load>
+<int_dowload_manual>Ručno preuzimanje</int_dowload_manual>
+<int_dowload_save>Učitaj i sačuvaj</int_dowload_save>
+<int_dowload_sel>Preuzmi izabrano</int_dowload_sel>
+<int_episode>Epizoda (serije)</int_episode>
+<int_help>Pomoć</int_help>
+<int_help_mess>Preuzmi prevod sa &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; i prikaži ih dok se reprodukuje video.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Upotreba:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub je napravljen za korišćenje dok se video reprodukuje, tako da pokrenite prvo video (ako se ništa ne reprodukuje, dobićete link za traženje prevoda u pregledaču).&lt;br&gt; &lt;br&gt; Izaberite jezik prevoda i kliknite na dugme koje odgovara jednoj od dve opcije za pretrazivanje obezbeđenje od strane VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Opcija 1: Pretraži po hash&lt;/b&gt;&lt;br&gt; Preporučljivo je da probate ovaj način prvo, jer pretražuje na osnovu otiska video fajla, tako da možete naći sinhronizovan prevod za vaš video.&lt;br&gt; &lt;br&gt; &lt;b&gt;Opcija 2: Pretraga po imenu&lt;/b&gt;&lt;br&gt; U slu;aju da nemate sreće sa prvom opcijom, samo proverite da li je naziv videa ispravan. Ako tražite prevod za seriju, mozete dodati i sezonu i broj epizode.&lt;br&gt; &lt;br&gt; &lt;b&gt;Skidanje prevoda&lt;/b&gt;&lt;br&gt; Izaberite jedan prevod iz liste i kliknitena &#39;Preuzmi&#39;.&lt;br&gt; Prevod će biti stavljen u isti folder kao i video, sa istim imenom (drugačijim tipom fajla) tako da ce ih VLC učitati automatski kada sledeći put pustite video.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Oprez :&lt;/b&gt; Postojeći prevodi sa istim imenom kao i film će biti zamenjeni usled skidanja novih prevoda, tako da ih stavite na nekom drugom mestu ako su bitni.&lt;br&gt; &lt;br&gt; Pronadjite jos VLC proširenja na &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Jezik interfejsa</int_int_lang>
+<int_ok>U redu</int_ok>
+<int_remove_tag>Ukloni oznake</int_remove_tag>
+<int_research>Ponovo pretraži</int_research>
+<int_save>Sačuvaj</int_save>
+<int_search_hash>Pretraži po hash</int_search_hash>
+<int_searching_transl>Traženje prevoda ...</int_searching_transl>
+<int_search_name>Pretraži po ime</int_search_name>
+<int_search_transl>Pretraži prevode</int_search_transl>
+<int_season>Sezona (serije)</int_season>
+<int_show_conf>Prikaži konfiguraciju</int_show_conf>
+<int_show_help>Prikaži pomoć</int_show_help>
+<int_title>Naslov</int_title>
+<int_vlsub_work_dir>VLSub radna fascikla</int_vlsub_work_dir>
+<mess_click_link>Kliknite ovde da otvorijte fajl</mess_click_link>
+<mess_complete>Pretraga gotova</mess_complete>
+<mess_dowload_link>Veza preuzimanja</mess_dowload_link>
+<mess_downloading>Preuzimanje prevoda</mess_downloading>
+<mess_error>Greška</mess_error>
+<mess_expired>Sesije istekla, pokušavam ponovo...</mess_expired>
+<mess_loaded>Prevod Učitan</mess_loaded>
+<mess_no_input>Molimo koristite ovu opciju u toku reprodukcije</mess_no_input>
+<mess_no_res>Nema poklapanja</mess_no_res>
+<mess_no_response>Server ne reaguje</mess_no_response>
+<mess_no_selection>Nije izabran prevod</mess_no_selection>
+<mess_not_found>Fajl nije pronadjen</mess_not_found>
+<mess_not_found2>Fajl nije pronadjen (neodgovarajući karakter?)</mess_not_found2>
+<mess_not_local>Ova opcija radi samo sa lokalnim fajlovima (za sada)</mess_not_local>
+<mess_overloaded>Server opterećen, molimo pokušajte kasnije</mess_overloaded>
+<mess_res>rezultat(a)</mess_res>
+<mess_save_fail>Nije moguće sačuvati prevod</mess_save_fail>
+<mess_success>Uspešno</mess_success>
+<mess_unauthorized>Neovlašćen zahtev</mess_unauthorized>

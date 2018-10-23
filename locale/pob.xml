@@ -1,9 +1,11 @@
 <action_hash>Calculando hash</action_hash>
 <action_login>Fazendo Login</action_login>
 <action_logout>Fazendo Logout</action_logout>
-<action_noop>Checanco sessão</action_noop>
+<action_noop>Checando sessão</action_noop>
 <action_search>Procurando legendas</action_search>
 <int_all>Todos</int_all>
+<int_bool_false>Não</int_bool_false>
+<int_bool_true>Sim</int_bool_true>
 <int_cancel>Cancelar</int_cancel>
 <int_close>Fechar</int_close>
 <int_config>Configurações</int_config>
@@ -32,8 +34,9 @@
 <int_show_conf>Mostrar configurações</int_show_conf>
 <int_show_help>Mostrar ajuda</int_show_help>
 <int_title>Título</int_title>
+<int_vlsub_work_dir>VLSub diretório de trabalho</int_vlsub_work_dir>
 <mess_click_link>Clique para abrir o arquivo</mess_click_link>
-<mess_complete>Pesquisa compketa</mess_complete>
+<mess_complete>Pesquisa concluída</mess_complete>
 <mess_dowload_link>Link para download</mess_dowload_link>
 <mess_downloading>Baixando legenda</mess_downloading>
 <mess_error>Erro</mess_error>
@@ -44,7 +47,7 @@
 <mess_no_response>Servidor não responde</mess_no_response>
 <mess_no_selection>Nenhuma legenda selecionada</mess_no_selection>
 <mess_not_found>Arquivo não encontrado</mess_not_found>
-<mess_not_found2>Arquivo não encontrado (caractére não permitido?)</mess_not_found2>
+<mess_not_found2>Arquivo não encontrado (caractere não permitido?)</mess_not_found2>
 <mess_not_local>Este método funciona apenas para arquivos locais (por enquanto)</mess_not_local>
 <mess_overloaded>Servidor sobrecarregado, tente novamente mais tarde</mess_overloaded>
 <mess_res>encontrada(s)</mess_res>
