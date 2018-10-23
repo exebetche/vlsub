@@ -322,15 +322,19 @@ local dlg = nil
 local input_table = {} -- General widget id reference
 local select_conf = {} -- Drop down widget / option table association 
 
+local app_name = "VLsub";
+local app_version = "0.10.2";
+local app_useragent = app_name.." "..app_version;
+
             --[[ VLC extension stuff ]]--
 
 function descriptor()
   return { 
-    title = "&VLsub 0.9.13",
-    version = "0.9.13",
+    title = "&"..app_useragent,
+    version = app_version,
     author = "exebetche",
     url = 'http://www.opensubtitles.org/',
-    shortdesc = "&VLsub";
+    shortdesc = "&"..app_name;
     description = options.translation.int_descr,
     capabilities = {"menu", "input-listener" }
   }
