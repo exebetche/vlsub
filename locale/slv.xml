@@ -1,0 +1,56 @@
+<action_hash>Izračunavam hash videa</action_hash>
+<action_login>Prijavljanje</action_login>
+<action_logout>Odjavljanje</action_logout>
+<action_noop>Preverjam sejo</action_noop>
+<action_search>Iščem podnapise</action_search>
+<int_all>Vsi</int_all>
+<int_bool_false>Ne</int_bool_false>
+<int_bool_true>Da</int_bool_true>
+<int_cancel>Prekliči</int_cancel>
+<int_close>Zapri</int_close>
+<int_config>Nastavitev</int_config>
+<int_configuration>Nastavitve</int_configuration>
+<int_default_lang>Jezik podnapisov</int_default_lang>
+<int_descr>Prenesi podnapise iz OpenSubtitles.org</int_descr>
+<int_display_code>Prikaži kodo jezika v imenu datoteke</int_display_code>
+<int_dowload_behav>Način shranjevanja</int_dowload_behav>
+<int_dowload_load>Samo dodaj</int_dowload_load>
+<int_dowload_manual>Ročni prenos</int_dowload_manual>
+<int_dowload_save>Dodaj in shrani</int_dowload_save>
+<int_dowload_sel>Dodaj</int_dowload_sel>
+<int_episode>Epizoda (serije)</int_episode>
+<int_help>Pomoč</int_help>
+<int_help_mess>Prenesi podnapise iz &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; in jih prikaži med gledanjem videa.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Uporaba:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub je namenjem uporabi med gledanjem videa, zato ga najprej odprite (v nasprotnem primeru se bo povezava za prenos odprla v brskalniku).&lt;br&gt; &lt;br&gt; Izberite jezik podnapisov in kliknite na eno od metod iskanja z vtičnikom VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Metoda 1: Išči po hash-u&lt;/b&gt;&lt;br&gt; (Priporočeno) Iskanje s hash-om videa, ki najde podnapise sinhronizirane z vašim videom.&lt;br&gt; &lt;br&gt; &lt;b&gt;Metoda 2: Išči po imenu&lt;/b&gt;&lt;br&gt; Preverite, če je ime pravilno. V primeru serij lahko dodate številko sezone in epizode.&lt;br&gt; &lt;br&gt; &lt;b&gt;Prenašanje podnapisov&lt;/b&gt;&lt;br&gt; Izberi podnapis iz seznama in klikni &#39;Dodaj&#39;.&lt;br&gt; Podnapisi bodo prenešeni v isto mapo kot video, z istim imenom (in drugo končnico), da jih bo VLC naslednjič dodal avtomatsko.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Pozor :&lt;/b&gt; Obstoječi podnapisi so prepisani brez obvestila, zato jih kopirajte drugam, če so pomembni.&lt;br&gt; &lt;br&gt; Več VLC vtičnikov na &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Jezik vmesnika</int_int_lang>
+<int_ok>Ok</int_ok>
+<int_remove_tag>Odstrani oznake</int_remove_tag>
+<int_research>Razišči</int_research>
+<int_save>Shrani</int_save>
+<int_search_hash>Išči po hash-u</int_search_hash>
+<int_searching_transl>Iščem prevode ...</int_searching_transl>
+<int_search_name>Išči po imenu</int_search_name>
+<int_search_transl>Išči prevode</int_search_transl>
+<int_season>Sezona (serije)</int_season>
+<int_show_conf>Nastavitve</int_show_conf>
+<int_show_help>Pomoč</int_show_help>
+<int_title>Naslov</int_title>
+<int_vlsub_work_dir>Delovni imenik VLSub</int_vlsub_work_dir>
+<mess_click_link>Klikni za odpiranje datoteke</mess_click_link>
+<mess_complete>Iskanje končano</mess_complete>
+<mess_dowload_link>Povezava za prenos</mess_dowload_link>
+<mess_downloading>Prenašam podnapis</mess_downloading>
+<mess_error>Napaka</mess_error>
+<mess_expired>Seja je potekla, poskušam ponovno</mess_expired>
+<mess_loaded>Podnapis prenešen</mess_loaded>
+<mess_no_input>Ni odprtega videa</mess_no_input>
+<mess_no_res>Ni rezultatov</mess_no_res>
+<mess_no_response>Strežnik se ne odziva</mess_no_response>
+<mess_no_selection>Ni izbranih podnapisov</mess_no_selection>
+<mess_not_found>Datoteka ni najdena</mess_not_found>
+<mess_not_found2>Datoteka ni najdena (prepovedan znak?)</mess_not_found2>
+<mess_not_local>Ta metoda deluje le z lokalnimi datotekami</mess_not_local>
+<mess_overloaded>Strežnik preobremenjen, prosimo poskusite kasneje</mess_overloaded>
+<mess_res>rezultat(i)</mess_res>
+<mess_save_fail>Ni mogoče shraniti podnapisa</mess_save_fail>
+<mess_success>Uspešno</mess_success>
+<mess_unauthorized>Nepooblaščen zahtevek</mess_unauthorized>
