@@ -1,8 +1,8 @@
-<action_hash>Video hash hesaplanıyor</action_hash>
+<action_hash>Video için hash hesaplanıyor</action_hash>
 <action_login>Giriş yapılıyor</action_login>
 <action_logout>Çıkış yapılıyor</action_logout>
 <action_noop>Oturum kontrol ediliyor</action_noop>
-<action_search>Alryazılarda ara</action_search>
+<action_search>Altyazılarda ara</action_search>
 <int_all>Hepsi</int_all>
 <int_bool_false>Hayır</int_bool_false>
 <int_bool_true>Evet</int_bool_true>
@@ -13,22 +13,22 @@
 <int_default_lang>Altyazı dili</int_default_lang>
 <int_descr>Altyazıları OpenSubtitles.org'dan indir</int_descr>
 <int_display_code>Dosyada dil kodunu göster</int_display_code>
-<int_dowload_behav>What to do with subtitles</int_dowload_behav>
-<int_dowload_load>Load only</int_dowload_load>
+<int_dowload_behav>Altyazı ile ne yapmalı</int_dowload_behav>
+<int_dowload_load>Sadece yükle</int_dowload_load>
 <int_dowload_manual>Elle yükle</int_dowload_manual>
 <int_dowload_save>Yükle ve Kaydet</int_dowload_save>
 <int_dowload_sel>Seçileni Yükle</int_dowload_sel>
 <int_episode>Bölüm (seri)</int_episode>
 <int_help>Yardım</int_help>
-<int_help_mess>Download subtitles from &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; and display them while watching a video.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Usage:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub is meant to be used while you are watching the video, so start it first (if nothing is playing you will get a link to download the subtitles in your browser).&lt;br&gt; &lt;br&gt; Choose the language for your subtitles and click on the button corresponding to one of the two research methods provided by VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Method 1: Search by hash&lt;/b&gt;&lt;br&gt; It is recommended to try this method first, because it performs a research based on the video file print, so you can find subtitles synchronized with your video.&lt;br&gt; &lt;br&gt; &lt;b&gt;Method 2: Search by name&lt;/b&gt;&lt;br&gt; If you have no luck with the first method, just check the title is correct before clicking. If you search subtitles for a series, you can also provide a season and episode number.&lt;br&gt; &lt;br&gt; &lt;b&gt;Downloading Subtitles&lt;/b&gt;&lt;br&gt; Select one subtitle in the list and click on &#39;Download&#39;.&lt;br&gt; It will be put in the same directory as that of your video, with the same name (different extension) so VLC will load them automatically the next time you&#39;ll start the video.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Beware :&lt;/b&gt; Existing subtitles are overwritten without asking confirmation, so put them elsewhere if they&#39;re important.&lt;br&gt; &lt;br&gt; Find more VLC extensions at &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_help_mess>Buradan altyazıları indir &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; sonrasında video izlerken o altyazıları kullan.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Kullanma Kılavuzu:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub video izlerken kullanmak için yapıldı, şunla başla (Eğer herhangi bir video oynamıyorsa altyazıyı indirmek için tarayıcında bir link açılacak).&lt;br&gt; &lt;br&gt; Altyazı dilini seç ve daha sonrasında VLSub'ın sana sunduğu iki arama yönteminden birisini seç:&lt;br&gt; &lt;br&gt; &lt;b&gt;Methot 1: Hash ile ara&lt;/b&gt;&lt;br&gt; İlk olarak bu metodu denemeniz önerilir çünkü bu yöntem sizin videonuzun bilgilerine göre altyazı araması yapar, böylelikle videonuzla senkronize olan altyazıyı bulabilirsiniz.&lt;br&gt; &lt;br&gt; &lt;b&gt;Metot 2: İsme göre ara&lt;/b&gt;&lt;br&gt; Eğer ilk yöntem ile başarısız olduysanız tıklamadan önce başlığın doğru olup olmadığını kontrol edin. Eğer film değil de dizi için arama yapıyorsanız kaçıncı sezon kaçıncı bölüm olduğunu yazabilirsiniz.&lt;br&gt; &lt;br&gt; &lt;b&gt;Altyazılar indiriliyor&lt;/b&gt;&lt;br&gt; Listeden bir altyazı seç ve şu botuna bas: &#39;İndir&#39;.&lt;br&gt; VLSub, altyazıyı videonun bulunduğu konuma aynı isim fakat farklı uzantı ile koyacak. Böylelikle VLC otomatik olarak altyazıyı görmüş olacak &#39;videoyu başlattığınız zaman.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Unutma :&lt;/b&gt; İndirilen altyazılar öncekilerin üzerine yazılır. Bu yüzden onları başka bir yere taşı eğer &#39;önemlilerse.&lt;br&gt; &lt;br&gt; Daha fazla VLC eklentilerini buradan bulabilirsin: &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
 <int_int_lang>Arayüz dili</int_int_lang>
-<int_ok>Ok</int_ok>
+<int_ok>Tamam</int_ok>
 <int_remove_tag>Etiketleri sil</int_remove_tag>
 <int_research>Araştır</int_research>
 <int_save>Kaydet</int_save>
 <int_search_hash>Etikete göre ara</int_search_hash>
 <int_searching_transl>Altyazı çevirileri aranıyor ...</int_searching_transl>
-<int_search_name>İsmi göre ara</int_search_name>
+<int_search_name>İsme göre ara</int_search_name>
 <int_search_transl>Çevirilerde ara</int_search_transl>
 <int_season>Sezon (seri)</int_season>
 <int_show_conf>Ayarı Görüntüle</int_show_conf>
@@ -48,7 +48,7 @@
 <mess_no_selection>Altyazı seçilmedi</mess_no_selection>
 <mess_not_found>Dosya bulunamadı</mess_not_found>
 <mess_not_found2>Dosya bulunamadı (illegal karakter?)</mess_not_found2>
-<mess_not_local>Bu metod sadece lokal dosyalar ile çalışıyor (şu an)</mess_not_local>
+<mess_not_local>Bu metot sadece yerel dosyalar ile çalışıyor (şimdilik)</mess_not_local>
 <mess_overloaded>Server yoğun, lütfen daha sonra dene</mess_overloaded>
 <mess_res>sonuç(lar)</mess_res>
 <mess_save_fail>Altyazı kayıt edilemiyor</mess_save_fail>
