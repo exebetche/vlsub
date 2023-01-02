@@ -1,0 +1,56 @@
+<action_hash>Calculant el hash del vídeo</action_hash>
+<action_login>Entrant</action_login>
+<action_logout>Sortint</action_logout>
+<action_noop>Comprovant sessió</action_noop>
+<action_search>Buscant subtítols</action_search>
+<int_all>Tots</int_all>
+<int_bool_false>No</int_bool_false>
+<int_bool_true>Sí</int_bool_true>
+<int_cancel>Cancel·la</int_cancel>
+<int_close>Tanca</int_close>
+<int_config>Config</int_config>
+<int_configuration>Configuració</int_configuration>
+<int_default_lang>Idioma dels subtítols</int_default_lang>
+<int_descr>Baixa subtítols des de OpenSubtitles.org</int_descr>
+<int_display_code>Mostra el codi d&#39;idioma al nom d&#39;arxiu</int_display_code>
+<int_dowload_behav>Què fer amb els subtítols</int_dowload_behav>
+<int_dowload_load>Només carrega</int_dowload_load>
+<int_dowload_manual>Baixada manual</int_dowload_manual>
+<int_dowload_save>Carrega i desa</int_dowload_save>
+<int_dowload_sel>Baixa la selecció</int_dowload_sel>
+<int_episode>Episodi (sèries)</int_episode>
+<int_help>Ajuda</int_help>
+<int_help_mess>Baixa subtítols des de &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; i mostra&#39;ls mentre mires un vídeo.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Funcionament:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; El VLSub està pensat per fer-se servir mentre mires un vídeo, així, per començar (si no s&#39;està reproduint res sortirà un enllaç per baixar els subtítols al navegador).&lt;br&gt; &lt;br&gt; Selecciona l&#39;idioma dels subtítols i clica al botó que correspongui a un dels dos mètodes que ofereix el VLSub:&lt;br&gt; &lt;br&gt; &lt;b&gt;Mètode 1: Cerca per hash&lt;/b&gt;&lt;br&gt; Es recomana triar aquest mètode primer, ja que fa una cerca basada en el mateix fitxer del vídeo, així podràs trobar subtítols sincronitzats amb el teu vídeo.&lt;br&gt; &lt;br&gt; &lt;b&gt;Mètode 2: Cerca per nom&lt;/b&gt;&lt;br&gt; Si no has tingut sort amb el primer mètode, assegura&#39;t primer que el nom de l&#39;arxiu és correcte. Si cerques subtítols per una sèrie, pots afegir-hi la temporada i el número d&#39;episodi.&lt;br&gt; &lt;br&gt; &lt;b&gt;Baixant subtítols&lt;/b&gt;&lt;br&gt; Selecciona un subtítol de la llista i clica a  &#39;Download&#39;.&lt;br&gt; Es desarà al mateix directori que el vídeo, amb el mateix nom (i diferent extensió) per tal que el VLC el carregui automàticament la pròxima vegada que obris el vídeo.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Compte :&lt;/b&gt; Si ja hi ha subtítols se sobreescriuran sense preguntar, així que guarda&#39;ls en un altre lloc si són importants.&lt;br&gt; &lt;br&gt; Troba més extensions per al VLC a &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Idioma d&#39;interfície</int_int_lang>
+<int_ok>Ok</int_ok>
+<int_remove_tag>Esborra etiquetes</int_remove_tag>
+<int_research>Cerca</int_research>
+<int_save>Desa</int_save>
+<int_search_hash>Cerca per hash</int_search_hash>
+<int_searching_transl>Buscant traduccions ...</int_searching_transl>
+<int_search_name>Cerca per nom</int_search_name>
+<int_search_transl>Cerca traduccions</int_search_transl>
+<int_season>Temporada (sèries)</int_season>
+<int_show_conf>Mostra config</int_show_conf>
+<int_show_help>Mostra ajuda</int_show_help>
+<int_title>Títol</int_title>
+<int_vlsub_work_dir>Directori de treball del VLSub</int_vlsub_work_dir>
+<mess_click_link>Clica aquí per obrir l'arxiu</mess_click_link>
+<mess_complete>Cerca completa</mess_complete>
+<mess_dowload_link>Baixa enllaç</mess_dowload_link>
+<mess_downloading>Baixant subtítol</mess_downloading>
+<mess_error>Error</mess_error>
+<mess_expired>La sessió ha expirat, reintentant-ho</mess_expired>
+<mess_loaded>Subtítols carregats</mess_loaded>
+<mess_no_input>Fes servir aquest mètode durant la reproducció</mess_no_input>
+<mess_no_res>No hi ha resultats</mess_no_res>
+<mess_no_response>El servidor no respon</mess_no_response>
+<mess_no_selection>No s&#39;han seleccionat subtítols</mess_no_selection>
+<mess_not_found>Arxiu no trobat</mess_not_found>
+<mess_not_found2>Arxiu no trobat (Caràcter estrany?)</mess_not_found2>
+<mess_not_local>Aquest mètode només serveix amb arxius locals (per ara)</mess_not_local>
+<mess_overloaded>El servidor està sobrecarregat, reintenta-ho més tard</mess_overloaded>
+<mess_res>resultat(s)</mess_res>
+<mess_save_fail>No s'han pogut desar els subtítols</mess_save_fail>
+<mess_success>Fet</mess_success>
+<mess_unauthorized>Sol·licitud no autoritzada</mess_unauthorized>
