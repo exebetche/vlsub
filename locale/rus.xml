@@ -1,0 +1,56 @@
+<action_hash>Расчёт хэша видео</action_hash>
+<action_login>Вход</action_login>
+<action_logout>Выход</action_logout>
+<action_noop>Проверка сеанса</action_noop>
+<action_search>Поиск субтитров</action_search>
+<int_all>Все</int_all>
+<int_bool_false>Нет</int_bool_false>
+<int_bool_true>Да</int_bool_true>
+<int_cancel>Отмена</int_cancel>
+<int_close>Закрыть</int_close>
+<int_config>Параметры</int_config>
+<int_configuration>Конфигурация</int_configuration>
+<int_default_lang>Язык субтитров</int_default_lang>
+<int_descr>Загрузить субтитры с OpenSubtitles.org</int_descr>
+<int_display_code>Показывать код языка в названии файла</int_display_code>
+<int_dowload_behav>Что делать с субтитрами</int_dowload_behav>
+<int_dowload_load>Только загрузить</int_dowload_load>
+<int_dowload_manual>Загрузка вручную</int_dowload_manual>
+<int_dowload_save>Загрузить и сохранить</int_dowload_save>
+<int_dowload_sel>Загрузить выбранное</int_dowload_sel>
+<int_episode>Серия (сериал)</int_episode>
+<int_help>Справка</int_help>
+<int_help_mess>Загрузить субтитры с &lt;a href=&#39;http://www.opensubtitles.org/&#39;&gt;opensubtitles.org&lt;/a&gt; и показывать их во время просмотра видео.&lt;br&gt; &lt;br&gt; &lt;b&gt;&lt;u&gt;Использование:&lt;/u&gt;&lt;/b&gt;&lt;br&gt; &lt;br&gt; VLSub предназначается для использования при просмотре видео, поэтому сначала необходимо запустить его (если ничего не воспроизводится, в браузере появится ссылка на загрузку субтитров).&lt;br&gt; &lt;br&gt; Выберите язык субтитров и нажмите кнопку, соответствующую одному из двух доступных в  VLSub способов поиска:&lt;br&gt; &lt;br&gt; &lt;b&gt;Способ 1: Искать по хэшу&lt;/b&gt;&lt;br&gt; Рекомендуется сначала попробовать этот способ, потому что поиск выполняется на основе отпечатка видеофайла; это позволяет найти субтитры, синхронизированные с видео.&lt;br&gt; &lt;br&gt; &lt;b&gt;Способ 2: Искать по названию&lt;/b&gt;&lt;br&gt; Если использование первого способа не помогло, проверьте правильность названия перед нажатием кнопки. Если выполняется поиск субтитров для сериала, также можно указать сезон и номер серии.&lt;br&gt; &lt;br&gt; &lt;b&gt;Загрузка субтитров&lt;/b&gt;&lt;br&gt; Выберите субтитры в списке и нажмите кнопку &#39;Загрузить&#39;.&lt;br&gt; Они будут помещены в тот же каталог, где находится видео, с таким же именем (но другим расширением), чтобы проигрыватель VLC автоматически загрузил их при следующем запуске видео.&lt;br&gt; &lt;br&gt; &lt;b&gt;/!\ Внимание :&lt;/b&gt; существующие субтитры будут перезаписаны без запроса подтверждения, поэтому сохраните их в другом месте, если они нужны.&lt;br&gt; &lt;br&gt; Другие расширения VLC доступны здесь: &lt;a href=&#39;http://addons.videolan.org&#39;&gt;addons.videolan.org&lt;/a&gt;.</int_help_mess>
+<int_int_lang>Язык интерфейса</int_int_lang>
+<int_ok>ОК</int_ok>
+<int_remove_tag>Удалить теги</int_remove_tag>
+<int_research>Новый поиск</int_research>
+<int_save>Сохранить</int_save>
+<int_search_hash>Искать по хэшу</int_search_hash>
+<int_searching_transl>Поиск переводов...</int_searching_transl>
+<int_search_name>Искать по названию</int_search_name>
+<int_search_transl>Поиск переводов</int_search_transl>
+<int_season>Сезон (сериал)</int_season>
+<int_show_conf>Показать параметры</int_show_conf>
+<int_show_help>Показать справку</int_show_help>
+<int_title>Название</int_title>
+<int_vlsub_work_dir>Рабочий каталог VLSub</int_vlsub_work_dir>
+<mess_click_link>Нажмите сюда, чтобы открыть файл</mess_click_link>
+<mess_complete>Новый поиск завершён</mess_complete>
+<mess_dowload_link>Ссылка для загрузки</mess_dowload_link>
+<mess_downloading>Загрузка субтитров</mess_downloading>
+<mess_error>Ошибка</mess_error>
+<mess_expired>Срок действия сеанса истёк, повторная попытка</mess_expired>
+<mess_loaded>Субтитры загружены</mess_loaded>
+<mess_no_input>Пожалуйста, используйте этот способ во время воспроизведения</mess_no_input>
+<mess_no_res>Результатов нет</mess_no_res>
+<mess_no_response>Сервер не отвечает</mess_no_response>
+<mess_no_selection>Субтитры не выбраны</mess_no_selection>
+<mess_not_found>Файл не найден</mess_not_found>
+<mess_not_found2>Файл не найден (недопустимый символ?)</mess_not_found2>
+<mess_not_local>Этот способ подходит только для локальных файлов (в текущей версии программы)</mess_not_local>
+<mess_overloaded>Сервер перегружен, повторите попытку позже</mess_overloaded>
+<mess_res>(кол-во результатов)</mess_res>
+<mess_save_fail>Не удалось сохранить субтитры</mess_save_fail>
+<mess_success>Успех</mess_success>
+<mess_unauthorized>Запрос запрещён</mess_unauthorized>
