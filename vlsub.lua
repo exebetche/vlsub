@@ -97,7 +97,7 @@ local options = {
       <br>
       <b><u>Usage:</u></b><br>
       <br>
-      Start your video. If you use Vlsub witout playing a video 
+      Start your video. If you use Vlsub without playing a video 
       you will get a link to download the subtitles in your browser 
       but the subtitles won't be saved and loaded automatically.<br>
       <br>
@@ -106,7 +106,7 @@ local options = {
       provided by VLSub:<br>
       <br>
       <b>Method 1: Search by hash</b><br>
-      It is recommended to try this method first, because it 
+      It is recommended to try this method first because it 
       performs a research based on the video file print, so you 
       can find subtitles synchronized with your video.<br>
       <br>
@@ -124,7 +124,7 @@ local options = {
       start the video.<br>
       <br>
       <b>/!\\ Beware :</b> Existing subtitles are overwritten 
-      without asking confirmation, so put them elsewhere if 
+      without asking for confirmation, so put them elsewhere if 
       they're important.<br>
       <br>
       Find more VLC extensions at 
